@@ -13,10 +13,12 @@ function love.load()
     
     camera = cam()
 
+    -- loads in the map
     testingMap = sti('maps/testing-zone.lua')
 
+    -- draws the window size
     world = wf.newWorld(0, 0)
-    love.window.setMode(1000, 1000)
+    love.window.setMode(2000, 1000)
 
     -- Player table: 
     --          Contains player information 
@@ -79,7 +81,7 @@ function love.update(dt)
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
-   
+
    player.anim:update(dt)
 
    world:update(dt)
