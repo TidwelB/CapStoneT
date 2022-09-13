@@ -77,7 +77,9 @@ function love.update(dt)
         player.anim:gotoFrame(3)
    end
 
+   -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
+   
    player.anim:update(dt)
 
    world:update(dt)
