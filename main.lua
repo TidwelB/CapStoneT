@@ -1,29 +1,41 @@
 function love.load()
+    -- Hitbox library
     wf = require 'libraries/windfield'
+    -- Tiled implementation library
     sti = require 'libraries/sti'
+    -- Animations library
     anim8 = require 'libraries/anim8'
+    -- Makes the character strech not blurry 
     love.graphics.setDefaultFilter("nearest", "nearest")
 
     world = wf.newWorld(0, 0)
     love.window.setMode(1000, 1000)
 
+    -- Player table: 
+    --          Contains player information 
     player = {}
     
-    player.speed = 250
-    player.x = 0
-    player.y = 0
-    player.speed = 2.5
-    player.spriteSheet = love.graphics.newImage('sprites/loose-sprites.png')
-    player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
+        player.speed = 250
+        player.x = 0
+        player.y = 0
+        player.speed = 2.5
+        player.spriteSheet = love.graphics.newImage('sprites/loose-sprites.png')
+        player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
 
+    -- Player Animation table: 
+    --          Contains animations and assigns them to their given direction
     player.animations = {}
-    player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.2 )
-    player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.2 )
-    player.animations.right = anim8.newAnimation( player.grid('1-4', 7), 0.2 )
-    player.animations.up = anim8.newAnimation( player.grid('1-4', 5), 0.2 )
-
+        
+        player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.2 )
+        player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.2 )
+        player.animations.right = anim8.newAnimation( player.grid('1-4', 7), 0.2 )
+        player.animations.up = anim8.newAnimation( player.grid('1-4', 5), 0.2 )
+    
+    -- Initializes player animations and allows the movment keys to 
+    -- influence which animation plays
     player.anim = player.animations.left
 
+    -- Background which is useless right now
     background = love.graphics.newImage('sprites/ground.png')
 
     timer = 0 
@@ -34,6 +46,7 @@ function love.update(dt)
 
     local isMoving = false
 
+    -- Player Movement
    if love.keyboard.isDown("d") then
        player.x = player.x + player.speed
        player.anim = player.animations.right
@@ -55,6 +68,7 @@ function love.update(dt)
        isMoving = true
    end
 
+   -- Freezes the frame on the idle sprite in that direction
    if (isMoving == false) then
         player.anim:gotoFrame(3)
    end
