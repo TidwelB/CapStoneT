@@ -1,3 +1,8 @@
+local button = require "Button"
+local buttons = {
+    menu_state = {}
+}
+
 function love.load()
     -- Hitbox library
     wf = require 'libraries/windfield'
@@ -8,6 +13,8 @@ function love.load()
     -- Camera library
     cam = require 'libraries/camera'
     
+    buttons.menuState.playGame = button("Play game", nil, nil, 120, 40)
+
     -- Makes the character stretch not blurry 
     love.graphics.setDefaultFilter("nearest", "nearest")
     
@@ -90,10 +97,15 @@ end
 
 function love.draw()
     -- Tells the game where to start looking through the camera POV
-    camera:attach()
-        testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
-        testingMap:drawLayer(testingMap.layers["grate"])
-        testingMap:drawLayer(testingMap.layers["Walls"])
-        player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
-    camera:detach()
+    if game.state["running"] then
+        camera:attach()
+            testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
+            testingMap:drawLayer(testingMap.layers["grate"])
+            testingMap:drawLayer(testingMap.layers["Walls"])
+            player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
+        camera:detach()
+    elseif game.state["menu"] then
+        buttons.menuState.playGame:draw(10, 20, 10, 20)
+    end
+   
 end
