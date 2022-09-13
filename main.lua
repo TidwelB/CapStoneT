@@ -12,7 +12,7 @@ function love.load()
     player.speed = 250
     player.x = 0
     player.y = 0
-    player.speed = 1.5
+    player.speed = 2.5
     player.spriteSheet = love.graphics.newImage('sprites/loose-sprites.png')
     player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
 
