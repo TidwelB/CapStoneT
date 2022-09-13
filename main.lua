@@ -5,8 +5,15 @@ function love.load()
     sti = require 'libraries/sti'
     -- Animations library
     anim8 = require 'libraries/anim8'
-    -- Makes the character strech not blurry 
+    -- Camera library
+    cam = require 'libraries/camera'
+    
+    -- Makes the character stretch not blurry 
     love.graphics.setDefaultFilter("nearest", "nearest")
+    
+    camera = cam()
+
+    testingMap = sti('maps/testing-zone.lua')
 
     world = wf.newWorld(0, 0)
     love.window.setMode(1000, 1000)
@@ -34,9 +41,6 @@ function love.load()
     -- Initializes player animations and allows the movment keys to 
     -- influence which animation plays
     player.anim = player.animations.left
-
-    -- Background which is useless right now
-    background = love.graphics.newImage('sprites/ground.png')
 
     timer = 0 
 end
@@ -73,6 +77,7 @@ function love.update(dt)
         player.anim:gotoFrame(3)
    end
 
+   camera:lookAt(player.x, player.y)
    player.anim:update(dt)
 
    world:update(dt)
@@ -80,7 +85,11 @@ function love.update(dt)
 end
 
 function love.draw()
-    love.graphics.draw(background, 0, 0)
-    player.anim:draw(player.spriteSheet, player.x, player.y, nil, 10)
-    world:draw()
+    -- Tells the game where to start looking through the camera POV
+    camera:attach()
+        testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
+        testingMap:drawLayer(testingMap.layers["grate"])
+        testingMap:drawLayer(testingMap.layers["Walls"])
+        player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
+    camera:detach()
 end
