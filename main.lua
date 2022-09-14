@@ -39,11 +39,13 @@ function game:enter()
     -- Player table: 
     --          Contains player information 
     player = {}
-    
+
+        player.collider = world:newBSGRectangleCollider(400, 250, 65, 100, 14)
+        player.collider:setFixedRotation(true)
         player.speed = 250
         player.x = 0
         player.y = 0
-        player.speed = 2.5
+        player.speed = 335
         player.spriteSheet = love.graphics.newImage('sprites/loose-sprites.png')
         player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
 
@@ -60,7 +62,21 @@ function game:enter()
     -- influence which animation plays
     player.anim = player.animations.left
 
-    timer = 0 
+    timer = 0
+    
+    --  Walls table: 
+    --          intializes the hitboxes for the map 
+    --          whether that be the walls, the green stuff, etc...
+    walls = {}
+
+        if testingMap.layers["walls"] then
+            for i, box in pairs(testingMap.layers["walls"].objects) do
+                local wall = world:newRectangleCollider(box.x, box.y, box.width, box.height)
+                wall:setType('static')
+                table.insert(walls, wall)
+            end
+        end
+
 end
 
 function game:update(dt)
@@ -68,27 +84,34 @@ function game:update(dt)
 
     local isMoving = false
 
+    local vx = 0; 
+    local vy = 0;
+
     -- Player Movement
    if love.keyboard.isDown("d") then
-       player.x = player.x + player.speed
+       vx = player.speed
        player.anim = player.animations.right
        isMoving = true
    end
    if love.keyboard.isDown("a") then
-       player.x = player.x - player.speed
+       vx = player.speed * -1
        player.anim = player.animations.left
        isMoving = true
    end
    if love.keyboard.isDown("s") then
-       player.y = player.y + player.speed
+       vy = player.speed
        player.anim = player.animations.down
        isMoving = true
    end
    if love.keyboard.isDown("w") then
-       player.y = player.y - player.speed
+       vy = player.speed * -1
        player.anim = player.animations.up
        isMoving = true
    end
+
+   -- Sets the players hitbox to move with where our 
+   -- player is currently moving
+   player.collider:setLinearVelocity(vx, vy)
 
    -- switches game back into the main menu
    if love.keyboard.isDown("escape") then
@@ -103,10 +126,12 @@ function game:update(dt)
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
 
+   world:update(dt)
+   player.x = player.collider:getX()
+   player.y = player.collider:getY()
+
    player.anim:update(dt)
 
-   world:update(dt)
-   
 end
 
 function game:draw()
@@ -116,6 +141,7 @@ function game:draw()
         testingMap:drawLayer(testingMap.layers["grate"])
         testingMap:drawLayer(testingMap.layers["Walls"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
+        --world:draw()
     camera:detach()
 end
 

@@ -9,8 +9,8 @@ return {
   height = 30,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 4,
-  nextobjectid = 1,
+  nextlayerid = 5,
+  nextobjectid = 19,
   properties = {},
   tilesets = {
     {
@@ -192,6 +192,139 @@ return {
         3337, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3338, 3026, 3026, 3026, 3027,
         3448, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3449, 3137, 3137, 3137, 3138,
         3559, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3560, 3248, 3248, 3248, 3249
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 4,
+      name = "walls",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 8,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 192.667,
+          y = 322.667,
+          width = 94.6667,
+          height = 156,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 9,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 287.5,
+          y = 414.5,
+          width = 95.5,
+          height = 65.5,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 10,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 480,
+          y = 416,
+          width = 95,
+          height = 64,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 11,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 575.5,
+          y = 322.5,
+          width = 95,
+          height = 157,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 12,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 0,
+          y = 0,
+          width = 22,
+          height = 532,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 13,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = -1,
+          y = 532,
+          width = 23,
+          height = 427,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 14,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 24,
+          y = 860,
+          width = 928,
+          height = 96,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 17,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 932,
+          y = -4,
+          width = 48,
+          height = 852,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 18,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = -8,
+          y = -36,
+          width = 1004,
+          height = 132,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
       }
     }
   }
