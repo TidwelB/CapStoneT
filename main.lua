@@ -34,7 +34,7 @@ function game:enter()
 
     -- draws the window size
     world = wf.newWorld(0, 0)
-    love.window.setMode(2000, 1000)
+    love.window.setMode(1920, 1080)
 
     -- Player table: 
     --          Contains player information 
@@ -42,7 +42,6 @@ function game:enter()
 
         player.collider = world:newBSGRectangleCollider(400, 250, 65, 100, 14)
         player.collider:setFixedRotation(true)
-        player.speed = 250
         player.x = 0
         player.y = 0
         player.speed = 250
@@ -84,7 +83,7 @@ function game:update(dt)
 
     local isMoving = false
 
-    local vx = 0; 
+    local vx = 0;
     local vy = 0;
 
     -- Player Movement
@@ -143,7 +142,7 @@ function game:draw()
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
 
         -- if you want to see the hitboxes for the map and the player uncomment the line below
-        --world:draw()
+        -- world:draw()
     camera:detach()
 end
 
