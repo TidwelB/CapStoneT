@@ -1,9 +1,20 @@
-local button = require "Button"
-local buttons = {
-    menu_state = {}
-}
+-- Gamestate library
+Gamestate = require 'libraries.gamestate'
+local menu = {}
+local game = {}
 
-function love.load()
+-- Initializes the main menu at a very basic level
+function menu:draw()
+    love.graphics.print("Press enter to play", 10, 10)
+end
+
+function menu:keyreleased(key, code)
+    if key == 'return' then
+        Gamestate.switch(game)
+    end
+end
+
+function game:enter()
     -- Hitbox library
     wf = require 'libraries/windfield'
     -- Tiled implementation library
@@ -12,8 +23,6 @@ function love.load()
     anim8 = require 'libraries/anim8'
     -- Camera library
     cam = require 'libraries/camera'
-    
-    buttons.menuState.playGame = button("Play game", nil, nil, 120, 40)
 
     -- Makes the character stretch not blurry 
     love.graphics.setDefaultFilter("nearest", "nearest")
@@ -54,7 +63,7 @@ function love.load()
     timer = 0 
 end
 
-function love.update(dt)
+function game:update(dt)
     timer = timer + dt
 
     local isMoving = false
@@ -81,6 +90,11 @@ function love.update(dt)
        isMoving = true
    end
 
+   -- switches game back into the main menu
+   if love.keyboard.isDown("escape") then
+        Gamestate.switch(menu)
+   end
+
    -- Freezes the frame on the idle sprite in that direction
    if (isMoving == false) then
         player.anim:gotoFrame(3)
@@ -95,17 +109,18 @@ function love.update(dt)
    
 end
 
-function love.draw()
+function game:draw()
     -- Tells the game where to start looking through the camera POV
-    if game.state["running"] then
-        camera:attach()
-            testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
-            testingMap:drawLayer(testingMap.layers["grate"])
-            testingMap:drawLayer(testingMap.layers["Walls"])
-            player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
-        camera:detach()
-    elseif game.state["menu"] then
-        buttons.menuState.playGame:draw(10, 20, 10, 20)
-    end
-   
+    camera:attach()
+        testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
+        testingMap:drawLayer(testingMap.layers["grate"])
+        testingMap:drawLayer(testingMap.layers["Walls"])
+        player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
+    camera:detach()
+end
+
+-- prepares the game for switches
+function love.load()
+    Gamestate.registerEvents()
+    Gamestate.switch(menu)
 end
