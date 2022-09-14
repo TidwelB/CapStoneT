@@ -141,6 +141,8 @@ function game:draw()
         testingMap:drawLayer(testingMap.layers["grate"])
         testingMap:drawLayer(testingMap.layers["Walls"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
+        
+        -- if you want to see the hitboxes for the map and the player uncomment the line below
         --world:draw()
     camera:detach()
 end
