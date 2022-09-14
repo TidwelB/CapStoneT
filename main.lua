@@ -46,7 +46,7 @@ function game:enter()
         player.x = 0
         player.y = 0
         player.speed = 335
-        player.spriteSheet = love.graphics.newImage('sprites/loose-sprites.png')
+        player.spriteSheet = love.graphics.newImage('sprites/guard_yellow_spritesheet.png')
         player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
 
     -- Player Animation table: 
@@ -55,8 +55,8 @@ function game:enter()
         
         player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.2 )
         player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.2 )
-        player.animations.right = anim8.newAnimation( player.grid('1-4', 7), 0.2 )
-        player.animations.up = anim8.newAnimation( player.grid('1-4', 5), 0.2 )
+        player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.2 )
+        player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.2 )
     
     -- Initializes player animations and allows the movment keys to 
     -- influence which animation plays
@@ -141,7 +141,7 @@ function game:draw()
         testingMap:drawLayer(testingMap.layers["grate"])
         testingMap:drawLayer(testingMap.layers["Walls"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
-        
+
         -- if you want to see the hitboxes for the map and the player uncomment the line below
         --world:draw()
     camera:detach()
