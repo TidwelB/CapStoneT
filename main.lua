@@ -45,7 +45,7 @@ function game:enter()
         player.speed = 250
         player.x = 0
         player.y = 0
-        player.speed = 335
+        player.speed = 250
         player.spriteSheet = love.graphics.newImage('sprites/guard_yellow_spritesheet.png')
         player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
 
