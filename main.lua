@@ -18,10 +18,6 @@ local function newButton(text,fn)
     }
 end
 -- Initializes the main menu at a very basic level
-function menu:enter()
-    table.insert(buttons,newButton("Start Game",function()Gamestate.switch(game)end))
-    table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
-end
 function menu:draw()
     --This is creating the main menu buttons and their funtions
     local ww = love.graphics.getWidth()
@@ -194,4 +190,6 @@ function love.load()
     Gamestate.registerEvents()
     font = love.graphics.newFont(32)
     Gamestate.switch(menu)   
+    table.insert(buttons,newButton("Start Game",function()Gamestate.switch(game)end))
+    table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
 end
