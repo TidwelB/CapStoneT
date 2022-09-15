@@ -1,8 +1,16 @@
 require("game")
+require('tutorial')
+require('levelOne')
+require('maze')
+require('levelTwo')
 -- Gamestate library
 Gamestate = require 'libraries.gamestate'
 menu = {}
 runGame = {}
+runTutorial = {}
+runLevelOne = {}
+runMaze = {}
+runLevelTwo = {}
 
 local buttons = {}
 local test = {}
@@ -54,6 +62,18 @@ function menu:draw()
     love.graphics.reset()
 end
 
+-- Code for executing the tutorial section of the game
+function runTutorial:enter()
+    tutorial.enter(self)
+end
+function runTutorial:update(dt)
+    tutorial.update(self, dt)
+end
+function runTutorial:draw()
+    tutorial.draw(self)
+end
+
+-- Code for executing the main lobby of the game
 function runGame:enter()
     game.enter(self)
 end
@@ -62,6 +82,39 @@ function runGame:update(dt)
 end
 function runGame:draw()
     game.draw(self)
+end
+
+-- Code for executing the first stage of the game
+function runLevelOne:enter()
+    levelOne.enter(self)
+end
+function runLevelOne:update(dt)
+    levelOne.update(self, dt)
+end
+function runLevelOne:draw()
+    levelOne.draw(self)
+end
+
+-- Code for executing the maze section
+function runMaze:enter()
+    maze.enter(self)
+end
+function runMaze:update(dt)
+    maze.update(self, dt)
+end
+function runMaze:draw()
+    maze.draw(self)
+end
+
+-- Code for executing the second stage of the game
+function runLevelTwo:enter()
+    levelTwo.enter(self)
+end
+function runLevelTwo:update(dt)
+    levelTwo.update(self, dt)
+end
+function runLevelTwo:draw()
+    levelTwo.draw(self)
 end
 
 -- prepares the game for switches
