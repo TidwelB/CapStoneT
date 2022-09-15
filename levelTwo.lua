@@ -1,15 +1,13 @@
 -- Gamestate library
 Gamestate = require 'libraries.gamestate'
-menu = {}
-runGame = {}
-runTutorial = {}
-runLevelOne = {}
-runMaze = {}
-runLevelTwo = {}
+levelTwo = {}
 
 function levelTwo:enter()
+    --todo
 end
 function levelTwo:update(dt)
+    --todo
 end
 function levelTwo:draw()
+    --todo
 end
