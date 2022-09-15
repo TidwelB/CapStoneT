@@ -18,15 +18,9 @@ local function newButton(text,fn)
     }
 end
 -- Initializes the main menu at a very basic level
-
 function menu:enter()
-    table.insert(buttons,newButton("Start Game",startGame()))
+    table.insert(buttons,newButton("Start Game",function()Gamestate.switch(game)end))
     table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
-    table.insert(buttons,newButton("Test",function()Gamestate.switch(test)end))
-   
-end
-local function startGame()
-    Gamestate.switch(game)
 end
 function menu:draw()
     --This is creating the main menu buttons and their funtions
@@ -59,21 +53,9 @@ function menu:draw()
         love.graphics.print(buttons.text,font,(ww*.5)-textwidth*.5,y+textHeight*.5)
         cursor_y = cursor_y + (BUTTON_HEIGHT + margin)
     end
-    
-   --table.insert(buttons, newButton("Start Game", function()Gamestate.switch(game)end))
-    --table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
-    --love.graphics.print("Press enter to play", 10, 10)
+    --resets the color so that it doesnt have a black screen (very important please dont delete)
+    love.graphics.reset()
 end
-function test:enter()
-    love.window.setMode(200,200)
-    love.graphics.print("Press enter to play", 10, 10)
-end
-
---function menu:keyreleased(key, code)
-  -- if key == 'return' then
-    --    Gamestate.switch(game)
-    --end
---end
 
 function game:enter()
     -- Hitbox library
@@ -212,9 +194,5 @@ end
 function love.load()
     Gamestate.registerEvents()
     font = love.graphics.newFont(32)
-    Gamestate.switch(menu)
-    
-   -- table.insert(buttons,newButton("Leave",function()love.event.quit(0)end))
-    
-   
+    Gamestate.switch(menu)   
 end
