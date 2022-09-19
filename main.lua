@@ -1,10 +1,19 @@
+require("game")
+require('tutorial')
+require('levelOne')
+require('maze')
+require('levelTwo')
 -- Gamestate library
 Gamestate = require 'libraries.gamestate'
-local menu = {}
-local game = {}
+menu = {}
+runGame = {}
+runTutorial = {}
+runLevelOne = {}
+runMaze = {}
+runLevelTwo = {}
+
 local buttons = {}
 local test = {}
-
 
 BUTTON_HEIGHT = 64
 local font = nil
@@ -117,79 +126,55 @@ function game:enter()
 
 end
 
-function game:update(dt)
-    timer = timer + dt
-
-    local isMoving = false
-
-    local vx = 0;
-    local vy = 0;
-
-    -- Player Movement
-   if love.keyboard.isDown("d") then
-       vx = player.speed
-       player.anim = player.animations.right
-       isMoving = true
-   end
-   if love.keyboard.isDown("a") then
-       vx = player.speed * -1
-       player.anim = player.animations.left
-       isMoving = true
-   end
-   if love.keyboard.isDown("s") then
-       vy = player.speed
-       player.anim = player.animations.down
-       isMoving = true
-   end
-   if love.keyboard.isDown("w") then
-       vy = player.speed * -1
-       player.anim = player.animations.up
-       isMoving = true
-   end
-
-   -- Sets the players hitbox to move with where our 
-   -- player is currently moving
-   player.collider:setLinearVelocity(vx, vy)
-
-   -- switches game back into the main menu
-   if love.keyboard.isDown("escape") then
-        Gamestate.switch(menu)
-   end
-
-   -- Freezes the frame on the idle sprite in that direction
-   if (isMoving == false) then
-        player.anim:gotoFrame(3)
-   end
-
-   -- Moves the camera according to the players movements
-   camera:lookAt(player.x, player.y)
-
-   world:update(dt)
-   player.x = player.collider:getX()
-   player.y = player.collider:getY()
-
-   player.anim:update(dt)
-
+-- Code for executing the main lobby of the game
+function runGame:enter()
+    game.enter(self)
+end
+function runGame:update(dt)
+    game.update(self, dt)
+end
+function runGame:draw()
+    game.draw(self)
 end
 
-function game:draw()
-    -- Tells the game where to start looking through the camera POV
-    camera:attach()
-        testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
-        testingMap:drawLayer(testingMap.layers["grate"])
-        testingMap:drawLayer(testingMap.layers["Walls"])
-        player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
+-- Code for executing the first stage of the game
+function runLevelOne:enter()
+    levelOne.enter(self)
+end
+function runLevelOne:update(dt)
+    levelOne.update(self, dt)
+end
+function runLevelOne:draw()
+    levelOne.draw(self)
+end
 
-        -- if you want to see the hitboxes for the map and the player uncomment the line below
-        -- world:draw()
-    camera:detach()
+-- Code for executing the maze section
+function runMaze:enter()
+    maze.enter(self)
+end
+function runMaze:update(dt)
+    maze.update(self, dt)
+end
+function runMaze:draw()
+    maze.draw(self)
+end
+
+-- Code for executing the second stage of the game
+function runLevelTwo:enter()
+    levelTwo.enter(self)
+end
+function runLevelTwo:update(dt)
+    levelTwo.update(self, dt)
+end
+function runLevelTwo:draw()
+    levelTwo.draw(self)
 end
 
 -- prepares the game for switches
 function love.load()
     Gamestate.registerEvents()
     font = love.graphics.newFont(32)
-    Gamestate.switch(menu)   
-    table.insert(buttons,newButton("Start Game",function()Gamestate.switch(game)end))
+    Gamestate.switch(menu) 
+    table.insert(buttons,newButton("Start Game",function()Gamestate.switch(runGame)end))
     table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
 end
