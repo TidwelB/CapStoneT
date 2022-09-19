@@ -3,6 +3,7 @@ require('tutorial')
 require('levelOne')
 require('maze')
 require('levelTwo')
+
 -- Gamestate library
 Gamestate = require 'libraries.gamestate'
 menu = {}
