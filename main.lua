@@ -82,7 +82,7 @@ function game:enter()
 
     -- draws the window size
     world = wf.newWorld(0, 0)
-    love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
+    love.window.setMode(1280, 920, {resizable=true, vsync=0, minwidth=400, minheight=300})
 
     -- Player table: 
     --          Contains player information 
