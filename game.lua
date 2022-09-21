@@ -19,7 +19,7 @@ function game:enter()
     camera = cam()
 
     -- loads in the map
-    testingMap = sti('maps/testing-zone.lua')
+    testingMap = sti('maps/testingzone2.lua')
 
     -- draws the window size
     world = wf.newWorld(0, 0)
