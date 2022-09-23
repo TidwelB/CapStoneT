@@ -3,7 +3,8 @@ require('tutorial')
 require('levelOne')
 require('maze')
 require('levelTwo')
-
+-- Tiled implementation library
+sti = require 'libraries/sti'
 -- Gamestate library
 Gamestate = require 'libraries.gamestate'
 menu = {}
@@ -27,9 +28,15 @@ local function newButton(text,fn)
         last = false
     }
 end
+
+function menu:enter()
+    menuMap = sti('maps/mainmenu.lua')
+    love.window.setMode(1024,1024)
+end
 -- Initializes the main menu at a very basic level
 function menu:draw()
     --This is creating the main menu buttons and their funtions
+    menuMap:drawLayer(menuMap.layers["Tile Layer 1"])
     local ww = love.graphics.getWidth()
     local wh = love.graphics.getHeight()
     local buttonwidth = ww * (1/3)
@@ -59,19 +66,9 @@ function menu:draw()
         love.graphics.print(buttons.text,font,(ww*.5)-textwidth*.5,y+textHeight*.5)
         cursor_y = cursor_y + (BUTTON_HEIGHT + margin)
     end
+
     --resets the color so that it doesnt have a black screen (very important please dont delete)
     love.graphics.reset()
-end
-
--- Code for executing the tutorial section of the game
-function runTutorial:enter()
-    tutorial.enter(self)
-end
-function runTutorial:update(dt)
-    tutorial.update(self, dt)
-end
-function runTutorial:draw()
-    tutorial.draw(self)
 end
 
 -- Code for executing the main lobby of the game
@@ -122,7 +119,7 @@ end
 function love.load()
     Gamestate.registerEvents()
     font = love.graphics.newFont(32)
-    Gamestate.switch(menu) 
+    Gamestate.switch(menu)
     table.insert(buttons,newButton("Start Game",function()Gamestate.switch(runGame)end))
     table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
 end
