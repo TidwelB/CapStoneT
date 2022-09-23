@@ -4,6 +4,7 @@ levelTwo = {}
 
 function levelTwo:enter()
     --todo
+    player.load()
 end
 function levelTwo:update(dt)
     --todo

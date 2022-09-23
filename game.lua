@@ -2,7 +2,8 @@
 Gamestate = require 'libraries.gamestate'
 game = {}
 menu = {}
-
+require("enemy")
+require("player")
 function game:enter()
     -- Hitbox library
     wf = require 'libraries/windfield'
@@ -23,35 +24,30 @@ function game:enter()
 
     -- draws the window size
     world = wf.newWorld(0, 0)
-    love.window.setMode(1920, 1080)
+    love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
 
     -- Player table: 
     --          Contains player information 
-    player = {}
-
-        player.collider = world:newBSGRectangleCollider(400, 250, 65, 100, 14)
-        player.collider:setFixedRotation(true)
-        player.x = 0
-        player.y = 0
-        player.speed = 250
-        player.spriteSheet = love.graphics.newImage('sprites/guard_yellow_spritesheet.png')
-        player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
+    player.load()
 
     -- Player Animation table: 
     --          Contains animations and assigns them to their given direction
+    
     player.animations = {}
+    player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.2 )
+    player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.2 )
+    player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.2 )
+    player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.2 )
+    player.anim = player.animations.left
         
-        player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.2 )
-        player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.2 )
-        player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.2 )
-        player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.2 )
     
     -- Initializes player animations and allows the movment keys to 
     -- influence which animation plays
-    player.anim = player.animations.left
+    
 
     timer = 0
     
+    enemy.spawn(400,250)
     --  Walls table: 
     --          intializes the hitboxes for the map 
     --          whether that be the walls, the green stuff, etc...
@@ -68,6 +64,11 @@ function game:enter()
 end
 
 function game:update(dt)
+
+
+    UPDATE_ENEMY(dt)
+
+
     timer = timer + dt
 
     local isMoving = false
@@ -124,12 +125,15 @@ end
 
 function game:draw()
     -- Tells the game where to start looking through the camera POV
+
     camera:attach()
         testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
         testingMap:drawLayer(testingMap.layers["grate"])
         testingMap:drawLayer(testingMap.layers["Walls"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         -- if you want to see the hitboxes for the map and the player uncomment the line below
-        -- world:draw()
+         world:draw()
     camera:detach()
+
+    DRAW_ENEMY()
 end
