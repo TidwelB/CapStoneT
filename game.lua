@@ -4,6 +4,7 @@ game = {}
 menu = {}
 require("enemy")
 require("player")
+require("shaders")
 function game:enter()
     -- Hitbox library
     wf = require 'libraries/windfield'
@@ -67,7 +68,7 @@ function game:update(dt)
 
 
     UPDATE_ENEMY(dt)
-
+    shaders:update(dt)
 
     timer = timer + dt
 
@@ -132,7 +133,12 @@ function game:draw()
         testingMap:drawLayer(testingMap.layers["Walls"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         -- if you want to see the hitboxes for the map and the player uncomment the line below
-         world:draw()
+            -- Tells the game where to start looking through the camera POV
+        love.graphics.setShader(shaders.trueLight)
+        --love.graphics.setColor(0,0,0,1)
+        love.graphics.rectangle("fill", player.x-5000, player.y-5000, 10000, 10000)
+        love.graphics.setShader()
+        world:draw()
     camera:detach()
 
     DRAW_ENEMY()
