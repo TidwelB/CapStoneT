@@ -4,12 +4,12 @@ shaders = {}
 
 windowWidth = 1920
 windowHeight = 1080
-scale = 2.5
+scale = 100
 -- Hole-punch light source
 shaders.simpleLight = love.graphics.newShader[[
     extern number playerX = 0;
     extern number playerY = 0;
-    number radius = 400;
+    number radius = 100;
     vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ) {
         number distance = pow(pow(screen_coords.x - playerX, 2) + pow(screen_coords.y - playerY, 2), 0.5);
         if (distance < radius) {
@@ -25,7 +25,7 @@ shaders.simpleLight = love.graphics.newShader[[
 shaders.trueLight = love.graphics.newShader[[
     extern number playerX = 0;
     extern number playerY = 0;
-    number radius = 900;
+    number radius = 600;
     vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ) {
         number distance = pow(pow(screen_coords.x - playerX, 2) + pow(screen_coords.y - playerY, 2), 0.5);
         number alpha = distance / radius;
@@ -48,7 +48,8 @@ shaders.whiteout = love.graphics.newShader[[
 function shaders:update(dt)
 
 
-        local px, py = player.collider:getPosition()
+        local px = 400
+        local py = 250
 
         -- Get width/height of background
         local mapW = testingMap.width * testingMap.tilewidth
@@ -58,24 +59,24 @@ function shaders:update(dt)
         local lightY = (windowHeight/2)
 
         -- Left border
-        if player.x < windowWidth/2 then
-            lightX = px * scale
-        end
+        -- if player.x < windowWidth/2 then
+        --     lightX = px * scale
+        -- end
 
         -- Top border
-        if player.y < windowHeight/2 then
-            lightY = py * scale
-        end
+        -- if player.y < windowHeight/2 then
+        --     lightY = py * scale
+        -- end
 
         -- Right border
-        if player.x > (mapW - windowWidth/2) then
-            lightX = (px - player.x) * scale + (windowWidth/2)
-        end
+        -- if player.x > (mapW - windowWidth/2) then
+        --     lightX = (px - player.x) * scale + (windowWidth/2)
+        -- end
 
         -- Bottom border
-        if player.y > (mapH - windowHeight/2) then
-            lightY = (py - player.y) * scale + (windowHeight/2)
-        end
+        -- if player.y > (mapH - windowHeight/2) then
+        --     lightY = (py - player.y) * scale + (windowHeight/2)
+        -- end
 
         shaders.simpleLight:send("playerX", lightX)
         shaders.simpleLight:send("playerY", lightY)

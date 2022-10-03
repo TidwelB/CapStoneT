@@ -48,7 +48,7 @@ function game:enter()
 
     timer = 0
     
-    enemy.spawn(400,250)
+    enemy.spawn(500,500)
     --  Walls table: 
     --          intializes the hitboxes for the map 
     --          whether that be the walls, the green stuff, etc...
@@ -65,68 +65,22 @@ function game:enter()
 end
 
 function game:update(dt)
-
-
-    UPDATE_ENEMY(dt)
-    shaders:update(dt)
-
+    player:update(dt)
+    player.anim:update(dt)
     timer = timer + dt
-
-    local isMoving = false
-
-    local vx = 0;
-    local vy = 0;
-
-    -- Player Movement
-   if love.keyboard.isDown("d") then
-       vx = player.speed
-       player.anim = player.animations.right
-       isMoving = true
-   end
-   if love.keyboard.isDown("a") then
-       vx = player.speed * -1
-       player.anim = player.animations.left
-       isMoving = true
-   end
-   if love.keyboard.isDown("s") then
-       vy = player.speed
-       player.anim = player.animations.down
-       isMoving = true
-   end
-   if love.keyboard.isDown("w") then
-       vy = player.speed * -1
-       player.anim = player.animations.up
-       isMoving = true
-   end
-
-   -- Sets the players hitbox to move with where our 
-   -- player is currently moving
-   player.collider:setLinearVelocity(vx, vy)
-
-   -- switches game back into the main menu
-   if love.keyboard.isDown("escape") then
-        Gamestate.switch(menu)
-   end
-
-   -- Freezes the frame on the idle sprite in that direction
-   if (isMoving == false) then
-        player.anim:gotoFrame(3)
-   end
+    UPDATE_ENEMY(dt)
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
 
    world:update(dt)
-   player.x = player.collider:getX()
-   player.y = player.collider:getY()
-
-   player.anim:update(dt)
+   shaders:update(dt)
 
 end
 
 function game:draw()
     -- Tells the game where to start looking through the camera POV
-
+    
     camera:attach()
         testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
         testingMap:drawLayer(testingMap.layers["grate"])
@@ -136,10 +90,13 @@ function game:draw()
             -- Tells the game where to start looking through the camera POV
         love.graphics.setShader(shaders.trueLight)
         --love.graphics.setColor(0,0,0,1)
-        love.graphics.rectangle("fill", player.x-5000, player.y-5000, 10000, 10000)
+        love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()
+        
     camera:detach()
+
+    
 
     DRAW_ENEMY()
 end
