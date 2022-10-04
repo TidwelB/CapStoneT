@@ -25,7 +25,7 @@ shaders.simpleLight = love.graphics.newShader[[
 shaders.trueLight = love.graphics.newShader[[
     extern number playerX = 0;
     extern number playerY = 0;
-    number radius = 600;
+    number radius = 450;
     vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ) {
         number distance = pow(pow(screen_coords.x - playerX, 2) + pow(screen_coords.y - playerY, 2), 0.5);
         number alpha = distance / radius;
@@ -55,8 +55,8 @@ function shaders:update(dt)
         local mapW = testingMap.width * testingMap.tilewidth
         local mapH = testingMap.height * testingMap.tileheight
 
-        local lightX = (windowWidth/2)
-        local lightY = (windowHeight/2)
+        local lightX = (windowWidth/2)-225
+        local lightY = (windowHeight/2)-125
 
         -- Left border
         -- if player.x < windowWidth/2 then
