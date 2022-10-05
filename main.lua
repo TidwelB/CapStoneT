@@ -3,6 +3,7 @@ require('tutorial')
 require('levelOne')
 require('maze')
 require('levelTwo')
+require('pause')
 -- Tiled implementation library
 sti = require 'libraries/sti'
 -- Gamestate library
@@ -12,7 +13,7 @@ runGame = {}
 runTutorial = {}
 runLevelOne = {}
 runMaze = {}
-runLevelTwo = {}
+--runLevelTwo = {}
 
 local buttons = {}
 local test = {}
@@ -113,15 +114,15 @@ function runMaze:draw()
 end
 
 -- Code for executing the second stage of the game
-function runLevelTwo:enter()
-    levelTwo.enter(self)
-end
-function runLevelTwo:update(dt)
-    levelTwo.update(self, dt)
-end
-function runLevelTwo:draw()
-    levelTwo.draw(self)
-end
+-- function runLevelTwo:enter()
+--     levelTwo.enter(self)
+-- end
+-- function runLevelTwo:update(dt)
+--     levelTwo.update(self, dt)
+-- end
+-- function runLevelTwo:draw()
+--     levelTwo.draw(self)
+-- end
 
 -- prepares the game for switches
 function love.load()

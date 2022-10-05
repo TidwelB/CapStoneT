@@ -95,7 +95,7 @@ function player.control(dt)
 
        if love.keyboard.isDown("p") then
             love.timer.sleep(.5)
-            Gamestate.push(levelTwo)
+            Gamestate.push(pause)
     end
     
        -- Freezes the frame on the idle sprite in that direction
