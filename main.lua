@@ -79,7 +79,12 @@ function runGame:enter()
     game.enter(self)
 end
 function runGame:update(dt)
-    game.update(self, dt)
+    if player.paused == 0 then
+        game.update(self, dt)
+    else
+        player.pause(dt)
+    end
+
 end
 function runGame:draw()
     game.draw(self)

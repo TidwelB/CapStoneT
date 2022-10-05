@@ -64,6 +64,7 @@ function game:enter()
 
 end
 
+
 function game:update(dt)
     player:update(dt)
     player.anim:update(dt)

@@ -1,5 +1,5 @@
 player = {}
-
+player.paused = 0
 
 function player.load()
 
@@ -16,8 +16,26 @@ function player.load()
 
 end
 
+-- function love.keyreleased(key)
+--     if key == "p" then
+--         player.pause()
+--     end
+--  end
+
+
+function player.pause(dt)
+    if love.keyboard.isDown("p") then
+        if player.paused == 0 then
+            player.paused = 1
+        else
+            player.paused = 0
+        end
+    end
+end
+
 
 function player:update(dt)
+        player.pause(dt)
         player.control(dt)
         player.physics(dt)
         player.colliderMatching(dt)
@@ -63,6 +81,8 @@ function player.control(dt)
        if love.keyboard.isDown("escape") then
             Gamestate.switch(menu)
        end
+
+
     
        -- Freezes the frame on the idle sprite in that direction
        if (isMoving == false) then
