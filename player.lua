@@ -23,19 +23,30 @@ end
 --  end
 
 
-function player.pause(dt)
-    if love.keyboard.isDown("p") then
-        if player.paused == 0 then
-            player.paused = 1
-        else
-            player.paused = 0
-        end
-    end
-end
+-- function player.pause(dt)
+--     if love.keyboard.isDown("p") then
+--         if player.paused == 0 then
+--             player.paused = 1
+--         else
+--             player.paused = 0
+--         end
+--     end
+-- end
+
+-- function player.pause(dt)
+--     if love.keyboard.isDown("p") then
+--         if player.paused == 0 then
+--             player.paused = 1
+--             Gamestate.push(pause)
+--         else
+--             player.paused = 0
+--         end
+--     end
+-- end
 
 
 function player:update(dt)
-        player.pause(dt)
+        -- player.pause(dt)
         player.control(dt)
         player.physics(dt)
         player.colliderMatching(dt)
@@ -79,10 +90,13 @@ function player.control(dt)
     
        -- switches game back into the main menu
        if love.keyboard.isDown("escape") then
-            Gamestate.switch(menu)
+            Gamestate.push(menu)
        end
 
-
+       if love.keyboard.isDown("p") then
+            love.timer.sleep(.5)
+            Gamestate.push(levelTwo)
+    end
     
        -- Freezes the frame on the idle sprite in that direction
        if (isMoving == false) then

@@ -55,8 +55,8 @@ function shaders:update(dt)
         local mapW = testingMap.width * testingMap.tilewidth
         local mapH = testingMap.height * testingMap.tileheight
 
-        local lightX = (windowWidth/2)-225
-        local lightY = (windowHeight/2)-125
+        local lightX = (windowWidth/2)
+        local lightY = (windowHeight/2)
 
         -- Left border
         -- if player.x < windowWidth/2 then
