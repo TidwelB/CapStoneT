@@ -6,5 +6,6 @@
     "Lua.workspace.checkThirdParty": false,
     "Lua.diagnostics.globals": [
         "timer",
-    ]
+    ],
+    "vscode-pets.theme": "beach"
 }

@@ -72,13 +72,10 @@ function player.control(dt)
         player.speed = 250
         player.stamina = player.stamina +2
         
-        if love.keyboard.isDown('lshift') then
+        if love.keyboard.isDown('lshift') or love.keyboard.isDown('rshift') then
+            player.anim:update(.1)
             if player.stamina > 0 then
                 player.speed = 500
-                -- player.animations['down'] = anim8.newAnimation( player.grid('1-4', 1), 0.1 )
-                -- player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.1 )
-                -- player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.1 )
-                -- player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.1 )
             end
             if player.stamina > -9 then
                 player.stamina = player.stamina -5
