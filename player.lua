@@ -12,6 +12,7 @@ function player.load()
         player.yvel = 0
         player.friction = 5
         player.speed = 250
+        player.stamina = 600
         player.spriteSheet = love.graphics.newImage('sprites/guard_yellow_spritesheet.png')
         player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
         player.animations = {}
@@ -69,15 +70,19 @@ function player.control(dt)
         player.xvel = 0
         player.yvel = 0
         player.speed = 250
+        player.stamina = player.stamina +2
         
         if love.keyboard.isDown('lshift') then
-            player.speed = 500
-            --player.animations:update(dt*.5)
-            player.animations['down'] = anim8.newAnimation( player.grid('1-4', 1), 0.1 )
-            player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.1 )
-            player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.1 )
-            player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.1 )
-            
+            if player.stamina > 0 then
+                player.speed = 500
+                -- player.animations['down'] = anim8.newAnimation( player.grid('1-4', 1), 0.1 )
+                -- player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.1 )
+                -- player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.1 )
+                -- player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.1 )
+            end
+            if player.stamina > -9 then
+                player.stamina = player.stamina -5
+            end          
         end
         -- Player Movement
        if love.keyboard.isDown("d") then
