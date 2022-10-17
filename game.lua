@@ -34,12 +34,12 @@ function game:enter()
     -- Player Animation table: 
     --          Contains animations and assigns them to their given direction
     
-    player.animations = {}
-    player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.2 )
-    player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.2 )
-    player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.2 )
-    player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.2 )
-    player.anim = player.animations.left
+    -- player.animations = {}
+    -- player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.2 )
+    -- player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.2 )
+    -- player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.2 )
+    -- player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.2 )
+    -- player.anim = player.animations.left
         
     
     -- Initializes player animations and allows the movment keys to 
@@ -90,7 +90,7 @@ function game:draw()
         -- if you want to see the hitboxes for the map and the player uncomment the line below
             -- Tells the game where to start looking through the camera POV
         love.graphics.setShader(shaders.trueLight)
-        --love.graphics.setColor(0,0,0,1)
+        --
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()

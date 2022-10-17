@@ -1,4 +1,5 @@
 player = {}
+anim8 = require 'libraries/anim8'
 player.paused = 0
 
 function player.load()
@@ -13,6 +14,12 @@ function player.load()
         player.speed = 250
         player.spriteSheet = love.graphics.newImage('sprites/guard_yellow_spritesheet.png')
         player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
+        player.animations = {}
+        player.animations['down'] = anim8.newAnimation( player.grid('1-4', 1), 0.25 )
+        player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.25 )
+        player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.25 )
+        player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.25 )
+        player.anim = player.animations.left
 
 end
 
@@ -61,6 +68,17 @@ function player.control(dt)
         local isMoving = false
         player.xvel = 0
         player.yvel = 0
+        player.speed = 250
+        
+        if love.keyboard.isDown('lshift') then
+            player.speed = 500
+            --player.animations:update(dt*.5)
+            player.animations['down'] = anim8.newAnimation( player.grid('1-4', 1), 0.1 )
+            player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.1 )
+            player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.1 )
+            player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.1 )
+            
+        end
         -- Player Movement
        if love.keyboard.isDown("d") then
            player.xvel = player.speed
@@ -74,7 +92,7 @@ function player.control(dt)
        end
        if love.keyboard.isDown("s") then
            player.yvel = player.speed
-           player.anim = player.animations.down
+           player.anim = player.animations['down']
            isMoving = true
        end
        if love.keyboard.isDown("w") then
