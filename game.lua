@@ -93,7 +93,7 @@ function game:draw()
         --
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
-        world:draw()
+        --world:draw()
         
     camera:detach()
 
