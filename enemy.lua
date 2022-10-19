@@ -84,7 +84,6 @@ function enemy.colAI(dt)
     enemy.xdist = ((player.x - enemy.collider:getX())^2)^(1/2)
     enemy.ydist = ((player.y - enemy.collider:getY())^2)^(1/2)
 
-
         if enemy.distance > 150 then
             if player.x > enemy.collider:getX() then
                 enemy.colxvel = enemy.speed
@@ -107,33 +106,40 @@ function enemy.colAI(dt)
             if (enemy.timer%5 == 0) then
             enemy.colxvel = math.random(-50,50)
             enemy.colyvel = math.random(-50,50)
+
+            enemy.collision()
             end
         end
 
-        if enemy.xdist < 80 then
-            if enemy.ydist < 100 then
-            enemy.colxvel = player.xvel
-            end
-        end
-        if enemy.ydist < 100 then
-            if enemy.xdist < 50 then
-            enemy.colyvel = player.yvel
-            end
-        end
+
+
         
         enemy.colX = enemy.colX + enemy.colxvel *dt
         enemy.colY = enemy.colY + enemy.colyvel *dt
         enemy.colxvel = enemy.colxvel * (1-math.min(dt*enemy.friction,1))
         enemy.colyvel = enemy.colyvel * (1-math.min(dt*enemy.friction,1))
 
+        
 
+        enemy.collider:setLinearVelocity(enemy.colxvel, enemy.colyvel)
+end
 
-        enemy.collider:setPosition(enemy.colX, enemy.colY)
+function enemy.collision()
+    if enemy.xdist < 68 then
+        if enemy.ydist < 100 then
+        enemy.colxvel = player.xvel
+        end
+    end
+    if enemy.ydist < 101 then
+        if enemy.xdist < 35 then
+        enemy.colyvel = player.yvel
+        end
+    end
 end
 
 --PARENT
 function DRAW_ENEMY()
-    enemy.draw()
+    --enemy.draw()
 end
 
 function UPDATE_ENEMY(dt)
