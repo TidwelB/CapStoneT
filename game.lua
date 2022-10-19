@@ -30,6 +30,7 @@ function game:enter()
     -- Player table: 
     --          Contains player information 
     player.load()
+    enemy.load()
 
     -- Player Animation table: 
     --          Contains animations and assigns them to their given direction
@@ -93,7 +94,7 @@ function game:draw()
         --
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
-        --world:draw()
+        world:draw()
         
     camera:detach()
 

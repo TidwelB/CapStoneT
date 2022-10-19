@@ -12,6 +12,15 @@ function enemy.spawn(x,y)
     table.insert(enemy, {x = x, y=y, xvel=0,yvel=0, health = 2, width = enemy.width, height = enemy.height})
 end
 
+function enemy.load()
+    enemy.collider = world:newBSGRectangleCollider(400, 200, 65, 100, 14)
+    enemy.collider:setFixedRotation(true)
+    enemy.colX = 0
+    enemy.colY = 0
+
+end
+
+
 function enemy.draw()
     for i,v in ipairs(enemy) do
         love.graphics.setColor(255,255,255)
@@ -54,12 +63,37 @@ function enemy.AI(dt)
     end
 end
 
+function enemy.colAI(dt)
+    enemy.colxvel = 0
+    enemy.colyvel = 0
+    enemy.distance = ((player.x - enemy.collider:getX())^2 + (player.y - enemy.collider:getY())^2)^(1/2)
+        if enemy.distance > 150 then
+            if player.x > enemy.collider:getX() then
+                enemy.colxvel = enemy.speed
+            end
+            if player.x < enemy.collider:getX() then
+                enemy.colxvel = -enemy.speed
+            end
+            if player.y > enemy.collider:getY() then
+                enemy.colyvel = enemy.speed
+            end
+            if player.y < enemy.collider:getY() then
+                enemy.colyvel = -enemy.speed
+            end
+        
+    end
+    enemy.colX = enemy.colX + enemy.colxvel*dt
+    enemy.colY = enemy.colY + enemy.colyvel*dt
+    enemy.collider:setPosition(enemy.colX, enemy.colY)
+end
+
 --PARENT
 function DRAW_ENEMY()
     enemy.draw()
 end
 
 function UPDATE_ENEMY(dt)
+    enemy.colAI(dt)
     enemy.physics(dt)
     enemy.AI(dt)
 end
