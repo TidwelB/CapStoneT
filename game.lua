@@ -69,6 +69,7 @@ end
 function game:update(dt)
     player:update(dt)
     player.anim:update(dt)
+    heartbeat.anim:update(dt)
     enemy.anim:update(dt)
     timer = timer + dt
     UPDATE_ENEMY(dt)
@@ -97,8 +98,7 @@ function game:draw()
         world:draw()
         
     camera:detach()
-
-    
-
+    love.graphics.reset()
+    DRAW_HUD()
     DRAW_ENEMY()
 end

@@ -2,6 +2,16 @@ player = {}
 anim8 = require 'libraries/anim8'
 player.paused = 0
 
+
+
+
+heartbeat = {}
+    heartbeat.spritesheet = love.graphics.newImage('sprites/greenheartbeat.png')
+    heartbeat.grid = anim8.newGrid (46, 53, heartbeat.spritesheet:getWidth(), heartbeat.spritesheet:getHeight())
+    heartbeat.animations = anim8.newAnimation( heartbeat.grid('1-3', 1),0.8)
+    heartbeat.anim = heartbeat.animations
+
+
 function player.load()
 
         player.collider = world:newBSGRectangleCollider(400, 250, 65, 100, 14)
@@ -15,7 +25,7 @@ function player.load()
         player.stamina = 2000
         player.spriteSheet = love.graphics.newImage('sprites/guard_yellow_spritesheet.png')
         player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
-        
+
         player.animations = {}
         player.animations['down'] = anim8.newAnimation( player.grid('1-4', 1), 0.25 )
         player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.25 )
@@ -24,35 +34,6 @@ function player.load()
         player.anim = player.animations.left
 
 end
-
--- function love.keyreleased(key)
---     if key == "p" then
---         player.pause()
---     end
---  end
-
-
--- function player.pause(dt)
---     if love.keyboard.isDown("p") then
---         if player.paused == 0 then
---             player.paused = 1
---         else
---             player.paused = 0
---         end
---     end
--- end
-
--- function player.pause(dt)
---     if love.keyboard.isDown("p") then
---         if player.paused == 0 then
---             player.paused = 1
---             Gamestate.push(pause)
---         else
---             player.paused = 0
---         end
---     end
--- end
-
 
 function player:update(dt)
         -- player.pause(dt)
@@ -135,3 +116,10 @@ function player.physics(dt)
 	player.yvel = player.yvel * (1 - math.min(dt*player.friction, 1))
 end
 
+function player.draw()
+    heartbeat.anim:draw(heartbeat.spritesheet,0, 0, nil,6, nil,  8,8)
+end
+
+function DRAW_HUD()
+    player.draw()
+end
