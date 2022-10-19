@@ -15,6 +15,7 @@ function player.load()
         player.stamina = 2000
         player.spriteSheet = love.graphics.newImage('sprites/guard_yellow_spritesheet.png')
         player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
+        
         player.animations = {}
         player.animations['down'] = anim8.newAnimation( player.grid('1-4', 1), 0.25 )
         player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.25 )

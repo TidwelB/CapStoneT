@@ -69,6 +69,7 @@ end
 function game:update(dt)
     player:update(dt)
     player.anim:update(dt)
+    enemy.anim:update(dt)
     timer = timer + dt
     UPDATE_ENEMY(dt)
 
@@ -91,7 +92,6 @@ function game:draw()
         -- if you want to see the hitboxes for the map and the player uncomment the line below
             -- Tells the game where to start looking through the camera POV
         love.graphics.setShader(shaders.trueLight)
-        --
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()

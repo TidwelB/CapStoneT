@@ -1,12 +1,20 @@
 Gamestate = require 'libraries.gamestate'
+anim8 = require 'libraries/anim8'
 
+-- makes stretch not blurry
+love.graphics.setDefaultFilter("nearest", "nearest")
 
 enemy = {}
 enemy.width = 5
 enemy.height = 5
 enemy.speed = 200
 enemy.friction = 7.5
+enemy.spriteSheet = love.graphics.newImage('sprites/eyeball.png')
+enemy.grid = anim8.newGrid(32, 32, enemy.spriteSheet:getWidth(), enemy.spriteSheet:getHeight())
 
+enemy.animations = {}
+enemy.animations.right = anim8.newAnimation(enemy.grid('1-4', 3), 0.25)
+enemy.anim = enemy.animations.right
 
 
 function enemy.spawn(x,y)
@@ -29,7 +37,7 @@ function enemy.draw()
     
         love.graphics.setColor(255,255,255)
         love.graphics.rectangle('fill',enemy.colX,enemy.colY,enemy.width,enemy.height)
-    
+        enemy.anim:draw(enemy.spriteSheet, enemy.colX,enemy.colY, nil, 6, nil, 8, 8)
 end
 
 function enemy.physics(dt)
@@ -80,15 +88,19 @@ function enemy.colAI(dt)
         if enemy.distance > 150 then
             if player.x > enemy.collider:getX() then
                 enemy.colxvel = enemy.speed
+                enemy.anim = enemy.animations.right
             end
             if player.x < enemy.collider:getX() then
                 enemy.colxvel = -enemy.speed
+                enemy.anim = enemy.animations.right
             end
             if player.y > enemy.collider:getY() + 20 then
                 enemy.colyvel = enemy.speed
+                enemy.anim = enemy.animations.right
             end
             if player.y < enemy.collider:getY() -20 then
                 enemy.colyvel = -enemy.speed
+                enemy.anim = enemy.animations.right
             end
         
         else
