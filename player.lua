@@ -6,9 +6,9 @@ player.paused = 0
 
 
 heartbeat = {}
-    heartbeat.spritesheet = love.graphics.newImage('sprites/greenheartbeat.png')
-    heartbeat.grid = anim8.newGrid (46, 53, heartbeat.spritesheet:getWidth(), heartbeat.spritesheet:getHeight())
-    heartbeat.animations = anim8.newAnimation( heartbeat.grid('1-3', 1),0.8)
+    heartbeat.spritesheet = love.graphics.newImage('sprites/yellowhealth.png')
+    heartbeat.grid = anim8.newGrid (64, 32, heartbeat.spritesheet:getWidth(), heartbeat.spritesheet:getHeight())
+    heartbeat.animations = anim8.newAnimation( heartbeat.grid('1-84', 1),0.02)
     heartbeat.anim = heartbeat.animations
 
 
@@ -117,7 +117,7 @@ function player.physics(dt)
 end
 
 function player.draw()
-    heartbeat.anim:draw(heartbeat.spritesheet,0, 0, nil,6, nil,  8,8)
+    heartbeat.anim:draw(heartbeat.spritesheet,30, 30, nil,3, nil,  9,9)
 end
 
 function DRAW_HUD()
