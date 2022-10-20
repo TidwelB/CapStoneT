@@ -9,14 +9,15 @@ enemy = {}
     enemy.height = 5
     enemy.speed = 200
     enemy.friction = 7.5
-    enemy.spriteSheet = love.graphics.newImage('sprites/eyeball.png')
-    enemy.spriteSheetLeft = love.graphics.newImage('sprites/lefteyeball.png')
-    enemy.gridLeft = anim8.newGrid(32, 32, enemy.spriteSheetLeft:getWidth(), enemy.spriteSheetLeft:getHeight())
-    enemy.gridRight = anim8.newGrid(32, 32, enemy.spriteSheet:getWidth(), enemy.spriteSheet:getHeight())
+    enemy.spriteSheet = love.graphics.newImage('sprites/eyeballW.png')
+    enemy.grid = anim8.newGrid(32, 32, enemy.spriteSheet:getWidth(), enemy.spriteSheet:getHeight())
+    
 
 enemy.animations = {}
-    enemy.animations.right = anim8.newAnimation(enemy.gridRight('1-4', 2), 0.25)
-    enemy.animations.left = anim8.newAnimation(enemy.gridLeft('1-4', 2), 0.25)
+    enemy.animations.right = anim8.newAnimation(enemy.grid('1-4', 2), 0.25)
+    enemy.animations.left = anim8.newAnimation(enemy.grid('1-4', 7), 0.25)
+    enemy.animations.idleR = anim8.newAnimation(enemy.grid('1-4', 1), 0.25)
+    enemy.animations.idleL = anim8.newAnimation(enemy.grid('1-4', 6), 0.25)
     enemy.anim = enemy.animations.right
 
 function enemy.spawn(x,y)
@@ -39,48 +40,16 @@ end
 function enemy.draw()
         love.graphics.setColor(255,255,255)
         love.graphics.rectangle('fill',enemy.colX,enemy.colY,enemy.width,enemy.height)
-        enemy.anim:draw(enemy.spriteSheet, enemy.x,enemy.y, nil, 6, nil, 8, 8)
+        enemy.anim:draw(enemy.spriteSheet, enemy.x,enemy.y, nil, 3, nil, 4, 4)
 end
 
-function enemy.physics(dt)
-    for i,v in ipairs(enemy) do
-        v.x = v.x +v.xvel *dt
-        v.y = v.y + v.yvel *dt
-        v.xvel = v.xvel * (1-math.min(dt*enemy.friction,1))
-        v.yvel = v.yvel * (1-math.min(dt*enemy.friction,1))
-    end
-end
 
-function enemy.AI(dt)
-    for i,v in ipairs(enemy) do
-        if player.x + player.spriteSheet:getWidth() / 2 < v.x + v.width / 2 then
-            if v.xvel > -enemy.speed then
-                v.xvel = v.xvel - enemy.speed*dt
-            end
-        end
 
-        if player.x + player.spriteSheet:getWidth() / 2 > v.x + v.width / 2 then
-            if v.xvel < enemy.speed then
-                v.xvel = v.xvel + enemy.speed*dt
-            end
-        end
-        if player.y + player.spriteSheet:getHeight() / 2 < v.y + v.height / 2 then
-            if v.yvel > - enemy.speed then
-                v.yvel = v.yvel - enemy.speed *dt
-            end
-        end
-        if player.y + player.spriteSheet:getHeight() / 2 > v.y + v.height / 2 then
-            if v.yvel < enemy.speed then
-                v.yvel = v.yvel + enemy.speed*dt
-            end
-        end
-    end
-    
-end
 
 function enemy.colAI(dt)
     --enemy.colxvel = 0
     --enemy.colyvel = 0
+
     enemy.timer = enemy.timer +1
     enemy.distance = ((player.x - enemy.collider:getX())^2 + (player.y - enemy.collider:getY())^2)^(1/2)
     enemy.xdist = ((player.x - enemy.collider:getX())^2)^(1/2)
@@ -89,26 +58,38 @@ function enemy.colAI(dt)
         if enemy.distance > 150 then
             if player.x > enemy.collider:getX() then
                 enemy.colxvel = enemy.speed
-                enemy.anim = enemy.animations.right
+                --enemy.anim = enemy.animations.right
             end
             if player.x < enemy.collider:getX() then
                 enemy.colxvel = -enemy.speed
-                enemy.anim = enemy.animations.left
+                --enemy.anim = enemy.animations.left
             end
             if player.y > enemy.collider:getY() + 20 then
                 enemy.colyvel = enemy.speed
-                enemy.anim = enemy.animations.left
+                --enemy.anim = enemy.animations.left
             end
             if player.y < enemy.collider:getY() -20 then
                 enemy.colyvel = -enemy.speed
-                enemy.anim = enemy.animations.left
+                --enemy.anim = enemy.animations.right
             end
-        
+            if enemy.colxvel < 0 then
+                enemy.anim = enemy.animations.left
+        end
+        if enemy.colxvel > 0 then
+            enemy.anim = enemy.animations.right
+    end
         else
             if (enemy.timer%5 == 0) then
             enemy.colxvel = math.random(-50,50)
             enemy.colyvel = math.random(-50,50)
 
+            if (math.random(0,100) == 19) then
+                if enemy.anim == enemy.animations.idleR then
+                enemy.anim = enemy.animations.idleL
+                else
+                    enemy.anim = enemy.animations.idleR
+                end
+            end
             enemy.collision()
             end
         end
@@ -119,6 +100,8 @@ function enemy.colAI(dt)
         enemy.colyvel = enemy.colyvel * (1-math.min(dt*enemy.friction,1))
 
         enemy.collider:setLinearVelocity(enemy.colxvel, enemy.colyvel)
+
+
 end
 
 function enemy.collision()
@@ -146,7 +129,5 @@ end
 
 function UPDATE_ENEMY(dt)
     enemy.colAI(dt)
-    enemy.physics(dt)
-    enemy.AI(dt)
     enemy.colliderMatching(dt)
 end
