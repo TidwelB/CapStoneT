@@ -90,15 +90,14 @@ function game:draw()
         testingMap:drawLayer(testingMap.layers["grate"])
         testingMap:drawLayer(testingMap.layers["Walls"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
-        -- if you want to see the hitboxes for the map and the player uncomment the line below
-            -- Tells the game where to start looking through the camera POV
+        enemy.draw()
         love.graphics.setShader(shaders.trueLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
-        world:draw()
+        --world:draw()
         
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()
-    DRAW_ENEMY()
+    --DRAW_ENEMY()
 end
