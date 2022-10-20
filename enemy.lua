@@ -5,20 +5,19 @@ anim8 = require 'libraries/anim8'
 love.graphics.setDefaultFilter("nearest", "nearest")
 
 enemy = {}
-enemy.width = 5
-enemy.height = 5
-enemy.speed = 200
-enemy.friction = 7.5
-enemy.spriteSheet = love.graphics.newImage('sprites/eyeball.png')
-enemy.spriteSheetLeft = love.graphics.newImage('sprites/lefteyeball.png')
-enemy.gridLeft = anim8.newGrid(32, 32, enemy.spriteSheetLeft:getWidth(), enemy.spriteSheetLeft:getHeight())
-enemy.gridRight = anim8.newGrid(32, 32, enemy.spriteSheet:getWidth(), enemy.spriteSheet:getHeight())
+    enemy.width = 5
+    enemy.height = 5
+    enemy.speed = 200
+    enemy.friction = 7.5
+    enemy.spriteSheet = love.graphics.newImage('sprites/eyeball.png')
+    enemy.spriteSheetLeft = love.graphics.newImage('sprites/lefteyeball.png')
+    enemy.gridLeft = anim8.newGrid(32, 32, enemy.spriteSheetLeft:getWidth(), enemy.spriteSheetLeft:getHeight())
+    enemy.gridRight = anim8.newGrid(32, 32, enemy.spriteSheet:getWidth(), enemy.spriteSheet:getHeight())
 
 enemy.animations = {}
-enemy.animations.right = anim8.newAnimation(enemy.gridRight('1-4', 2), 0.25)
-enemy.animations.left = anim8.newAnimation(enemy.gridLeft('1-4', 2), 0.25)
-enemy.anim = enemy.animations.right
-
+    enemy.animations.right = anim8.newAnimation(enemy.gridRight('1-4', 2), 0.25)
+    enemy.animations.left = anim8.newAnimation(enemy.gridLeft('1-4', 2), 0.25)
+    enemy.anim = enemy.animations.right
 
 function enemy.spawn(x,y)
     table.insert(enemy, {x = x, y=y, xvel=0,yvel=0, health = 2, width = 2, height = 2})
@@ -36,7 +35,6 @@ function enemy.load()
     enemy.y = 0
 
 end
-
 
 function enemy.draw()
         love.graphics.setColor(255,255,255)
@@ -115,15 +113,10 @@ function enemy.colAI(dt)
             end
         end
 
-
-
-        
         enemy.colX = enemy.colX + enemy.colxvel *dt
         enemy.colY = enemy.colY + enemy.colyvel *dt
         enemy.colxvel = enemy.colxvel * (1-math.min(dt*enemy.friction,1))
         enemy.colyvel = enemy.colyvel * (1-math.min(dt*enemy.friction,1))
-
-        
 
         enemy.collider:setLinearVelocity(enemy.colxvel, enemy.colyvel)
 end
@@ -141,9 +134,7 @@ function enemy.collision()
     end
 end
 
-
 --PARENT
-
 function enemy.colliderMatching(dt)
     enemy.x = enemy.collider:getX()
     enemy.y = enemy.collider:getY()
