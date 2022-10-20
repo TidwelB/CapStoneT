@@ -31,22 +31,6 @@ function game:enter()
     --          Contains player information 
     player.load()
     enemy.load()
-
-    -- Player Animation table: 
-    --          Contains animations and assigns them to their given direction
-    
-    -- player.animations = {}
-    -- player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.2 )
-    -- player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.2 )
-    -- player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.2 )
-    -- player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.2 )
-    -- player.anim = player.animations.left
-        
-    
-    -- Initializes player animations and allows the movment keys to 
-    -- influence which animation plays
-    
-
     timer = 0
     
     enemy.spawn(500,500)
