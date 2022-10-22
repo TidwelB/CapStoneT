@@ -6,9 +6,9 @@ player.paused = 0
 
 
 heartbeat = {}
-    heartbeat.spritesheet = love.graphics.newImage('sprites/yellowhealth.png')
+    heartbeat.spritesheet = love.graphics.newImage('sprites/greenheath2.png')
     heartbeat.grid = anim8.newGrid (64, 32, heartbeat.spritesheet:getWidth(), heartbeat.spritesheet:getHeight())
-    heartbeat.animations = anim8.newAnimation( heartbeat.grid('1-84', 1),0.02)
+    heartbeat.animations = anim8.newAnimation( heartbeat.grid('1-107', 1),0.025)
     heartbeat.anim = heartbeat.animations
 
 
