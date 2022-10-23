@@ -11,6 +11,11 @@ heartbeat = {}
     heartbeat.animations = anim8.newAnimation( heartbeat.grid('1-107', 1),0.025)
     heartbeat.anim = heartbeat.animations
 
+yellowheartbeat = {}
+    yellowheartbeat.spritesheet = love.graphics.newImage('sprites/yellowhealth.png')
+    yellowheartbeat.grid = anim8.newGrid (64, 32, yellowheartbeat.spritesheet:getWidth(), yellowheartbeat.spritesheet:getHeight())
+    yellowheartbeat.animations = anim8.newAnimation( yellowheartbeat.grid('1-84', 1),0.025)
+    yellowheartbeat.anim = yellowheartbeat.animations
 
 function player.load()
 
