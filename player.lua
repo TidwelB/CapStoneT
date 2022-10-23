@@ -4,18 +4,22 @@ player.paused = 0
 
 
 
-
+--this is for the green health sprite
 heartbeat = {}
     heartbeat.spritesheet = love.graphics.newImage('sprites/greenheath2.png')
     heartbeat.grid = anim8.newGrid (64, 32, heartbeat.spritesheet:getWidth(), heartbeat.spritesheet:getHeight())
     heartbeat.animations = anim8.newAnimation( heartbeat.grid('1-107', 1),0.025)
     heartbeat.anim = heartbeat.animations
 
+--this is for the yellow health sprite
 yellowheartbeat = {}
     yellowheartbeat.spritesheet = love.graphics.newImage('sprites/yellowhealth.png')
     yellowheartbeat.grid = anim8.newGrid (64, 32, yellowheartbeat.spritesheet:getWidth(), yellowheartbeat.spritesheet:getHeight())
     yellowheartbeat.animations = anim8.newAnimation( yellowheartbeat.grid('1-84', 1),0.025)
     yellowheartbeat.anim = yellowheartbeat.animations
+
+--this is for the red health sprite
+redheartbeat = {}
 
 function player.load()
 
