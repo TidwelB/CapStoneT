@@ -11,19 +11,19 @@ Alternatively, [this link](https://objects.githubusercontent.com/github-producti
 
 
 
+
 Afterwards:
 
-	You will need to clone [this repo](https://github.com/SCCapstone/Remedy/archive/refs/heads/AI.zip) onto your computer in a place that is easily accessible. 
+You will need to clone [this repo](https://github.com/SCCapstone/Remedy/archive/refs/heads/AI.zip) onto your computer in a place that is easily accessible. 
 
 Finally:
 
-	You will need to locate the cloned repo and simply drag it to the destination path of Love2D. This is most easily done by placing both files on the desktop and dragging the repo onto the Love2D icon.
-
+You will need to locate the cloned repo and simply drag it to the destination path of Love2D. This is most easily done by placing both files on the desktop and dragging the repo onto the Love2D icon.
 
 
 Testing Section:
 
-	Nothing here until we do unit tests in CSCE 492
+Nothing here until we do unit tests in CSCE 492
 
 
 Authors:
