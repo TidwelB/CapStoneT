@@ -53,7 +53,15 @@ end
 function game:update(dt)
     player:update(dt)
     player.anim:update(dt)
-    heartbeat.anim:update(dt)
+    
+    if (player.health > (player.max_health / 2)) then
+        heartbeat.anim:update(dt)
+    elseif (player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
+        yellowheartbeat.anim:update(dt)
+    elseif (player.health <= (player.max_health / 4)) then
+        redheartbeat.anim:update(dt)
+    end
+
     enemy.anim:update(dt)
     timer = timer + dt
     UPDATE_ENEMY(dt)

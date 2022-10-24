@@ -2,8 +2,6 @@ player = {}
 anim8 = require 'libraries/anim8'
 player.paused = 0
 
-
-
 --this is for the green health sprite
 heartbeat = {}
     heartbeat.spritesheet = love.graphics.newImage('sprites/greenheath2.png')
@@ -11,15 +9,18 @@ heartbeat = {}
     heartbeat.animations = anim8.newAnimation( heartbeat.grid('1-107', 1),0.025)
     heartbeat.anim = heartbeat.animations
 
---this is for the yellow health sprite
 yellowheartbeat = {}
     yellowheartbeat.spritesheet = love.graphics.newImage('sprites/yellowhealth.png')
     yellowheartbeat.grid = anim8.newGrid (64, 32, yellowheartbeat.spritesheet:getWidth(), yellowheartbeat.spritesheet:getHeight())
     yellowheartbeat.animations = anim8.newAnimation( yellowheartbeat.grid('1-84', 1),0.025)
     yellowheartbeat.anim = yellowheartbeat.animations
-
+    
 --this is for the red health sprite
 redheartbeat = {}
+    redheartbeat.spritesheet = love.graphics.newImage('sprites/redhealth.png')
+    redheartbeat.grid = anim8.newGrid (64, 32, redheartbeat.spritesheet:getWidth(), redheartbeat.spritesheet:getHeight())
+    redheartbeat.animations = anim8.newAnimation( redheartbeat.grid('1-109', 1),0.020)
+    redheartbeat.anim = redheartbeat.animations
 
 function player.load()
 
@@ -34,7 +35,9 @@ function player.load()
         player.stamina = 2000
         player.spriteSheet = love.graphics.newImage('sprites/guard_yellow_spritesheet.png')
         player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
-
+        player.max_health = 100
+        player.health = 35
+        
         player.animations = {}
         player.animations['down'] = anim8.newAnimation( player.grid('1-4', 1), 0.25 )
         player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.25 )
@@ -116,6 +119,14 @@ function player.control(dt)
        if (isMoving == false) then
             player.anim:gotoFrame(3)
        end
+
+       if love.keyboard.isDown("l") then
+        player.health = player.health - .01
+       end
+
+       if love.keyboard.isDown("k") then
+        player.health = player.health + .01
+       end
 end
 
 function player.physics(dt)
@@ -126,7 +137,18 @@ function player.physics(dt)
 end
 
 function player.draw()
-    heartbeat.anim:draw(heartbeat.spritesheet,30, 30, nil,3, nil,  9,9)
+    --Green above 50%
+    if (player.health > (player.max_health / 2)) then
+        heartbeat.anim:draw(heartbeat.spritesheet,30, 30, nil,3, nil,  9,9) 
+    -- Yellow between 50% and 25%
+    elseif ( player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
+        yellowheartbeat.anim:draw(yellowheartbeat.spritesheet,30, 30, nil,3, nil,  9,9)
+    --Red under 25
+    elseif (player.health <= (player.max_health / 4)) then
+        redheartbeat.anim:draw(redheartbeat.spritesheet,30, 30, nil,3, nil,  9,9) 
+    end
+    health = player.stamina
+    love.graphics.print(health, 30, 60)
 end
 
 function DRAW_HUD()
