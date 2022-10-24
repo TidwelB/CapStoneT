@@ -24,7 +24,7 @@ Or clone in your own terminal with (https://github.com/SCCapstone/Remedy.git)
 
 Finally:
 
-You will need to locate the cloned repo and simply drag it to the destination path of Love2D. This is most easily done by placing both files on the desktop and dragging the repo onto the Love2D icon.
+You will need to locate the cloned repo and simply drag the folder into the destination path of Love2D. This is most easily done by placing both files on the desktop and dragging the repo onto the Love2D icon.
 
 
 Testing Section:
