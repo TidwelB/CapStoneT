@@ -24,9 +24,10 @@ redheartbeat = {}
     redheartbeat.anim = redheartbeat.animations
 
 function player.load()
-
         player.collider = world:newBSGRectangleCollider(400, 250, 65, 100, 14)
+        player.collider:setCollisionClass('Solid')
         player.collider:setFixedRotation(true)
+        
         player.x = 0
         player.y = 0
         player.xvel = 0
@@ -128,6 +129,11 @@ function player.control(dt)
        if love.keyboard.isDown("k") then
         player.health = player.health + .01
        end
+end
+function player.checkTransition()
+    if player.collider:enter('Ghost') then
+        Gamestate.switch(runLevelOne)
+    end
 end
 
 function player.physics(dt)

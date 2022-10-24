@@ -29,24 +29,38 @@ function game:enter()
 
     -- Player table: 
     --          Contains player information 
-    player.load()
-    enemy.load()
-    timer = 0
+    
     
     enemy.spawn(500,500)
     --  Walls table: 
     --          intializes the hitboxes for the map 
     --          whether that be the walls, the green stuff, etc...
+    world:addCollisionClass('Solid')
+    world:addCollisionClass('Ghost', {ignores = {'Solid'}})
+
     walls = {}
 
-        if testingMap.layers["walls"] then
-            for i, box in pairs(testingMap.layers["walls"].objects) do
+        if testingMap.layers["Walls"] then
+            for i, box in pairs(testingMap.layers["Walls"].objects) do
                 local wall = world:newRectangleCollider(box.x, box.y, box.width, box.height)
                 wall:setType('static')
                 table.insert(walls, wall)
             end
         end
+    
+    transitions = {}
+        if testingMap.layers["Transitions"] then
+            for i, obj in pairs(testingMap.layers["Transitions"].objects) do
+                local transition = world:newRectangleCollider(obj.x, obj.y, obj.width, obj.height)
+                transition:setType('static')
+                transition:setCollisionClass('Ghost')
+                table.insert(transitions,transition)
+            end
+        end
 
+        player.load()
+        enemy.load()
+        timer = 0
 end
 
 
@@ -71,6 +85,7 @@ function game:update(dt)
 
    world:update(dt)
    shaders:update(dt)
+   player.checkTransition()
 
 end
 
@@ -80,7 +95,7 @@ function game:draw()
     camera:attach()
         testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
         testingMap:drawLayer(testingMap.layers["grate"])
-        testingMap:drawLayer(testingMap.layers["Walls"])
+        testingMap:drawLayer(testingMap.layers["walls"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         enemy.draw()
         love.graphics.setShader(shaders.trueLight)

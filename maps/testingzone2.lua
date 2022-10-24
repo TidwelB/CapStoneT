@@ -9,8 +9,8 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 5,
-  nextobjectid = 20,
+  nextlayerid = 6,
+  nextobjectid = 22,
   properties = {},
   tilesets = {
     {
@@ -171,7 +171,7 @@ return {
       width = 100,
       height = 100,
       id = 2,
-      name = "Walls",
+      name = "walls",
       class = "",
       visible = true,
       opacity = 1,
@@ -408,7 +408,7 @@ return {
       type = "objectgroup",
       draworder = "topdown",
       id = 4,
-      name = "walls",
+      name = "Walls",
       class = "",
       visible = true,
       opacity = 1,
@@ -664,6 +664,39 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 5,
+      name = "Transitions",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 20,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 1920,
+          y = 1888,
+          width = 288,
+          height = 128,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["destx"] = 0,
+            ["desty"] = 0,
+            ["id"] = "game"
+          }
         }
       }
     }
