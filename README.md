@@ -13,7 +13,7 @@ Alternatively, [this link](https://objects.githubusercontent.com/github-producti
 
 Afterwards:
 
-	You will need to clone this repo onto your computer in a place that is easily accessible. 
+	You will need to clone [this repo](https://github.com/SCCapstone/Remedy/archive/refs/heads/AI.zip) onto your computer in a place that is easily accessible. 
 
 Finally:
 
