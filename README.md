@@ -14,7 +14,13 @@ Alternatively, [this link](https://objects.githubusercontent.com/github-producti
 
 Afterwards:
 
-You will need to clone [this repo](https://github.com/SCCapstone/Remedy/archive/refs/heads/AI.zip) onto your computer in a place that is easily accessible. 
+You will need to clone our Remedy repo onto your computer in a place that is easily accessible. If zipped, be sure to unzip the file.
+
+[Download Zipped repo](https://github.com/SCCapstone/Remedy/archive/refs/heads/AI.zip)
+
+[Open With Github Desktop](https://desktop.github.com/)
+
+Or clone in your own terminal with (https://github.com/SCCapstone/Remedy.git)
 
 Finally:
 
