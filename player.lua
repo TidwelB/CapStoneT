@@ -147,8 +147,6 @@ function player.draw()
     elseif (player.health <= (player.max_health / 4)) then
         redheartbeat.anim:draw(redheartbeat.spritesheet,30, 30, nil,3, nil,  9,9) 
     end
-    health = player.stamina
-    love.graphics.print(health, 30, 60)
 end
 
 function DRAW_HUD()
