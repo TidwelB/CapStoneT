@@ -40,4 +40,4 @@ Authors:
 
 	Reid Mozley: wmozley@email.sc.edu
 
-	Ben de Pela:
+	Ben de Pela: delapenb@email.sc.edu
