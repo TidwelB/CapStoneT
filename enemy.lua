@@ -25,7 +25,7 @@ function enemy.spawn(x,y)
 end
 
 function enemy.load()
-    enemy.collider = world:newBSGRectangleCollider(400, 200, 65, 100, 14)
+    enemy.collider = world:newBSGRectangleCollider(400, 200, 65, 65, 14)
     enemy.collider:setFixedRotation(true)
     enemy.colX = 0
     enemy.colY = 0
@@ -34,6 +34,8 @@ function enemy.load()
     enemy.colyvel = 0
     enemy.x = 0
     enemy.y = 0
+    enemy.lastx = 0
+    enemy.lasty = 0
 
 end
 
@@ -54,8 +56,16 @@ function enemy.colAI(dt)
     enemy.distance = ((player.x - enemy.collider:getX())^2 + (player.y - enemy.collider:getY())^2)^(1/2)
     enemy.xdist = ((player.x - enemy.collider:getX())^2)^(1/2)
     enemy.ydist = ((player.y - enemy.collider:getY())^2)^(1/2)
+    enemy.xvect = (player.x - enemy.collider:getX()) / enemy.xdist
+    enemy.yvect = (player.y - enemy.collider:getY()) / enemy.ydist
+    if enemy.distance > 700 then
+        enemy.collider:setPosition(50+((player.x + enemy.colX)/2), -(50+(-player.y + -enemy.colY)/2))
+    end
+    if enemy.distance > 1000 then
+        enemy.collider:setPosition((player.x), ((player.y)))
+    end
 
-        if enemy.distance > 150 then
+        if enemy.distance > 150 and enemy.distance < 700 then
             if player.x > enemy.collider:getX() then
                 enemy.colxvel = enemy.speed
                 --enemy.anim = enemy.animations.right
@@ -72,16 +82,17 @@ function enemy.colAI(dt)
                 enemy.colyvel = -enemy.speed
                 --enemy.anim = enemy.animations.right
             end
-            if enemy.colxvel < 0 then
+            if enemy.colxvel < 0 and enemy.xdist > 5 then
                 enemy.anim = enemy.animations.left
         end
-        if enemy.colxvel > 0 then
-            enemy.anim = enemy.animations.right
+        if enemy.colxvel > 0 and enemy.xdist > 5 then
+            enemy.anim = enemy.animations.right  
     end
+
         else
             if (enemy.timer%5 == 0) then
-            enemy.colxvel = math.random(-50,50)
-            enemy.colyvel = math.random(-50,50)
+            enemy.colxvel = math.random(-100,100)
+            enemy.colyvel = math.random(-100,100)
 
             if (math.random(0,100) == 19) then
                 if enemy.anim == enemy.animations.idleR then
@@ -99,28 +110,32 @@ function enemy.colAI(dt)
         enemy.colxvel = enemy.colxvel * (1-math.min(dt*enemy.friction,1))
         enemy.colyvel = enemy.colyvel * (1-math.min(dt*enemy.friction,1))
 
-        enemy.collider:setLinearVelocity(enemy.colxvel, enemy.colyvel)
-
+        enemy.collider:setLinearVelocity(enemy.colxvel*(enemy.distance/150), enemy.colyvel*(enemy.distance/150))
 
 end
 
 function enemy.collision()
     if enemy.xdist < 68 then
-        if enemy.ydist < 100 then
+        if enemy.ydist < 35 then
         enemy.colxvel = player.xvel
         end
     end
-    if enemy.ydist < 101 then
+    if enemy.ydist < 68 then
         if enemy.xdist < 35 then
         enemy.colyvel = player.yvel
         end
     end
 end
 
+function enemy.pathing()
+
+end
+
+
 --PARENT
 function enemy.colliderMatching(dt)
-    enemy.x = enemy.collider:getX()
-    enemy.y = enemy.collider:getY()
+    enemy.x = enemy.collider:getX() -35
+    enemy.y = enemy.collider:getY() - 20
 end
 
  function DRAW_ENEMY()
