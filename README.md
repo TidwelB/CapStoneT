@@ -31,6 +31,8 @@ Testing Section:
 
 Nothing here until we do unit tests in CSCE 492
 
+Style Guide:
+http://lua-users.org/wiki/LuaStyleGuide
 
 Authors:
 
