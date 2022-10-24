@@ -152,6 +152,8 @@ function player.draw()
     love.graphics.rectangle("fill", 5, 90, math.floor(190 * (player.stamina/2000)), 25)
     love.graphics.reset()
     love.graphics.print("Sprint", 5, 90, nil, 1)
+    love.graphics.rectangle("line", 200, 15, 64, 64)
+    love.graphics.rectangle("line", 280, 15, 64, 64)
 end
 
 function DRAW_HUD()
