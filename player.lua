@@ -1,3 +1,4 @@
+
 player = {}
 anim8 = require 'libraries/anim8'
 player.paused = 0
@@ -12,14 +13,14 @@ heartbeat = {}
 yellowheartbeat = {}
     yellowheartbeat.spritesheet = love.graphics.newImage('sprites/yellowhealth.png')
     yellowheartbeat.grid = anim8.newGrid (64, 32, yellowheartbeat.spritesheet:getWidth(), yellowheartbeat.spritesheet:getHeight())
-    yellowheartbeat.animations = anim8.newAnimation( yellowheartbeat.grid('1-84', 1),0.025)
+    yellowheartbeat.animations = anim8.newAnimation( yellowheartbeat.grid('1-84', 1),0.020)
     yellowheartbeat.anim = yellowheartbeat.animations
     
 --this is for the red health sprite
 redheartbeat = {}
     redheartbeat.spritesheet = love.graphics.newImage('sprites/redhealth.png')
     redheartbeat.grid = anim8.newGrid (64, 32, redheartbeat.spritesheet:getWidth(), redheartbeat.spritesheet:getHeight())
-    redheartbeat.animations = anim8.newAnimation( redheartbeat.grid('1-109', 1),0.020)
+    redheartbeat.animations = anim8.newAnimation( redheartbeat.grid('1-109', 1),0.015)
     redheartbeat.anim = redheartbeat.animations
 
 function player.load()
@@ -147,6 +148,10 @@ function player.draw()
     elseif (player.health <= (player.max_health / 4)) then
         redheartbeat.anim:draw(redheartbeat.spritesheet,30, 30, nil,3, nil,  9,9) 
     end
+    love.graphics.setColor(0,0,255)
+    love.graphics.rectangle("fill", 5, 90, math.floor(190 * (player.stamina/2000)), 25)
+    love.graphics.reset()
+    love.graphics.print("Sprint", 5, 90, nil, 1)
 end
 
 function DRAW_HUD()
