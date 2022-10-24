@@ -138,20 +138,27 @@ function player.physics(dt)
 end
 
 function player.draw()
-    --Green above 50%
+    -- Health Bar
+    -- Green above 50%
     if (player.health > (player.max_health / 2)) then
         heartbeat.anim:draw(heartbeat.spritesheet,30, 30, nil,3, nil,  9,9) 
     -- Yellow between 50% and 25%
     elseif ( player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
         yellowheartbeat.anim:draw(yellowheartbeat.spritesheet,30, 30, nil,3, nil,  9,9)
-    --Red under 25
+    -- Red under 25%
     elseif (player.health <= (player.max_health / 4)) then
         redheartbeat.anim:draw(redheartbeat.spritesheet,30, 30, nil,3, nil,  9,9) 
     end
+
+    -- Blue coloring for stamina bar
     love.graphics.setColor(0,0,255)
+    -- Stamina Bar
     love.graphics.rectangle("fill", 5, 90, math.floor(190 * (player.stamina/2000)), 25)
     love.graphics.reset()
+    -- Text that sits on stamina bar
     love.graphics.print("Sprint", 5, 90, nil, 1)
+
+    -- Inventory Boxes
     love.graphics.rectangle("line", 200, 15, 64, 64)
     love.graphics.rectangle("line", 280, 15, 64, 64)
 end
