@@ -1,6 +1,6 @@
 Capstone Project: SCP: Fallen
 
-SCP: Fallen is a  third-person adventure game, where the [Player](https://github.com/SCCapstone/Remedy/wiki/Main-Character-Stills) controls a lab scientist who is running for their life after SCP’s have broken containment and are killing everything in sight. The player must explore different [levels](https://github.com/SCCapstone/Remedy/wiki/Storyboard) and [rooms](https://github.com/SCCapstone/Remedy/wiki/Map_Files) to find 4 specific [objects](https://github.com/SCCapstone/Remedy/wiki/Item-interaction) to bring back to their scientist friends in hopes of escaping; however, they must also avoid all the [SCP’s](https://github.com/SCCapstone/Remedy/wiki/Enemy-Stills) that are running rampant.
+SCP: Fallen is a  top down adventure horror game, where the [Player](https://github.com/SCCapstone/Remedy/wiki/Main-Character-Stills) controls a lab scientist who is running for their life after SCP’s have broken containment and are killing everything in sight. The player must explore different [levels](https://github.com/SCCapstone/Remedy/wiki/Storyboard) and [rooms](https://github.com/SCCapstone/Remedy/wiki/Map_Files) to find 4 specific [objects](https://github.com/SCCapstone/Remedy/wiki/Item-interaction) to bring back to their scientist friends in hopes of escaping; however, they must also avoid all the [SCP’s](https://github.com/SCCapstone/Remedy/wiki/Enemy-Stills) that are running rampant.
 
 In order to build this game you will first have to install:
 https://love2d.org/ (follow this link and download your choice of version for Love2D that is compatible for your computer). Launch the program and follow default installation procedures.
@@ -31,6 +31,8 @@ Testing Section:
 
 Nothing here until we do unit tests in CSCE 492
 
+Style Guide:
+http://lua-users.org/wiki/LuaStyleGuide
 
 Authors:
 
