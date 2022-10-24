@@ -38,6 +38,6 @@ Authors:
 
 	Madison Yam: yamm@email.sc.edu
 
-	Reid Mozley: 
+	Reid Mozley: wmozley@email.sc.edu
 
 	Ben de Pela:
