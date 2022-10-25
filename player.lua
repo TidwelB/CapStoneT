@@ -23,30 +23,30 @@ redheartbeat = {}
     redheartbeat.animations = anim8.newAnimation( redheartbeat.grid('1-109', 1),0.015)
     redheartbeat.anim = redheartbeat.animations
 
+
+    player.spriteSheet = love.graphics.newImage('sprites/guard_yellow_spritesheet.png')
+    player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
+player.animations = {}
+    player.animations['down'] = anim8.newAnimation( player.grid('1-4', 1), 0.25 )
+    player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.25 )
+    player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.25 )
+    player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.25 )
+    player.anim = player.animations.left
+
+    player.x = 0
+    player.y = 0
+    player.xvel = 0
+    player.yvel = 0
+    player.friction = 5
+    player.speed = 250
+    player.stamina = 2000
+    player.max_health = 100
+    player.health = 35
+
 function player.load()
         player.collider = world:newBSGRectangleCollider(400, 250, 65, 100, 14)
         player.collider:setCollisionClass('Solid')
         player.collider:setFixedRotation(true)
-        
-        player.x = 0
-        player.y = 0
-        player.xvel = 0
-        player.yvel = 0
-        player.friction = 5
-        player.speed = 250
-        player.stamina = 2000
-        player.spriteSheet = love.graphics.newImage('sprites/guard_yellow_spritesheet.png')
-        player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
-        player.max_health = 100
-        player.health = 35
-        
-        player.animations = {}
-        player.animations['down'] = anim8.newAnimation( player.grid('1-4', 1), 0.25 )
-        player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.25 )
-        player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.25 )
-        player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.25 )
-        player.anim = player.animations.left
-
 end
 
 function player:update(dt)
