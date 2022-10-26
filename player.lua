@@ -13,6 +13,7 @@ player.speed = 250
 player.stamina = 2000
 player.max_health = 100
 player.health = 100
+player.keytimer = 0
 
 --this is for the green health sprite
 heartbeat = {}
@@ -48,6 +49,7 @@ function player.load()
 end
 
 function player:update(dt)
+        player.keytimer = player.keytimer +1
         -- player.pause(dt)
         player.control(dt)
         player.physics(dt)
@@ -114,6 +116,18 @@ function player.control(dt)
             love.timer.sleep(.5)
             Gamestate.push(pause)
     end
+
+    if love.keyboard.isDown("f") then
+    if (player.keytimer > 150) then
+        if (shaders.flashlight == false) then
+            shaders.flashlight = true
+            player.keytimer = 0
+        else
+            shaders.flashlight = false
+            player.keytimer = 0
+        end
+    end
+end
     
        -- Freezes the frame on the idle sprite in that direction
        if (isMoving == false) then

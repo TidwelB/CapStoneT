@@ -49,8 +49,6 @@ end
 
 
 function enemy.colAI(dt)
-    --enemy.colxvel = 0
-    --enemy.colyvel = 0
 
     enemy.timer = enemy.timer +1
     enemy.distance = ((player.x - enemy.collider:getX())^2 + (player.y - enemy.collider:getY())^2)^(1/2)
@@ -58,26 +56,32 @@ function enemy.colAI(dt)
     enemy.ydist = ((player.y - enemy.collider:getY())^2)^(1/2)
     enemy.xvect = (player.x - enemy.collider:getX()) / enemy.xdist
     enemy.yvect = (player.y - enemy.collider:getY()) / enemy.ydist
+--snap out of player view
     if enemy.distance > 700 then
         enemy.collider:setPosition(50+((player.x + enemy.colX)/2), -(50+(-player.y + -enemy.colY)/2))
     end
+--snap back to player
     if enemy.distance > 1000 then
         enemy.collider:setPosition((player.x), ((player.y)))
     end
-
+--check distance to player
         if enemy.distance > 150 and enemy.distance < 700 then
+        --check enemy right
             if player.x > enemy.collider:getX() then
                 enemy.colxvel = enemy.speed
                 --enemy.anim = enemy.animations.right
             end
+        --check enemy left
             if player.x < enemy.collider:getX() then
                 enemy.colxvel = -enemy.speed
                 --enemy.anim = enemy.animations.left
             end
+        --check enemy below
             if player.y > enemy.collider:getY() + 20 then
                 enemy.colyvel = enemy.speed
                 --enemy.anim = enemy.animations.left
             end
+        --check enemy above
             if player.y < enemy.collider:getY() -20 then
                 enemy.colyvel = -enemy.speed
                 --enemy.anim = enemy.animations.right
@@ -132,7 +136,6 @@ function enemy.pathing()
 end
 
 
---PARENT
 function enemy.colliderMatching(dt)
     enemy.x = enemy.collider:getX() -35
     enemy.y = enemy.collider:getY() - 20

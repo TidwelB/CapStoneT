@@ -5,13 +5,15 @@ shaders = {}
 windowWidth = 1920
 windowHeight = 1080
 scale = 100
+
+shaders.flashlight = false
 -- Hole-punch light source
 shaders.simpleLight = love.graphics.newShader[[
-    extern number playerX = 0;
-    extern number playerY = 0;
+    extern number originX = 0;
+    extern number originY = 0;
     number radius = 100;
     vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ) {
-        number distance = pow(pow(screen_coords.x - playerX, 2) + pow(screen_coords.y - playerY, 2), 0.5);
+        number distance = pow(pow(screen_coords.x - originX, 2) + pow(screen_coords.y - originY, 2), 0.5);
         if (distance < radius) {
             return vec4(0, 0, 0, 0);
         }
@@ -23,11 +25,11 @@ shaders.simpleLight = love.graphics.newShader[[
 
 -- Faded light source
 shaders.trueLight = love.graphics.newShader[[
-    extern number playerX = 0;
-    extern number playerY = 0;
+    extern number originX = 0;
+    extern number originY = 0;
     number radius = 450;
     vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ) {
-        number distance = pow(pow(screen_coords.x - playerX, 2) + pow(screen_coords.y - playerY, 2), 0.5);
+        number distance = pow(pow(screen_coords.x - originX, 2) + pow(screen_coords.y - originY, 2), 0.5);
         number alpha = distance / radius;
         return vec4(0, 0, 0, alpha);
     }
@@ -48,6 +50,8 @@ shaders.whiteout = love.graphics.newShader[[
 function shaders:update(dt)
 
 
+    if (shaders.flashlight == false) then
+
         local px = 400
         local py = 250
 
@@ -58,29 +62,32 @@ function shaders:update(dt)
         local lightX = (windowWidth/2)
         local lightY = (windowHeight/2)
 
-        -- Left border
-        -- if player.x < windowWidth/2 then
-        --     lightX = px * scale
-        -- end
+        shaders.simpleLight:send("originX", lightX)
+        shaders.simpleLight:send("originY", lightY)
+        shaders.trueLight:send("originX", lightX)
+        shaders.trueLight:send("originY", lightY)
 
-        -- Top border
-        -- if player.y < windowHeight/2 then
-        --     lightY = py * scale
-        -- end
+    
 
-        -- Right border
-        -- if player.x > (mapW - windowWidth/2) then
-        --     lightX = (px - player.x) * scale + (windowWidth/2)
-        -- end
+else 
 
-        -- Bottom border
-        -- if player.y > (mapH - windowHeight/2) then
-        --     lightY = (py - player.y) * scale + (windowHeight/2)
-        -- end
+    if (shaders.flashlight == true) then
 
-        shaders.simpleLight:send("playerX", lightX)
-        shaders.simpleLight:send("playerY", lightY)
-        shaders.trueLight:send("playerX", lightX)
-        shaders.trueLight:send("playerY", lightY)
+    local px = 400
+    local py = 250
+
+    -- Get width/height of background
+    local mapW = testingMap.width * testingMap.tilewidth
+    local mapH = testingMap.height * testingMap.tileheight
+
+    local lightX = love.mouse.getX()
+    local lightY = love.mouse.getY()
+
+    shaders.simpleLight:send("originX", lightX)
+    shaders.simpleLight:send("originY", lightY)
+    shaders.trueLight:send("originX", lightX)
+    shaders.trueLight:send("originY", lightY)
+    end
+end
     
 end
