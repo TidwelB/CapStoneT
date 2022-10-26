@@ -2,6 +2,9 @@ shaders = {}
 
 -- NOTE: These shaders are written using GLSL for Love2D
 
+--windowWidth, windowHeight = love.window.getMode()
+
+
 windowWidth = 1920
 windowHeight = 1080
 scale = 100
@@ -9,6 +12,7 @@ scale = 100
 shaders.flashlight = false
 -- Hole-punch light source
 shaders.simpleLight = love.graphics.newShader[[
+
     extern number originX = 0;
     extern number originY = 0;
     number radius = 100;
