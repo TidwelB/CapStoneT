@@ -37,7 +37,7 @@ function pause:draw()
     love.graphics.printf('To Continue Press: p',0,wh/3,ww,'center')
     love.graphics.printf('To Exit Press: Escape',0,wh/3+wh/3,ww,'center')
     if love.keyboard.isDown('escape') then
-        love.event.quit(0)
+        Gamestate.switch(menu)
     end
 end
 
