@@ -9,7 +9,10 @@
         "player",
         "yellowheartbeat",
         "redheartbeat",
-        "heartbeat"
+        "heartbeat",
+        "windowWidth",
+        "windowHeight"
     ],
-    "vscode-pets.theme": "beach"
+    "vscode-pets.theme": "beach",
+    "codetogether.virtualCursorJoin": "ownVirtualCursor"
 }

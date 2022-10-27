@@ -17,7 +17,7 @@ function game:enter()
 
     -- Makes the character stretch not blurry 
     love.graphics.setDefaultFilter("nearest", "nearest")
-    
+
     camera = cam()
 
     -- loads in the map
@@ -25,12 +25,9 @@ function game:enter()
 
     -- draws the window size
     world = wf.newWorld(0, 0)
+    love.window.setTitle("SCP: FALLEN")
     love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
 
-    -- Player table: 
-    --          Contains player information 
-    
-    
     enemy.spawn(500,500)
     --  Walls table: 
     --          intializes the hitboxes for the map 
@@ -47,7 +44,7 @@ function game:enter()
                 table.insert(walls, wall)
             end
         end
-    
+
     transitions = {}
         if testingMap.layers["Transitions"] then
             for i, obj in pairs(testingMap.layers["Transitions"].objects) do
@@ -63,11 +60,10 @@ function game:enter()
         timer = 0
 end
 
-
 function game:update(dt)
     player:update(dt)
     player.anim:update(dt)
-    
+
     if (player.health > (player.max_health / 2)) then
         heartbeat.anim:update(dt)
     elseif (player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
@@ -79,6 +75,9 @@ function game:update(dt)
     enemy.anim:update(dt)
     timer = timer + dt
     UPDATE_ENEMY(dt)
+
+    game.height = love.graphics.getHeight()
+    game.width = love.graphics.getWidth()
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)

@@ -5,8 +5,11 @@ shaders = {}
 --windowWidth, windowHeight = love.window.getMode()
 
 
-windowWidth = 1920
-windowHeight = 1080
+function shaders:window()
+    windowWidth = game.width
+    windowHeight = game.height
+end
+
 scale = 100
 
 shaders.flashlight = false
@@ -52,7 +55,7 @@ shaders.whiteout = love.graphics.newShader[[
 ]]
 
 function shaders:update(dt)
-
+    shaders:window()
 
     if (shaders.flashlight == false) then
 
@@ -71,27 +74,27 @@ function shaders:update(dt)
         shaders.trueLight:send("originX", lightX)
         shaders.trueLight:send("originY", lightY)
 
-    
 
-else 
 
-    if (shaders.flashlight == true) then
+    else
 
-    local px = 400
-    local py = 250
+        if (shaders.flashlight == true) then
 
-    -- Get width/height of background
-    local mapW = testingMap.width * testingMap.tilewidth
-    local mapH = testingMap.height * testingMap.tileheight
+        local px = 400
+        local py = 250
 
-    local lightX = love.mouse.getX()
-    local lightY = love.mouse.getY()
+        -- Get width/height of background
+        local mapW = testingMap.width * testingMap.tilewidth
+        local mapH = testingMap.height * testingMap.tileheight
 
-    shaders.simpleLight:send("originX", lightX)
-    shaders.simpleLight:send("originY", lightY)
-    shaders.trueLight:send("originX", lightX)
-    shaders.trueLight:send("originY", lightY)
+        local lightX = love.mouse.getX()
+        local lightY = love.mouse.getY()
+
+        shaders.simpleLight:send("originX", lightX)
+        shaders.simpleLight:send("originY", lightY)
+        shaders.trueLight:send("originX", lightX)
+        shaders.trueLight:send("originY", lightY)
+        end
     end
-end
-    
+
 end
