@@ -15,6 +15,8 @@ runLevelOne = {}
 runMaze = {}
 --runLevelTwo = {}
 
+love.window.setTitle("SCP: FALLEN")
+
 local buttons = {}
 local test = {}
 
