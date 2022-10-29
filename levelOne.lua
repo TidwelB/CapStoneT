@@ -72,7 +72,6 @@ function levelOne:update(dt)
 
    world:update(dt)
    shaders:update(dt)
-   player.checkTransition()
 
 end
 function levelOne:draw()

@@ -84,8 +84,6 @@ function game:update(dt)
 
    world:update(dt)
    shaders:update(dt)
-   player.checkTransition()
-
 end
 
 function game:draw()

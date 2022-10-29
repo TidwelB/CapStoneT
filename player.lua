@@ -1,6 +1,9 @@
 
 player = {}
 anim8 = require 'libraries/anim8'
+
+transitionModule = require('util/transition')
+
 player.paused = 0
 player.spriteSheet = love.graphics.newImage('sprites/guard_yellow_spritesheet.png')
 player.grid = anim8.newGrid( 16, 16, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
@@ -54,6 +57,7 @@ function player:update(dt)
         player.control(dt)
         player.physics(dt)
         player.colliderMatching(dt)
+        transition.Transitioner(self)
 end
 
 function player.colliderMatching(dt)
@@ -101,12 +105,12 @@ function player.control(dt)
            player.anim = player.animations.up
            isMoving = true
        end
-    
+
        -- Sets the players hitbox to move with where our 
        -- player is currently moving
        player.collider:setLinearVelocity(player.xvel, player.yvel)
 
-    
+
        -- switches game back into the main menu
        if love.keyboard.isDown("escape") then
             Gamestate.push(menu)
@@ -128,7 +132,7 @@ function player.control(dt)
         end
     end
 end
-    
+
        -- Freezes the frame on the idle sprite in that direction
        if (isMoving == false) then
             player.anim:gotoFrame(3)
@@ -141,11 +145,6 @@ end
        if love.keyboard.isDown("k") then
         player.health = player.health + .01
        end
-end
-function player.checkTransition()
-    if player.collider:enter('Ghost') then
-        Gamestate.switch(runLevelOne)
-    end
 end
 
 function player.physics(dt)
