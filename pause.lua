@@ -13,6 +13,7 @@ local function newButton(text,fn)
         last = false
     }
 end
+
 function pause:enter(from)
     self.from = from
    -- love.window.setMode(1024,1024)
@@ -20,9 +21,11 @@ function pause:enter(from)
     --player.load()
 
 end
+
 function pause:update(dt)
     pause.update(dt)
 end
+
 function pause:draw()
     love.graphics.reset()
   local ww,wh = love.graphics.getWidth(),love.graphics.getHeight()
@@ -36,7 +39,12 @@ function pause:draw()
     love.graphics.printf('PAUSED',0,wh/2,ww,'center')
     love.graphics.printf('To Continue Press: p',0,wh/3,ww,'center')
     love.graphics.printf('To Exit Press: Escape',0,wh/3+wh/3,ww,'center')
-    if love.keyboard.isDown('escape') then
+    love.graphics.printf('To Go To Settings Press: s', 0,wh/5+wh/5,ww,'center')
+    if love.keyboard.isDown('s') then
+        Gamestate.pop()
+        love.graphics.reset()
+        Gamestate.push(settings)
+    elseif love.keyboard.isDown('escape') then
         Gamestate.switch(menu)
     end
 end

@@ -4,6 +4,7 @@ require('levelOne')
 require('maze')
 require('levelTwo')
 require('pause')
+require('util.settings')
 -- Tiled implementation library
 sti = require 'libraries/sti'
 -- Gamestate library
