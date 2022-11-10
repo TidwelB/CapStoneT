@@ -16,11 +16,12 @@ local function newButton(text,fn)
     }
 end
 
-function settings:enter()
- 
-    settings.load()
-end
-
+--function settings:enter()
+  --  settings.load()
+--end
+font = love.graphics.newFont(32)
+table.insert(buttons,newButton("Penis",function()Gamestate.switch(runGame)end))
+table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
 function settings:draw()
     local ww = love.graphics.getWidth()
     local wh = love.graphics.getHeight()
@@ -70,9 +71,7 @@ end
 
 --DOESNT GET HERE
 function settings.load()
-    font = love.graphics.newFont(32)
-    table.insert(buttons,newButton("Penis",function()Gamestate.switch(runGame)end))
-    table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
+  
 end
 
 function settings:update()
