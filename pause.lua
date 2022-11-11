@@ -29,7 +29,7 @@ function pause:update(dt)
     pause.update(dt)
 end
 font = love.graphics.newFont(32)
-table.insert(buttons,newButton("Return to Game",function()Gamestate.pop() Sounds.music:play()end))
+table.insert(buttons,newButton("Return to Game",function()Gamestate.pop()end))
 table.insert(buttons,newButton("Settings",function()Gamestate.push(settings)end)) 
 function pause:draw()
     love.graphics.reset()

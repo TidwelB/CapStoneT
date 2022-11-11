@@ -21,11 +21,12 @@ function settings:enter(from)
 end
 Mastervolume = .5
 font = love.graphics.newFont(32)
-love.audio.setVolume(.5)
+
 Volume = .5
 table.insert(buttons,newButton("Return to Pause Menu",function()Gamestate.pop()end))
-table.insert(buttons,newButton("Increase Volume",function()love.audio.setVolume(Volume + .1)end))
-table.insert(buttons,newButton("Decrease Volume",function()love.audio.setVolume(Volume - .1)end))
+table.insert(buttons,newButton("Increase Volume",function()Volume = Volume + .2 Sounds.music:setVolume(Volume) end))
+table.insert(buttons,newButton("Decrease Volume",function()Volume = Volume - .2 Sounds.music:setVolume(Volume)end))
+table.insert(buttons,newButton("Mute Sounds",function()Sounds.music:setVolume(0)end))
 function settings:draw()
     local ww = love.graphics.getWidth()
     local wh = love.graphics.getHeight()

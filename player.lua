@@ -118,7 +118,7 @@ function player.control(dt)
 
        if love.keyboard.isDown("p") then
             love.timer.sleep(.5)
-            Sounds.music:pause()
+            --Sounds.music:pause()
             Gamestate.push(pause)
     end
 
