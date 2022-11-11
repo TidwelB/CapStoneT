@@ -16,7 +16,7 @@ end
 
 function pause:enter(from)
     self.from = from
-    pause.load()
+    --pause.load()
     love.graphics.clear()
     love.graphics.reset()
    -- love.window.setMode(1024,1024)
@@ -29,12 +29,10 @@ function pause:update(dt)
     pause.update(dt)
 end
 font = love.graphics.newFont(32)
---     love.graphics.setBackgroundColor(255,255,255,1)
-    table.insert(buttons,newButton("Return to Game",function()Gamestate.pop()end))
-    table.insert(buttons,newButton("Settings",function()Gamestate.push(settings)end)) 
+table.insert(buttons,newButton("Return to Game",function()Gamestate.pop() Sounds.music:play()end))
+table.insert(buttons,newButton("Settings",function()Gamestate.push(settings)end)) 
 function pause:draw()
     love.graphics.reset()
-  --local ww,wh = love.graphics.getWidth(),love.graphics.getHeight()
     self.from:draw()
     font = love.graphics.newFont(32)
     local ww = love.graphics.getWidth()
@@ -52,13 +50,10 @@ function pause:draw()
         local color = {.8,.4,.5,1}
         local mousex, mousey = love.mouse.getPosition()
         local highlight = mousex > x and mousex < x + buttonwidth and mousey > y and mousey < y + BUTTON_HEIGHT
-
         if highlight then
             color  = {.8,.8,.9,1}
         end
-
         buttons.now = love.mouse.isDown(1)
-
         if buttons.now and not buttons.last and highlight then
             buttons.fn()
         end

@@ -16,12 +16,16 @@ local function newButton(text,fn)
     }
 end
 
---function settings:enter()
-  --  settings.load()
---end
+function settings:enter(from)
+    self.from = from
+end
+Mastervolume = .5
 font = love.graphics.newFont(32)
-table.insert(buttons,newButton("Penis",function()Gamestate.switch(runGame)end))
-table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
+love.audio.setVolume(.5)
+Volume = .5
+table.insert(buttons,newButton("Return to Pause Menu",function()Gamestate.pop()end))
+table.insert(buttons,newButton("Increase Volume",function()love.audio.setVolume(Volume + .1)end))
+table.insert(buttons,newButton("Decrease Volume",function()love.audio.setVolume(Volume - .1)end))
 function settings:draw()
     local ww = love.graphics.getWidth()
     local wh = love.graphics.getHeight()
