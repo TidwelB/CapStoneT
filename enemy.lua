@@ -122,11 +122,13 @@ function enemy.collision()
     if enemy.xdist < 68 then
         if enemy.ydist < 35 then
         enemy.colxvel = player.xvel
+        Sounds.collision:play()
         end
     end
     if enemy.ydist < 68 then
         if enemy.xdist < 35 then
         enemy.colyvel = player.yvel
+        Sounds.collision:play()
         end
     end
 end

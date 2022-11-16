@@ -131,10 +131,12 @@ end
 -- prepares the game for switches
 function love.load()
     Sounds = {}
-    Sounds.music = love.audio.newSource("sounds/sound.wav","stream")
-    
-    --Sound:setVolume(.5)
-    --Sound:play()
+    Music = {}
+    Music.music = love.audio.newSource("sounds/sound.wav","stream")
+    Sounds.collision = love.audio.newSource("sounds/collision.wav", "stream")
+    Sounds.collision:setVolume(.2)
+    Music.music:setVolume(.2)
+
     Gamestate.registerEvents()
     font = love.graphics.newFont(32)
     Gamestate.switch(menu)

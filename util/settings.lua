@@ -24,9 +24,12 @@ font = love.graphics.newFont(32)
 
 Volume = .5
 table.insert(buttons,newButton("Return to Pause Menu",function()Gamestate.pop()end))
-table.insert(buttons,newButton("Increase Volume",function()Volume = Volume + .2 Sounds.music:setVolume(Volume) end))
-table.insert(buttons,newButton("Decrease Volume",function()Volume = Volume - .2 Sounds.music:setVolume(Volume)end))
-table.insert(buttons,newButton("Mute Sounds",function()Sounds.music:setVolume(0)end))
+table.insert(buttons,newButton("Increase Volume",function() settings.increasevolumes(Music.music) end))
+--table.insert(buttons,newButton("Increase Volume",function() Volume = Volume - .2  Sounds.collision:setVolume(New) end))
+table.insert(buttons,newButton("Decrease Volume",function() settings.decreasevolumes(Music.music) end))
+table.insert(buttons,newButton("Increase Sound Effects Volume",function() settings.increasevolumes(Sounds.collision) end))
+table.insert(buttons,newButton("Decrease Sound Effects Volume",function() settings.decreasevolumes(Sounds.collision) end))
+table.insert(buttons,newButton("Mute Sounds",function() settings.mute() end))
 function settings:draw()
     local ww = love.graphics.getWidth()
     local wh = love.graphics.getHeight()
@@ -73,6 +76,35 @@ function settings:draw()
         Gamestate.switch(menu)
     end
 end
+
+
+function settings.mute()
+    if Music.music:getVolume() == 0 then
+        Music.music:setVolume(Volume)
+    elseif Music.music:getVolume() ~= 0 then
+        Music.music:setVolume(0)
+    end
+end
+
+function settings.increasevolumes(param)
+    Volume = Volume + .2
+    if Volume >= 1 then
+        Volume = 1
+        param:setVolume(1)
+    end
+    param:setVolume(Volume)
+end
+
+function settings.decreasevolumes(parameter)
+    Volume = Volume - .2
+    if Volume <= 0 then
+        Volume = 0
+        parameter:setVolume(0)
+    end
+    parameter:setVolume(Volume)
+end
+
+
 
 --DOESNT GET HERE
 function settings.load()
