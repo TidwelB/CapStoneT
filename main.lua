@@ -141,6 +141,6 @@ function love.load()
     font = love.graphics.newFont(32)
     Gamestate.switch(menu)
     love.graphics.setBackgroundColor(0,255,255,1)
-    table.insert(buttons,newButton("Start Game",function()Gamestate.switch(runGame)Sounds.music:play()end))
+    table.insert(buttons,newButton("Start Game",function()Gamestate.switch(runGame)Music.music:play()end))
     table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
 end
