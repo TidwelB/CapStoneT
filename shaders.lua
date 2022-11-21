@@ -34,12 +34,18 @@ shaders.simpleLight = love.graphics.newShader[[
             } 
         }
         else if (flashlight == true) {
-            if (  (screen_coords.x - mouseX)/(playerX - mouseX) == (screen_coords.y - mouseY)/(playerY - mouseY) ) {
-                //if ((screen_coords.x - mouseX)/(playerX - mouseX) > .9) {
-                    return vec4(0, 0, 0, 0);
-                //}
+            for (int i = -100; i < 100; i++) {
+                //for (int j; j < 100; j++){
+
                 
+            
+            if (  (screen_coords.x - mouseX)/(playerX - mouseX) == (screen_coords.y - mouseY)/(playerY - mouseY+i) ) {
+                if ((screen_coords.x - mouseX)/(playerX - mouseX) < .9) {
+                    return vec4(0, 0, 0, 0);
+                }
+                //}  
             }
+        }
 
 
             if (mousedistance<radius) {
