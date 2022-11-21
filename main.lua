@@ -38,6 +38,8 @@ function menu:enter()
     --love.graphics.setBackgroundColor(0,255,255,1)
     menuMap = sti('maps/mainmenu.lua')
     love.window.setMode(1024,1024)
+    Sounds.spook = love.audio.newSource("sounds/spook.wav", "static")
+    Sounds.spook:play()
 end
 -- Initializes the main menu at a very basic level
 function menu:draw()
