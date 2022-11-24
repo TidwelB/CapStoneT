@@ -36,13 +36,15 @@ end
 
 function menu:enter()
     --love.graphics.setBackgroundColor(0,255,255,1)
-    menuMap = sti('maps/mainmenu.lua')
-    love.window.setMode(1024,1024)
+    img = love.graphics.newImage("maps/mainmenu.png")
+    img:setWrap("repeat", "repeat")
+    quad = love.graphics.newQuad( 0,0, 800,600, 800,720)
     Sounds.spook = love.audio.newSource("sounds/spook.wav", "static")
     Sounds.spook:play()
 end
 -- Initializes the main menu at a very basic level
 function menu:draw()
+    love.graphics.draw(img, quad, 0,0, 0, 1,1)
     --This is creating the main menu buttons and their funtions
    --menuMap:drawLayer(menuMap.layers["Tile Layer 1"])
     --love.graphics.setBackgroundColor(0,255,255,1)
