@@ -40,6 +40,7 @@ function menu:enter()
     img:setWrap("repeat", "repeat")
     quad = love.graphics.newQuad( 0,0, 800,600, 800,720)
     Sounds.spook = love.audio.newSource("sounds/spook.wav", "static")
+    Sounds.spook:setVolume(.5)
     Sounds.spook:play()
 end
 -- Initializes the main menu at a very basic level
