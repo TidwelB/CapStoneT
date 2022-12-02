@@ -68,7 +68,7 @@ shaders.trueLight = love.graphics.newShader[[
     extern number  mouseX = 0;
     extern number mouseY = 0;
     extern bool flashlight = false;
-    number radius = 200;
+    number radius = 300;
     vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ) {
         number distance = pow(pow(screen_coords.x - originX, 2) + pow(screen_coords.y - originY, 2), 0.5);
         number mousedistance = pow(pow(screen_coords.x - mouseX, 2) + pow(screen_coords.y - mouseY, 2), 0.5);

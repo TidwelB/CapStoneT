@@ -180,8 +180,8 @@ function player.draw()
 
     -- Inventory Boxes
     love.graphics.rectangle("line", 200, 15, 64, 64)
-    love.graphics.print(player.x, 200, 15)
-    love.graphics.print(player.y, 280, 60)
+   -- love.graphics.print(player.x, 200, 15)
+   -- love.graphics.print(player.y, 280, 60)
     love.graphics.rectangle("line", 280, 15, 64, 64)
 end
 
