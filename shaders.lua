@@ -40,7 +40,7 @@ shaders.simpleLight = love.graphics.newShader[[
                 
             
             if (  (screen_coords.x - mouseX)/(playerX - mouseX) == (screen_coords.y - mouseY)/(playerY - mouseY+i) ) {
-                if ((screen_coords.x - mouseX)/(playerX - mouseX) < .9) {
+                if ((screen_coords.x - mouseX)/(playerX - mouseX) < .5) {
                     return vec4(0, 0, 0, 0);
                 }
                 //}  
@@ -65,11 +65,36 @@ shaders.simpleLight = love.graphics.newShader[[
 shaders.trueLight = love.graphics.newShader[[
     extern number originX = 0;
     extern number originY = 0;
-    number radius = 450;
+    extern number  mouseX = 0;
+    extern number mouseY = 0;
+    extern bool flashlight = false;
+    number radius = 200;
     vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ) {
         number distance = pow(pow(screen_coords.x - originX, 2) + pow(screen_coords.y - originY, 2), 0.5);
+        number mousedistance = pow(pow(screen_coords.x - mouseX, 2) + pow(screen_coords.y - mouseY, 2), 0.5);
         number alpha = distance / radius;
-        return vec4(0, 0, 0, alpha);
+        if (flashlight == false) {
+        if(distance < radius) {
+            return vec4(0, 0, 0, alpha);   
+        }
+            else {
+                return vec4(0, 0, 0, alpha);
+            } 
+        }
+        else if (flashlight == true) {
+            number mousealpha = mousedistance/radius;
+            if (mousedistance<radius) {
+                return vec4(0, 0, 0, mousealpha);
+            }
+            if (distance < (radius) / 4) {
+                number smallalpha = distance / (radius/4);
+                return vec4(0, 0, 0, smallalpha);
+                }
+
+        else {
+            return vec4(0, 0, 0, 1);
+}
+        }
     }
 ]]
 
@@ -105,6 +130,7 @@ function shaders:update(dt)
         shaders.trueLight:send("originX", lightX)
         shaders.trueLight:send("originY", lightY)
         shaders.simpleLight:send("flashlight", shaders.flashlight)
+        shaders.trueLight:send("flashlight", shaders.flashlight)
 
 
 
@@ -124,6 +150,9 @@ function shaders:update(dt)
 
         shaders.trueLight:send("originX", lightX)
         shaders.trueLight:send("originY", lightY)
+        shaders.trueLight:send("mouseX", px)
+        shaders.trueLight:send("mouseY", py)
+        shaders.trueLight:send("flashlight", shaders.flashlight)
         shaders.simpleLight:send("playerX", lightX)
         shaders.simpleLight:send("playerY", lightY)
         shaders.simpleLight:send("mouseX", px)
