@@ -72,9 +72,9 @@ function game:update(dt)
         redheartbeat.anim:update(dt)
     end
 
-    enemy.anim:update(dt)
+   -- enemy.anim:update(dt)
     timer = timer + dt
-    UPDATE_ENEMY(dt)
+    --UPDATE_ENEMY(dt)
 
     game.height = love.graphics.getHeight()
     game.width = love.graphics.getWidth()
@@ -94,14 +94,26 @@ function game:draw()
         testingMap:drawLayer(testingMap.layers["grate"])
         testingMap:drawLayer(testingMap.layers["walls"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
-        enemy.draw()
+        --enemy.draw()
+        love.graphics.print("Press W to walk upwards", 300, 200)
+        love.graphics.print("Press S to walk downwards", 300, 250)
+        love.graphics.print("Press A to walk left", 200, 225)
+        love.graphics.print("Press D to walk right", 400, 225)
+        love.graphics.print("Press P to pause", 550, 225)
+        love.graphics.print("Press F to use flashlight",550, 260)
+        love.graphics.print("Hold Shift to sprint", 900, 700)
+        love.graphics.print("Go this way ---->", 440, 630)
+        love.graphics.print("Go down to move to next area", 2000, 1400)
+
         love.graphics.setShader(shaders.trueLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
-        world:draw()
-        
+        --world:draw()
+
+
     camera:detach()
     love.graphics.reset()
+    
     DRAW_HUD()
     --DRAW_ENEMY()
 end

@@ -1,0 +1,53 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "tutroom.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "testingstric.tmx": {
+            "scale": 0.9064583333333334,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 480.99287520110306,
+                "y": 480.44127786715694
+            }
+        },
+        "testingstric.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "tileset x3.tsx": {
+            "scaleInDock": 1
+        },
+        "tutroom.tmx": {
+            "scale": 1.00640625,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 479.92547741033997,
+                "y": 320.44713553796
+            }
+        },
+        "tutroom.tmx#tilesettouse": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/bdela/OneDrive/Desktop/school/Remedy/maps",
+    "last.imagePath": "C:/Users/bdela/OneDrive/Desktop/school/Remedy/maps",
+    "map.height": 30,
+    "map.lastUsedExportFilter": "Lua files (*.lua)",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+        "testingstric.tmx",
+        "tutroom.tmx"
+    ],
+    "project": "test.tiled-project",
+    "recentFiles": [
+        "testingstric.tmx",
+        "tutroom.tmx"
+    ],
+    "tileset.embedInMap": true
+}

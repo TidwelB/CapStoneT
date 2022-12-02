@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="20">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="20">
  <editorsettings>
-  <export target="../../../Capstone game main/Remedy/maps/testingzone2.lua" format="lua"/>
+  <export target="testingben.lua" format="lua"/>
  </editorsettings>
  <tileset firstgid="1" name="testing" tilewidth="32" tileheight="32" tilecount="7659" columns="111">
-  <image source="../../../Tileset/tileset x3.png" width="3552" height="2208"/>
+  <image source="../../../../../Downloads/Tech_Dungeon_Roguelite_-_Asset_Pack_v3/tileset x3.png" width="3552" height="2208"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="100" height="100">
   <data encoding="csv">

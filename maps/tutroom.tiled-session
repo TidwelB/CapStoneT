@@ -1,0 +1,98 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "tutroom.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
+        "mainmenu.tmx": {
+            "scale": 0.559423828125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 511.2402897791743,
+                "y": 511.24028977917425
+            }
+        },
+        "mainmenu.tmx#computer_popup_spritesheet": {
+            "scaleInDock": 1
+        },
+        "mainmenu.tmx#computer_screen_large": {
+            "scaleInDock": 1
+        },
+        "rm.tmx": {
+            "scale": 1.9890625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 143.28358208955223,
+                "y": 143.78633150039278
+            }
+        },
+        "rm.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "testing-zone.tmx": {
+            "scale": 0.59671875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 475.93610892903905,
+                "y": 522.0214715894213
+            }
+        },
+        "testing-zone.tmx#testing": {
+            "scaleInDock": 1
+        },
+        "testingzone2.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1328,
+                "y": 1638
+            }
+        },
+        "testingzone2.tmx#testing": {
+            "scaleInDock": 1
+        },
+        "tileset x3.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "tutroom.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 541.3333333333333,
+                "y": 215.33333333333326
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/bdela/OneDrive/Desktop/school/Remedy/maps",
+    "last.externalTilesetPath": "C:/Users/bdela/Downloads/Tech_Dungeon_Roguelite_-_Asset_Pack_v3",
+    "last.imagePath": "C:/Users/bdela/Downloads/Tech_Dungeon_Roguelite_-_Asset_Pack_v3",
+    "map.lastUsedExportFilter": "Lua files (*.lua)",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+        "tutroom.tmx",
+        "tileset x3.tsx",
+        "testingzone2.tmx",
+        "testing-zone.tmx",
+        "rm.tmx",
+        "mainmenu.tmx"
+    ],
+    "project": "tutroom.tiled-project",
+    "recentFiles": [
+        "tutroom.tmx",
+        "tileset x3.tsx",
+        "mainmenu.tmx",
+        "rm.tmx",
+        "testing-zone.tmx",
+        "testingzone2.tmx"
+    ],
+    "tileset.lastUsedFilter": "All Files (*)",
+    "tileset.lastUsedFormat": "tsx"
+}

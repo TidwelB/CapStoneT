@@ -84,6 +84,18 @@ function menu:draw()
     love.graphics.reset()
 
 end
+
+-- Code for executing the tutorial
+function runTutorial:enter()
+    tutorial.enter(self)
+end
+function runMaze:update(dt)
+    tutorial.update(self, dt)
+end
+function runMaze:draw()
+    tutorial.draw(self)
+end
+
 -- Code for executing the main lobby of the game
 function runGame:enter()
     game.enter(self)
