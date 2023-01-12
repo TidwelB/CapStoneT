@@ -30,7 +30,11 @@ table.insert(buttons,newButton("Decrease Volume",function() settings.decreasevol
 table.insert(buttons,newButton("Increase Sound Effects Volume",function() settings.increasevolumes(Sounds.collision) end))
 table.insert(buttons,newButton("Decrease Sound Effects Volume",function() settings.decreasevolumes(Sounds.collision) end))
 table.insert(buttons,newButton("Mute Sounds",function() settings.mute() end))
+
 function settings:draw()
+    love.graphics.print("Music: " .. math.floor(Music.music:getVolume()*100) .. "%",300,200)
+    love.graphics.print("Sound Effects: " .. math.floor(Sounds.collision:getVolume()*100) .. "%",300,250)
+    --love.graphics.print("Sound Effect Volume:" Sounds.collision, 300, 250)
     local ww = love.graphics.getWidth()
     local wh = love.graphics.getHeight()
     local buttonwidth = ww * (1/3)
