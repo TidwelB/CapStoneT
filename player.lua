@@ -115,14 +115,14 @@ function player.control(dt)
 
 
        -- switches game back into the main menu
-       if love.keyboard.isDown("escape") then
-        --need to set the size of screen to match the main screen or shrink the screen size
-            love.window.setMode(800, 600)
-            Gamestate.push(menu)
-       end
+    --    if love.keyboard.isDown("escape") then
+    --     --need to set the size of screen to match the main screen or shrink the screen size
+    --         love.window.setMode(800, 600)
+    --         Gamestate.push(menu)
+    --    end
 
-       if love.keyboard.isDown("p") then
-            love.timer.sleep(.5)
+       if love.keyboard.isDown("escape") then
+            love.timer.sleep(.15)
             --Sounds.music:pause()
             Gamestate.push(pause)
     end

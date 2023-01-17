@@ -22,6 +22,7 @@ local function newButton(text,fn)
     }
 end
 
+
 function settings:enter(from)
     self.from = from
 end
@@ -150,7 +151,7 @@ function settings.load()
 end
 
 function settings:update()
-    if love.keyboard.isScancodeDown('p') then
+    if love.keyboard.isScancodeDown('escape') then
         love.timer.sleep(.15)
         return Gamestate.pop()
     end

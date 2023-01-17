@@ -82,7 +82,8 @@ function pause:draw()
         Gamestate.push(settings)
         settings.load()
     elseif love.keyboard.isDown('escape') then
-        Gamestate.switch(menu)
+        love.timer.sleep(.15)
+        Gamestate.pop()
     end
 end
 
@@ -90,6 +91,7 @@ end
 --     --Gamestate.switch(pause)
 
 end
+
 
 function pause:update()
     if love.keyboard.isScancodeDown('p') then
