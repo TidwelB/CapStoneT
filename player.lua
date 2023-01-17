@@ -1,5 +1,8 @@
 
 player = {}
+inventory = {}
+
+
 anim8 = require 'libraries/anim8'
 
 transitionModule = require('util/transition')
@@ -124,7 +127,9 @@ function player.control(dt)
             Gamestate.push(pause)
     end
 
-    if love.keyboard.isDown("f") then
+--and checkInventory(inventory, "flashlight") == true
+
+    if love.keyboard.isDown("f")  then
     if (player.keytimer > 150) then
         if (shaders.flashlight == false) then
             shaders.flashlight = true
@@ -135,6 +140,11 @@ function player.control(dt)
         end
     end
 end
+
+    if love.keyboard.isDown("e") and checkInventory(inventory, "item1") == false and player.x == item1.x and player.y == item1.y then
+        table.insert(inventory,"item1")
+        --insert image of item into the inventory spot in the hud
+    end
 
        -- Freezes the frame on the idle sprite in that direction
        if (isMoving == false) then
@@ -187,4 +197,13 @@ end
 
 function DRAW_HUD()
     player.draw()
+end
+ 
+function checkInventory(inventory, item)
+    for _, value in pairs(inventory) do
+        if value == item then
+            return true
+        end
+    end
+    return false
 end

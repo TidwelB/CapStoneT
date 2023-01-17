@@ -1,7 +1,7 @@
 -- Gamestate library
 Gamestate = require 'libraries.gamestate'
 levelOne = {}
-
+walls = {}
 function levelOne:enter()
     -- Hitbox library
     wf = require 'libraries/windfield'
@@ -31,7 +31,7 @@ function levelOne:enter()
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
 
-    walls = {}
+    
 
         if testingMap.layers["Walls"] then
             for i, box in pairs(testingMap.layers["Walls"].objects) do
@@ -85,6 +85,11 @@ function levelOne:draw()
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()
+        love.graphics.setColor(255,255,255,255)
+        love.graphics.rectangle('fill', 400,200,65,65,14)
+        if love.keyboard.isDown("j") then
+            table.insert(inventory,"Itemsssssss")
+        end
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()
