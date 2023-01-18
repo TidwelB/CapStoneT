@@ -28,9 +28,11 @@ end
 function pause:update(dt)
     pause.update(dt)
 end
+
 font = love.graphics.newFont(32)
 table.insert(buttons,newButton("Return to Game",function()Gamestate.pop()end))
-table.insert(buttons,newButton("Settings",function()Gamestate.push(settings)end)) 
+table.insert(buttons,newButton("Settings",function()Gamestate.push(settings)end))
+
 function pause:draw()
     love.graphics.reset()
     self.from:draw()
@@ -66,16 +68,9 @@ function pause:draw()
         love.graphics.print(buttons.text,font,(ww*.5)-textwidth*.5,y+textHeight*.5)
         cursor_y = cursor_y + (BUTTON_HEIGHT + margin)
     end
+
     love.graphics.reset()
-    --love.graphics.setColor(0,0,0,100)
-    --love.graphics.setColor(.4,.4,.5,.1)
-   -- love.graphics.rectangle('fill', 0,0,ww,wh)
- --   love.graphics.setColor(255,255,255)
-   -- love.graphics.reset()
-   -- love.graphics.printf('PAUSED',0,wh/2,ww,'center')
-    --love.graphics.printf('To Continue Press: p',0,wh/3,ww,'center')
-    --love.graphics.printf('To Exit Press: Escape',0,wh/3+wh/3,ww,'center')
-    --love.graphics.printf('To Go To Settings Press: s', 0,wh/5+wh/5,ww,'center')
+
     if love.keyboard.isDown('s') then
         Gamestate.pop()
         love.graphics.reset()
@@ -98,5 +93,4 @@ function pause:update()
         love.timer.sleep(.15)
         return Gamestate.pop()
     end
-    
 end

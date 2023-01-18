@@ -32,16 +32,9 @@ font = love.graphics.newFont(32)
 MVolume = .2
 CVolume = .2
 mute = false
---table.insert(buttons,newButton("Return to Pause Menu",function()Gamestate.pop()end))
---table.insert(buttons,newButton("Increase Volume",function() settings.increasevolumes(Music.music) end))
---table.insert(buttons,newButton("Increase Volume",function() Volume = Volume - .2  Sounds.collision:setVolume(New) end))
---table.insert(buttons,newButton("Decrease Volume",function() settings.decreasevolumes(Music.music) end))
---table.insert(buttons,newButton("Increase Sound Effects Volume",function() settings.increasevolumes(Sounds.collision) end))
---table.insert(buttons,newButton("Decrease Sound Effects Volume",function() settings.decreasevolumes(Sounds.collision) end))
---table.insert(buttons,newButton("Mute Sounds",function() settings.mute() end))
+
 function settings:draw()
-    --love.graphics.printf("PENIS",100,200)
-   -- love.graphics.print(Volume,100,300,300)
+
     love.graphics.printf(("Music: " .. math.floor(Music.music:getVolume()*100) .. "%"),100,200,200)
     love.graphics.printf("Sound Effects: " .. math.floor(Sounds.collision:getVolume()*100) .. "%",100,400,400)
     for i, v in ipairs(inventory) do
@@ -61,7 +54,7 @@ function settings:draw()
         love.graphics.rectangle("fill", button.x, button.y, button.width, BUTTON_HEIGHT)
         love.graphics.setColor(0,0,0,1)
         love.graphics.printf(button.text, button.x, button.y, button.width, "center")
-    end 
+    end
 
 --resets the color so that it doesnt have a black screen (very important please dont delete)
     love.graphics.reset()
@@ -81,18 +74,7 @@ function settings.mute()
     elseif mute == true then
         mute = false
     end
-    -- if Music.music:getVolume() == 0 and Sounds.collision:getVolume() == 0 then
-    --     Music.music:setVolume(Volume)
-    --     Sounds.collision:setVolume(Volume)
-    -- elseif Music.music:getVolume() ~= 0 and Sounds.collision:getVolume() == 0 then
-    --     Music.music:setVolume(0)
-    --     Sounds.collision:setVolume(Volume)
-    -- elseif Music.music:getVolume() ~= 0 and Sounds.collision:getVolume() ~= 0 then
-    --     Music.music:setVolume(0)
-    --     Sounds.collision:setVolume(0)
-    -- elseif Music.music:getVolume() == 0 and Sounds.collision:getVolume() ~= 0 then
-    --     Music.music:setVolume(Volume)
-    --     Sounds.collision:setVolume(0)
+
     if mute == false then
             Music.music:setVolume(TemMu)
             Sounds.collision:setVolume(TemCol)
@@ -105,19 +87,8 @@ function settings.mute()
         Sounds.collision:setVolume(0)
 
     end
-    -- if Music.music:getVolume() == 0 then
-    --     Music.music:setVolume(Volume)
-    -- elseif Music.music:getVolume() ~= 0 then
-    --     Music.music:setVolume(0)
-    --     Sounds.collision:setVolume(Volume)
-    -- end
-end
 
--- function settings:increasevolumes(param,volume)
---     volume = volume + .2
---     param.setVolume(volume)
---     return volume
--- end
+end
 
 function settings.increasevolumes(param)
     love.timer.sleep(.15)
@@ -143,11 +114,9 @@ function settings.decreasevolumes(parameter)
     parameter:setVolume(vom)
 end
 
-
-
 --DOESNT GET HERE
 function settings.load()
-  
+
 end
 
 function settings:update()

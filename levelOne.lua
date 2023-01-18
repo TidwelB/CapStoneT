@@ -2,6 +2,7 @@
 Gamestate = require 'libraries.gamestate'
 levelOne = {}
 walls = {}
+
 function levelOne:enter()
     -- Hitbox library
     wf = require 'libraries/windfield'
@@ -31,7 +32,7 @@ function levelOne:enter()
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
 
-    
+
 
         if testingMap.layers["Walls"] then
             for i, box in pairs(testingMap.layers["Walls"].objects) do
@@ -40,7 +41,7 @@ function levelOne:enter()
                 table.insert(walls, wall)
             end
         end
-    
+
     transitions = {}
         if testingMap.layers["Transitions"] then
             for i, obj in pairs(testingMap.layers["Transitions"].objects) do
@@ -54,10 +55,11 @@ function levelOne:enter()
         player.load()
         enemy.load()
 end
+
 function levelOne:update(dt)
     player:update(dt)
     player.anim:update(dt)
-    
+
     if (player.health > (player.max_health / 2)) then
         heartbeat.anim:update(dt)
     elseif (player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
@@ -75,6 +77,7 @@ function levelOne:update(dt)
    shaders:update(dt)
 
 end
+
 function levelOne:draw()
     -- Tells the game where to start looking through the camera POV
     camera:attach()
