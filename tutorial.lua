@@ -14,7 +14,7 @@ function tutorial:enter()
 
     -- Makes the character stretch not blurry 
     love.graphics.setDefaultFilter("nearest", "nearest")
-    
+
     camera = cam()
 
     -- loads in the map
@@ -40,7 +40,7 @@ function tutorial:enter()
                 table.insert(walls, wall)
             end
         end
-    
+
     transitions = {}
         if testingMap.layers["transition"] then
             for i, obj in pairs(testingMap.layers["transition"].objects) do
@@ -53,10 +53,11 @@ function tutorial:enter()
 
         player.load()
 end
+
 function tutorial:update(dt)
     player:update(dt)
     player.anim:update(dt)
-    
+
     if (player.health > (player.max_health / 2)) then
         heartbeat.anim:update(dt)
     elseif (player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
@@ -74,6 +75,7 @@ function tutorial:update(dt)
    shaders:update(dt)
 
 end
+
 function tutorial:draw()
     -- Tells the game where to start looking through the camera POV
     camera:attach()

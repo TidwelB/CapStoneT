@@ -11,7 +11,7 @@ enemy = {}
     enemy.friction = 7.5
     enemy.spriteSheet = love.graphics.newImage('sprites/eyeballW.png')
     enemy.grid = anim8.newGrid(32, 32, enemy.spriteSheet:getWidth(), enemy.spriteSheet:getHeight())
-    
+
 
 enemy.animations = {}
     enemy.animations.right = anim8.newAnimation(enemy.grid('1-4', 2), 0.25)
@@ -56,14 +56,17 @@ function enemy.colAI(dt)
     enemy.ydist = ((player.y - enemy.collider:getY())^2)^(1/2)
     enemy.xvect = (player.x - enemy.collider:getX()) / enemy.xdist
     enemy.yvect = (player.y - enemy.collider:getY()) / enemy.ydist
+
 --snap out of player view
     if enemy.distance > 700 then
         enemy.collider:setPosition(50+((player.x + enemy.colX)/2), -(50+(-player.y + -enemy.colY)/2))
     end
+
 --snap back to player
     if enemy.distance > 1000 then
         enemy.collider:setPosition((player.x), ((player.y)))
     end
+
 --check distance to player
         if enemy.distance > 150 and enemy.distance < 700 then
         --check enemy right
@@ -136,7 +139,6 @@ end
 function enemy.pathing()
 
 end
-
 
 function enemy.colliderMatching(dt)
     enemy.x = enemy.collider:getX() -35

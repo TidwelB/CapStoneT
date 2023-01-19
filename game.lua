@@ -1,11 +1,14 @@
 -- Gamestate library
 Gamestate = require 'libraries.gamestate'
+
 game = {}
 menu = {}
+
 require("enemy")
 require("player")
 require("shaders")
-require("SCP076")
+
+
 function game:enter()
     -- Hitbox library
     wf = require 'libraries/windfield'
@@ -92,7 +95,7 @@ end
 
 function game:draw()
     -- Tells the game where to start looking through the camera POV
-    
+
     camera:attach()
         testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
         testingMap:drawLayer(testingMap.layers["grate"])
@@ -117,7 +120,7 @@ function game:draw()
 
     camera:detach()
     love.graphics.reset()
-    
+
     DRAW_HUD()
     --DRAW_ENEMY()
 

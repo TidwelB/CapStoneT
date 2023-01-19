@@ -43,13 +43,10 @@ function menu:enter()
     Sounds.spook:setVolume(.5)
     Sounds.spook:play()
 end
+
 -- Initializes the main menu at a very basic level
 function menu:draw()
     love.graphics.draw(img, quad, 0,0, 0, 1,1)
-    --This is creating the main menu buttons and their funtions
-   --menuMap:drawLayer(menuMap.layers["Tile Layer 1"])
-    --love.graphics.setBackgroundColor(0,255,255,1)
-    --love.graphics.setColor(0,255,255,1)
         local ww = love.graphics.getWidth()
         local wh = love.graphics.getHeight()
         local buttonwidth = ww * (1/3)
