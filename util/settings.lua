@@ -6,12 +6,12 @@ settings = Gamestate.new()
 --volume = .2
 BUTTON_HEIGHT = 64
 local font = love.graphics.newFont(32)
-local button1 = {text = "Return to Pause Menu", fn = function()Gamestate.pop()end, width = 300}
-local button2 = {text = "Increase Volume", fn = function() settings.increasevolumes(Music.music) end, width = 150, x = 450 , y = 200}
-local button3 = {text = "Decrease Volume", fn = function() settings.decreasevolumes(Music.music) end, width = 150, x = 900, y = 200}
-local button4 = {text = "Increase Sound Effect Volumes", fn = function() settings.increasevolumes(Sounds.collision) end, width = 150, x = 450, y = 400}
-local button5 = {text = "Decrease Sound Effect Volumes", fn = function() settings.decreasevolumes(Sounds.collision) end, width = 150, x = 900, y = 400}
-local button6 = {text = "Mute Sounds", fn = function() settings.mute() end, width = 300, x = 900, y = 100}
+local button6 = {text = "Return to Pause Menu", fn = function()Gamestate.pop()end, width = 300}
+local button3 = {text = "Increase Volume", fn = function() settings.increasevolumes(Music.music) end, width = 150, x = 450 , y = 200}
+local button2 = {text = "Decrease Volume", fn = function() settings.decreasevolumes(Music.music) end, width = 150, x = 900, y = 200}
+local button5 = {text = "Increase Sound Effect Volumes", fn = function() settings.increasevolumes(Sounds.collision) end, width = 150, x = 450, y = 400}
+local button4 = {text = "Decrease Sound Effect Volumes", fn = function() settings.decreasevolumes(Sounds.collision) end, width = 150, x = 900, y = 400}
+local button1 = {text = "Mute Sounds", fn = function() settings.mute() end, width = 300, x = 900, y = 100}
 local allButtons = {button1,button2,button3,button4,button5,button6}
 local function newButton(text,fn)
     return{
@@ -78,7 +78,7 @@ function settings:draw()
         love.graphics.setColor(unpack(color))
         love.graphics.rectangle("fill", button.x, button.y, button.width, BUTTON_HEIGHT)
         love.graphics.setColor(0,0,0,1)
-        love.graphics.printf(button.text, button.x, button.y, button.width, "center")
+        love.graphics.printf(button.text, button.x, button.y + (BUTTON_HEIGHT/2)-(font:getHeight()/2), button.width, "center")
     end
 
 --resets the color so that it doesnt have a black screen (very important please dont delete)
