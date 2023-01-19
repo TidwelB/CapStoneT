@@ -53,6 +53,8 @@ function levelOne:enter()
 
         player.load()
         enemy.load()
+        SCP.load()
+        
 end
 function levelOne:update(dt)
     player:update(dt)
@@ -67,12 +69,14 @@ function levelOne:update(dt)
     end
     enemy.anim:update(dt)
     UPDATE_ENEMY(dt)
+    UPDATE_SCP(dt)
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
 
    world:update(dt)
    shaders:update(dt)
+   
 
 end
 function levelOne:draw()
@@ -86,7 +90,8 @@ function levelOne:draw()
         love.graphics.setShader()
         world:draw()
         love.graphics.setColor(255,255,255,255)
-        love.graphics.rectangle('fill', 400,200,65,65,14)
+        --love.graphics.rectangle('fill', 400,200,size,size,14)
+        DRAW_SCP()
         if love.keyboard.isDown("j") then
             table.insert(inventory,"Itemsssssss")
         end

@@ -5,6 +5,7 @@ menu = {}
 require("enemy")
 require("player")
 require("shaders")
+require("SCP076")
 function game:enter()
     -- Hitbox library
     wf = require 'libraries/windfield'
@@ -28,7 +29,8 @@ function game:enter()
     love.window.setTitle("SCP: FALLEN")
     love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
 
-    enemy.spawn(500,500)
+    --enemy.spawn(500,500)
+
     --  Walls table: 
     --          intializes the hitboxes for the map 
     --          whether that be the walls, the green stuff, etc...
@@ -56,7 +58,8 @@ function game:enter()
         end
 
         player.load()
-        enemy.load()
+        --enemy.load()
+        
         timer = 0
 end
 
@@ -75,6 +78,7 @@ function game:update(dt)
    -- enemy.anim:update(dt)
     timer = timer + dt
     --UPDATE_ENEMY(dt)
+    
 
     game.height = love.graphics.getHeight()
     game.width = love.graphics.getWidth()
@@ -105,10 +109,10 @@ function game:draw()
         love.graphics.print("Go this way ---->", 440, 630)
         love.graphics.print("Go down to move to next area", 2000, 1400)
 
-        love.graphics.setShader(shaders.trueLight)
+        love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
-        --world:draw()
+        world:draw()
 
 
     camera:detach()
@@ -116,4 +120,5 @@ function game:draw()
     
     DRAW_HUD()
     --DRAW_ENEMY()
+
 end

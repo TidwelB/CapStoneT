@@ -20,45 +20,41 @@ shaders.simpleLight = love.graphics.newShader[[
     extern number playerY = 0;
     extern number mouseX = 0;
     extern number mouseY = 0;
+    extern number falloff = .5;
     extern bool flashlight = true;
-    number radius = 100;
+    number radius = 200;
     vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ) {
         number distance = pow(pow(screen_coords.x - playerX, 2) + pow(screen_coords.y - playerY, 2), 0.5);
-        number mousedistance = pow(pow(screen_coords.x - mouseX, 2) + pow(screen_coords.y - mouseY, 2), 0.5);
+        number alpha = (distance / radius);
+        number lightAlpha = (distance / 600);
+        vec2 lightDirection = normalize(vec2(mouseX - playerX, mouseY - playerY));
+        number dotProduct = dot(normalize(screen_coords - vec2(playerX, playerY)), lightDirection);
+        
+
+        if (flashlight == true && distance < radius && dotProduct > .95) {
+            return vec4(0,0,0,lightAlpha);
+        }
+        if (distance < radius) {
+            return vec4(0,0,0,alpha);
+        }
         if (flashlight == false){
-            if (distance < radius) {
-                return vec4(0, 0, 0, 0);
-            }
-            else {
+            //if (dotProduct > 0.9) {
+                //return vec4(0, 0, 0, alpha);
+            //}
+            //else {
                 return vec4(0, 0, 0, 1);
-            } 
+            //} 
         }
         else if (flashlight == true) {
-            for (int i = -100; i < 100; i++) {
-                //for (int j; j < 100; j++){
-
-                
-            
-            if (  (screen_coords.x - mouseX)/(playerX - mouseX) == (screen_coords.y - mouseY)/(playerY - mouseY+i) ) {
-                if ((screen_coords.x - mouseX)/(playerX - mouseX) < .5) {
-                    return vec4(0, 0, 0, 0);
-                }
-                //}  
+            if (dotProduct > 0.95) {
+                return vec4(0, 0, 0, lightAlpha);
             }
-        }
-
-
-            if (mousedistance<radius) {
-                return vec4(0, 0, 0, 0);
-            }
-            if (distance < radius) {
-            return vec4(0, 0, 0, 0);
+            else {
+                return vec4(0, 0, 0, alpha);
             } 
-        else {
-            return vec4(0, 0, 0, 1);
-}
-}
+        }
     }
+
 ]]
 
 -- Faded light source
