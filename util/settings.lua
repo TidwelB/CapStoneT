@@ -6,12 +6,12 @@ settings = Gamestate.new()
 --volume = .2
 BUTTON_HEIGHT = 64
 local font = love.graphics.newFont(32)
-local button1 = {text = "Return to Pause Menu", fn = function()Gamestate.pop()end, width = 150, x = 450, y = 100}
-local button2 = {text = "Increase Volume", fn = function() settings.increasevolumes(Music.music) end, width = 150, x = 450, y = 200}
+local button1 = {text = "Return to Pause Menu", fn = function()Gamestate.pop()end, width = 300}
+local button2 = {text = "Increase Volume", fn = function() settings.increasevolumes(Music.music) end, width = 150, x = 450 , y = 200}
 local button3 = {text = "Decrease Volume", fn = function() settings.decreasevolumes(Music.music) end, width = 150, x = 900, y = 200}
 local button4 = {text = "Increase Sound Effect Volumes", fn = function() settings.increasevolumes(Sounds.collision) end, width = 150, x = 450, y = 400}
 local button5 = {text = "Decrease Sound Effect Volumes", fn = function() settings.decreasevolumes(Sounds.collision) end, width = 150, x = 900, y = 400}
-local button6 = {text = "Mute Sounds", fn = function() settings.mute() end, width = 150, x = 900, y = 100}
+local button6 = {text = "Mute Sounds", fn = function() settings.mute() end, width = 300, x = 900, y = 100}
 local allButtons = {button1,button2,button3,button4,button5,button6}
 local function newButton(text,fn)
     return{
@@ -24,8 +24,33 @@ end
 
 
 function settings:enter(from)
+    self:buttonpositions()
     self.from = from
 end
+
+function settings:buttonpositions()
+    local window_width = love.graphics.getWidth()
+    local button_width = 300
+    local window_height = love.graphics.getHeight()
+    local button_height = 64
+    button1.x = (window_width-300)/ 2
+    button1.y = window_height/6
+    button2.x = (window_width - 150) / 3
+    button2.y = window_height/6 + window_height/6
+    button3.x = (window_width-150)/3 + (window_width-150)/3 
+    button3.y = window_height/6 + window_height/6
+    button4.x = (window_width - 150) / 3
+    button4.y = 3*(window_height/6)
+    button5.x = (window_width-150)/3 + (window_width-150)/3 
+    button5.y = 3*(window_height/6)
+    button6.x = (window_width - 300) / 2
+    button6.y = 4*(window_height/6)
+end
+
+function love.resize(w, h)
+    settings:buttonpositions()
+end
+
 Mastervolume = .5
 font = love.graphics.newFont(32)
 
@@ -34,7 +59,7 @@ CVolume = .2
 mute = false
 
 function settings:draw()
-
+    self:buttonpositions()
     love.graphics.printf(("Music: " .. math.floor(Music.music:getVolume()*100) .. "%"),100,200,200)
     love.graphics.printf("Sound Effects: " .. math.floor(Sounds.collision:getVolume()*100) .. "%",100,400,400)
     for i, v in ipairs(inventory) do
