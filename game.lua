@@ -108,7 +108,7 @@ function game:draw()
         love.graphics.print("Go this way ---->", 440, 630)
         love.graphics.print("Go down to move to next area", 2000, 1400)
 
-        love.graphics.setShader(shaders.trueLight)
+        love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         --world:draw()

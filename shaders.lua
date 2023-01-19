@@ -24,9 +24,11 @@ shaders.simpleLight = love.graphics.newShader[[
     number radius = 100;
     vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ) {
         number distance = pow(pow(screen_coords.x - playerX, 2) + pow(screen_coords.y - playerY, 2), 0.5);
-        number mousedistance = pow(pow(screen_coords.x - mouseX, 2) + pow(screen_coords.y - mouseY, 2), 0.5);
+        vec2 lightDirection = normalize(vec2(mouseX - playerX, mouseY - playerY));
+        number dotProduct = dot(normalize(screen_coords - vec2(playerX, playerY)), lightDirection);
+    
         if (flashlight == false){
-            if (distance < radius) {
+            if (dotProduct > 0.9) {
                 return vec4(0, 0, 0, 0);
             }
             else {
@@ -34,30 +36,13 @@ shaders.simpleLight = love.graphics.newShader[[
             } 
         }
         else if (flashlight == true) {
-            for (int i = -100; i < 100; i++) {
-                //for (int j; j < 100; j++){
-
-                
-            
-            if (  (screen_coords.x - mouseX)/(playerX - mouseX) == (screen_coords.y - mouseY)/(playerY - mouseY+i) ) {
-                if ((screen_coords.x - mouseX)/(playerX - mouseX) < .5) {
-                    return vec4(0, 0, 0, 0);
-                }
-                //}  
-            }
-        }
-
-
-            if (mousedistance<radius) {
+            if (dotProduct > 0.9) {
                 return vec4(0, 0, 0, 0);
             }
-            if (distance < radius) {
-            return vec4(0, 0, 0, 0);
+            else {
+                return vec4(0, 0, 0, 1);
             } 
-        else {
-            return vec4(0, 0, 0, 1);
-}
-}
+        }
     }
 ]]
 
