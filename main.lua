@@ -5,37 +5,16 @@ require('maze')
 require('levelTwo')
 require('pause')
 require('util.settings')
+local tests = require('tests')
 --require('sound.wav')
 -- Tiled implementation library
 local testing = require("testing")
 local assert = testing.assert
 local register = testing.register
 
-local function square(n)
-    return n*n
-end
-local function test_sounds_not_nil()
-    assert.not_nil(Sounds)
-end
-local function test_table_not_nil()
-    assert.not_nil(table)
-end
-local function test_music_not_nil()
-    assert.not_nil(Music)
-end
-testing.register("square 3", function()
-    assert.equal(9, square(3))
-end)
-
-testing.register("square 5", function()
-    assert.equal(25, square(5)) -- Oops!
-end)
-
-
-
-testing.register("test_sounds_not_nil", test_sounds_not_nil)
-testing.register("test_music_not_nil", test_music_not_nil)
-testing.register("test_table_not_nil", test_table_not_nil)
+testing.register("test_sounds_not_nil", testing.test_sounds_not_nil)
+testing.register("test_music_not_nil", testing.test_music_not_nil)
+testing.register("test_table_not_nil", testing.test_table_not_nil)
 
 -- Run tests, and exit with status 1 if any test fails
 
@@ -193,7 +172,7 @@ function love.load()
     table.insert(buttons,newButton("Start Game",function()Gamestate.switch(runGame)Music.music:play()end))
     table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
     
-    testing.run()
+    testing.run(1)
 end
 
 
