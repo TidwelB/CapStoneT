@@ -56,6 +56,7 @@ function levelOne:enter()
         enemy.load()
         --SCP.load()
         
+        
 end
 
 function levelOne:update(dt)
@@ -101,4 +102,5 @@ function levelOne:draw()
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()
+
 end

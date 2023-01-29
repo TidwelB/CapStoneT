@@ -7,6 +7,8 @@ menu = {}
 require("enemy")
 require("player")
 require("shaders")
+local testing = require("testing")
+
 
 
 function game:enter()
@@ -123,5 +125,7 @@ function game:draw()
 
     DRAW_HUD()
     --DRAW_ENEMY()
-   
+
+
+    --testing.run()
 end

@@ -1,7 +1,8 @@
 
 player = {}
 inventory = {}
-
+local testing = require("testing")
+local tests = require('tests')
 
 anim8 = require 'libraries/anim8'
 
@@ -62,6 +63,10 @@ function player:update(dt)
         player.physics(dt)
         player.colliderMatching(dt)
         transition.Transitioner(self)
+        if (player.keytimer%1000 == 0) then
+            --os.execute("clear")
+            testing.run()
+        end
 end
 
 function player.colliderMatching(dt)
