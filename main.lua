@@ -9,16 +9,6 @@ local tests = require('tests')
 --require('sound.wav')
 -- Tiled implementation library
 local testing = require("testing")
-local assert = testing.assert
-local register = testing.register
-
-testing.register("test_sounds_not_nil", testing.test_sounds_not_nil)
-testing.register("test_music_not_nil", testing.test_music_not_nil)
-testing.register("test_table_not_nil", testing.test_table_not_nil)
-
--- Run tests, and exit with status 1 if any test fails
-
-
 
 
 sti = require 'libraries/sti'
@@ -171,8 +161,7 @@ function love.load()
     love.graphics.setBackgroundColor(0,255,255,1)
     table.insert(buttons,newButton("Start Game",function()Gamestate.switch(runGame)Music.music:play()end))
     table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
-    
-    testing.run(1)
+    testing.run()
 end
 
 
