@@ -43,9 +43,9 @@ end
 local function test_player_health_heartbeat_anim_draw()
     -- assume the player object exists and has a property "health"
     local health = player.health
-    if health <= 0 or health >=0 then
+    if health < 0 or health >100 then
         if health <=0 then
-        error("player health is less than or equal to 0")
+        error("player health is less than 0")
         else
         error("player health is greater than 100")
         end
