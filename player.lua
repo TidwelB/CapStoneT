@@ -158,11 +158,11 @@ end
        end
 
        if love.keyboard.isDown("l") then
-        player.health = player.health - .01
+        player.health = player.health - .1
        end
 
        if love.keyboard.isDown("k") then
-        player.health = player.health + .01
+        player.health = player.health + .1
        end
 end
 
