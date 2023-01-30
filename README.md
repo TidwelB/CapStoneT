@@ -33,13 +33,13 @@ To run Tests for the game there are two methods. Both methods require that the L
 
 	1. You can run a cmd command with two arguments of the "love.exe file path" "Remedy file path" --console. 
 
-		For example on a Windows System "C:\Program Files\LOVE\love.exe" "C:\Users\Owner\Desktop\Remedy" --console
+		For example on a Windows System: "C:\Program Files\LOVE\love.exe" "C:\Users\Owner\Desktop\Remedy" --console
 
-		For example on a MacOS System /Users/Owner/Desktop/love.app/Contents/MacOS/love ~/Desktop/Remedy --console
+		For example on a MacOS System: /Users/Owner/Desktop/love.app/Contents/MacOS/love ~/Desktop/Remedy --console
 
 		This path may be different on your own machine.
 
-	2. If you are using Visual Studio Code with a lua extension then you can also toggle the testing conlose with the key combination "CTRL + SHIFT + L". 
+	2. If you are using Visual Studio Code with a lua extension then you can also toggle the testing console with the key combination "CTRL + SHIFT + L". 
 	Once this is toggled the user can then start the program with "ALT + L" and the game and debug console will appear.
 
 Testing Directory is under Remedy/testing. 
