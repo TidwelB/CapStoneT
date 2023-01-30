@@ -1,5 +1,5 @@
 
-local testing = require("testing")
+local testing = require("testing.testing")
 local assert = testing.assert
 local register = testing.register
 

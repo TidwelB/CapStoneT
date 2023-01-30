@@ -5,10 +5,10 @@ require('maze')
 require('levelTwo')
 require('pause')
 require('util.settings')
-local tests = require('tests')
+local tests = require('testing.tests')
 --require('sound.wav')
 -- Tiled implementation library
-local testing = require("testing")
+local testing = require("testing.testing")
 
 
 sti = require 'libraries/sti'

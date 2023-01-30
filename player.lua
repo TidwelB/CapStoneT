@@ -1,8 +1,8 @@
 
 player = {}
 inventory = {}
-local testing = require("testing")
-local tests = require('tests')
+local testing = require("testing.testing")
+local tests = require('testing.tests')
 
 anim8 = require 'libraries/anim8'
 

@@ -7,7 +7,7 @@ menu = {}
 require("enemy")
 require("player")
 require("shaders")
-local testing = require("testing")
+local testing = require("testing.testing")
 
 
 
