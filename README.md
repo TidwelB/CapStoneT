@@ -30,14 +30,21 @@ You will need to locate the cloned repo and simply drag the folder into the dest
 Testing Section:
 
 To run Tests for the game there are two methods. Both methods require that the LOVE2D Framework is installed
-\t 1. You can run a cmd command with two arguments of the "love.exe file path" "Remedy file path" --console. 
-For example on a Windows System "C:\Program Files\LOVE\love.exe" "C:\Users\Owner\Desktop\Remedy" --console
-For example on a MacOS System /Users/Owner/Desktop/love.app/Contents/MacOS/love ~/Desktop/Remedy --console
-This path may be different on your own machine.
 
-\t 2. If you are using Visual Studio Code with a lua extension then you can also toggle the testing conlose with the key combination "CTRL + SHIFT + L". Once this is toggled the user can then start the program with "ALT + L" and the game and debug console will appear.
+	1. You can run a cmd command with two arguments of the "love.exe file path" "Remedy file path" --console. 
 
-Testing Directory is under Remedy/testing. This folder contains tests.lua which are specific test cases which address conditions and expectations. The folder also contains testing.lua which is our test handler that has a table loaded with all tests and formatting for boolean, comparison, ranged, and more standards for testing.
+		For example on a Windows System "C:\Program Files\LOVE\love.exe" "C:\Users\Owner\Desktop\Remedy" --console
+
+		For example on a MacOS System /Users/Owner/Desktop/love.app/Contents/MacOS/love ~/Desktop/Remedy --console
+
+		This path may be different on your own machine.
+
+	2. If you are using Visual Studio Code with a lua extension then you can also toggle the testing conlose with the key combination "CTRL + SHIFT + L". 
+	Once this is toggled the user can then start the program with "ALT + L" and the game and debug console will appear.
+
+Testing Directory is under Remedy/testing. 
+
+This folder contains tests.lua which are specific test cases which address conditions and expectations. The folder also contains testing.lua which is our test handler that has a table loaded with all tests and formatting for boolean, comparison, ranged, and more standards for testing.
 
 Style Guide:
 http://lua-users.org/wiki/LuaStyleGuide
