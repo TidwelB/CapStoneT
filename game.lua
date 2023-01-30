@@ -8,8 +8,17 @@ require("enemy")
 require("player")
 require("shaders")
 local testing = require("testing.testing")
+gengar = love.graphics.newImage("sprites/gengar.png")
+gengarx = 200
+gengary = 300
+gengarheight = gengar:getHeight()
+gengarwidth= gengar:getWidth()
 
-
+-- gengar = {}
+--     gengar.spritesheet = love.graphics.newImage('sprites/gengar.png')
+--     gengar.grid = anim8.newGrid (64, 32, gengar.spritesheet:getWidth(), gengar.spritesheet:getHeight())
+--     gengar.animations = anim8.newAnimation(gengar.grid('1-1', 1),0.25)
+--     gengar.anim = gengar.animations
 
 function game:enter()
     -- Hitbox library
@@ -97,11 +106,14 @@ end
 
 function game:draw()
     -- Tells the game where to start looking through the camera POV
-
+    --love.graphics.draw(gengar,300,200)
     camera:attach()
+        
+        --gengar.anim:draw(gengar.spritesheet,300, 200, nil,6, nil,  8,8)
         testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
         testingMap:drawLayer(testingMap.layers["grate"])
         testingMap:drawLayer(testingMap.layers["walls"])
+        love.graphics.draw(gengar,300,gengarx)
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         --enemy.draw()
         love.graphics.print("Press W to walk upwards", 300, 200)
@@ -113,7 +125,7 @@ function game:draw()
         love.graphics.print("Hold Shift to sprint", 900, 700)
         love.graphics.print("Go this way ---->", 440, 630)
         love.graphics.print("Go down to move to next area", 2000, 1400)
-
+       
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()

@@ -127,6 +127,7 @@ function player.control(dt)
     --         Gamestate.push(menu)
     --    end
 
+
        if love.keyboard.isDown("escape") then
             love.timer.sleep(.15)
             --Sounds.music:pause()
@@ -147,10 +148,21 @@ function player.control(dt)
     end
 end
 
-    if love.keyboard.isDown("e") and checkInventory(inventory, "item1") == false and player.x == item1.x and player.y == item1.y then
-        table.insert(inventory,"item1")
-        --insert image of item into the inventory spot in the hud
+
+if love.keyboard.isDown("e") and checkInventory(inventory, "gengar") == false then
+    if ((player.x - (gengarx + (1/2*gengarwidth))) < 100) and (player.y - (gengary - (1/2*gengarheight))) < 100 then
+        table.insert(inventory,"gengar")
+       -- add gengar to inventory
+       print("added to inventory") 
     end
+end
+
+    -- if love.keyboard.isDown("e") and checkInventory(inventory, "gengar") == false and player.x == item1.x and player.y == item1.y then
+    --     table.insert(inventory,"gengar")
+    -- elseif checkInventory(inventory,"gengar") == true then
+    --     print("ITEM ALREADY IN INVENTORY")
+        --insert image of item into the inventory spot in the hud
+    --end
 
        -- Freezes the frame on the idle sprite in that direction
        if (isMoving == false) then
