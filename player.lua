@@ -65,7 +65,7 @@ function player:update(dt)
         transition.Transitioner(self)
         if (player.keytimer%1000 == 0) then
             --os.execute("clear")
-            testing.run()
+            --testing.run()
         end
 end
 
@@ -147,12 +147,16 @@ function player.control(dt)
         end
     end
 end
+--350
+--260
 
+--300
+--200
 
-if love.keyboard.isDown("e") and checkInventory(inventory, "gengar") == false then
-    if ((player.x - (gengarx + (1/2*gengarwidth))) < 100) and (player.y - (gengary - (1/2*gengarheight))) < 100 then
+if love.keyboard.isDown("e")  and checkInventory(inventory, "gengar") == false then
+    if ((player.x <= 420 and player.x >= 280) and (player.y >= 180 and player.y <= 330)) then
+    --if ((player.x - (gengarx + (1/2*gengarwidth))) < 100) and (player.y - (gengary - (1/2*gengarheight))) < 100 then
         table.insert(inventory,"gengar")
-       -- add gengar to inventory
        print("added to inventory") 
     end
 end

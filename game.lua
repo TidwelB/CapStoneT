@@ -113,7 +113,10 @@ function game:draw()
         testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
         testingMap:drawLayer(testingMap.layers["grate"])
         testingMap:drawLayer(testingMap.layers["walls"])
+
+        if checkInventory(inventory, "gengar") == false then
         love.graphics.draw(gengar,300,gengarx)
+        end
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         --enemy.draw()
         love.graphics.print("Press W to walk upwards", 300, 200)
