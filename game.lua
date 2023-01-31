@@ -10,11 +10,7 @@ require("shaders")
 local testing = require("testing.testing")
 
 
-gengar = love.graphics.newImage("sprites/gengar.png")
-gengarx = 200
-gengary = 300
-gengarheight = gengar:getHeight()
-gengarwidth= gengar:getWidth()
+
 
 
 
@@ -63,6 +59,13 @@ rock = {}
     rock.h = rock.spritesheet:getHeight()
     rock.w = rock.spritesheet:getWidth()
     rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
+
+gengar = {}
+    gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
+    gengar.x = 200
+    gengar.y = 200
+    gengar.h = gengar.spritesheet:getHeight()
+    gengar.w= gengar.spritesheet:getWidth()
 
     walls = {}
 
@@ -131,7 +134,7 @@ function game:draw()
         testingMap:drawLayer(testingMap.layers["walls"])
         --pick up gengar
         if checkInventory(inventory, "gengar") == false then
-        love.graphics.draw(gengar,300,gengarx)
+        love.graphics.draw(gengar.spritesheet,gengar.x,gengar.y)
         end
         --ROCK
         rock.x = rock.collider:getX() 

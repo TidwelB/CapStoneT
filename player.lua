@@ -154,19 +154,12 @@ end
 --200
 
 if love.keyboard.isDown("e")  and checkInventory(inventory, "gengar") == false then
-    if ((player.x <= 420 and player.x >= 280) and (player.y >= 180 and player.y <= 330)) then
+    if ((player.x <= 320 and player.x >=180) and (player.y >= 180 and player.y <= 330)) then
     --if ((player.x - (gengarx + (1/2*gengarwidth))) < 100) and (player.y - (gengary - (1/2*gengarheight))) < 100 then
         table.insert(inventory,"gengar")
        print("added to inventory") 
     end
 end
-
-    -- if love.keyboard.isDown("e") and checkInventory(inventory, "gengar") == false and player.x == item1.x and player.y == item1.y then
-    --     table.insert(inventory,"gengar")
-    -- elseif checkInventory(inventory,"gengar") == true then
-    --     print("ITEM ALREADY IN INVENTORY")
-        --insert image of item into the inventory spot in the hud
-    --end
 
        -- Freezes the frame on the idle sprite in that direction
        if (isMoving == false) then
