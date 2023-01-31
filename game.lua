@@ -56,6 +56,14 @@ gengar = {}
     gengar.h = gengar.spritesheet:getHeight()
     gengar.w= gengar.spritesheet:getWidth()
 
+flashlight = {}
+    flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
+    flashlight.x = 500
+    flashlight.y = 200
+    flashlight.h = flashlight.spritesheet:getHeight()
+    flashlight.w = flashlight.spritesheet:getWidth()
+    flashlight.scale = 0.1
+
     walls = {}
 
         if testingMap.layers["Walls"] then
@@ -124,6 +132,9 @@ function game:draw()
         --pick up gengar
         if checkInventory(inventory, "gengar") == false then
         love.graphics.draw(gengar.spritesheet,gengar.x,gengar.y)
+        end
+        if checkInventory(inventory, "flashlight") == false then
+            love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
         end
         --ROCK
         rock.x = rock.collider:getX() 
