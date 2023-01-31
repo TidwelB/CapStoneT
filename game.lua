@@ -8,11 +8,16 @@ require("enemy")
 require("player")
 require("shaders")
 local testing = require("testing.testing")
+
+
 gengar = love.graphics.newImage("sprites/gengar.png")
 gengarx = 200
 gengary = 300
 gengarheight = gengar:getHeight()
 gengarwidth= gengar:getWidth()
+
+
+
 
 -- gengar = {}
 --     gengar.spritesheet = love.graphics.newImage('sprites/gengar.png')
@@ -50,6 +55,14 @@ function game:enter()
     --          whether that be the walls, the green stuff, etc...
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
+
+rock = {}
+    rock.spritesheet = love.graphics.newImage("sprites/rock.png")
+    rock.x = 400
+    rock.y = 400
+    rock.h = rock.spritesheet:getHeight()
+    rock.w = rock.spritesheet:getWidth()
+    rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
 
     walls = {}
 
@@ -104,6 +117,9 @@ function game:update(dt)
    shaders:update(dt)
 end
 
+
+
+
 function game:draw()
     -- Tells the game where to start looking through the camera POV
     --love.graphics.draw(gengar,300,200)
@@ -113,10 +129,21 @@ function game:draw()
         testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
         testingMap:drawLayer(testingMap.layers["grate"])
         testingMap:drawLayer(testingMap.layers["walls"])
-
+        --pick up gengar
         if checkInventory(inventory, "gengar") == false then
         love.graphics.draw(gengar,300,gengarx)
         end
+        --ROCK
+        rock.x = rock.collider:getX() 
+        rock.y = rock.collider:getY() 
+        love.graphics.draw(rock.spritesheet, rock.x, rock.y, rock.collider:getAngle(), 1, 1, rock.w/2, rock.h/2)
+        local x, y = rock.collider:getLinearVelocity()
+        local w = rock.collider:getAngularVelocity()
+        x = x * 0.996
+        y = y * 0.996
+        w = w * 0.996
+        rock.collider:setAngularVelocity(w)
+        rock.collider:setLinearVelocity(x, y)
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         --enemy.draw()
         love.graphics.print("Press W to walk upwards", 300, 200)
@@ -132,7 +159,7 @@ function game:draw()
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
-        world:draw()
+        --world:draw()
 
 
     camera:detach()

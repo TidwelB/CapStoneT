@@ -65,7 +65,7 @@ function player:update(dt)
         transition.Transitioner(self)
         if (player.keytimer%1000 == 0) then
             --os.execute("clear")
-            --testing.run()
+            testing.run()
         end
 end
 
