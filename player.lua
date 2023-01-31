@@ -153,11 +153,25 @@ end
 --300
 --200
 
+function distanceBetweenSprites(x1, y1, w1, h1, x2, y2, w2, h2)
+    local center1_x = x1 + w1/2
+    local center1_y = y1 + h1/2
+    local center2_x = x2 + w2/2
+    local center2_y = y2 + h2/2
+  
+    local x_distance = center1_x - center2_x
+    local y_distance = center1_y - center2_y
+    local distance = math.sqrt(x_distance^2 + y_distance^2)
+  
+    return distance
+  end
+  
+
 if love.keyboard.isDown("e")  and checkInventory(inventory, "gengar") == false then
-    if ((player.x <= 320 and player.x >=180) and (player.y >= 180 and player.y <= 330)) then
-    --if ((player.x - (gengarx + (1/2*gengarwidth))) < 100) and (player.y - (gengary - (1/2*gengarheight))) < 100 then
-        table.insert(inventory,"gengar")
+    if distanceBetweenSprites(player.x, player.y, 65, 100, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 then
        print("added to inventory") 
+        table.insert(inventory,"gengar")
+       --print(distanceBetweenSprites(player.x, player.y, 65, 100, gengar.x+30, gengar.y+50, gengar.w, gengar.h)) 
     end
 end
 

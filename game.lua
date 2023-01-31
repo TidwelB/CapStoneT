@@ -10,17 +10,6 @@ require("shaders")
 local testing = require("testing.testing")
 
 
-
-
-
-
-
--- gengar = {}
---     gengar.spritesheet = love.graphics.newImage('sprites/gengar.png')
---     gengar.grid = anim8.newGrid (64, 32, gengar.spritesheet:getWidth(), gengar.spritesheet:getHeight())
---     gengar.animations = anim8.newAnimation(gengar.grid('1-1', 1),0.25)
---     gengar.anim = gengar.animations
-
 function game:enter()
     -- Hitbox library
     wf = require 'libraries/windfield'
