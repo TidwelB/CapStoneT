@@ -25,7 +25,7 @@ function game:enter()
     love.graphics.setDefaultFilter("nearest", "nearest")
 
     camera = cam()
-
+    camera:zoom(2)
     -- loads in the map
     testingMap = sti('maps/mainlobby.lua')
 
@@ -157,7 +157,7 @@ function game:draw()
         end
         rock.collider:setAngularVelocity(w)
         rock.collider:setLinearVelocity(x, y)
-        player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
+        player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5, nil, 6, 6)
         --enemy.draw()
         love.graphics.print("Press W to walk upwards", 300, 200)
         love.graphics.print("Press S to walk downwards", 300, 250)
