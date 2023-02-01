@@ -258,15 +258,12 @@ function player.draw()
         love.graphics.rectangle("line", 280, 15, 64, 64)
         if checkInventory(inventory, "flashlight") == true then
             love.graphics.draw(flashlight.spritesheet,209,20,0,flashlight.scale,flashlight.scale)
-            print("printing flashlight")
             if checkInventory(inventory, "gengar") == true then
                 love.graphics.draw(gengar.spritesheet,287,18,0,.5,.5)
-                print("printing flashlight")
         end
     end
     if checkInventory(inventory, "gengar") == true and checkInventory(inventory, "flashlight") == false then
         love.graphics.draw(gengar.spritesheet,200,15,0,.5,.5)
-        print("printing flashlight")
     end
     end
 end
