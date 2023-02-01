@@ -51,7 +51,7 @@ player.animations = {}
     player.anim = player.animations.left
 
 function player.load()
-        player.collider = world:newBSGRectangleCollider(400, 250, 65, 100, 14)
+        player.collider = world:newBSGRectangleCollider(450, 300, 55, 80, 14)
         player.collider:setCollisionClass('Solid')
         player.collider:setFixedRotation(true)
 end
@@ -70,8 +70,8 @@ function player:update(dt)
 end
 
 function player.colliderMatching(dt)
-        player.x = player.collider:getX()
-        player.y = player.collider:getY()
+        player.x = player.collider:getX() - 10
+        player.y = player.collider:getY() -13
 end
 
 function player.control(dt)

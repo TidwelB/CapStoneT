@@ -129,6 +129,7 @@ function game:draw()
 
         testingMap:drawLayer(testingMap.layers["floor"])
         testingMap:drawLayer(testingMap.layers["barrier"])
+        testingMap:drawLayer(testingMap.layers["water"])
         testingMap:drawLayer(testingMap.layers["objects"])
         testingMap:drawLayer(testingMap.layers["chairs"])
 
