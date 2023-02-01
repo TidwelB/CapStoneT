@@ -94,6 +94,12 @@ function player.control(dt)
             end          
         end
         -- Player Movement
+        
+        
+
+
+
+
        if love.keyboard.isDown("d") then
            player.xvel = player.speed
            player.anim = player.animations.right
@@ -114,6 +120,24 @@ function player.control(dt)
            player.anim = player.animations.up
            isMoving = true
        end
+
+       
+       if shaders.flashlight == true then
+       local width, height = love.window.getMode()
+       local mousex, mousey = love.mouse.getPosition()
+       if mousex < width/2.5 then 
+           player.anim = player.animations.left
+       end
+       if mousex > (width -(.4*width)) then
+           player.anim = player.animations.right
+       end
+       if mousey < height/2.5 then
+           player.anim = player.animations.up
+       end
+       if mousey > (height -(.4*height)) then
+           player.anim = player.animations.down
+       end
+    end
 
        -- Sets the players hitbox to move with where our 
        -- player is currently moving

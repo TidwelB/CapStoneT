@@ -8,6 +8,7 @@ require("enemy")
 require("player")
 require("shaders")
 local testing = require("testing.testing")
+range = 100
 
 
 function game:enter()
@@ -142,9 +143,15 @@ function game:draw()
         love.graphics.draw(rock.spritesheet, rock.x, rock.y, rock.collider:getAngle(), 1, 1, rock.w/2, rock.h/2)
         local x, y = rock.collider:getLinearVelocity()
         local w = rock.collider:getAngularVelocity()
-        x = x * 0.996
-        y = y * 0.996
-        w = w * 0.996
+        if (math.random(0,range) == 1) then
+        x = x * 0.33
+        y = y * 0.33
+        w = w * 0.33
+        range = range / 1.5
+        if range < 10 then
+            range = 100
+        end
+        end
         rock.collider:setAngularVelocity(w)
         rock.collider:setLinearVelocity(x, y)
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
