@@ -246,10 +246,29 @@ function player.draw()
     love.graphics.print("Sprint", 5, 90, nil, 1)
 
     -- Inventory Boxes
-    love.graphics.rectangle("line", 200, 15, 64, 64)
+    --love.graphics.rectangle("line", 200, 15, 64, 64)
    -- love.graphics.print(player.x, 200, 15)
    -- love.graphics.print(player.y, 280, 60)
-    love.graphics.rectangle("line", 280, 15, 64, 64)
+    --love.graphics.rectangle("line", 280, 15, 64, 64)
+
+    if love.keyboard.isDown("tab") then
+        --print("printing flashlight")
+
+        love.graphics.rectangle("line", 200, 15, 64, 64)
+        love.graphics.rectangle("line", 280, 15, 64, 64)
+        if checkInventory(inventory, "flashlight") == true then
+            love.graphics.draw(flashlight.spritesheet,209,20,0,flashlight.scale,flashlight.scale)
+            print("printing flashlight")
+            if checkInventory(inventory, "gengar") == true then
+                love.graphics.draw(gengar.spritesheet,287,18,0,.5,.5)
+                print("printing flashlight")
+        end
+    end
+    if checkInventory(inventory, "gengar") == true and checkInventory(inventory, "flashlight") == false then
+        love.graphics.draw(gengar.spritesheet,200,15,0,.5,.5)
+        print("printing flashlight")
+    end
+    end
 end
 
 function DRAW_HUD()
