@@ -250,20 +250,23 @@ function player.draw()
    -- love.graphics.print(player.x, 200, 15)
    -- love.graphics.print(player.y, 280, 60)
     --love.graphics.rectangle("line", 280, 15, 64, 64)
-
+    local position = findItem("flashlight")
+    local position2 = findItem("gengar")
     if love.keyboard.isDown("tab") then
         --print("printing flashlight")
 
         love.graphics.rectangle("line", 200, 15, 64, 64)
         love.graphics.rectangle("line", 280, 15, 64, 64)
-        if checkInventory(inventory, "flashlight") == true then
+        if checkInventory(inventory, "flashlight") == true and position == 1 then
             love.graphics.draw(flashlight.spritesheet,209,20,0,flashlight.scale,flashlight.scale)
-            if checkInventory(inventory, "gengar") == true then
+            if checkInventory(inventory, "gengar") == true and position2 == 2 then
                 love.graphics.draw(gengar.spritesheet,287,18,0,.5,.5)
-        end
-    end
-    if checkInventory(inventory, "gengar") == true and checkInventory(inventory, "flashlight") == false then
-        love.graphics.draw(gengar.spritesheet,200,15,0,.5,.5)
+            end
+        elseif checkInventory(inventory, "gengar") == true and position2 == 1 then
+            love.graphics.draw(gengar.spritesheet,207.5,19,0,.5,.5)
+            if checkInventory(inventory, "flashlight") == true and position == 2 then
+                love.graphics.draw(flashlight.spritesheet,287,21,0,flashlight.scale,flashlight.scale)
+            end
     end
     end
 end
@@ -280,3 +283,12 @@ function checkInventory(inventory, item)
     end
     return false
 end
+
+function findItem(item)
+    for i, v in ipairs(inventory) do
+      if v == item then
+        return i
+      end
+    end
+    return -1
+  end

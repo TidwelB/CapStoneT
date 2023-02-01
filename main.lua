@@ -20,7 +20,8 @@ runTutorial = {}
 runLevelOne = {}
 runMaze = {}
 --runLevelTwo = {}
-
+chestinventory = {}
+craftbtr = {}
 love.window.setTitle("SCP: FALLEN")
 
 local buttons = {}
