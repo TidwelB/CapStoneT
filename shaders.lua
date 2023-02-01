@@ -22,7 +22,7 @@ shaders.simpleLight = love.graphics.newShader[[
     extern number mouseY = 0;
     extern number falloff = .5;
     extern bool flashlight = true;
-    number radius = 200;
+    number radius = 2000;
     vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ) {
         number distance = pow(pow(screen_coords.x - playerX, 2) + pow(screen_coords.y - playerY, 2), 0.5);
         number alpha = (distance / radius);

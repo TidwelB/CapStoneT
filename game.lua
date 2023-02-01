@@ -27,7 +27,7 @@ function game:enter()
     camera = cam()
 
     -- loads in the map
-    testingMap = sti('maps/testingzone2.lua')
+    testingMap = sti('maps/mainlobby.lua')
 
     -- draws the window size
     world = wf.newWorld(0, 0)
@@ -123,20 +123,23 @@ end
 
 function game:draw()
     -- Tells the game where to start looking through the camera POV
-    --love.graphics.draw(gengar,300,200)
+
     camera:attach()
-        
-        --gengar.anim:draw(gengar.spritesheet,300, 200, nil,6, nil,  8,8)
-        testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
-        testingMap:drawLayer(testingMap.layers["grate"])
-        testingMap:drawLayer(testingMap.layers["walls"])
-        --pick up gengar
+
+
+        testingMap:drawLayer(testingMap.layers["floor"])
+        testingMap:drawLayer(testingMap.layers["barrier"])
+        testingMap:drawLayer(testingMap.layers["objects"])
+        testingMap:drawLayer(testingMap.layers["chairs"])
+
+
         if checkInventory(inventory, "gengar") == false then
         love.graphics.draw(gengar.spritesheet,gengar.x,gengar.y)
         end
         if checkInventory(inventory, "flashlight") == false then
             love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
         end
+
         --ROCK
         rock.x = rock.collider:getX() 
         rock.y = rock.collider:getY() 
@@ -144,13 +147,13 @@ function game:draw()
         local x, y = rock.collider:getLinearVelocity()
         local w = rock.collider:getAngularVelocity()
         if (math.random(0,range) == 1) then
-        x = x * 0.33
-        y = y * 0.33
-        w = w * 0.33
-        range = range / 1.5
-        if range < 10 then
-            range = 100
-        end
+            x = x * 0.33
+            y = y * 0.33
+            w = w * 0.33
+            range = range / 1.5
+            if range < 10 then
+                range = 100
+            end
         end
         rock.collider:setAngularVelocity(w)
         rock.collider:setLinearVelocity(x, y)
@@ -165,7 +168,7 @@ function game:draw()
         love.graphics.print("Hold Shift to sprint", 900, 700)
         love.graphics.print("Go this way ---->", 440, 630)
         love.graphics.print("Go down to move to next area", 2000, 1400)
-       
+
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
