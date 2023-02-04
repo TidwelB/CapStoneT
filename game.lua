@@ -142,6 +142,7 @@ function game:draw()
         end
 
         --ROCK
+        if checkInventory(inventory, "rock") == false then
         rock.x = rock.collider:getX() 
         rock.y = rock.collider:getY() 
         love.graphics.draw(rock.spritesheet, rock.x, rock.y, rock.collider:getAngle(), 1, 1, rock.w/2, rock.h/2)
@@ -158,6 +159,7 @@ function game:draw()
         end
         rock.collider:setAngularVelocity(w)
         rock.collider:setLinearVelocity(x, y)
+    end
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5, nil, 6, 6)
         --enemy.draw()
         love.graphics.print("Press W to walk upwards", 300, 200)

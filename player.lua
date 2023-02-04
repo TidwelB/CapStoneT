@@ -65,7 +65,7 @@ function player:update(dt)
         transition.Transitioner(self)
         if (player.keytimer%1000 == 0) then
             --os.execute("clear")
-            testing.run()
+            --testing.run()
         end
 end
 
@@ -191,16 +191,65 @@ function distanceBetweenSprites(x1, y1, w1, h1, x2, y2, w2, h2)
   end
   
 
-if love.keyboard.isDown("e")  and (checkInventory(inventory, "gengar") == false or checkInventory(inventory,"flashlight") == false) then
-    if distanceBetweenSprites(player.x, player.y, 65, 100, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 and checkInventory(inventory,"gengar") == false then
-       print("added Genga to inventory") 
+if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false or checkInventory(inventory,"flashlight") == false) and inventory[2] == nil then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 and checkInventory(inventory,"gengar") == false and inventory[2] == nil then
+       --print("added Genga to inventory") 
         table.insert(inventory,"gengar")
        --print(distanceBetweenSprites(player.x, player.y, 65, 100, gengar.x+30, gengar.y+50, gengar.w, gengar.h)) 
     end
-    if distanceBetweenSprites(player.x, player.y, 65, 100, flashlight.x, flashlight.y, flashlight.w*flashlight.scale,flashlight.h*flashlight.scale ) <100 and checkInventory(inventory,"flashlight") == false then
-        print("added flashlight to inventory")
+    if distanceBetweenSprites(player.x, player.y, 55, 80, flashlight.x, flashlight.y, flashlight.w*flashlight.scale,flashlight.h*flashlight.scale ) <100 and checkInventory(inventory,"flashlight") == false and inventory[2] == nil then
+        --print("added flashlight to inventory")
         table.insert(inventory,"flashlight")
     end
+    if distanceBetweenSprites(player.x, player.y, 55, 80, rock.x, rock.y, rock.w, rock.h ) <100 and checkInventory(inventory,"rock") == false  and player.keytimer > 150 and inventory[2] == nil then
+        --print("added rock to inventory")
+        table.insert(inventory,"rock")
+        player.keytimer = 0
+    end
+
+    
+end
+print(player.keytimer)
+local mouseX, mouseY = love.mouse:getPosition()
+    if mouseX >= 200 and mouseX <= 264 and mouseY >= 15 and mouseY <= 79 and love.mouse.isDown(1) and player.keytimer > 150 then
+
+    DropItem()
+
+end
+
+function DropItem()
+    local item = inventory[1]
+    table.remove(inventory, 1)
+    local x,y
+    if player.anim == player.animations.right then
+        x = player.collider:getX() + 60
+        y = player.collider:getY()
+    end
+    if player.anim == player.animations.left then 
+         x = player.collider:getX() -10
+         y = player.collider:getY()
+    end
+    if player.anim == player.animations.up then 
+         x = player.collider:getX()
+         y = player.collider:getY() -60
+    end
+    if player.anim == player.animations.down then
+         x = player.collider:getX()
+         y = player.collider:getY() +60
+    end
+    if item == "rock" then
+        rock.collider:setPosition(x,y)
+    end
+    if item == "flashlight" then
+        flashlight.x = x
+        flashlight.y = y
+    end
+    if item == "gengar" then
+        gengar.x = x
+        gengar.y = y
+    end
+    player.keytimer = 0
+
 end
 
        -- Freezes the frame on the idle sprite in that direction
@@ -246,28 +295,32 @@ function player.draw()
     love.graphics.print("Sprint", 5, 90, nil, 1)
 
     -- Inventory Boxes
-    --love.graphics.rectangle("line", 200, 15, 64, 64)
-   -- love.graphics.print(player.x, 200, 15)
-   -- love.graphics.print(player.y, 280, 60)
-    --love.graphics.rectangle("line", 280, 15, 64, 64)
     local position = findItem("flashlight")
     local position2 = findItem("gengar")
+    local position3 = findItem("rock")
     if love.keyboard.isDown("tab") then
-        --print("printing flashlight")
 
         love.graphics.rectangle("line", 200, 15, 64, 64)
         love.graphics.rectangle("line", 280, 15, 64, 64)
-        if checkInventory(inventory, "flashlight") == true and position == 1 then
+        if position3 == 1 then
+            love.graphics.draw(rock.spritesheet,207.5,19,0,1.5,1.5)
+        end
+        if position3 == 2 then
+            love.graphics.draw(rock.spritesheet,287,18,0,1.5,1.5)
+        end
+        if position == 1 then
             love.graphics.draw(flashlight.spritesheet,209,20,0,flashlight.scale,flashlight.scale)
-            if checkInventory(inventory, "gengar") == true and position2 == 2 then
-                love.graphics.draw(gengar.spritesheet,287,18,0,.5,.5)
-            end
-        elseif checkInventory(inventory, "gengar") == true and position2 == 1 then
+        end
+        if position == 2 then
+            love.graphics.draw(flashlight.spritesheet,287,21,0,flashlight.scale,flashlight.scale)
+        end
+        if position2 == 1 then
             love.graphics.draw(gengar.spritesheet,207.5,19,0,.5,.5)
-            if checkInventory(inventory, "flashlight") == true and position == 2 then
-                love.graphics.draw(flashlight.spritesheet,287,21,0,flashlight.scale,flashlight.scale)
-            end
-    end
+        end
+        if position2 == 2 then
+            love.graphics.draw(gengar.spritesheet,287,18,0,.5,.5)
+        end
+    
     end
 end
 
