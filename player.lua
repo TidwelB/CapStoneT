@@ -171,11 +171,7 @@ function player.control(dt)
         end
     end
 end
---350
---260
 
---300
---200
 
 function distanceBetweenSprites(x1, y1, w1, h1, x2, y2, w2, h2)
     local center1_x = x1 + w1/2
@@ -213,13 +209,15 @@ print(player.keytimer)
 local mouseX, mouseY = love.mouse:getPosition()
     if mouseX >= 200 and mouseX <= 264 and mouseY >= 15 and mouseY <= 79 and love.mouse.isDown(1) and player.keytimer > 150 then
 
-    DropItem()
-
+    DropItem(1)
+    elseif mouseX >= 280 and mouseX <= 344 and mouseY >= 15 and mouseY <= 79 and love.mouse.isDown(1) and player.keytimer > 150 then
+    DropItem(2)
+    --end
 end
 
-function DropItem()
-    local item = inventory[1]
-    table.remove(inventory, 1)
+function DropItem(param)
+    local item = inventory[param]
+    table.remove(inventory, param)
     local x,y
     if player.anim == player.animations.right then
         x = player.collider:getX() + 60
