@@ -6,6 +6,7 @@ menu = {}
 
 require("enemy")
 require("player")
+require("scientist")
 require("shaders")
 local testing = require("testing.testing")
 range = 100
@@ -25,7 +26,7 @@ function game:enter()
     love.graphics.setDefaultFilter("nearest", "nearest")
 
     camera = cam()
-    camera:zoom(2)
+    camera:zoom(1)
     -- loads in the map
     testingMap = sti('maps/mainlobby.lua')
 
@@ -35,6 +36,7 @@ function game:enter()
     love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
 
     --enemy.spawn(500,500)
+    scientist.spawn(100,800)
 
     --  Walls table: 
     --          intializes the hitboxes for the map 
@@ -65,6 +67,8 @@ flashlight = {}
     flashlight.w = flashlight.spritesheet:getWidth()
     flashlight.scale = 0.1
 
+
+
     walls = {}
 
         if testingMap.layers["Walls"] then
@@ -91,10 +95,12 @@ flashlight = {}
         timer = 0
 end
 
+
 function game:update(dt)
     player:update(dt)
     player.anim:update(dt)
-
+    scientist:update(dt)
+    --scientist.anim:update(dt)
     if (player.health > (player.max_health / 2)) then
         heartbeat.anim:update(dt)
     elseif (player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
@@ -161,6 +167,7 @@ function game:draw()
         rock.collider:setLinearVelocity(x, y)
     end
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5, nil, 6, 6)
+        scientist.anim:draw(scientist.spriteSheet,scientist.x,scientist.y,nil,5,nil,6,6)
         --enemy.draw()
         love.graphics.print("Press W to walk upwards", 300, 200)
         love.graphics.print("Press S to walk downwards", 300, 250)
@@ -175,7 +182,7 @@ function game:draw()
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
-        --world:draw()
+        world:draw()
 
 
     camera:detach()
