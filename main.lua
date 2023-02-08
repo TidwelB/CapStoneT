@@ -5,6 +5,8 @@ require('maze')
 require('levelTwo')
 require('pause')
 require('util.settings')
+require('util.lose')
+require('util.win')
 local tests = require('testing.tests')
 --require('sound.wav')
 -- Tiled implementation library
