@@ -50,7 +50,7 @@ end
 
 function enemy.colAI(dt)
 
-    enemy.timer = enemy.timer +1
+    --enemy.timer = enemy.timer +1
     enemy.distance = ((player.x - enemy.collider:getX())^2 + (player.y - enemy.collider:getY())^2)^(1/2)
     enemy.xdist = ((player.x - enemy.collider:getX())^2)^(1/2)
     enemy.ydist = ((player.y - enemy.collider:getY())^2)^(1/2)
@@ -97,7 +97,7 @@ function enemy.colAI(dt)
     end
 
         else
-            if (enemy.timer%5 == 0) then
+            if (player.timer%5 == 0) then
             enemy.colxvel = math.random(-100,100)
             enemy.colyvel = math.random(-100,100)
 

@@ -57,7 +57,12 @@ function player.load()
 end
 
 function player:update(dt)
+    if player.keytimer < 500 then
         player.keytimer = player.keytimer +1
+    end
+    if player.keytimer >= 500 then
+        player.keytimer = 0
+    end
         -- player.pause(dt)
         player.control(dt)
         player.physics(dt)
@@ -205,7 +210,7 @@ if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false o
 
     
 end
-print(player.keytimer)
+--print(player.keytimer)
 local mouseX, mouseY = love.mouse:getPosition()
     if mouseX >= 200 and mouseX <= 264 and mouseY >= 15 and mouseY <= 79 and love.mouse.isDown(1) and player.keytimer > 150 then
 

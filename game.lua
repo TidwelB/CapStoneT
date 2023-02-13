@@ -8,6 +8,7 @@ require("enemy")
 require("player")
 require("scientist")
 require("shaders")
+require("SCP076")
 local testing = require("testing.testing")
 range = 100
 
@@ -67,8 +68,6 @@ flashlight = {}
     flashlight.w = flashlight.spritesheet:getWidth()
     flashlight.scale = 0.1
 
-
-
     walls = {}
 
         if testingMap.layers["Walls"] then
@@ -92,7 +91,7 @@ flashlight = {}
         player.load()
         --enemy.load()
         
-        timer = 0
+        --timer = 0
 end
 
 
@@ -110,7 +109,7 @@ function game:update(dt)
     end
 
    -- enemy.anim:update(dt)
-    timer = timer + dt
+    --timer = timer + dt
     --UPDATE_ENEMY(dt)
     
 
@@ -147,6 +146,8 @@ function game:draw()
             love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
         end
 
+        DRAW_SCP(SCP076, player.x, player.y, love.timer.getDelta())
+
         --ROCK
         if checkInventory(inventory, "rock") == false then
         rock.x = rock.collider:getX() 
@@ -155,9 +156,15 @@ function game:draw()
         local x, y = rock.collider:getLinearVelocity()
         local w = rock.collider:getAngularVelocity()
         if (math.random(0,range) == 1) then
+            if x > 1 and y > 1 and w > 1 then
             x = x * 0.33
             y = y * 0.33
             w = w * 0.33
+            else
+            x = 0
+            y = 0
+            w = 0
+            end
             range = range / 1.5
             if range < 10 then
                 range = 100
