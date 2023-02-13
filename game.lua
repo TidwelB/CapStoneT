@@ -146,8 +146,11 @@ function game:draw()
             love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
         end
 
+        if Gamestate.current() == pause then 
+        DRAW_SCP(SCP076, player.x, player.y, 0)
+        else
         DRAW_SCP(SCP076, player.x, player.y, love.timer.getDelta())
-
+        end
         --ROCK
         if checkInventory(inventory, "rock") == false then
         rock.x = rock.collider:getX() 

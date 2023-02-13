@@ -1,12 +1,13 @@
 Gamestate = require 'libraries.gamestate'
 anim8 = require 'libraries/anim8'
 
+
 -- makes stretch not blurry
 love.graphics.setDefaultFilter("nearest", "nearest")
 
 SCP076 = {}
     SCP076.spritesheet = love.graphics.newImage("sprites/SCP076.png")
-    SCP076.x = 800
+    SCP076.x = 500
     SCP076.y = 800
 
 
@@ -43,6 +44,7 @@ function drawSCP076WithSize(SCP076, playerX, playerY, dt)
 
  function DRAW_SCP(SCP076, playerX, playerY, dt)
     drawSCP076WithSize(SCP076, playerX, playerY, dt)
+
 end
 
 function UPDATE_SCP(dt)

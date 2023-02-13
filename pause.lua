@@ -92,9 +92,10 @@ end
 end
 
 
-function pause:update()
+function pause:update(dt)
     if love.keyboard.isScancodeDown('p') then
         love.timer.sleep(.15)
         return Gamestate.pop()
     end
-end
+  end
+
