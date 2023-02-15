@@ -6,8 +6,7 @@ lose = Gamestate.new()
 local buttons = {}
 BUTTON_HEIGHT = 64
 font = nil
-
-
+background = love.graphics.newImage("screens/lose.png")
 local function newButton(text,fn)
     return{
         text = text,
@@ -18,7 +17,12 @@ local function newButton(text,fn)
 end
 
 function lose:enter(from)
+    
+  --  img = love.graphics.newImage("screens/lose.png")
+    --img:setWrap("repeat", "repeat")
+    --quad = love.graphics.newQuad( 0,0, 800,600, 800,720)
     self.from = from
+    
     --pause.load()
    -- love.graphics.clear()
     --love.graphics.reset()
@@ -37,7 +41,11 @@ table.insert(buttons,newButton("Return to Game",function()Gamestate.pop()end))
 
 font = love.graphics.newFont(32)
 function lose:draw()
-    love.graphics.reset()
+    local screenWidth, screenHeight = love.graphics.getWidth(), love.graphics.getHeight()
+  love.graphics.draw(background, 0, 0, 0, screenWidth / background:getWidth(), screenHeight / background:getHeight())
+    --love.graphics.draw(background, 0, 0, 0, love.graphics.getWidth() / background:getWidth(), love.graphics.getHeight() / background:getHeight())
+    --love.graphics.draw(img, quad, 0,0, 0, 1,1)
+   --love.graphics.reset()
     --self.from:draw()
     --font = love.graphics.newFont(32)
     local ww = love.graphics.getWidth()
@@ -86,6 +94,8 @@ function lose:draw()
 end
 
  function lose.load()
+
+    background = love.graphics.newImage("screens/lose.jpg")
 --     --Gamestate.switch(pause)
 
 end
@@ -97,3 +107,4 @@ function lose:update()
         return Gamestate.pop()
     end
 end
+
