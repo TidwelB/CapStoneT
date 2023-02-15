@@ -31,7 +31,7 @@ local test = {}
 
 BUTTON_HEIGHT = 64
 local font = nil
-
+background = love.graphics.newImage("maps/mainmenu.png")
 local function newButton(text,fn)
     return{
         text = text,
@@ -53,7 +53,9 @@ end
 
 -- Initializes the main menu at a very basic level
 function menu:draw()
-    love.graphics.draw(img, quad, 0,0, 0, 1,1)
+    --love.graphics.draw(img, quad, 0,0, 0, 1,1)
+    local screenWidth, screenHeight = love.graphics.getWidth(), love.graphics.getHeight()
+    love.graphics.draw(background, 0, 0, 0, screenWidth / background:getWidth(), screenHeight / background:getHeight())
         local ww = love.graphics.getWidth()
         local wh = love.graphics.getHeight()
         local buttonwidth = ww * (1/3)

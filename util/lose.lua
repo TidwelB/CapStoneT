@@ -36,7 +36,7 @@ end
   --  pause.update(dt)
 --end
 
-table.insert(buttons,newButton("Return to Game",function()Gamestate.pop()end))
+table.insert(buttons,newButton("Return to Game",function()Gamestate.switch(menu)end))
 
 
 font = love.graphics.newFont(32)

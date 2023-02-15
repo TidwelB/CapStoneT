@@ -267,6 +267,11 @@ end
        if love.keyboard.isDown("k") then
         player.health = player.health + .1
        end
+       
+       if player.health <= 0 then
+        Gamestate.switch(lose)
+        player.health = 100
+       end
 end
 
 function player.physics(dt)
