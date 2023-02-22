@@ -8,6 +8,7 @@ require("enemy")
 require("player")
 require("scientist")
 require("shaders")
+Moan = require 'libraries/Moan/Moan'
 require("SCP076")
 local testing = require("testing.testing")
 range = 100
@@ -99,7 +100,7 @@ function game:update(dt)
     player:update(dt)
     player.anim:update(dt)
     scientist:update(dt)
-    --scientist.anim:update(dt)
+    scientist.anim:update(dt)
     if (player.health > (player.max_health / 2)) then
         heartbeat.anim:update(dt)
     elseif (player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
@@ -147,9 +148,9 @@ function game:draw()
         end
 
         if Gamestate.current() == pause then 
-        DRAW_SCP(SCP076, player.x, player.y, 0)
+        --DRAW_SCP(SCP076, player.x, player.y, 0)
         else
-        DRAW_SCP(SCP076, player.x, player.y, love.timer.getDelta())
+        --DRAW_SCP(SCP076, player.x, player.y, love.timer.getDelta())
         end
         --ROCK
         if checkInventory(inventory, "rock") == false then
@@ -193,6 +194,7 @@ function game:draw()
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()
+        Moan.draw()
 
 
     camera:detach()

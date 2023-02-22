@@ -1,6 +1,6 @@
 anim8 = require 'libraries/anim8'
 Gamestate = require 'libraries.gamestate'
-
+Moan = require 'libraries/Moan/Moan'
 scientist = {}
 
 
@@ -20,13 +20,19 @@ scientist.animations = {}
     scientist.animations.up = anim8.newAnimation( scientist.grid('1-4', 2), 0.25 )
     scientist.animations.left = anim8.newAnimation( scientist.grid('1-4', 3), 0.25 )
     scientist.animations.right = anim8.newAnimation( scientist.grid('1-4', 4), 0.25 )    
-    scientist.anim = scientist.animations.right
+    scientist.anim = anim8.newAnimation( scientist.grid(1, 4), 1)
 
---function scientist.load()
-    --scientist.collider = world:newBSGRectangleCollider(scientist.x, scientist.y, 55, 80, 14)
-    --scientist.collider:setType('Static')
-    --scientist.collider:setFixedRotation(true)
---end
+local function getPos()
+    return scientist.x, scientist.y
+end
+
+local function getWidth()
+    return scientist.w
+end
+
+local function getHeight()
+    return scientist.h
+end
 
 function scientist.draw()
         love.graphics.setColor(255,255,255)
@@ -45,37 +51,56 @@ function scientist.spawn(x,y)
     scientist.collider = world:newBSGRectangleCollider(scientist.x, scientist.y, 55, 80, 14)
     scientist.collider:setType('kinematic')
     scientist.collider:setFixedRotation(true)
+
     table.insert(scientist, {scientist.x == x, scientist.y == y, 0, 0, 1, scientist.w, scientist.h})
 end
 
 function scientist.moveleft(x)
-    for i=0, x do 
-    scientist.xvel = scientist.xvel - scientist.speed
-    scientist.anim = scientist.animations.left
+    scientist.xvel = scientist.speed
+    local update_position = function (dt)
+        elapsed_time = 0
+        elapsed_time = elapsed_time + dt
+        if elapsed_time >= x then
+            scientist.xvel = 0
+            scientist.collider:setLinearVelocity(0, 0)
+            game.update:removeFunction(update_position)
+        else
+            scientist.collider:setLinearVelocity(scientist.xvel, scientist.yvel)
+        end
     end
-    scientist.xvel = 0
+end
+
+function scientist.move(dt, direction)
+    if direction == "left" then
+        scientist.xvel = -scientist.speed * dt
+        scientist.anim = scientist.animations.left
+    elseif direction == "right" then
+        scientist.xvel = scientist.speed * dt
+        scientist.anim = scientist.animations.right
+    elseif direction == "up" then
+        scientist.yvel = -scientist.speed * dt
+        scientist.anim = scientist.animations.up
+    elseif direction == "down" then
+        scientist.yvel = scientist.speed * dt
+        scientist.anim = scientist.animations.down
+    end
+    scientist.x = scientist.x + scientist.xvel
+    scientist.y = scientist.y + scientist.yvel
     scientist.collider:setLinearVelocity(scientist.xvel, scientist.yvel)
 end
 
-function scientist.moveup()
-
-    scientist.yvel = scientist.yvel - scientist.speed
-    scientist.anim = scientist.animations.up
-    scientist.collider:setLinearVelocity(scientist.xvel, scientist.yvel)
-    scientist.stop()
-end
 function scientist.stop()
-
     scientist.yvel = 0
     scientist.xvel = 0
+    scientist.collider:setLinearVelocity(0,0)
     scientist.anim:gotoFrame(3)
-    scientist.collider:setLinearVelocity(scientist.xvel, scientist.yvel)
-
 end
 
 function scientist:update(dt)
     scientist.physics(dt)
     scientist.colliderMatching(dt)
+    scientist.response(dt)
+    Moan.update(dt)
 end
 
 function scientist.physics(dt)
@@ -83,4 +108,22 @@ function scientist.physics(dt)
     scientist.y = scientist.y + scientist.yvel * dt
     scientist.xvel = scientist.xvel * (1 - math.min(dt * 5, 1))
     scientist.yvel = scientist.yvel * (1 - math.min(dt * 5, 1))
+end
+
+-- chat
+function scientist.response(dt)
+    -- if player presses "e" close enough to scientist then he talks
+    -- press space to loop dialog
+    if love.keyboard.isDown("e") and distanceBetweenSprites(player.x, player.y, 55, 80, scientist.x, scientist.y, scientist.w,scientist.h) < 80 then
+        Moan.speak("Scientist", { "Hello" })
+        Moan.speak("Scientist", { "Yo" })
+    end
+    -- if player leaves radius the chat disapears
+    if distanceBetweenSprites(player.x, player.y, 55, 80, scientist.x, scientist.y, scientist.w, scientist.h) > 150 then
+        Moan.clearMessages()
+    end
+end
+
+function love.keypressed(key)
+    Moan.keypressed(key)
 end
