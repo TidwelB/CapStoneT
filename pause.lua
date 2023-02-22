@@ -1,7 +1,9 @@
 -- Gamestate library
+local json = require("libraries.dkjson")
 Gamestate = require 'libraries.gamestate'
 pause = {}
 pause = Gamestate.new()
+saveInventory = {}
 local buttons = {}
 BUTTON_HEIGHT = 64
 local font = nil
@@ -24,7 +26,19 @@ function pause:enter(from)
     --player.load()
 
 end
+function write_to_json_file(filename, data)
+    -- convert Lua table to JSON format
+    local json_data = json.encode(data)
 
+    -- open file for writing
+    local file = io.open(filename, "w")
+
+    -- write JSON data to file
+    file:write(json_data)
+
+    -- close file
+    file:close()
+end
 function pause:update(dt)
     pause.update(dt)
 end
@@ -33,7 +47,29 @@ font = love.graphics.newFont(32)
 table.insert(buttons,newButton("Return to Game",function()Gamestate.pop()end))
 table.insert(buttons,newButton("Settings",function()Gamestate.push(settings)end))
 table.insert(buttons,newButton("Exit to Windows",function()love.event.quit(0)end))
-table.insert(buttons,newButton("LOSE TESTING",function()Gamestate.switch(lose)end))
+table.insert(buttons,newButton("Save Game",function() saveInventory = inventory 
+        playerData = {
+        position = {x = player.x,y = player.y},
+        inventory = saveInventory
+        }
+        write_to_json_file("playerData.json", playerData)
+        
+    --end
+    if set == true then 
+        -- file = io.open("saveData.json", "r")
+        -- jsonDatas = file:read("*all")
+        -- file:close()
+    
+        -- help = json.decode(jsonDatas)
+        -- print(help.position.x)
+        -- print(help.position.y)
+        -- print(help.inventory[1])
+    
+    end
+end))
+
+
+
 table.insert(buttons,newButton("WIN TESTING",function()Gamestate.switch(win)end))
 
 
@@ -88,9 +124,7 @@ end
 
  function pause.load()
 --     --Gamestate.switch(pause)
-
-end
-
+ end
 
 function pause:update(dt)
     if love.keyboard.isScancodeDown('p') then
@@ -98,4 +132,5 @@ function pause:update(dt)
         return Gamestate.pop()
     end
   end
+
 
