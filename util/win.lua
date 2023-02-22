@@ -6,8 +6,7 @@ win = Gamestate.new()
 local buttons = {}
 BUTTON_HEIGHT = 64
 font = nil
-
-
+winbackground = love.graphics.newImage("screens/win.png")
 local function newButton(text,fn)
     return{
         text = text,
@@ -18,7 +17,12 @@ local function newButton(text,fn)
 end
 
 function win:enter(from)
+    
+  --  img = love.graphics.newImage("screens/lose.png")
+    --img:setWrap("repeat", "repeat")
+    --quad = love.graphics.newQuad( 0,0, 800,600, 800,720)
     self.from = from
+    
     --pause.load()
    -- love.graphics.clear()
     --love.graphics.reset()
@@ -32,12 +36,16 @@ end
   --  pause.update(dt)
 --end
 
-table.insert(buttons,newButton("Go to menu",function()Gamestate.push(menu)end))
-
+table.insert(buttons,newButton("Return to Main Menu",function()Gamestate.switch(menu)end))
+table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
 
 font = love.graphics.newFont(32)
 function win:draw()
-    love.graphics.reset()
+    local screenWidth, screenHeight = love.graphics.getWidth(), love.graphics.getHeight()
+  love.graphics.draw(winbackground, 0, 0, 0, screenWidth / winbackground:getWidth(), screenHeight / winbackground:getHeight())
+    --love.graphics.draw(background, 0, 0, 0, love.graphics.getWidth() / background:getWidth(), love.graphics.getHeight() / background:getHeight())
+    --love.graphics.draw(img, quad, 0,0, 0, 1,1)
+   --love.graphics.reset()
     --self.from:draw()
     --font = love.graphics.newFont(32)
     local ww = love.graphics.getWidth()
@@ -86,6 +94,8 @@ function win:draw()
 end
 
  function win.load()
+
+    winbackground = love.graphics.newImage("screens/win.jpg")
 --     --Gamestate.switch(pause)
 
 end
@@ -97,3 +107,4 @@ function win:update()
         return Gamestate.pop()
     end
 end
+
