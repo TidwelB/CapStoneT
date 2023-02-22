@@ -25,7 +25,7 @@ function levelOne:enter()
     world = wf.newWorld(0, 0)
     love.window.setTitle("SCP: FALLEN")
     love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
-    enemy.spawn(500,500)
+    --wenemy.spawn(500,500)
     --  Walls table: 
     --          intializes the hitboxes for the map 
     --          whether that be the walls, the green stuff, etc...
@@ -53,7 +53,7 @@ function levelOne:enter()
         end
 
         player.load()
-        enemy.load()
+        --enemy.load()
         --SCP.load()
         
         
@@ -70,8 +70,8 @@ function levelOne:update(dt)
     elseif (player.health <= (player.max_health / 4)) then
         redheartbeat.anim:update(dt)
     end
-    enemy.anim:update(dt)
-    UPDATE_ENEMY(dt)
+    --enemy.anim:update(dt)
+    --UPDATE_ENEMY(dt)
     --UPDATE_SCP(dt)
 
    -- Moves the camera according to the players movements
@@ -88,7 +88,7 @@ function levelOne:draw()
     camera:attach()
         testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
-        enemy.draw()
+       --enemy.draw()
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
