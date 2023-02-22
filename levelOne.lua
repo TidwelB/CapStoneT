@@ -19,7 +19,7 @@ function levelOne:enter()
     camera = cam()
 
     -- loads in the map
-    testingMap = sti('maps/transitiontest.lua')
+    testingMap = sti('maps/level1.lua')
 
     -- draws the window size
     world = wf.newWorld(0, 0)
@@ -86,7 +86,11 @@ end
 function levelOne:draw()
     -- Tells the game where to start looking through the camera POV
     camera:attach()
-        testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
+        testingMap:drawLayer(testingMap.layers["floor"])
+        testingMap:drawLayer(testingMap.layers["walls"])
+        testingMap:drawLayer(testingMap.layers["stuff"])
+        testingMap:drawLayer(testingMap.layers["items"])
+        testingMap:drawLayer(testingMap.layers["bluepuzzlelock"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
        --enemy.draw()
         love.graphics.setShader(shaders.simpleLight)
