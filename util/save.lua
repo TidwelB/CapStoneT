@@ -40,25 +40,60 @@ end
 local folder_path = "Desktop/Remedy" -- Replace this with the path to your folder
 
 -- Get the list of files in the folder
-local path = os.getenv("HOME") .. "/Desktop/Remedy/"
+--local path = os.getenv("HOME") .. "/Desktop/Remedy/"
 local files = {}
-for file in io.popen("ls " .. path .. "*.json"):lines() do 
-    print(file)
-    table.insert(files, file)
-    local file_name = string.match(file, ".+/([^/]+)$")
-    table.insert(buttons, newButton(file_name, function() 
-        -- Read and parse the JSON file
-        files = io.open(file, "r")
-        data_str = files:read("*all")
-        data = json.decode(data_str)
-        files:close()
-        -- Do something with the data, e.g. set player coordinates
-        player.x = data.position.x
-        player.y = data.position.y
-        inventory = data.inventory
-        print(player.x)
-    end))
+local op = love.system.getOS()
+if op == "Windows" then
+    --local path = os.getenv("HOME") .. "\\Desktop\\Remedy\\"
+    local thing = os.getenv("HOMEDRIVE")
+    local penis = os.getenv("HOMEPATH")
+    print(thing)
+    print(penis)
+    local path = thing .. penis .. "\\Desktop\\Remedy\\"
+    --local path = "C:\\Users\\18035\\Desktop\\Remedy\\"
+    for file in io.popen("dir /B " .. path .. "*.json"):lines() do 
+        print(file)
+        table.insert(files, file)
+        local file_name = string.match(file, ".+/([^/]+)$")
+        table.insert(buttons, newButton(file_name, function() 
+            -- Read and parse the JSON file
+            files = io.open(file, "r")
+            data_str = files:read("*all")
+            data = json.decode(data_str)
+            files:close()
+            -- Do something with the data, e.g. set player coordinates
+            player.x = data.position.x
+            player.y = data.position.y
+            inventory = data.inventory
+            print(player.x)
+        end))
+    end
+
+
+else
+    local path = os.getenv("HOME") .. "/Desktop/Remedy/"
+    for file in io.popen("ls " .. path .. "*.json"):lines() do 
+        print(file)
+        table.insert(files, file)
+        local file_name = string.match(file, ".+/([^/]+)$")
+        table.insert(buttons, newButton(file_name, function() 
+            -- Read and parse the JSON file
+            files = io.open(file, "r")
+            data_str = files:read("*all")
+            data = json.decode(data_str)
+            files:close()
+            -- Do something with the data, e.g. set player coordinates
+            player.x = data.position.x
+            player.y = data.position.y
+            inventory = data.inventory
+            print(player.x)
+        end))
+    end
+
 end
+
+
+
 
 --local file_list = io.popen('ls *.json'):read("*all")
     
