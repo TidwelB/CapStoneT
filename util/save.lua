@@ -54,9 +54,10 @@ if op == "Windows" then
     for file in io.popen("dir /B " .. path .. "*.json"):lines() do 
         print(file)
         table.insert(files, file)
-        local file_name = string.match(file, ".+\\([^\\]+)$")
+        --local file_name = string.match(file, "[/%[%]%(%){}%+%-*%%^%$%?%.\\]")
+        local file_name = file:gsub("[/%[%]%(%){}%+%-*%%^%$%?%.\\]%f[%a]json%f[%A]", "")
         table.insert(buttons, newButton(file_name, function() 
-            -- Read and parse the JSON file
+            --Read and parse the JSON file
             files = io.open(file, "r")
             data_str = files:read("*all")
             data = json.decode(data_str)
@@ -66,6 +67,7 @@ if op == "Windows" then
             player.y = data.position.y
             inventory = data.inventory
             print(player.x)
+            print(file_name)
         end))
     end
 
