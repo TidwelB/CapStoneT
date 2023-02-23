@@ -47,15 +47,15 @@ font = love.graphics.newFont(32)
 table.insert(buttons,newButton("Return to Game",function()Gamestate.pop()end))
 table.insert(buttons,newButton("Settings",function()Gamestate.push(settings)end))
 table.insert(buttons,newButton("Exit to Windows",function()love.event.quit(0)end))
-table.insert(buttons,newButton("Save Game",function() saveInventory = inventory 
-        playerData = {
-        position = {x = player.x,y = player.y},
-        inventory = saveInventory
-        }
-        write_to_json_file("playerData.json", playerData)
+table.insert(buttons,newButton("Save Game",function() saveInventory = inventory Gamestate.push(save_file_menu)
+        --playerData = {
+        --position = {x = player.x,y = player.y},
+        --inventory = saveInventory
+        --}
+       -- write_to_json_file("playerData.json", playerData)
         
     --end
-    if set == true then 
+    --if set == true then 
         -- file = io.open("saveData.json", "r")
         -- jsonDatas = file:read("*all")
         -- file:close()
@@ -65,7 +65,7 @@ table.insert(buttons,newButton("Save Game",function() saveInventory = inventory
         -- print(help.position.y)
         -- print(help.inventory[1])
     
-    end
+    --end
 end))
 
 
@@ -133,4 +133,7 @@ function pause:update(dt)
     end
   end
 
-
+  Gamestate.addStates{
+    pause = pause,
+    save_file_menu = save_file_menu,
+}
