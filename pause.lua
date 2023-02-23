@@ -29,7 +29,16 @@ end
 function write_to_json_file(filename, data)
     -- convert Lua table to JSON format
     local json_data = json.encode(data)
-    filename = os.getenv("HOME") .. "/Desktop/Remedy/" .. filename
+    local op = love.system.getOS()
+
+    if op == "Windows" then
+        
+        filename = os.getenv("HOMEDRIVE") .. os.getenv("HOMEPATH") .. "\\Desktop\\Remedy\\" .. filename
+    else
+        filename = os.getenv("HOME") .. "/Desktop/Remedy/" .. filename
+    end
+    --end
+    --filename = os.getenv("HOME") .. "/Desktop/Remedy/" .. filename
     -- open file for writing
     local file = io.open(filename, "w")
 
