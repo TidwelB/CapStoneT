@@ -8,6 +8,7 @@ require('util.settings')
 require('util.lose')
 require('util.win')
 require('save_file_menu')
+require('util.save')
 local tests = require('testing.tests')
 --require('sound.wav')
 -- Tiled implementation library
@@ -150,7 +151,9 @@ end
 -- end
 -- function runLevelTwo:draw()
 --     levelTwo.draw(self)
--- end
+--end
+
+
 
 -- prepares the game for switches
 function love.load()
@@ -166,6 +169,7 @@ function love.load()
     Gamestate.switch(menu)
     love.graphics.setBackgroundColor(0,255,255,1)
     table.insert(buttons,newButton("Start Game",function()Gamestate.switch(runGame)Music.music:play()end))
+    table.insert(buttons,newButton("Load Save",function() Gamestate.switch(save) end))
     table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
     testing.run()
 end
