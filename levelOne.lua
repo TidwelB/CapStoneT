@@ -1,9 +1,11 @@
 -- Gamestate library
+
 Gamestate = require 'libraries.gamestate'
 levelOne = {}
 walls = {}
 
 function levelOne:enter()
+    
     -- Hitbox library
     wf = require 'libraries/windfield'
     -- Tiled implementation library
@@ -60,6 +62,7 @@ function levelOne:enter()
 end
 
 function levelOne:update(dt)
+    
     player:update(dt)
     player.anim:update(dt)
 

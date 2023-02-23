@@ -2,7 +2,7 @@
 Gamestate = require 'libraries.gamestate'
 maze = {}
 walls = {}
-
+room = "maze"
 function maze:enter()
     -- Hitbox library
     wf = require 'libraries/windfield'

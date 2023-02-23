@@ -1,5 +1,4 @@
 Gamestate = require 'libraries.gamestate'
-
 settings = {}
 settings = Gamestate.new()
 

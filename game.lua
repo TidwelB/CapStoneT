@@ -15,6 +15,7 @@ range = 100
 
 
 function game:enter()
+    room = "runGame"
     -- Hitbox library
     wf = require 'libraries/windfield'
     -- Tiled implementation library
@@ -90,6 +91,8 @@ flashlight = {}
         end
 
         player.load()
+        player.x = data.x
+        player.y = data.y
         --enemy.load()
         
         --timer = 0

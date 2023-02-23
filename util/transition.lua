@@ -10,6 +10,7 @@ end
 function transition:Transitioner()
     if player.collider:enter('Ghost') then
         transition:update()
+        room = "levelOne"
         return Gamestate.switch(runLevelOne)
     end
 end

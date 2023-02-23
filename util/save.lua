@@ -1,8 +1,10 @@
+
 -- Gamestate library
 local json = require("libraries.dkjson")
 Gamestate = require 'libraries.gamestate'
 save = {}
 save = Gamestate.new()
+
 
 local buttons = {}
 BUTTON_HEIGHT = 64
@@ -63,11 +65,11 @@ if op == "Windows" then
             data = json.decode(data_str)
             files:close()
             -- Do something with the data, e.g. set player coordinates
+           
             player.x = data.position.x
             player.y = data.position.y
             inventory = data.inventory
-            print(player.x)
-            print(file_name)
+            
         end))
     end
 
@@ -85,10 +87,15 @@ else
             data = json.decode(data_str)
             files:close()
             -- Do something with the data, e.g. set player coordinates
+            
+            if data.level == "runGame" then
+                level = runGame
+            end
+            Gamestate.switch(level)
             player.x = data.position.x
             player.y = data.position.y
             inventory = data.inventory
-            print(player.x)
+            player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
         end))
     end
 
