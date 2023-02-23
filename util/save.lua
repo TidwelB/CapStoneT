@@ -36,24 +36,47 @@ end
 --function pause:update(dt)
   --  pause.update(dt)
 --end
-
-local file_list = io.popen('ls *.json'):read("*all")
+local os = love.system.getOS()
+if os == "Windows" then 
+    local file_list = io.popen('dir /B *.json'):read("*all")local json_files = {}
+    for filename in string.gmatch(file_list, "%S+%.json") do
+        table.insert(json_files, filename)
+        -- Create a button for this file
+        table.insert(buttons, newButton(filename, function() 
+            -- Read and parse the JSON file
+            file = io.open(filename, "r")
+            data_str = file:read("*all")
+            data = json.decode(data_str)
+            file:close()
+            -- Do something with the data, e.g. set player coordinates
+            player.x = data.position.x
+            player.y = data.position.y
+            inventory = data.inventory
+            print(player.x)
+        end))
+    end
+else
+    local file_list = io.popen('ls *.json'):read("*all")
     local json_files = {}
     for filename in string.gmatch(file_list, "%S+%.json") do
         table.insert(json_files, filename)
         -- Create a button for this file
         table.insert(buttons, newButton(filename, function() 
             -- Read and parse the JSON file
-            local file = io.open(filename, "r")
-            local data_str = file:read("*all")
-            local data = json.decode(data_str)
+            file = io.open(filename, "r")
+            data_str = file:read("*all")
+            data = json.decode(data_str)
             file:close()
             -- Do something with the data, e.g. set player coordinates
-            player.x = data.x
-            player.y = data.y
+            player.x = data.position.x
+            player.y = data.position.y
+            inventory = data.inventory
             print(player.x)
         end))
     end
+end
+--local file_list = io.popen('ls *.json'):read("*all")
+    
 
 font = love.graphics.newFont(32)
 function save:draw()
