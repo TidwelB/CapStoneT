@@ -54,7 +54,7 @@ if op == "Windows" then
     for file in io.popen("dir /B " .. path .. "*.json"):lines() do 
         print(file)
         table.insert(files, file)
-        local file_name = string.match(file, ".+/([^/]+)$")
+        local file_name = string.match(file, ".+\\([^\\]+)$")
         table.insert(buttons, newButton(file_name, function() 
             -- Read and parse the JSON file
             files = io.open(file, "r")
