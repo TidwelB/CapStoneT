@@ -91,8 +91,8 @@ flashlight = {}
         end
 
         player.load()
-        player.x = data.x
-        player.y = data.y
+       -- player.x = data.x
+        --player.y = data.y
         --enemy.load()
         
         --timer = 0
