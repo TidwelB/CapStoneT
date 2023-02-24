@@ -90,8 +90,7 @@ function levelTwo:enter()
         end
         --enemy.load()
         --SCP.load()
-        
-        
+
 end
 
 function levelTwo:update(dt)
