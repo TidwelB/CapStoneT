@@ -436,10 +436,52 @@ return {
     {
       type = "objectgroup",
       draworder = "topdown",
+      id = 6,
+      name = "PuzzleLock",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 11,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 2766.67,
+          y = 96,
+          width = 76,
+          height = 282.667,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 13,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 2780,
+          y = 349.333,
+          width = 393.333,
+          height = 29.3333,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
       id = 5,
       name = "Walls",
       class = "",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -751,8 +793,8 @@ return {
           name = "",
           class = "",
           shape = "rectangle",
-          x = 6.66667,
-          y = 3120,
+          x = 53.3333,
+          y = 3122.67,
           width = 3186.67,
           height = 72,
           rotation = 0,
@@ -781,77 +823,6 @@ return {
           y = 8,
           width = 718,
           height = 76,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        }
-      }
-    },
-    {
-      type = "objectgroup",
-      draworder = "topdown",
-      id = 9,
-      name = "Transitions",
-      class = "",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      parallaxx = 1,
-      parallaxy = 1,
-      properties = {},
-      objects = {
-        {
-          id = 34,
-          name = "",
-          class = "",
-          shape = "rectangle",
-          x = 1349,
-          y = 3124,
-          width = 186,
-          height = 69,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        }
-      }
-    },
-    {
-      type = "objectgroup",
-      draworder = "topdown",
-      id = 6,
-      name = "PuzzleLock",
-      class = "",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      parallaxx = 1,
-      parallaxy = 1,
-      properties = {},
-      objects = {
-        {
-          id = 11,
-          name = "",
-          class = "",
-          shape = "rectangle",
-          x = 2766.67,
-          y = 96,
-          width = 76,
-          height = 282.667,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 13,
-          name = "",
-          class = "",
-          shape = "rectangle",
-          x = 2780,
-          y = 349.333,
-          width = 393.333,
-          height = 29.3333,
           rotation = 0,
           visible = true,
           properties = {}
@@ -1096,6 +1067,35 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 9,
+      name = "Transitions",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 34,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 1349.33,
+          y = 3105.67,
+          width = 186,
+          height = 69,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
       }
     }
   }
