@@ -4,6 +4,12 @@ require('levelOne')
 require('maze')
 require('levelTwo')
 require('pause')
+
+require('util.wavegen.computer1')
+require('util.wavegen.computer2')
+require('util.wavegen.computer3')
+require('util.wavegen.computer4')
+
 require('util.settings')
 require('util.lose')
 require('util.win')

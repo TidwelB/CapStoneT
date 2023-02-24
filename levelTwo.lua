@@ -112,8 +112,6 @@ function levelTwo:update(dt)
 
    world:update(dt)
    shaders:update(dt)
-   
-
 end
 
 function levelTwo:draw()
