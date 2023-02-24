@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="29">
  <editorsettings>
   <export target="level4.lua" format="lua"/>
  </editorsettings>
@@ -171,4 +171,35 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="4" name="Walls">
+  <object id="2" x="8" y="6" width="756" height="54"/>
+  <object id="3" x="968" y="10" width="598" height="58"/>
+  <object id="4" x="1578" y="4" width="14" height="1588"/>
+  <object id="5" x="8" y="1508" width="1570" height="86"/>
+  <object id="6" x="8" y="18" width="12" height="1502"/>
+  <object id="7" x="292" y="389.333" width="20" height="156"/>
+  <object id="8" x="290.667" y="385.333" width="252.667" height="90.6667"/>
+  <object id="9" x="488" y="484.667" width="76.6667" height="52"/>
+  <object id="10" x="546.667" y="294" width="18" height="196"/>
+  <object id="11" x="550" y="292" width="110" height="60.6667"/>
+  <object id="12" x="644.667" y="197.333" width="16.6667" height="115.333"/>
+  <object id="13" x="652" y="197.333" width="429.333" height="58"/>
+  <object id="15" x="736.667" y="201.333" width="22.6667" height="145.333"/>
+  <object id="16" x="965.333" y="204" width="26.6667" height="153.333"/>
+  <object id="17" x="809.333" y="247.333" width="14.6667" height="52.6667"/>
+  <object id="18" x="900.667" y="243.333" width="22.6667" height="68.6667"/>
+  <object id="19" x="826" y="244.667" width="14.6667" height="62"/>
+  <object id="20" x="794.667" y="244.667" width="12.6667" height="58.6667"/>
+  <object id="21" x="886.667" y="246.667" width="15.3333" height="48"/>
+  <object id="22" x="930.667" y="246" width="6.66667" height="56.6667"/>
+  <object id="23" x="1067.33" y="238.667" width="14" height="84"/>
+  <object id="24" x="1072.67" y="290.667" width="104" height="63.3333"/>
+  <object id="25" x="1162" y="353.333" width="20" height="184"/>
+  <object id="26" x="1160.67" y="484" width="75.3333" height="50"/>
+  <object id="27" x="1177.33" y="388.667" width="256.667" height="83.3333"/>
+  <object id="28" x="1352" y="482" width="86.6667" height="50"/>
+ </objectgroup>
+ <objectgroup id="5" name="Transitions">
+  <object id="1" x="775.333" y="10" width="178.667" height="66"/>
+ </objectgroup>
 </map>

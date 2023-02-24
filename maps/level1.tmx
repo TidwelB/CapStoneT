@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="33">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="35">
  <editorsettings>
   <export target="level1.lua" format="lua"/>
  </editorsettings>
@@ -348,6 +348,9 @@
   <object id="30" x="6.66667" y="3120" width="3186.67" height="72"/>
   <object id="31" x="3177.33" y="2.66667" width="16" height="3186.67"/>
   <object id="32" x="2472" y="8" width="718" height="76"/>
+ </objectgroup>
+ <objectgroup id="9" name="Transitions">
+  <object id="34" x="1349" y="3124" width="186" height="69"/>
  </objectgroup>
  <objectgroup id="6" name="PuzzleLock">
   <object id="11" x="2766.67" y="96" width="76" height="282.667"/>
