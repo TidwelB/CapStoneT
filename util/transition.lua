@@ -14,13 +14,15 @@ function transition:Transitioner()
             return Gamestate.switch(runGame)
         end
 print(player.x)
+print(player.y)
         --transition:update()
 print(Gamestate.current() == runGame)
-        if Gamestate.current() == runGame then
+        if Gamestate.current() == runGame and player.y < 300 then
             room = "levelOne"
             return Gamestate.switch(runLevelOne)
-
-
+        else
+            room = "levelTwo"
+            return Gamestate.switch(runLevelTwo)
         
         end
 

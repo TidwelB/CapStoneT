@@ -23,6 +23,7 @@ menu = {}
 runGame = {}
 runTutorial = {}
 runLevelOne = {}
+runLevelTwo = {}
 runMaze = {}
 --runLevelTwo = {}
 chestinventory = {}
@@ -130,6 +131,16 @@ function runLevelOne:update(dt)
 end
 function runLevelOne:draw()
     levelOne.draw(self)
+end
+
+function runLevelTwo:enter()
+    levelTwo.enter(self)
+end
+function runLevelTwo:update(dt)
+    levelTwo.update(self, dt)
+end
+function runLevelTwo:draw()
+    levelTwo.draw(self)
 end
 
 -- Code for executing the maze section
