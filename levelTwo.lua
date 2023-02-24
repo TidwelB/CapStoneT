@@ -59,43 +59,15 @@ function levelTwo:enter()
             end
         end
 
-    rock = {}
-        rock.spritesheet = love.graphics.newImage("sprites/rock.png")
-        rock.x = 400
-        rock.y = 400
-        rock.h = rock.spritesheet:getHeight()
-        rock.w = rock.spritesheet:getWidth()
-        rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
-    
-    gengar = {}
-        gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
-        gengar.x = 200
-        gengar.y = 200
-        gengar.h = gengar.spritesheet:getHeight()
-        gengar.w= gengar.spritesheet:getWidth()
-    
-    flashlight = {}
-        flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
-        flashlight.x = 500
-        flashlight.y = 200
-        flashlight.h = flashlight.spritesheet:getHeight()
-        flashlight.w = flashlight.spritesheet:getWidth()
-        flashlight.scale = 0.1
-
         if saveLoad == true then
             print(saveLoad)
-            --player.load(data.position.x,data.position.y)
         else
         print(saveLoad)
         player.load()
         end
-        --enemy.load()
-        --SCP.load()
-
 end
 
 function levelTwo:update(dt)
-
     player:update(dt)
     player.anim:update(dt)
 
@@ -128,25 +100,18 @@ function levelTwo:draw()
         testingMap:drawLayer(testingMap.layers["items"])
         testingMap:drawLayer(testingMap.layers["walls"])
         testingMap:drawLayer(testingMap.layers["puzzlelock"])
-        --testingMap:drawLayer(testingMap.layers["bluepuzzlelock"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
-       --enemy.draw()
-
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()
-
-
         love.graphics.setColor(255,255,255,255)
-        --love.graphics.rectangle('fill', 400,200,size,size,14)
-        --DRAW_SCP()
-        if love.keyboard.isDown("j") then
-            table.insert(inventory,"Itemsssssss")
-        end
     camera:detach()
+
     love.graphics.reset()
+
     DRAW_HUD()
+
     love.graphics.print(player.x, 100, 10)
     love.graphics.print(player.y, 100, 30)
 end
