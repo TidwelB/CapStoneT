@@ -106,9 +106,9 @@ function levelTwo:update(dt)
         redheartbeat.anim:update(dt)
     end
 
-    if distanceBetweenSprites(player.x, player.y, 55, 80, 34.67, 93.33, 93.33, 48.00) < 150 then
-        if love.keypressed('e') then
-            waver:enter()
+    if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 164, 93.33, 48.00) < 150 then
+        if love.keyboard.isDown("e") then
+            Gamestate.switch(waver)
         end
     end
 
@@ -146,5 +146,6 @@ function levelTwo:draw()
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()
-
+    love.graphics.print(player.x, 100, 10)
+    love.graphics.print(player.y, 100, 30)
 end

@@ -6,9 +6,7 @@ local dutyCycle = 0.5 -- duty cycle of the waveform
 local wave = 1
 waver = {}
 Gamestate = require 'libraries.gamestate'
-
-function waver:enter()
-end
+waver = Gamestate.new()
 
 function addDataPoint()
     if wave == 1 then
