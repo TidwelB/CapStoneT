@@ -105,7 +105,9 @@ function levelTwo:draw()
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()
-
+        gengar.draw("levelOne")
+        flashlight.draw("levelOne")
+        rock.draw("levelOne")
 
         love.graphics.setColor(255,255,255,255)
     camera:detach()
