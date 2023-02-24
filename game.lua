@@ -8,6 +8,7 @@ require("enemy")
 require("player")
 require("scientist")
 require("shaders")
+require("util.items.gengarItem")
 Moan = require 'libraries/Moan/Moan'
 require("SCP076")
 local testing = require("testing.testing")
@@ -55,12 +56,12 @@ rock = {}
     rock.w = rock.spritesheet:getWidth()
     rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
 
-gengar = {}
-    gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
-    gengar.x = 200
-    gengar.y = 200
-    gengar.h = gengar.spritesheet:getHeight()
-    gengar.w= gengar.spritesheet:getWidth()
+-- gengar = {}
+--     gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
+--     gengar.x = 200
+--     gengar.y = 200
+--     gengar.h = gengar.spritesheet:getHeight()
+--     gengar.w= gengar.spritesheet:getWidth()
 
 flashlight = {}
     flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
@@ -153,9 +154,10 @@ function game:draw()
         testingMap:drawLayer(testingMap.layers["chairs"])
 
 
-        if checkInventory(inventory, "gengar") == false then
-        love.graphics.draw(gengar.spritesheet,gengar.x,gengar.y)
-        end
+        -- if checkInventory(inventory, "gengar") == false then
+        -- love.graphics.draw(gengar.spritesheet,gengar.x,gengar.y)
+        -- end
+        gengar.draw("runGame")
         if checkInventory(inventory, "flashlight") == false then
             love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
         end

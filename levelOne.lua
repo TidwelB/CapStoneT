@@ -4,6 +4,7 @@ Gamestate = require 'libraries.gamestate'
 levelOne = {}
 walls = {}
 require('game')
+require("util.items.gengarItem")
 
 function levelOne:enter()
     room = "levelOne"
@@ -63,12 +64,12 @@ function levelOne:enter()
         rock.w = rock.spritesheet:getWidth()
         rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
     
-    gengar = {}
-        gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
-        gengar.x = 200
-        gengar.y = 200
-        gengar.h = gengar.spritesheet:getHeight()
-        gengar.w= gengar.spritesheet:getWidth()
+    -- gengar = {}
+    --     gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
+    --     gengar.x = 200
+    --     gengar.y = 200
+    --     gengar.h = gengar.spritesheet:getHeight()
+    --     gengar.w= gengar.spritesheet:getWidth()
     
     flashlight = {}
         flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
@@ -131,7 +132,7 @@ function levelOne:draw()
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()
-
+        gengar.draw("levelOne")
 
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)

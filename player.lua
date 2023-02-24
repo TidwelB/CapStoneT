@@ -254,6 +254,7 @@ function DropItem(param)
     if item == "gengar" then
         gengar.x = x
         gengar.y = y
+        gengar.room = room
     end
     player.keytimer = 0
 
