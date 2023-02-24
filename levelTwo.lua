@@ -32,14 +32,9 @@ function levelTwo:enter()
     world = wf.newWorld(0, 0)
     love.window.setTitle("SCP: FALLEN")
     love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
-    --wenemy.spawn(500,500)
-    --  Walls table: 
-    --          intializes the hitboxes for the map 
-    --          whether that be the walls, the green stuff, etc...
+
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
-
-
 
         if testingMap.layers["Walls"] then
             for i, box in pairs(testingMap.layers["Walls"].objects) do
