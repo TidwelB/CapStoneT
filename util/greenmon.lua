@@ -9,7 +9,7 @@ function greenmon:enter(from)
   end
 
 function greenmon:update(dt)
-    pause.update(dt)
+    --greenmon.update(dt)
 end
 
 function greenmon:draw()
@@ -27,9 +27,3 @@ function greenmon.load()
     greenpuzzle = love.graphics.newImage("screens/pigpen.jpg")
 end
 
-function greenmon:update()
-    if love.keyboard.isScancodeDown('p') then
-        love.timer.sleep(.15)
-        return Gamestate.pop()
-    end
-end

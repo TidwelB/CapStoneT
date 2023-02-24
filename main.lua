@@ -17,6 +17,7 @@ require('util.win')
 require('save_file_menu')
 require('util.save')
 require('util.greenmon')
+require('util.bluemon')
 
 local tests = require('testing.tests')
 --require('sound.wav')
