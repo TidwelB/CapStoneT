@@ -10,6 +10,7 @@ require("scientist")
 require("shaders")
 require("util.items.gengar")
 require("util.items.flashlight")
+require("util.items.rock")
 Moan = require 'libraries/Moan/Moan'
 require("SCP076")
 local testing = require("testing.testing")
@@ -48,29 +49,15 @@ function game:enter()
     --          whether that be the walls, the green stuff, etc...
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
+rock.load(self)
+-- rock = {}
+--     rock.spritesheet = love.graphics.newImage("sprites/rock.png")
+--     rock.x = 400
+--     rock.y = 400
+--     rock.h = rock.spritesheet:getHeight()
+--     rock.w = rock.spritesheet:getWidth()
+--     rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
 
-rock = {}
-    rock.spritesheet = love.graphics.newImage("sprites/rock.png")
-    rock.x = 400
-    rock.y = 400
-    rock.h = rock.spritesheet:getHeight()
-    rock.w = rock.spritesheet:getWidth()
-    rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
-
--- gengar = {}
---     gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
---     gengar.x = 200
---     gengar.y = 200
---     gengar.h = gengar.spritesheet:getHeight()
---     gengar.w= gengar.spritesheet:getWidth()
-
--- flashlight = {}
---     flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
---     flashlight.x = 500
---     flashlight.y = 200
---     flashlight.h = flashlight.spritesheet:getHeight()
---     flashlight.w = flashlight.spritesheet:getWidth()
---     flashlight.scale = 0.1
 
     walls = {}
 
@@ -134,7 +121,7 @@ function game:update(dt)
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
-
+    --rock.update(dt)
    world:update(dt)
    shaders:update(dt)
 end
@@ -160,6 +147,7 @@ function game:draw()
         -- end
         gengar.draw("runGame")
         flashlight.draw("runGame")
+        rock.draw("runGame")
         -- if checkInventory(inventory, "flashlight") == false then
         --     love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
         -- end
@@ -170,30 +158,30 @@ function game:draw()
         --DRAW_SCP(SCP076, player.x, player.y, love.timer.getDelta())
         end
         --ROCK
-        if checkInventory(inventory, "rock") == false then
-        rock.x = rock.collider:getX() 
-        rock.y = rock.collider:getY() 
-        love.graphics.draw(rock.spritesheet, rock.x, rock.y, rock.collider:getAngle(), 1, 1, rock.w/2, rock.h/2)
-        local x, y = rock.collider:getLinearVelocity()
-        local w = rock.collider:getAngularVelocity()
-        if (math.random(0,range) == 1) then
-            if x > 1 and y > 1 and w > 1 then
-            x = x * 0.33
-            y = y * 0.33
-            w = w * 0.33
-            else
-            x = 0
-            y = 0
-            w = 0
-            end
-            range = range / 1.5
-            if range < 10 then
-                range = 100
-            end
-        end
-        rock.collider:setAngularVelocity(w)
-        rock.collider:setLinearVelocity(x, y)
-    end
+    --     if checkInventory(inventory, "rock") == false then
+    --     rock.x = rock.collider:getX() 
+    --     rock.y = rock.collider:getY() 
+    --     love.graphics.draw(rock.spritesheet, rock.x, rock.y, rock.collider:getAngle(), 1, 1, rock.w/2, rock.h/2)
+    --     local x, y = rock.collider:getLinearVelocity()
+    --     local w = rock.collider:getAngularVelocity()
+    --     if (math.random(0,range) == 1) then
+    --         if x > 1 and y > 1 and w > 1 then
+    --         x = x * 0.33
+    --         y = y * 0.33
+    --         w = w * 0.33
+    --         else
+    --         x = 0
+    --         y = 0
+    --         w = 0
+    --         end
+    --         range = range / 1.5
+    --         if range < 10 then
+    --             range = 100
+    --         end
+    --     end
+    --     rock.collider:setAngularVelocity(w)
+    --     rock.collider:setLinearVelocity(x, y)
+    -- end
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5, nil, 6, 6)
         scientist.anim:draw(scientist.spriteSheet,scientist.x,scientist.y,nil,5,nil,6,6)
         --enemy.draw()
