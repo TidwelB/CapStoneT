@@ -114,11 +114,10 @@ if player.y > 270 and player.y < 295 then
         if love.keyboard.isDown('e') then
             Gamestate.push(greenmon)
         end
-    end
-else 
-    if player.x < 328 and player.x > 183 then
+    end 
+    if  player.x > 183 and player.x < 328 then
         if love.keyboard.isDown('e') then
-            Gamestate.push(pause)
+            Gamestate.push(bluemon)
         end
     end
 end
