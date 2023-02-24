@@ -110,6 +110,21 @@ function levelThree:update(dt)
     --UPDATE_ENEMY(dt)
     --UPDATE_SCP(dt)
 
+if player.y > 270 and player.y < 295 then
+    if player.x > 382 and player.x < 457 then
+        if love.keyboard.isDown('e') then
+            Gamestate.push(greenmon)
+        end
+    end
+else 
+    if player.x < 328 and player.x > 183 then
+        if love.keyboard.isDown('e') then
+            Gamestate.push(pause)
+        end
+    end
+end
+
+
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
 

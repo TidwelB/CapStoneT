@@ -14,6 +14,7 @@ scientist.spriteSheet = love.graphics.newImage('sprites/guard_white_spritesheet.
 scientist.grid = anim8.newGrid(16, 16, scientist.spriteSheet:getWidth(), scientist.spriteSheet:getHeight())
 scientist.w = scientist.spriteSheet:getWidth()
 scientist.h = scientist.spriteSheet:getHeight()
+scientist.icon = love.graphics.newImage('sprites/scientist.png')
 
 scientist.animations = {}
     scientist.animations.down = anim8.newAnimation( scientist.grid('1-4', 1), 0.25 )
@@ -115,22 +116,34 @@ function scientist.response(dt)
     -- if player presses "e" close enough to scientist then he talks
     -- press space to loop dialog
     if love.keyboard.isDown("e") and distanceBetweenSprites(player.x, player.y, 55, 80, scientist.x, scientist.y, scientist.w,scientist.h) < 80 then
-        Moan.speak("Scientist", { "Hello" })
-        Moan.speak("Scientist", { "Yo" })
+        Moan.speak("Scientist", { "Hello" , "yo"}, {image = scientist.icon })
+
         if checkInventory(inventory, "rock") == true then
-            Moan.speak("Scientist", { "you rock" })
+            Moan.speak("Scientist", { "you rock" }, {image = scientist.icon })
         end
         if checkInventory(inventory, "gengar") == true then
-            Moan.speak("Scientist", { "You got the gengar" })
+            Moan.speak("Scientist", { "You got the gengar" }, {image = scientist.icon })
         end
                 if checkInventory(inventory, "flashlight") == true then
-            Moan.speak("Scientist", { "You got the flashlight" })
+            Moan.speak("Scientist", { "You got the flashlight" }, {image = scientist.icon })
         end
+--        Moan.speak("Scientist", {"Should I stop talking?"}, {x=10, y=10, image=scientist.icon,
+--                  onstart=function() camera:move(100, 20) end,
+--                   options={
+--                    {"Yes",  function() scientist.goodbye() end},
+--                    {"No", function() end},
+--                     }}
+--                   )
     end
+
     -- if player leaves radius the chat disapears
     if distanceBetweenSprites(player.x, player.y, 55, 80, scientist.x, scientist.y, scientist.w, scientist.h) > 150 then
         Moan.clearMessages()
     end
+end
+
+function scientist.goodbye() 
+        Moan.speak("\n", { "\n"})
 end
 
 function love.keypressed(key)
