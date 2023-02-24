@@ -103,9 +103,10 @@ function levelTwo:update(dt)
     elseif (player.health <= (player.max_health / 4)) then
         redheartbeat.anim:update(dt)
     end
-    --enemy.anim:update(dt)
-    --UPDATE_ENEMY(dt)
-    --UPDATE_SCP(dt)
+    
+    if distanceBetweenSprites(player.x, player.y, 55, 80, 34.67, 93.33, 93.33, 48.00) < 150 then
+        Moan.clearMessages()
+    end
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
