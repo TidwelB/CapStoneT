@@ -117,6 +117,15 @@ function scientist.response(dt)
     if love.keyboard.isDown("e") and distanceBetweenSprites(player.x, player.y, 55, 80, scientist.x, scientist.y, scientist.w,scientist.h) < 80 then
         Moan.speak("Scientist", { "Hello" })
         Moan.speak("Scientist", { "Yo" })
+        if checkInventory(inventory, "rock") == true then
+            Moan.speak("Scientist", { "you rock" })
+        end
+        if checkInventory(inventory, "gengar") == true then
+            Moan.speak("Scientist", { "You got the gengar" })
+        end
+                if checkInventory(inventory, "flashlight") == true then
+            Moan.speak("Scientist", { "You got the flashlight" })
+        end
     end
     -- if player leaves radius the chat disapears
     if distanceBetweenSprites(player.x, player.y, 55, 80, scientist.x, scientist.y, scientist.w, scientist.h) > 150 then
