@@ -24,7 +24,7 @@ function levelThree:enter()
     camera = cam()
 
     -- loads in the map
-    testingMap = sti('maps/level1.lua')
+    testingMap = sti('maps/level3.lua')
 
     -- draws the window size
     world = wf.newWorld(0, 0)
@@ -109,6 +109,21 @@ function levelThree:update(dt)
     --UPDATE_ENEMY(dt)
     --UPDATE_SCP(dt)
 
+if player.y > 270 and player.y < 295 then
+    if player.x > 382 and player.x < 457 then
+        if love.keyboard.isDown('e') then
+            Gamestate.push(greenmon)
+        end
+    end
+else 
+    if player.x < 328 and player.x > 183 then
+        if love.keyboard.isDown('e') then
+            Gamestate.push(pause)
+        end
+    end
+end
+
+
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
 
@@ -123,7 +138,8 @@ function levelThree:draw()
     camera:attach()
         testingMap:drawLayer(testingMap.layers["floor"])
         testingMap:drawLayer(testingMap.layers["walls"])
-        testingMap:drawLayer(testingMap.layers["stuff"])
+        testingMap:drawLayer(testingMap.layers["walls2"])
+        testingMap:drawLayer(testingMap.layers["puzzlelock"])
         testingMap:drawLayer(testingMap.layers["items"])
         --testingMap:drawLayer(testingMap.layers["bluepuzzlelock"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
@@ -133,8 +149,8 @@ function levelThree:draw()
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()
-        gengar.draw("levelThree")
-        flashlight.draw("levelThree")
+        --gengar.draw("levelThree")
+        --flashlight.draw("levelThree")
 
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)

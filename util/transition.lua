@@ -19,11 +19,20 @@ print(player.y)
 print(Gamestate.current() == runGame)
         if Gamestate.current() == runGame and player.y < 300 then
             room = "levelOne"
+            rock.collider:destroy()
             return Gamestate.switch(runLevelOne)
-        else
+        else if Gamestate.current() == runGame then
             room = "levelTwo"
+            rock.collider:destroy()
             return Gamestate.switch(runLevelTwo)
-        
+        end
+        end
+
+        if Gamestate.current() == runLevelTwo and player.y > 1400 then
+            print("yea i tried")
+            room = "levelThree"
+            rock.collider:destroy()
+            return Gamestate.switch(runLevelThree)
         end
 
 

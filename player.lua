@@ -209,6 +209,7 @@ if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false o
     if distanceBetweenSprites(player.x, player.y, 55, 80, rock.x, rock.y, rock.w, rock.h ) <100 and checkInventory(inventory,"rock") == false  and player.keytimer > 150 and inventory[2] == nil then
         --print("added rock to inventory")
         table.insert(inventory,"rock")
+        rock.collider:destroy()
         player.keytimer = 0
     end
 
@@ -245,6 +246,7 @@ function DropItem(param)
          y = player.collider:getY() +60
     end
     if item == "rock" then
+        rock:load()
         rock.collider:setPosition(x,y)
     end
     if item == "flashlight" then
