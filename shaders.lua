@@ -6,8 +6,13 @@ shaders = {}
 
 
 function shaders:window()
-    windowWidth = game.width
-    windowHeight = game.height
+    if game.width == nil then
+        windowWidth = 1920
+        windowHeight = 1080
+    else
+        windowWidth = game.width
+        windowHeight = game.height
+    end
 end
 
 scale = 100

@@ -50,8 +50,12 @@ player.animations = {}
     player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.25 )
     player.anim = player.animations.left
 
-function player.load()
-        player.collider = world:newBSGRectangleCollider(450, 300, 55, 80, 14)
+function player.load(x,y)
+if x == nil then
+    x = 450
+    y = 300
+end
+        player.collider = world:newBSGRectangleCollider(x, y, 55, 80, 14)
         player.collider:setCollisionClass('Solid')
         player.collider:setFixedRotation(true)
 end
@@ -126,7 +130,7 @@ function player.control(dt)
            isMoving = true
        end
 
-       
+
        if shaders.flashlight == true then
        local width, height = love.window.getMode()
        local mousex, mousey = love.mouse.getPosition()

@@ -90,7 +90,17 @@ flashlight = {}
             end
         end
 
-        player.load()
+if saveLoad == true then
+    print(saveLoad)
+    --player.load(data.position.x,data.position.y)
+else
+print(saveLoad)
+player.load()
+
+
+end
+            
+
        -- player.x = data.x
         --player.y = data.y
         --enemy.load()

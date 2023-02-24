@@ -35,6 +35,8 @@ function save:enter(from)
 
 end
 
+
+
 --function pause:update(dt)
   --  pause.update(dt)
 --end
@@ -44,6 +46,7 @@ local folder_path = "Desktop/Remedy" -- Replace this with the path to your folde
 -- Get the list of files in the folder
 --local path = os.getenv("HOME") .. "/Desktop/Remedy/"
 local files = {}
+
 local op = love.system.getOS()
 if op == "Windows" then
     --local path = os.getenv("HOME") .. "\\Desktop\\Remedy\\"
@@ -56,7 +59,6 @@ if op == "Windows" then
     for file in io.popen("dir /B " .. path .. "*.json"):lines() do 
         print(file)
         table.insert(files, file)
-        --local file_name = string.match(file, "[/%[%]%(%){}%+%-*%%^%$%?%.\\]")
         local file_name = file:gsub("[/%[%]%(%){}%+%-*%%^%$%?%.\\]%f[%a]json%f[%A]", "")
         table.insert(buttons, newButton(file_name, function() 
             --Read and parse the JSON file
@@ -66,9 +68,22 @@ if op == "Windows" then
             files:close()
             -- Do something with the data, e.g. set player coordinates
            
-            player.x = data.position.x
-            player.y = data.position.y
+            -- player.x = data.position.x
+            -- player.y = data.position.y
+            print(data.position.x)
+            print(data.position.y)
+
             inventory = data.inventory
+            saveLoad = true
+
+            if data.level == "runGame" then
+                level = runGame
+            elseif data.level == "levelOne" then
+                shaders:window()
+                level = runLevelOne
+            end
+            Gamestate.switch(level)
+            player.load(data.position.x,data.position.y)
             
         end))
     end
@@ -87,15 +102,21 @@ else
             data = json.decode(data_str)
             files:close()
             -- Do something with the data, e.g. set player coordinates
-            
+            saveLoad = true
             if data.level == "runGame" then
                 level = runGame
+            elseif data.level == "levelOne" then
+                shaders:window()
+                level = runLevelOne
+            
             end
             Gamestate.switch(level)
             player.x = data.position.x
             player.y = data.position.y
             inventory = data.inventory
-            player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
+            
+            player.load(data.position.x,data.position.y)
+            --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
         end))
     end
 
