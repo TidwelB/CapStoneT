@@ -321,6 +321,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="6" name="PuzzleLock">
+  <object id="11" x="2766.67" y="96" width="76" height="282.667"/>
+  <object id="13" x="2780" y="349.333" width="393.333" height="29.3333"/>
+ </objectgroup>
  <objectgroup id="5" name="Walls">
   <object id="2" x="10" y="14" width="706" height="68"/>
   <object id="3" x="234" y="90" width="212" height="30"/>
@@ -345,16 +349,12 @@
   <object id="27" x="303.03" y="969.697" width="924.242" height="54.5455"/>
   <object id="28" x="300" y="681.818" width="930.303" height="45.4545"/>
   <object id="29" x="1.33333" y="89.3333" width="22.6667" height="3106.67"/>
-  <object id="30" x="6.66667" y="3120" width="3186.67" height="72"/>
+  <object id="30" x="53.3333" y="3122.67" width="3186.67" height="72"/>
   <object id="31" x="3177.33" y="2.66667" width="16" height="3186.67"/>
   <object id="32" x="2472" y="8" width="718" height="76"/>
  </objectgroup>
  <objectgroup id="9" name="Transitions">
-  <object id="34" x="1349" y="3124" width="186" height="69"/>
- </objectgroup>
- <objectgroup id="6" name="PuzzleLock">
-  <object id="11" x="2766.67" y="96" width="76" height="282.667"/>
-  <object id="13" x="2780" y="349.333" width="393.333" height="29.3333"/>
+  <object id="34" x="1347.67" y="3106.67" width="186" height="69"/>
  </objectgroup>
  <layer id="3" name="items" width="100" height="100">
   <data encoding="csv">

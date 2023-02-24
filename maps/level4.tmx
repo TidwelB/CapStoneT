@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="29">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="35">
  <editorsettings>
   <export target="level4.lua" format="lua"/>
  </editorsettings>
@@ -198,6 +198,12 @@
   <object id="26" x="1160.67" y="484" width="75.3333" height="50"/>
   <object id="27" x="1177.33" y="388.667" width="256.667" height="83.3333"/>
   <object id="28" x="1352" y="482" width="86.6667" height="50"/>
+  <object id="29" x="1037.33" y="576" width="10.6667" height="169.333"/>
+  <object id="30" x="684" y="576" width="13.3333" height="168"/>
+  <object id="31" x="293.333" y="482.667" width="81.3333" height="64"/>
+  <object id="32" x="293.333" y="864" width="373.333" height="94.6667"/>
+  <object id="33" x="293.333" y="958.667" width="84" height="70.6667"/>
+  <object id="34" x="412" y="932" width="38.6667" height="57.3333"/>
  </objectgroup>
  <objectgroup id="5" name="Transitions">
   <object id="1" x="775.333" y="10" width="178.667" height="66"/>
