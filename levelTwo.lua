@@ -57,28 +57,7 @@ function levelTwo:enter()
             end
         end
 
-    rock = {}
-        rock.spritesheet = love.graphics.newImage("sprites/rock.png")
-        rock.x = 400
-        rock.y = 400
-        rock.h = rock.spritesheet:getHeight()
-        rock.w = rock.spritesheet:getWidth()
-        rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
-    
-    gengar = {}
-        gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
-        gengar.x = 200
-        gengar.y = 200
-        gengar.h = gengar.spritesheet:getHeight()
-        gengar.w= gengar.spritesheet:getWidth()
-    
-    flashlight = {}
-        flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
-        flashlight.x = 500
-        flashlight.y = 200
-        flashlight.h = flashlight.spritesheet:getHeight()
-        flashlight.w = flashlight.spritesheet:getWidth()
-        flashlight.scale = 0.1
+
 
         if saveLoad == true then
             print(saveLoad)
