@@ -7,9 +7,18 @@ rock = {}
     --rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
     rock.room = "runGame"
 
-function rock:load()
+function rock.load(x,y)
+print("loading...")
     if rock.collider == nil and rock.room == room then
-    rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
+        print("collider nil and in room")
+        if x == nil then
+            rock.x = 400
+            rock.y = 400
+            print("values set")
+        end
+            rock.collider = world:newBSGRectangleCollider(x, y, rock.h, rock.w, 14)
+                print("loaded")
+
     end
 end
 
@@ -21,7 +30,16 @@ function rock:draw()
 end
 end
 
+function rock.delete()
+    if rock.collider ~= nil then
+        rock.collider:destroy()
+        rock.collider = nil
+        print("rock deleted")
+    end
+end
+
 function rock.update(dt)
+    if rock.room == room then
     if checkInventory(inventory, "rock") == false then
         rock.x = rock.collider:getX() 
         rock.y = rock.collider:getY() 
@@ -46,4 +64,5 @@ function rock.update(dt)
         rock.collider:setAngularVelocity(w)
         rock.collider:setLinearVelocity(x, y)
     end
+end
 end

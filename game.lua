@@ -49,7 +49,7 @@ function game:enter()
     --          whether that be the walls, the green stuff, etc...
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
-rock.load(self)
+rock.load(400,400)
 -- rock = {}
 --     rock.spritesheet = love.graphics.newImage("sprites/rock.png")
 --     rock.x = 400
@@ -121,7 +121,7 @@ function game:update(dt)
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
-    --rock.update(dt)
+    rock.update(dt)
    world:update(dt)
    shaders:update(dt)
 end

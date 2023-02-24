@@ -6,6 +6,7 @@ walls = {}
 require('game')
 require("util.items.gengar")
 require("util.items.flashlight")
+require("util.items.rock")
 
 function levelThree:enter()
     room = "levelThree"
@@ -57,13 +58,13 @@ function levelThree:enter()
             end
         end
 
-    rock = {}
-        rock.spritesheet = love.graphics.newImage("sprites/rock.png")
-        rock.x = 400
-        rock.y = 400
-        rock.h = rock.spritesheet:getHeight()
-        rock.w = rock.spritesheet:getWidth()
-        rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
+    -- rock = {}
+    --     rock.spritesheet = love.graphics.newImage("sprites/rock.png")
+    --     rock.x = 400
+    --     rock.y = 400
+    --     rock.h = rock.spritesheet:getHeight()
+    --     rock.w = rock.spritesheet:getWidth()
+    --     rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
     
     -- gengar = {}
     --     gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")

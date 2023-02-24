@@ -10,7 +10,9 @@ end
 function transition:Transitioner()
     if player.collider:enter('Ghost') then
         if player.x > 1300 and player.x < 1550 and room =="levelOne" then
+            rock.delete()
             room = "runGame"
+            
             return Gamestate.switch(runGame)
         end
 print(player.x)
@@ -18,21 +20,33 @@ print(player.y)
         --transition:update()
 print(Gamestate.current() == runGame)
         if Gamestate.current() == runGame and player.y < 300 then
+            rock.delete()
             room = "levelOne"
-            rock.collider:destroy()
+            
+            -- rock.collider:destroy()
+            -- rock.collider = nil
             return Gamestate.switch(runLevelOne)
         else if Gamestate.current() == runGame then
+            rock.delete()
             room = "levelTwo"
-            rock.collider:destroy()
             return Gamestate.switch(runLevelTwo)
         end
         end
 
         if Gamestate.current() == runLevelTwo and player.y > 1400 then
             print("yea i tried")
+            rock.delete()
             room = "levelThree"
-            rock.collider:destroy()
             return Gamestate.switch(runLevelThree)
+        else if Gamestate.current() == runLevelTwo then
+            Gamestate.switch(runGame)
+        end
+        end
+
+        if Gamestate.current() == runLevelThree and player.y <300 then
+            rock.delete()
+            room = "levelTwo"
+            return Gamestate.switch(runLevelTwo)
         end
 
 

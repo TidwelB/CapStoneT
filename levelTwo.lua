@@ -4,6 +4,9 @@ Gamestate = require 'libraries.gamestate'
 levelTwo = {}
 walls = {}
 require('game')
+require("util.items.gengar")
+require("util.items.flashlight")
+require("util.items.rock")
 
 function levelTwo:enter()
     room = "levelTwo"
@@ -55,28 +58,28 @@ function levelTwo:enter()
             end
         end
 
-    rock = {}
-        rock.spritesheet = love.graphics.newImage("sprites/rock.png")
-        rock.x = 400
-        rock.y = 400
-        rock.h = rock.spritesheet:getHeight()
-        rock.w = rock.spritesheet:getWidth()
-        rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
+    -- rock = {}
+    --     rock.spritesheet = love.graphics.newImage("sprites/rock.png")
+    --     rock.x = 400
+    --     rock.y = 400
+    --     rock.h = rock.spritesheet:getHeight()
+    --     rock.w = rock.spritesheet:getWidth()
+    --     rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
     
-    gengar = {}
-        gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
-        gengar.x = 200
-        gengar.y = 200
-        gengar.h = gengar.spritesheet:getHeight()
-        gengar.w= gengar.spritesheet:getWidth()
+    -- gengar = {}
+    --     gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
+    --     gengar.x = 200
+    --     gengar.y = 200
+    --     gengar.h = gengar.spritesheet:getHeight()
+    --     gengar.w= gengar.spritesheet:getWidth()
     
-    flashlight = {}
-        flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
-        flashlight.x = 500
-        flashlight.y = 200
-        flashlight.h = flashlight.spritesheet:getHeight()
-        flashlight.w = flashlight.spritesheet:getWidth()
-        flashlight.scale = 0.1
+    -- flashlight = {}
+    --     flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
+    --     flashlight.x = 500
+    --     flashlight.y = 200
+    --     flashlight.h = flashlight.spritesheet:getHeight()
+    --     flashlight.w = flashlight.spritesheet:getWidth()
+    --     flashlight.scale = 0.1
 
         if saveLoad == true then
             print(saveLoad)
@@ -131,7 +134,7 @@ function levelTwo:draw()
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()
-
+        
 
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)

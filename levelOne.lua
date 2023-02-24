@@ -6,6 +6,7 @@ walls = {}
 require('game')
 require("util.items.gengar")
 require("util.items.flashlight")
+require("util.items.rock")
 
 function levelOne:enter()
     room = "levelOne"
@@ -57,13 +58,13 @@ function levelOne:enter()
             end
         end
 
-    rock = {}
-        rock.spritesheet = love.graphics.newImage("sprites/rock.png")
-        rock.x = 400
-        rock.y = 400
-        rock.h = rock.spritesheet:getHeight()
-        rock.w = rock.spritesheet:getWidth()
-        rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
+    -- rock = {}
+    --     rock.spritesheet = love.graphics.newImage("sprites/rock.png")
+    --     rock.x = 400
+    --     rock.y = 400
+    --     rock.h = rock.spritesheet:getHeight()
+    --     rock.w = rock.spritesheet:getWidth()
+    --     rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
     
     -- gengar = {}
     --     gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
@@ -87,6 +88,7 @@ function levelOne:enter()
         print(saveLoad)
         player.load()
         end
+        rock.load()
         --enemy.load()
         --SCP.load()
         
@@ -111,7 +113,7 @@ function levelOne:update(dt)
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
-
+   rock.update(dt)
    world:update(dt)
    shaders:update(dt)
    
@@ -135,6 +137,7 @@ function levelOne:draw()
         world:draw()
         gengar.draw("levelOne")
         flashlight.draw("levelOne")
+        rock.draw("levelOne")
 
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)

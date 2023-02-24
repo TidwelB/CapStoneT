@@ -84,7 +84,7 @@ function player.colliderMatching(dt)
 end
 
 function player.control(dt)
-        local isMoving = false
+        local isMoving = false 
         player.xvel = 0
         player.yvel = 0
         player.speed = 250
@@ -197,6 +197,7 @@ function distanceBetweenSprites(x1, y1, w1, h1, x2, y2, w2, h2)
   
 
 if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false or checkInventory(inventory,"flashlight") == false) and inventory[2] == nil then
+
     if distanceBetweenSprites(player.x, player.y, 55, 80, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 and checkInventory(inventory,"gengar") == false and inventory[2] == nil then
        --print("added Genga to inventory") 
         table.insert(inventory,"gengar")
@@ -210,6 +211,7 @@ if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false o
         --print("added rock to inventory")
         table.insert(inventory,"rock")
         rock.collider:destroy()
+        rock.collider = nil
         player.keytimer = 0
     end
 
@@ -246,8 +248,9 @@ function DropItem(param)
          y = player.collider:getY() +60
     end
     if item == "rock" then
-        rock:load()
-        rock.collider:setPosition(x,y)
+        rock.room = room
+        rock.load(x,y)
+        --rock.collider:setPosition(x,y)
     end
     if item == "flashlight" then
         flashlight.x = x
