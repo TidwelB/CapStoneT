@@ -1,12 +1,12 @@
 -- Gamestate library
 
 Gamestate = require 'libraries.gamestate'
-levelOne = {}
+levelTwo = {}
 walls = {}
 require('game')
 
-function levelOne:enter()
-    room = "levelOne"
+function levelTwo:enter()
+    room = "levelTwo"
     -- Hitbox library
     wf = require 'libraries/windfield'
     -- Tiled implementation library
@@ -91,7 +91,7 @@ function levelOne:enter()
         
 end
 
-function levelOne:update(dt)
+function levelTwo:update(dt)
     
     player:update(dt)
     player.anim:update(dt)
@@ -116,7 +116,7 @@ function levelOne:update(dt)
 
 end
 
-function levelOne:draw()
+function levelTwo:draw()
     -- Tells the game where to start looking through the camera POV
     camera:attach()
         testingMap:drawLayer(testingMap.layers["lava"])
