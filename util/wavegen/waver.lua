@@ -80,19 +80,22 @@ function addDataPoint()
 end
 
 function waver:update(dt)
-    if love.keyboard.isDown('w') and wave == 1 then
-        wave = 2
-    end
-    if love.keyboard.isDown('a') and wave == 2 then
-        wave = 3
-    end
-    if love.keyboard.isDown('s') and wave == 3 then
-        wave = 4
-    end
-    if love.keyboard.isDown('d') and wave == 4 then
+    if love.keyboard.isDown('1') then
         wave = 1
     end
+    if love.keyboard.isDown('2') then
+        wave = 2
+    end
+    if love.keyboard.isDown('3') then
+        wave = 3
+    end
+    if love.keyboard.isDown('4') then
+        wave = 4
+    end
 
+    if love.keyboard.isDown("escape") then
+        Gamestate.pop(waver)
+    end
     -- Add a new data point at the specified time interval
     updateInterval = updateInterval - dt
     if updateInterval <= 0 then
@@ -116,5 +119,9 @@ function waver:draw()
             (data[i] + 1) * love.graphics.getHeight() / 2
         )
     end
+
     love.graphics.print(wave, 100, 100)
+    love.graphics.print("Wave Data Manipulation Station", 100, 10)
+    love.graphics.print("Usage Guide:", 100, 30)
+    love.graphics.print("Use Numbers 1-4 to change between different wave forms", 100, 50)
 end

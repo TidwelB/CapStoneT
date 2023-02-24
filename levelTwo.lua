@@ -1,6 +1,7 @@
 -- Gamestate library
 
 Gamestate = require 'libraries.gamestate'
+levelTwo = Gamestate.new()
 levelTwo = {}
 walls = {}
 require('util.wavegen.waver')
@@ -108,7 +109,7 @@ function levelTwo:update(dt)
 
     if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 164, 93.33, 48.00) < 150 then
         if love.keyboard.isDown("e") then
-            Gamestate.switch(waver)
+            Gamestate.push(waver)
         end
     end
 
