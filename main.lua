@@ -3,6 +3,7 @@ require('tutorial')
 require('levelOne')
 require('maze')
 require('levelTwo')
+require('levelThree')
 require('pause')
 
 -- require('util.wavegen.computer1')
@@ -30,6 +31,7 @@ runGame = {}
 runTutorial = {}
 runLevelOne = {}
 runLevelTwo = {}
+runLevelThree = {}
 runMaze = {}
 --runLevelTwo = {}
 chestinventory = {}
@@ -147,6 +149,16 @@ function runLevelTwo:update(dt)
 end
 function runLevelTwo:draw()
     levelTwo.draw(self)
+end
+
+function runLevelThree:enter()
+    levelThree.enter(self)
+end
+function runLevelThree:update(dt)
+    levelThree.update(self, dt)
+end
+function runLevelThree:draw()
+    levelThree.draw(self)
 end
 
 -- Code for executing the maze section
