@@ -95,7 +95,7 @@ function levelTwo:enter()
 end
 
 function levelTwo:update(dt)
-    
+
     player:update(dt)
     player.anim:update(dt)
 
