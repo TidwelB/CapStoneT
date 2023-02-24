@@ -8,7 +8,8 @@ require("enemy")
 require("player")
 require("scientist")
 require("shaders")
-require("util.items.gengarItem")
+require("util.items.gengar")
+require("util.items.flashlight")
 Moan = require 'libraries/Moan/Moan'
 require("SCP076")
 local testing = require("testing.testing")
@@ -63,13 +64,13 @@ rock = {}
 --     gengar.h = gengar.spritesheet:getHeight()
 --     gengar.w= gengar.spritesheet:getWidth()
 
-flashlight = {}
-    flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
-    flashlight.x = 500
-    flashlight.y = 200
-    flashlight.h = flashlight.spritesheet:getHeight()
-    flashlight.w = flashlight.spritesheet:getWidth()
-    flashlight.scale = 0.1
+-- flashlight = {}
+--     flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
+--     flashlight.x = 500
+--     flashlight.y = 200
+--     flashlight.h = flashlight.spritesheet:getHeight()
+--     flashlight.w = flashlight.spritesheet:getWidth()
+--     flashlight.scale = 0.1
 
     walls = {}
 
@@ -158,9 +159,10 @@ function game:draw()
         -- love.graphics.draw(gengar.spritesheet,gengar.x,gengar.y)
         -- end
         gengar.draw("runGame")
-        if checkInventory(inventory, "flashlight") == false then
-            love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
-        end
+        flashlight.draw("runGame")
+        -- if checkInventory(inventory, "flashlight") == false then
+        --     love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
+        -- end
 
         if Gamestate.current() == pause then 
         --DRAW_SCP(SCP076, player.x, player.y, 0)

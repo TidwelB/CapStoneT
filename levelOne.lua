@@ -4,7 +4,8 @@ Gamestate = require 'libraries.gamestate'
 levelOne = {}
 walls = {}
 require('game')
-require("util.items.gengarItem")
+require("util.items.gengar")
+require("util.items.flashlight")
 
 function levelOne:enter()
     room = "levelOne"
@@ -71,13 +72,13 @@ function levelOne:enter()
     --     gengar.h = gengar.spritesheet:getHeight()
     --     gengar.w= gengar.spritesheet:getWidth()
     
-    flashlight = {}
-        flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
-        flashlight.x = 500
-        flashlight.y = 200
-        flashlight.h = flashlight.spritesheet:getHeight()
-        flashlight.w = flashlight.spritesheet:getWidth()
-        flashlight.scale = 0.1
+    -- flashlight = {}
+    --     flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
+    --     flashlight.x = 500
+    --     flashlight.y = 200
+    --     flashlight.h = flashlight.spritesheet:getHeight()
+    --     flashlight.w = flashlight.spritesheet:getWidth()
+    --     flashlight.scale = 0.1
 
         if saveLoad == true then
             print(saveLoad)
@@ -133,6 +134,7 @@ function levelOne:draw()
         love.graphics.setShader()
         world:draw()
         gengar.draw("levelOne")
+        flashlight.draw("levelOne")
 
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)

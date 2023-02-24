@@ -39,8 +39,10 @@ function save_file_menu:keypressed(key)
             inventory = saveInventory,
             level = room,
             mvol = musvolume,
-            svol = souvolume
-
+            svol = souvolume,
+            rockpos = {x = rock.x, y = rock.y,room = rock.room},
+            flashlightpos = {x = flashlight.x, y = flashlight.y, room = flashlight.room},
+            gengarpos = {x = gengar.x, y = gengar.y, room = gengar.room}
         }
         
         write_to_json_file(self.filename .. ".json", playerData)

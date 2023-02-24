@@ -250,6 +250,7 @@ function DropItem(param)
     if item == "flashlight" then
         flashlight.x = x
         flashlight.y = y
+        flashlight.room = room
     end
     if item == "gengar" then
         gengar.x = x
