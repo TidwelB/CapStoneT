@@ -3,7 +3,10 @@
 Gamestate = require 'libraries.gamestate'
 levelTwo = {}
 walls = {}
-require('game')
+require('util.wavegen.waver')
+-- local computer2 = require('util.wavegen.computer2')
+-- local computer3 = require('util.wavegen.computer3')
+-- local computer4 = require('util.wavegen.computer4')
 
 function levelTwo:enter()
     room = "levelTwo"
@@ -103,9 +106,11 @@ function levelTwo:update(dt)
     elseif (player.health <= (player.max_health / 4)) then
         redheartbeat.anim:update(dt)
     end
-    
+
     if distanceBetweenSprites(player.x, player.y, 55, 80, 34.67, 93.33, 93.33, 48.00) < 150 then
-        Moan.clearMessages()
+        if love.keypressed('e') then
+            waver:enter()
+        end
     end
 
    -- Moves the camera according to the players movements
