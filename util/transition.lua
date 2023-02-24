@@ -10,7 +10,7 @@ end
 function transition:Transitioner()
     if player.collider:enter('Ghost') then
         if player.x > 1300 and player.x < 1550 and room =="levelOne" then
-            room = "game"
+            room = "runGame"
             return Gamestate.switch(runGame)
         end
 print(player.x)
