@@ -108,7 +108,10 @@ else
             elseif data.level == "levelOne" then
                 shaders:window()
                 level = runLevelOne
-            
+            elseif data.level == "levelTwo" then
+                level = runLevelTwo
+            elseif data.level == "levelThree" then
+                level = runLevelThree
             end
             Gamestate.switch(level)
             player.x = data.position.x
