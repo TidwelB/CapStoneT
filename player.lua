@@ -214,7 +214,15 @@ if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false o
         rock.collider = nil
         player.keytimer = 0
     end
-
+    if distanceBetweenSprites(player.x, player.y, 55, 80, battery1.x, battery1.y, battery1.w, battery1.h) < 80 and checkInventory(inventory,"battery1") == false and inventory[2] == nil then
+        table.insert(inventory,"battery1")
+    end
+    if distanceBetweenSprites(player.x, player.y, 55, 80, battery2.x, battery2.y, battery2.w, battery2.h) < 80 and checkInventory(inventory,"battery2") == false and inventory[2] == nil then
+        table.insert(inventory,"battery2")
+    end
+    if distanceBetweenSprites(player.x, player.y, 55, 80, battery3.x, battery3.y, battery3.w, battery3.h) < 80 and checkInventory(inventory,"battery3") == false and inventory[2] == nil then
+        table.insert(inventory,"battery3")
+    end
     
 end
 --print(player.keytimer)
@@ -261,6 +269,21 @@ function DropItem(param)
         gengar.x = x
         gengar.y = y
         gengar.room = room
+    end
+        if item == "battery1" then
+        battery1.x = x
+        battery1.y = y
+        battery1.room = room
+    end
+    if item == "battery2" then
+        battery2.x = x
+        battery2.y = y
+        battery2.room = room
+    end
+    if item == "battery3" then
+        battery3.x = x
+        battery3.y = y
+        battery3.room = room
     end
     player.keytimer = 0
 
@@ -317,6 +340,9 @@ function player.draw()
     local position = findItem("flashlight")
     local position2 = findItem("gengar")
     local position3 = findItem("rock")
+    local position4 = findItem("battery1")
+    local position5 = findItem("battery2")
+    local position6 = findItem("battery3")
     if love.keyboard.isDown("tab") then
 
         love.graphics.rectangle("line", 200, 15, 64, 64)
@@ -339,7 +365,24 @@ function player.draw()
         if position2 == 2 then
             love.graphics.draw(gengar.spritesheet,287,18,0,.5,.5)
         end
-    
+        if position4 == 1 then
+            love.graphics.draw(battery1.spritesheet,277,0,1.5,1.5)
+        end
+        if position4 == 2 then
+             love.graphics.draw(battery1.spritesheet,367,0,1.5,1.5)
+        end
+        if position5 == 1 then
+            love.graphics.draw(battery1.spritesheet,277,0,1.5,1.5)
+        end
+        if position5 == 2 then
+             love.graphics.draw(battery1.spritesheet,367,0,1.5,1.5)
+        end
+        if position6 == 1 then
+            love.graphics.draw(battery1.spritesheet,277,0,1.5,1.5)
+        end
+        if position6 == 2 then
+             love.graphics.draw(battery1.spritesheet,367,0,1.5,1.5)
+        end
     end
 end
 
