@@ -4,6 +4,7 @@ og = love.graphics.newImage("screens/secret.png")
 secret = og
 bluemon.answer = true
 answer = false
+bluemon.done = false
 bluemon.timer = 0
 function bluemon:enter(from)
     self.from = from
@@ -17,11 +18,14 @@ end
 function bluemon:draw()
     self.from:draw()
    -- love.graphics.reset()
+   print(bluemon.timer)
 bluemon.timer = bluemon.timer +1
    local screenWidth, screenHeight = love.graphics.getWidth(), love.graphics.getHeight()
-    if secret ~= og then
+    if secret ~= og or bluemon.done == true then
         if bluemon.timer > 500 then
             if answer == true then
+                bluemon.done = true
+                bluemon.timer = 0
                 Gamestate.pop()
             end
             secret = og
@@ -32,8 +36,16 @@ bluemon.timer = bluemon.timer +1
        love.timer.sleep(.15)
        Gamestate.pop()
    end
+   if answer == false then
     love.graphics.printf("Enter the secret tunnel:", 0, love.graphics.getHeight()/2 - 20, love.graphics.getWidth(), "center")
     love.graphics.printf(self.word, 0, love.graphics.getHeight()/2 + 10, love.graphics.getWidth(), "center")
+   else 
+   end
+   if bluemon.done == true then
+    secret = love.graphics.newImage("screens/correct.png")
+    answer = true
+   end
+    
 end
 
 function bluemon:textinput(t)
@@ -48,6 +60,7 @@ function bluemon:keypressed(key)
             secret = love.graphics.newImage("screens/correct.png")
             bluemon.timer = 0
             answer = true
+            self.word = ""
            -- Gamestate.pop(bluemon)
             --need to unlock/draw item that is from solving puzzle
         else
@@ -61,5 +74,11 @@ end
 
 
 function bluemon.load()
-    secret = love.graphics.newImage("screens/secret.jpg")
+    print(answer)
+    if answer == true then
+        secret = love.graphics.newImage("screens/correct.png")
+        --self.word = "secure contain protect"
+    else
+    secret = og
+    end
 end
