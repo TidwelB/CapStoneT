@@ -5,7 +5,7 @@ settings = Gamestate.new()
 --volume = .2
 BUTTON_HEIGHT = 64
 local font = love.graphics.newFont(32)
-local button6 = {text = "Return to Pause Menu", fn = function()Gamestate.pop()end, width = 300}
+local button6 = {text = "Return to Pause Menu", fn = function()Gamestate.pop() sleep(.3)end, width = 300}
 local button3 = {text = "Increase Volume", fn = function() settings.increasevolumes(Music.music) end, width = 150, x = 450 , y = 200}
 local button2 = {text = "Decrease Volume", fn = function() settings.decreasevolumes(Music.music) end, width = 150, x = 900, y = 200}
 local button5 = {text = "Increase Sound Effect Volumes", fn = function() settings.increasevolumes(Sounds.collision) end, width = 150, x = 450, y = 400}
