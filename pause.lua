@@ -54,8 +54,8 @@ function pause:update(dt)
 end
 
 font = love.graphics.newFont(32)
-table.insert(buttons,newButton("Return to Game",function()Gamestate.pop()end))
-table.insert(buttons,newButton("Settings",function()Gamestate.push(settings)end))
+table.insert(buttons,newButton("Return to Game",function()Gamestate.pop() end))
+table.insert(buttons,newButton("Settings",function()Gamestate.push(settings) sleep(.3)end))
 table.insert(buttons,newButton("Exit to Windows",function()love.event.quit(0)end))
 table.insert(buttons,newButton("Save Game",function() saveInventory = inventory Gamestate.push(save_file_menu)
         --playerData = {

@@ -162,7 +162,7 @@ function player.control(dt)
 
 
        if love.keyboard.isDown("escape") then
-            love.timer.sleep(.15)
+            love.timer.sleep(.3)
             --Sounds.music:pause()
             Gamestate.push(pause)
     end

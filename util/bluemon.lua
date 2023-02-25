@@ -33,11 +33,11 @@ function bluemon:keypressed(key)
     if key == "backspace" then
         self.word = self.word:sub(1, #self.word-1)
     elseif key == "return" then
-        if self.word == "cry " then
+        if self.word == "secure contain protect" then
             Gamestate.pop(bluemon)
             --need to unlock/draw item that is from solving puzzle
         else
-            Gamestate.push(lose)
+            
         end
     end
 end
