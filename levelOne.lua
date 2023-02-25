@@ -83,7 +83,7 @@ function levelOne:enter()
         end
         rock.load(rock.x,rock.y)
         --enemy.load()
-        --SCP.load()d
+        --SCP.load()
         
         
 end

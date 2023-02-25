@@ -58,6 +58,7 @@ end
         player.collider = world:newBSGRectangleCollider(x, y, 55, 80, 14)
         player.collider:setCollisionClass('Solid')
         player.collider:setFixedRotation(true)
+        player.timer = 0
 end
 
 function player:update(dt)
@@ -67,6 +68,7 @@ function player:update(dt)
     if player.keytimer >= 500 then
         player.keytimer = 0
     end
+    player.timer = player.timer + dt
         -- player.pause(dt)
         player.control(dt)
         player.physics(dt)
