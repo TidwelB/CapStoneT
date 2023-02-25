@@ -3,6 +3,7 @@ bluemon = Gamestate.new()
 og = love.graphics.newImage("screens/secret.png")
 secret = og
 bluemon.answer = true
+answer = false
 bluemon.timer = 0
 function bluemon:enter(from)
     self.from = from
@@ -20,6 +21,9 @@ bluemon.timer = bluemon.timer +1
    local screenWidth, screenHeight = love.graphics.getWidth(), love.graphics.getHeight()
     if secret ~= og then
         if bluemon.timer > 500 then
+            if answer == true then
+                Gamestate.pop()
+            end
             secret = og
     end
     end
@@ -41,11 +45,14 @@ function bluemon:keypressed(key)
         self.word = self.word:sub(1, #self.word-1)
     elseif key == "return" then
         if self.word == "secure contain protect" then
-            Gamestate.pop(bluemon)
+            secret = love.graphics.newImage("screens/correct.png")
+            bluemon.timer = 0
+            answer = true
+           -- Gamestate.pop(bluemon)
             --need to unlock/draw item that is from solving puzzle
         else
             print(self.word)
-            secret = love.graphics.newImage("sprites/flashlight.png")
+            secret = love.graphics.newImage("screens/incorrect.png")
             bluemon.timer = 0
             self.word = ""
         end
