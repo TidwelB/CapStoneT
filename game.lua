@@ -13,6 +13,7 @@ require("util.items.flashlight")
 require("util.items.rock")
 require("util.items.battery1")
 require("util.items.battery2")
+require("util.transition")
 Moan = require 'libraries/Moan/Moan'
 require("SCP076")
 local testing = require("testing.testing")
@@ -51,14 +52,7 @@ function game:enter()
     --          whether that be the walls, the green stuff, etc...
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
-rock.load(rock.x,rock.y)
--- rock = {}
---     rock.spritesheet = love.graphics.newImage("sprites/rock.png")
---     rock.x = 400
---     rock.y = 400
---     rock.h = rock.spritesheet:getHeight()
---     rock.w = rock.spritesheet:getWidth()
---     rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
+    rock.load(rock.x,rock.y)
 
 
     walls = {}
@@ -86,17 +80,11 @@ if saveLoad == true then
     --player.load(data.position.x,data.position.y)
 else
 print(saveLoad)
-player.load()
+player.load(transition.coordx,transition.coordy)
 
 
 end
             
-
-       -- player.x = data.x
-        --player.y = data.y
-        --enemy.load()
-        
-        --timer = 0
 end
 
 
@@ -162,31 +150,7 @@ function game:draw()
         else
         --DRAW_SCP(SCP076, player.x, player.y, love.timer.getDelta())
         end
-        --ROCK
-    --     if checkInventory(inventory, "rock") == false then
-    --     rock.x = rock.collider:getX() 
-    --     rock.y = rock.collider:getY() 
-    --     love.graphics.draw(rock.spritesheet, rock.x, rock.y, rock.collider:getAngle(), 1, 1, rock.w/2, rock.h/2)
-    --     local x, y = rock.collider:getLinearVelocity()
-    --     local w = rock.collider:getAngularVelocity()
-    --     if (math.random(0,range) == 1) then
-    --         if x > 1 and y > 1 and w > 1 then
-    --         x = x * 0.33
-    --         y = y * 0.33
-    --         w = w * 0.33
-    --         else
-    --         x = 0
-    --         y = 0
-    --         w = 0
-    --         end
-    --         range = range / 1.5
-    --         if range < 10 then
-    --             range = 100
-    --         end
-    --     end
-    --     rock.collider:setAngularVelocity(w)
-    --     rock.collider:setLinearVelocity(x, y)
-    -- end
+
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5, nil, 6, 6)
         scientist.anim:draw(scientist.spriteSheet,scientist.x,scientist.y,nil,5,nil,6,6)
         --enemy.draw()
@@ -212,7 +176,8 @@ function game:draw()
 
     DRAW_HUD()
     --DRAW_ENEMY()
-
+    love.graphics.print(player.x, 100, 10)
+    love.graphics.print(player.y, 100, 30)
 
     --testing.run()
 end

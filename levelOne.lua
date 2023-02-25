@@ -4,6 +4,7 @@ Gamestate = require 'libraries.gamestate'
 levelOne = {}
 walls = {}
 require('game')
+require("util.transition")
 require("util.items.gengar")
 require("util.items.flashlight")
 require("util.items.rock")
@@ -61,35 +62,13 @@ function levelOne:enter()
             end
         end
 
-    -- rock = {}
-    --     rock.spritesheet = love.graphics.newImage("sprites/rock.png")
-    --     rock.x = 400
-    --     rock.y = 400
-    --     rock.h = rock.spritesheet:getHeight()
-    --     rock.w = rock.spritesheet:getWidth()
-    --     rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
-    
-    -- gengar = {}
-    --     gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
-    --     gengar.x = 200
-    --     gengar.y = 200
-    --     gengar.h = gengar.spritesheet:getHeight()
-    --     gengar.w= gengar.spritesheet:getWidth()
-    
-    -- flashlight = {}
-    --     flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
-    --     flashlight.x = 500
-    --     flashlight.y = 200
-    --     flashlight.h = flashlight.spritesheet:getHeight()
-    --     flashlight.w = flashlight.spritesheet:getWidth()
-    --     flashlight.scale = 0.1
 
         if saveLoad == true then
             print(saveLoad)
             --player.load(data.position.x,data.position.y)
         else
         print(saveLoad)
-        player.load()
+        player.load(transition.coordx, transition.coordy)
         end
         rock.load(rock.x,rock.y)
         --enemy.load()
@@ -154,5 +133,6 @@ function levelOne:draw()
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()
-
+    love.graphics.print(player.x, 100, 10)
+    love.graphics.print(player.y, 100, 30)
 end

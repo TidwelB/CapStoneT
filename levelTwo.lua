@@ -63,7 +63,7 @@ function levelTwo:enter()
             print(saveLoad)
         else
         print(saveLoad)
-        player.load()
+        player.load(transition.coordx,transition.coordy)
         rock.load(rock.x,rock.y)
         end
 end
