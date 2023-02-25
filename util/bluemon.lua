@@ -2,6 +2,7 @@ bluemon = {}
 bluemon = Gamestate.new()
 og = love.graphics.newImage("screens/secret.png")
 secret = og
+require('util.items.book')
 bluemon.answer = true
 answer = false
 bluemon.done = false
@@ -43,6 +44,7 @@ bluemon.timer = bluemon.timer +1
    end
    if bluemon.done == true then
     secret = love.graphics.newImage("screens/correct.png")
+    
     answer = true
    end
     
@@ -58,6 +60,7 @@ function bluemon:keypressed(key)
     elseif key == "return" then
         if self.word == "secure contain protect" then
             secret = love.graphics.newImage("screens/correct.png")
+            book:draw()
             bluemon.timer = 0
             answer = true
             self.word = ""

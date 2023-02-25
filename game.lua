@@ -115,6 +115,7 @@ function game:update(dt)
    -- enemy.anim:update(dt)
     --timer = timer + dt
     --UPDATE_ENEMY(dt)
+    --UPDATE_SCP(dt)
     
 
     game.height = love.graphics.getHeight()

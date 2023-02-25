@@ -7,6 +7,8 @@ require('game')
 require("util.items.gengar")
 require("util.items.flashlight")
 require("util.items.rock")
+require('util.items.book')
+require("util.bluemon")
 
 function levelThree:enter()
     room = "levelThree"
@@ -142,7 +144,9 @@ function levelThree:draw()
         gengar.draw("levelThree")
         flashlight.draw("levelThree")
         rock.draw("levelThree")
-
+        if bluemon.done == true then
+            book:draw()
+        end
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()
