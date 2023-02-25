@@ -25,7 +25,7 @@ bluemon.timer = bluemon.timer +1
         if bluemon.timer > 500 then
             if answer == true then
                 bluemon.done = true
-                bluemon.timer = 0
+                bluemon.timer = 300
                 Gamestate.pop()
             end
             secret = og
