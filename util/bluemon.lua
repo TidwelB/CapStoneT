@@ -1,21 +1,28 @@
 bluemon = {}
 bluemon = Gamestate.new()
-secret = love.graphics.newImage("screens/secret.png")
+og = love.graphics.newImage("screens/secret.png")
+secret = og
+bluemon.answer = true
+bluemon.timer = 0
 function bluemon:enter(from)
     self.from = from
     self.word = ""
 end
 
 function bluemon:update(dt)
-   -- bluemon.update(dt)
+
 end
 
 function bluemon:draw()
     self.from:draw()
    -- love.graphics.reset()
-
+bluemon.timer = bluemon.timer +1
    local screenWidth, screenHeight = love.graphics.getWidth(), love.graphics.getHeight()
-    
+    if secret ~= og then
+        if bluemon.timer > 500 then
+            secret = og
+    end
+    end
    love.graphics.draw(secret, 0, 0, 0, screenWidth / secret:getWidth(), screenHeight / greenpuzzle:getHeight())
    if love.keyboard.isDown('escape') then
        love.timer.sleep(.15)
@@ -37,10 +44,14 @@ function bluemon:keypressed(key)
             Gamestate.pop(bluemon)
             --need to unlock/draw item that is from solving puzzle
         else
-            
+            print(self.word)
+            secret = love.graphics.newImage("sprites/flashlight.png")
+            bluemon.timer = 0
+            self.word = ""
         end
     end
 end
+
 
 function bluemon.load()
     secret = love.graphics.newImage("screens/secret.jpg")
