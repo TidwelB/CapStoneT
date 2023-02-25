@@ -15,3 +15,9 @@ function battery1:draw()
 end
 end
 end
+
+function battery1.load()
+    battery1.x = data.battery1.x
+    battery1.y = data.battery1.y
+    battery1.room = data.battery1.room
+end

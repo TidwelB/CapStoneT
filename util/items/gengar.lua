@@ -15,3 +15,9 @@ function gengar:draw()
 end
 
 end
+
+function gengar.load()
+    gengar.x = data.gengarpos.x
+    gengar.y = data.gengarpos.y
+    gengar.room = data.gengarpos.room
+end

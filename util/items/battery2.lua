@@ -15,3 +15,9 @@ battery2 = {}
     end
     end
     end
+
+    function battery2.load()
+        battery2.x = data.battery2.x
+        battery2.y = data.battery2.y
+        battery2.room = data.battery2.room
+    end

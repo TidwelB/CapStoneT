@@ -15,3 +15,9 @@ function flashlight:draw()
 end
 
 end
+
+function flashlight.load()
+    flashlight.x = data.flashlightpos.x
+    flashlight.y = data.flashlightpos.y
+    flashlight.room = data.flashlightpos.room
+end

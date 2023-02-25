@@ -63,6 +63,14 @@ function levelTwo:enter()
             print(saveLoad)
             if firstLoad == false then
                 player.load(transition.coordx,transition.coordy)
+            else
+                flashlight.load()
+                gengar.load()
+                rock.loadSave()
+                rock.load(rock.x,rock.y)
+                battery1.load()
+                battery2.load()
+                battery3.load()
             end
         else
         print(saveLoad)

@@ -7,6 +7,13 @@ rock = {}
     --rock.collider = world:newBSGRectangleCollider(400, 400, rock.h, rock.w, 14)
     rock.room = "runGame"
 
+function rock.loadSave()
+    rock.x = data.rockpos.x
+    rock.y = data.rockpos.y
+    rock.room = data.rockpos.room
+    print("rock loaded")
+end
+
 function rock.load(x,y)
 print("loading...")
     if rock.collider == nil and rock.room == room then
