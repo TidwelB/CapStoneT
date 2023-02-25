@@ -91,7 +91,7 @@ function levelOne:enter()
         print(saveLoad)
         player.load()
         end
-        rock.load()
+        rock.load(rock.x,rock.y)
         --enemy.load()
         --SCP.load()
         

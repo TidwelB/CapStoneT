@@ -11,6 +11,8 @@ require("shaders")
 require("util.items.gengar")
 require("util.items.flashlight")
 require("util.items.rock")
+require("util.items.battery1")
+require("util.items.battery2")
 Moan = require 'libraries/Moan/Moan'
 require("SCP076")
 local testing = require("testing.testing")
@@ -49,7 +51,7 @@ function game:enter()
     --          whether that be the walls, the green stuff, etc...
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
-rock.load(400,400)
+rock.load(rock.x,rock.y)
 -- rock = {}
 --     rock.spritesheet = love.graphics.newImage("sprites/rock.png")
 --     rock.x = 400
@@ -148,6 +150,9 @@ function game:draw()
         gengar.draw("runGame")
         flashlight.draw("runGame")
         rock.draw("runGame")
+        battery1.draw("runGame")
+        battery2.draw("runGame")
+        battery3.draw("runGame")
         -- if checkInventory(inventory, "flashlight") == false then
         --     love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
         -- end

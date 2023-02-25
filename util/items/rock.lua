@@ -18,7 +18,6 @@ print("loading...")
         end
             rock.collider = world:newBSGRectangleCollider(x, y, rock.h, rock.w, 14)
                 print("loaded")
-
     end
 end
 
@@ -39,7 +38,7 @@ function rock.delete()
 end
 
 function rock.update(dt)
-    if rock.room == room then
+    if rock.room == room and rock.collider ~= nil then
     if checkInventory(inventory, "rock") == false then
         rock.x = rock.collider:getX() 
         rock.y = rock.collider:getY() 

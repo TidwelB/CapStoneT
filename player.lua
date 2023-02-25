@@ -207,20 +207,20 @@ if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false o
         --print("added flashlight to inventory")
         table.insert(inventory,"flashlight")
     end
-    if distanceBetweenSprites(player.x, player.y, 55, 80, rock.x, rock.y, rock.w, rock.h ) <100 and checkInventory(inventory,"rock") == false  and player.keytimer > 150 and inventory[2] == nil then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, rock.x, rock.y, rock.w, rock.h ) <100 and checkInventory(inventory,"rock") == false  and player.keytimer > 150 and inventory[2] == nil  and rock.collider ~= nil then
         --print("added rock to inventory")
         table.insert(inventory,"rock")
         rock.collider:destroy()
         rock.collider = nil
         player.keytimer = 0
     end
-    if distanceBetweenSprites(player.x, player.y, 55, 80, battery1.x, battery1.y, battery1.w, battery1.h) < 80 and checkInventory(inventory,"battery1") == false and inventory[2] == nil then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, battery1.x, battery1.y, battery1.w, battery1.h) < 80 and checkInventory(inventory,"battery1") == false and inventory[2] == nil and room == battery1.room then
         table.insert(inventory,"battery1")
     end
-    if distanceBetweenSprites(player.x, player.y, 55, 80, battery2.x, battery2.y, battery2.w, battery2.h) < 80 and checkInventory(inventory,"battery2") == false and inventory[2] == nil then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, battery2.x, battery2.y, battery2.w, battery2.h) < 80 and checkInventory(inventory,"battery2") == false and inventory[2] == nil and room == battery2.room then
         table.insert(inventory,"battery2")
     end
-    if distanceBetweenSprites(player.x, player.y, 55, 80, battery3.x, battery3.y, battery3.w, battery3.h) < 80 and checkInventory(inventory,"battery3") == false and inventory[2] == nil then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, battery3.x, battery3.y, battery3.w, battery3.h) < 80 and checkInventory(inventory,"battery3") == false and inventory[2] == nil and room == battery3.room then
         table.insert(inventory,"battery3")
     end
     

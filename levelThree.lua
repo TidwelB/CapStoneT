@@ -88,6 +88,7 @@ function levelThree:enter()
         print(saveLoad)
         player.load()
         end
+        rock.load(rock.x,rock.y)
         --enemy.load()
         --SCP.load()
         
@@ -129,7 +130,7 @@ end
 
    world:update(dt)
    shaders:update(dt)
-   
+   rock.update(dt)
 
 end
 

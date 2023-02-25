@@ -64,6 +64,7 @@ function levelTwo:enter()
         else
         print(saveLoad)
         player.load()
+        rock.load(rock.x,rock.y)
         end
 end
 
@@ -87,7 +88,7 @@ function levelTwo:update(dt)
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
-
+    rock.update(dt)
    world:update(dt)
    shaders:update(dt)
 end

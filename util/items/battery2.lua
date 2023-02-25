@@ -6,10 +6,12 @@ battery2 = {}
     battery2.w = battery2.spritesheet:getWidth() 
     battery2.room = "levelOne"
 
-function battery2:draw()
-    if checkInventory(inventory, "battery2") == false then
-    if battery2.room == room then
-    love.graphics.draw(battery2.spritesheet,battery2.x,battery2.y)
+    function battery2:draw()
+        if checkInventory(inventory, "battery2") == false then
+            if Gamestate.current() == runLevelOne or Gamestate.current() == runGame then
+        if battery2.room == room then
+        love.graphics.draw(battery2.spritesheet,battery2.x,battery2.y)
+        end
     end
-end
-end
+    end
+    end

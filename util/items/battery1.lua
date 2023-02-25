@@ -8,8 +8,10 @@ battery1 = {}
 
 function battery1:draw()
     if checkInventory(inventory, "battery1") == false then
+        if Gamestate.current() == runLevelOne or Gamestate.current() == runGame then
     if battery1.room == room then
     love.graphics.draw(battery1.spritesheet,battery1.x,battery1.y)
     end
+end
 end
 end
