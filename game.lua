@@ -44,7 +44,8 @@ function game:enter()
     love.window.setTitle("SCP: FALLEN")
     love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
 
-    --enemy.spawn(500,500)
+    enemy.spawn(500,500)
+    enemy.load()
     scientist.spawn(100,800)
 
     --  Walls table: 
@@ -112,10 +113,9 @@ function game:update(dt)
         redheartbeat.anim:update(dt)
     end
 
-   -- enemy.anim:update(dt)
+   enemy.anim:update(dt)
     --timer = timer + dt
-    --UPDATE_ENEMY(dt)
-    --UPDATE_SCP(dt)
+    UPDATE_ENEMY(dt)
     
 
     game.height = love.graphics.getHeight()
@@ -166,6 +166,7 @@ function game:draw()
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5, nil, 6, 6)
         scientist.anim:draw(scientist.spriteSheet,scientist.x,scientist.y,nil,5,nil,6,6)
         --enemy.draw()
+        DRAW_ENEMY()
         love.graphics.print("Press W to walk upwards", 300, 200)
         love.graphics.print("Press S to walk downwards", 300, 250)
         love.graphics.print("Press A to walk left", 200, 225)
@@ -190,6 +191,9 @@ function game:draw()
     --DRAW_ENEMY()
     love.graphics.print(player.x, 100, 10)
     love.graphics.print(player.y, 100, 30)
+
+    love.graphics.print(enemy.x, 100, 50)
+    love.graphics.print(enemy.collider:getX(), 100, 70)
 
     --testing.run()
 end

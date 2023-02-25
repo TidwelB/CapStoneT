@@ -25,7 +25,7 @@ function enemy.spawn(x,y)
 end
 
 function enemy.load()
-    enemy.collider = world:newBSGRectangleCollider(400, 200, 65, 65, 14)
+    enemy.collider = world:newBSGRectangleCollider(400, 200, 45, 45, 14)
     enemy.collider:setFixedRotation(true)
     enemy.colX = 0
     enemy.colY = 0
@@ -41,7 +41,7 @@ end
 
 function enemy.draw()
         love.graphics.setColor(255,255,255)
-        love.graphics.rectangle('fill',enemy.colX,enemy.colY,enemy.width,enemy.height)
+        --love.graphics.rectangle('fill',enemy.colX,enemy.colY,enemy.width,enemy.height)
         enemy.anim:draw(enemy.spriteSheet, enemy.x,enemy.y, nil, 3, nil, 4, 4)
 end
 
@@ -141,8 +141,8 @@ function enemy.pathing()
 end
 
 function enemy.colliderMatching(dt)
-    enemy.x = enemy.collider:getX() -35
-    enemy.y = enemy.collider:getY() - 20
+    enemy.x = enemy.collider:getX() -43
+    enemy.y = enemy.collider:getY() -15
 end
 
  function DRAW_ENEMY()
