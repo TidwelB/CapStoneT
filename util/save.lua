@@ -46,7 +46,7 @@ local folder_path = "Desktop/Remedy" -- Replace this with the path to your folde
 -- Get the list of files in the folder
 --local path = os.getenv("HOME") .. "/Desktop/Remedy/"
 local files = {}
-
+firstLoad = true
 local op = love.system.getOS()
 if op == "Windows" then
     --local path = os.getenv("HOME") .. "\\Desktop\\Remedy\\"
@@ -81,10 +81,14 @@ if op == "Windows" then
             elseif data.level == "levelOne" then
                 shaders:window()
                 level = runLevelOne
+            elseif data.level == "levelTwo" then
+                level = runLevelTwo
+            elseif data.level == "levelThree" then
+                level = runLevelThree
             end
             Gamestate.switch(level)
             player.load(data.position.x,data.position.y)
-            
+            firstLoad = false
         end))
     end
 

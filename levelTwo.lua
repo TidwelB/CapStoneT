@@ -61,6 +61,9 @@ function levelTwo:enter()
 
         if saveLoad == true then
             print(saveLoad)
+            if firstLoad == false then
+                player.load(transition.coordx,transition.coordy)
+            end
         else
         print(saveLoad)
         player.load(transition.coordx,transition.coordy)

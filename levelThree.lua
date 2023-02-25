@@ -61,6 +61,9 @@ function levelThree:enter()
 
         if saveLoad == true then
             print(saveLoad)
+            if firstLoad == false then
+                player.load(transition.coordx,transition.coordy)
+            end
             --player.load(data.position.x,data.position.y)
         else
         print(saveLoad)

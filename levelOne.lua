@@ -63,16 +63,19 @@ function levelOne:enter()
         end
 
 
+
         if saveLoad == true then
             print(saveLoad)
-            --player.load(data.position.x,data.position.y)
+            if firstLoad == false then
+                player.load(transition.coordx,transition.coordy)
+            end
         else
         print(saveLoad)
         player.load(transition.coordx, transition.coordy)
         end
         rock.load(rock.x,rock.y)
         --enemy.load()
-        --SCP.load()
+        --SCP.load()d
         
         
 end
