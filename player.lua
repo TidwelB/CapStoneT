@@ -198,12 +198,12 @@ function distanceBetweenSprites(x1, y1, w1, h1, x2, y2, w2, h2)
 
 if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false or checkInventory(inventory,"flashlight") == false) and inventory[2] == nil then
 
-    if distanceBetweenSprites(player.x, player.y, 55, 80, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 and checkInventory(inventory,"gengar") == false and inventory[2] == nil then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 and checkInventory(inventory,"gengar") == false and inventory[2] == nil and room == gengar.room then
        --print("added Genga to inventory") 
         table.insert(inventory,"gengar")
        --print(distanceBetweenSprites(player.x, player.y, 65, 100, gengar.x+30, gengar.y+50, gengar.w, gengar.h)) 
     end
-    if distanceBetweenSprites(player.x, player.y, 55, 80, flashlight.x, flashlight.y, flashlight.w*flashlight.scale,flashlight.h*flashlight.scale ) <100 and checkInventory(inventory,"flashlight") == false and inventory[2] == nil then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, flashlight.x, flashlight.y, flashlight.w*flashlight.scale,flashlight.h*flashlight.scale ) <100 and checkInventory(inventory,"flashlight") == false and inventory[2] == nil and room == flashlight.room then
         --print("added flashlight to inventory")
         table.insert(inventory,"flashlight")
     end
