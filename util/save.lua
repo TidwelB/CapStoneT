@@ -123,6 +123,7 @@ else
             inventory = data.inventory
             
             player.load(data.position.x,data.position.y)
+            firstLoad = false
             --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
         end))
     end

@@ -42,7 +42,12 @@ function save_file_menu:keypressed(key)
             svol = souvolume,
             rockpos = {x = rock.x, y = rock.y,room = rock.room},
             flashlightpos = {x = flashlight.x, y = flashlight.y, room = flashlight.room},
-            gengarpos = {x = gengar.x, y = gengar.y, room = gengar.room}
+            gengarpos = {x = gengar.x, y = gengar.y, room = gengar.room},
+            battery1 = {x = battery1.x, y = battery1.y, room = battery1.room},
+            battery2 = {x = battery2.x, y = battery2.y, room = battery2.room},
+            battery3 = {x = battery3.x, y = battery3.y, room = battery3.room},
+            --item positions for puzzle 2
+            --item positions for puzzle 3
         }
         
         write_to_json_file(self.filename .. ".json", playerData)
