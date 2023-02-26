@@ -150,7 +150,7 @@ function levelTwo:update(dt)
         end
     end
 
-    if distanceBetweenSprites(player.x, player.y, 55, 80, 120, 1449, 93.33, 48) < 150 then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, 326, 1449, 93.33, 48) < 150 then
         if love.keyboard.isDown("e") then
             Gamestate.push(computer5)
         end
