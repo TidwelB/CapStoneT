@@ -11,6 +11,7 @@ require("util.items.rock")
 require("util.items.battery1")
 require("util.items.battery2")
 require("util.items.battery3")
+require("util.items.crate")
 
 function levelOne:enter()
     room = "levelOne"
@@ -42,7 +43,7 @@ function levelOne:enter()
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
 
-
+    Sounds.boop = love.audio.newSource("sounds/boop.wav", "static")
 
         if testingMap.layers["Walls"] then
             for i, box in pairs(testingMap.layers["Walls"].objects) do
@@ -62,6 +63,12 @@ function levelOne:enter()
             end
         end
 
+        generator = world:newRectangleCollider(2480,135,70,20)
+        generator:setType('static')
+        generator:setCollisionClass('Solid')
+
+        spawnCrate(1400,2600)
+        spawnCrate(1400,3000)
 
 
         if saveLoad == true then
@@ -100,6 +107,30 @@ function levelOne:update(dt)
     elseif (player.health <= (player.max_health / 4)) then
         redheartbeat.anim:update(dt)
     end
+    local batcount = 0
+    if love.keyboard.isDown("e") and (checkInventory(inventory, "battery1") == true or checkInventory(inventory, "battery2") == true or checkInventory(inventory, "battery3") == true) then 
+        if distanceBetweenSprites(player.x, player.y, 55, 80, 2480,135,70,20) < 150 then 
+            -- need to remove from inventory then move on if battery count = 3 
+            if checkInventory(inventory, "battery1") == true then
+                Sounds.boop:play()
+                battery1.x = 20000
+                battery1.y = 0
+                batcount = batcount + 1
+            end
+            if checkInventory(inventory, "battery2") == true then
+                Sounds.boop:play()
+                battery2.x = 20000
+                battery2.y = 0
+                batcount = batcount + 1
+            end
+            if checkInventory(inventory, "battery3") == true then 
+                Sounds.boop:play()
+                battery3.x = 20000
+                battery3.y = 0
+                batcount = batcount + 1
+            end
+        end
+    end
     --enemy.anim:update(dt)
     --UPDATE_ENEMY(dt)
     --UPDATE_SCP(dt)
@@ -109,7 +140,7 @@ function levelOne:update(dt)
    rock.update(dt)
    world:update(dt)
    shaders:update(dt)
-   
+   crates:update(dt)
 
 end
 
@@ -121,13 +152,14 @@ function levelOne:draw()
         testingMap:drawLayer(testingMap.layers["stuff"])
         testingMap:drawLayer(testingMap.layers["items"])
         --testingMap:drawLayer(testingMap.layers["bluepuzzlelock"])
-        player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
+
        --enemy.draw()
 
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()
+        crates.draw()
         battery1.draw("levelOne")
         battery2.draw("levelOne")
         battery3.draw("levelOne")
@@ -135,6 +167,7 @@ function levelOne:draw()
         flashlight.draw("levelOne")
         rock.draw("levelOne")
 
+        player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()
