@@ -80,6 +80,7 @@ function player:update(dt)
             --os.execute("clear")
             --testing.run()
         end
+        player.health = player.health + .01
 end
 
 function player.colliderMatching(dt)

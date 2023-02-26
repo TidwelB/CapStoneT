@@ -7,7 +7,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 SCP106 = {}
     SCP106.width = 5
     SCP106.height = 5
-    SCP106.speed = 200
+    SCP106.speed = 80
     SCP106.friction = 7.5
     SCP106.spriteSheet = love.graphics.newImage('sprites/eyeballW.png')
     SCP106.grid = anim8.newGrid(32, 32, SCP106.spriteSheet:getWidth(), SCP106.spriteSheet:getHeight())
@@ -108,7 +108,6 @@ function SCP106.colAI(dt)
                     SCP106.anim = SCP106.animations.idleR
                 end
             end
-            SCP106.collision()
             end
         end
 
@@ -122,16 +121,18 @@ function SCP106.colAI(dt)
 end
 
 function SCP106.collision()
-    if SCP106.xdist < 68 then
-        if SCP106.ydist < 35 then
-        SCP106.colxvel = player.xvel
+    if SCP106.xdist < 90 then
+        if SCP106.ydist < 55 then
+        --SCP106.colxvel = player.xvel
         Sounds.collision:play()
+        player.health = player.health - .1
         end
     end
-    if SCP106.ydist < 90 then
-        if SCP106.xdist < 35 then
-        SCP106.colyvel = player.yvel
+    if SCP106.ydist < 120 then
+        if SCP106.xdist < 70 then
+        --SCP106.colyvel = player.yvel
         Sounds.collision:play()
+        player.health = player.health - .1
         end
     end
 end
@@ -151,5 +152,6 @@ end
 
 function UPDATE_SCP106(dt)
     SCP106.colAI(dt)
+    SCP106.collision()
     SCP106.colliderMatching(dt)
 end

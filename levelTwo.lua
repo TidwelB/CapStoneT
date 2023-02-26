@@ -189,6 +189,11 @@ function levelTwo:draw()
         end
 
         DRAW_SCP106()
+        gengar.draw("levelThree")
+        flashlight.draw("levelThree")
+        rock.draw("levelThree")
+        chargecable.draw("levelTwo")
+        book:draw("levelTwo")
 
         -- Animates the player
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
@@ -200,8 +205,7 @@ function levelTwo:draw()
         -- Draws the world hitboxes if not a comment
         -- world:draw()
 
-        chargecable.draw("levelTwo")
-        book:draw("levelTwo")
+
         love.graphics.setColor(255,255,255,255)
     camera:detach()
 
