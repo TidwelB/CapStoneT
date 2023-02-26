@@ -34,7 +34,7 @@ function settings:enter(from)
     self.from = from
 end
 
--- Assigns the buttons to their given positions
+-- Assigns the buttons to their correct positions
 function settings:buttonpositions()
     local window_width = love.graphics.getWidth()
     local button_width = 300
@@ -54,7 +54,8 @@ function settings:buttonpositions()
     button6.y = 4*(window_height/6)
 end
 
-function love.resize(w, h)
+-- Resizes  the buttons
+function love.resize()
     settings:buttonpositions()
 end
 
@@ -65,6 +66,8 @@ MVolume = .2
 CVolume = .2
 mute = false
 
+-- Draws the settings screen on top
+-- of whatever screen was being accessed
 function settings:draw()
     self:buttonpositions()
     love.graphics.printf(("Music: " .. math.floor(Music.music:getVolume()*100) .. "%"),100,200,200)
@@ -88,7 +91,7 @@ function settings:draw()
         love.graphics.printf(button.text, button.x, button.y + (BUTTON_HEIGHT/2)-(font:getHeight()/2), button.width, "center")
     end
 
---resets the color so that it doesnt have a black screen (very important please dont delete)
+    --resets the color so that it doesnt have a black screen (very important please dont delete)
     love.graphics.reset()
     if love.keyboard.isDown('m') then
         Gamestate.pop()
@@ -98,7 +101,7 @@ function settings:draw()
     end
 end
 
-
+-- Mutes the volume of the game completely
 function settings.mute()
     love.timer.sleep(.15)
     if mute == false then
@@ -122,6 +125,8 @@ function settings.mute()
 
 end
 
+-- Increases the volume of the game
+-- @param param <- Passes a music table into the funtion
 function settings.increasevolumes(param)
     love.timer.sleep(.15)
     local vom
@@ -134,6 +139,8 @@ function settings.increasevolumes(param)
     param:setVolume(vom)
 end
 
+-- Decreases the volume of the game
+-- @param parameter <- Passes a music table into the funtion
 function settings.decreasevolumes(parameter)
     local vom
     love.timer.sleep(.15)
@@ -150,6 +157,9 @@ function settings.load()
 
 end
 
+-- Updates the settings screen 
+-- checking to see if the player presses escape to
+-- close out the settings screen
 function settings:update()
     if love.keyboard.isScancodeDown('escape') then
         love.timer.sleep(.15)
