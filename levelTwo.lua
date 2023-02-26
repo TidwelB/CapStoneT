@@ -8,9 +8,6 @@ require('util.wavegen.waver')
 require('util.wavegen.waver2')
 require('util.wavegen.waver3')
 require('util.wavegen.waver4')
--- local computer2 = require('util.wavegen.computer2')
--- local computer3 = require('util.wavegen.computer3')
--- local computer4 = require('util.wavegen.computer4')
 require("util.items.gengar")
 require("util.items.flashlight")
 require("util.items.rock")
@@ -41,6 +38,7 @@ function levelTwo:enter()
 
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
+    world:addCollisionClass('Ignore', {ignores = {'Solid'}})
 
         if testingMap.layers["Walls"] then
             for i, box in pairs(testingMap.layers["Walls"].objects) do
@@ -65,6 +63,9 @@ function levelTwo:enter()
             for i, bar in pairs(testingMap.layers["Puzzlelock"].objects) do
                 local barr = world:newRectangleCollider(bar.x, bar.y, bar.width, bar.height)
                 barr:setType('static')
+                if computer1 == 1 and computer2 == 1 and computer3 == 1 and computer4 == 4 then
+                    barr:setCollisionClass('Ignore')
+                end
                 table.insert(puzzleBarrier, barr)
             end
         end
@@ -140,13 +141,11 @@ function levelTwo:draw()
         testingMap:drawLayer(testingMap.layers["floor"])
         testingMap:drawLayer(testingMap.layers["items"])
         testingMap:drawLayer(testingMap.layers["walls"])
-        if(computer1 == 2 and computer2 == 4 and computer3 == 1 and computer4 == 1) then
-            for i,v in ipairs(puzzleBarrier) do
-                table.remove(puzzleBarrier, i)
-                end
+        if computer1 == 2 and computer2 == 3 and computer3 == 4 and computer4 == 1 then
         else
             testingMap:drawLayer(testingMap.layers["puzzlelock"])
         end
+        
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
