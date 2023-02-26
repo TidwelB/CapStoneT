@@ -2,7 +2,8 @@ Gamestate = require 'libraries.gamestate'
 settings = {}
 settings = Gamestate.new()
 
---volume = .2
+-- Builds all of the buttons for the settings
+-- screen
 BUTTON_HEIGHT = 64
 local font = love.graphics.newFont(32)
 local button6 = {text = "Return to Pause Menu", fn = function()Gamestate.pop() sleep(.3)end, width = 300}
@@ -12,6 +13,11 @@ local button5 = {text = "Increase Sound Effect Volumes", fn = function() setting
 local button4 = {text = "Decrease Sound Effect Volumes", fn = function() settings.decreasevolumes(Sounds.collision) end, width = 150, x = 900, y = 400}
 local button1 = {text = "Mute Sounds", fn = function() settings.mute() end, width = 300, x = 900, y = 100}
 local allButtons = {button1,button2,button3,button4,button5,button6}
+
+-- Builds a new button for the settings
+-- screen.
+-- @param text <- Takes in a string to write the buttons text
+-- @param fn <- Takes in a function that the button will run
 local function newButton(text,fn)
     return{
         text = text,
@@ -21,12 +27,14 @@ local function newButton(text,fn)
     }
 end
 
-
+-- Begins the settings screen
+-- @param from <- Takes last screen that was present
 function settings:enter(from)
     self:buttonpositions()
     self.from = from
 end
 
+-- Assigns the buttons to their given positions
 function settings:buttonpositions()
     local window_width = love.graphics.getWidth()
     local button_width = 300
@@ -138,7 +146,6 @@ function settings.decreasevolumes(parameter)
     parameter:setVolume(vom)
 end
 
---DOESNT GET HERE
 function settings.load()
 
 end
