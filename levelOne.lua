@@ -13,7 +13,7 @@ require("util.items.battery2")
 require("util.items.battery3")
 require("util.items.crate")
 require("util.items.book")
-
+require("util.items.ball")
 
 function levelOne:enter()
     room = "levelOne"
@@ -44,6 +44,7 @@ function levelOne:enter()
     --          whether that be the walls, the green stuff, etc...
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
+    world:addCollisionClass('Ignore', { ignores = { 'Solid' } })
 
     Sounds.boop = love.audio.newSource("sounds/boop.wav", "static")
 
@@ -65,12 +66,48 @@ function levelOne:enter()
             end
         end
 
+    puzzleBarrier = {}
+    if testingMap.layers["PuzzleLock"] then
+        for i, bar in pairs(testingMap.layers["PuzzleLock"].objects) do
+            local barr = world:newRectangleCollider(bar.x, bar.y, bar.width, bar.height)
+            barr:setType('static')
+
+            table.insert(puzzleBarrier, barr)
+        end
+    end
+
         generator = world:newRectangleCollider(2480,135,70,20)
         generator:setType('static')
         generator:setCollisionClass('Solid')
 
         spawnCrate(1400,2600)
-        spawnCrate(1400,3000)
+        spawnCrate(2000,3000)
+        spawnCrate(600,2222)
+        spawnCrate(160,2022)
+        spawnCrate(527,1420)
+        spawnCrate(1692,1366)
+        spawnCrate(2958,1189)
+        spawnCrate(2477,2295)
+
+        spawnCrate(1988,545)
+        spawnCrate(172,288)
+        spawnCrate(1082,1420)
+        spawnCrate(2100,813)
+        spawnCrate(2533,3000)
+        spawnCrate(1451,240)
+        spawnCrate(818,2000)
+        spawnCrate(1856,1980)
+        spawnCrate(2486,1668)
+
+        spawnCrate(2340,1125)
+        spawnCrate(1902,127)
+        spawnCrate(695,469)
+        spawnCrate(480,830)
+        spawnCrate(453,1117)
+        spawnCrate(120,1137)
+        spawnCrate(199,2838)
+        spawnCrate(776,2619)
+        spawnCrate(919,2990)
 
 
         if saveLoad == true then
@@ -97,7 +134,7 @@ function levelOne:enter()
         
         
 end
-
+local batcount = 0
 function levelOne:update(dt)
     
     player:update(dt)
@@ -110,28 +147,39 @@ function levelOne:update(dt)
     elseif (player.health <= (player.max_health / 4)) then
         redheartbeat.anim:update(dt)
     end
-    local batcount = 0
     if love.keyboard.isDown("e") and (checkInventory(inventory, "battery1") == true or checkInventory(inventory, "battery2") == true or checkInventory(inventory, "battery3") == true) then 
         if distanceBetweenSprites(player.x, player.y, 55, 80, 2480,135,70,20) < 150 then 
             -- need to remove from inventory then move on if battery count = 3 
             if checkInventory(inventory, "battery1") == true then
                 Sounds.boop:play()
+                local slot = findItem("battery1")
+                table.remove(inventory, slot)
                 battery1.x = 20000
-                battery1.y = 0
                 batcount = batcount + 1
             end
             if checkInventory(inventory, "battery2") == true then
                 Sounds.boop:play()
+                local slot = findItem("battery2")
+                table.remove(inventory, slot)
                 battery2.x = 20000
-                battery2.y = 0
                 batcount = batcount + 1
             end
-            if checkInventory(inventory, "battery3") == true then 
+            if checkInventory(inventory, "battery3") == true then
                 Sounds.boop:play()
+                local slot = findItem("battery3")
+                table.remove(inventory, slot)
                 battery3.x = 20000
-                battery3.y = 0
                 batcount = batcount + 1
             end
+        end
+    end
+    if batcount == 3 then
+        for i, barrier in ipairs(puzzleBarrier) do
+            barrier:setCollisionClass('Ignore')
+        end
+    else
+        for i, barrier in ipairs(puzzleBarrier) do
+            barrier:setCollisionClass('Solid')
         end
     end
     --enemy.anim:update(dt)
@@ -154,20 +202,24 @@ function levelOne:draw()
         testingMap:drawLayer(testingMap.layers["walls"])
         testingMap:drawLayer(testingMap.layers["stuff"])
         testingMap:drawLayer(testingMap.layers["items"])
-        --testingMap:drawLayer(testingMap.layers["bluepuzzlelock"])
+        if batcount ~= 3 then
+        testingMap:drawLayer(testingMap.layers["bluepuzzlelock"])
+        end
 
        --enemy.draw()
 
-        love.graphics.setShader(shaders.simpleLight)
-        love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
-        love.graphics.setShader()
+        --love.graphics.setShader(shaders.simpleLight)
+        --love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
+        --love.graphics.setShader()
         world:draw()
-        crates.draw()
+
         battery1.draw("levelOne")
         battery2.draw("levelOne")
         battery3.draw("levelOne")
+        crates.draw()
         gengar.draw("levelOne")
         flashlight.draw("levelOne")
+        ball.draw("levelOne")
         rock.draw("levelOne")
         book:draw("levelOne")
         chargecable.draw("levelOne")
@@ -176,9 +228,9 @@ function levelOne:draw()
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()
        -- scp106.UPDATE_ENEMY()
-        love.graphics.setShader(shaders.simpleLight)
-        love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
-        love.graphics.setShader()
+        --love.graphics.setShader(shaders.simpleLight)
+        --love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
+        --love.graphics.setShader()
 
 
         if love.keyboard.isDown("j") then
