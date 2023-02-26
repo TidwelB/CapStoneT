@@ -108,19 +108,19 @@ function levelTwo:update(dt)
         end
     end
 
-    if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 1527.6566, 176.625, 48.00) < 150 then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, 1527.6566, 176.625, 93.33, 48.00) < 150 then
         if love.keyboard.isDown("e") then
             Gamestate.push(waver2)
         end
     end
 
-    if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 1263, 1425, 48.00) < 150 then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, 1263, 1425, 93.33, 48.00) < 150 then
         if love.keyboard.isDown("e") then
             Gamestate.push(waver3)
         end
     end
 
-    if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 133, 1449, 48.00) < 150 then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, 98, 1449, 93.33, 48.00) < 150 then
         if love.keyboard.isDown("e") then
             Gamestate.push(waver4)
         end
