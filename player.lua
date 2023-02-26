@@ -249,9 +249,9 @@ if room == "runGame" and player.x > 634 and player.x < 788 then
             DropItem(findItem("chargecable"))
             table.insert(chest,"chargecable")
         end
-        if checkInventory(inventory, "fan") == true and love.keyboard.isDown('e') then
-        DropItem(findItem("fan"))
-        table.insert(chest,"fan")
+        if checkInventory(inventory, "ball") == true and love.keyboard.isDown('e') then
+        DropItem(findItem("ball"))
+        table.insert(chest,"ball")
         end
     end
 end
