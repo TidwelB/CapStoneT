@@ -132,6 +132,10 @@ if bluemon.done == true then
     for i, barrier in ipairs(puzzleBarrier) do
         barrier:setCollisionClass('Ignore')
     end
+else 
+    for i, barrier in ipairs(puzzleBarrier) do
+        barrier:setCollisionClass('Solid')
+    end
 end
 
 
