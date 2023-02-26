@@ -54,7 +54,10 @@ function save_file_menu:keypressed(key)
             book = {x = book.x,y = book.y, room = book.room},
              two = levelTwo.done,
              three = bluemon.done,
-             waves = {wave1 = waver.wave1, wave2 = waver2.wave2, wave3 = waver3.wave3, wave4 = waver4.wave4 }
+             wave1 = waver.wave,
+             wave2 = waver2.wave2,
+             wave3 = waver3.wave3,
+             wave4 = waver4.wave4
             --item positions for puzzle 2
             --item positions for puzzle 3
         }

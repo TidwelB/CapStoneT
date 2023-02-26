@@ -1,15 +1,15 @@
-local data = {} -- table to hold waveform data
+local points = {} -- table to hold waveform w
 local maxDataPoints = 200 -- maximum number of data points to store
 local updateInterval = 0.1 -- time interval between new data points
 local period = 1 -- time period of the waveform
 local dutyCycle = 0.5 -- duty cycle of the waveform
 local wave = 1
-wave1 = wave
+
 computer1 = wave
 waver = {}
 Gamestate = require 'libraries.gamestate'
 waver = Gamestate.new()
-
+waver.wave = wave
 function addDataPoint()
     if wave == 1 then
         -- Calculate the time since the start of the program
@@ -20,11 +20,11 @@ function addDataPoint()
         local value = math.sin(t / period * 2 * math.pi)
 
         -- Add the data point to the data table
-        table.insert(data, value)
+        table.insert(points, value)
 
         -- Remove the oldest data point if the maximum number of data points has been reached
-        if #data > maxDataPoints then
-            table.remove(data, 1)
+        if #points > maxDataPoints then
+            table.remove(points, 1)
         end
     end
 
@@ -37,11 +37,11 @@ function addDataPoint()
         local value = t / period * 2 - 1
 
         -- Add the data point to the data table
-        table.insert(data, value)
+        table.insert(points, value)
 
         -- Remove the oldest data point if the maximum number of data points has been reached
-        if #data > maxDataPoints then
-            table.remove(data, 1)
+        if #points > maxDataPoints then
+            table.remove(points, 1)
         end
     end
 
@@ -54,11 +54,11 @@ function addDataPoint()
         local value = t < period * dutyCycle and 1 or -1
 
         -- Add the data point to the data table
-        table.insert(data, value)
+        table.insert(points, value)
 
         -- Remove the oldest data point if the maximum number of data points has been reached
-        if #data > maxDataPoints then
-            table.remove(data, 1)
+        if #points > maxDataPoints then
+            table.remove(points, 1)
         end
     end
 
@@ -72,11 +72,11 @@ function addDataPoint()
         local value = math.abs(slope) * 2 - 1
 
         -- Add the data point to the data table
-        table.insert(data, value)
+        table.insert(points, value)
 
         -- Remove the oldest data point if the maximum number of data points has been reached
-        if #data > maxDataPoints then
-            table.remove(data, 1)
+        if #points > maxDataPoints then
+            table.remove(points, 1)
         end
     end
 end
@@ -96,7 +96,7 @@ function waver:update(dt)
     end
 
     if love.keyboard.isDown("escape") then
-        wave1 = wave
+        waver.wave = wave
         Gamestate.pop(waver)
         sleep(.5)
     end
@@ -117,12 +117,12 @@ function waver:draw()
     love.graphics.setLineStyle("smooth") -- set the line style to a smooth line with rounded corners
 
     -- Draw the waveform data points as a line
-    for i = 2, #data do
+    for i = 2, #points do
         love.graphics.line(
             (i - 2) * love.graphics.getWidth() / (maxDataPoints - 1),
-            (data[i - 1] + 1) * love.graphics.getHeight() / 2,
+            (points[i - 1] + 1) * love.graphics.getHeight() / 2,
             (i - 1) * love.graphics.getWidth() / (maxDataPoints - 1),
-            (data[i] + 1) * love.graphics.getHeight() / 2
+            (points[i] + 1) * love.graphics.getHeight() / 2
         )
     end
 
@@ -133,6 +133,7 @@ function waver:draw()
 end
 
 function waver.load()
-    --computer1 = data.waves.wave1
-    computer1 = 2
+    wave = data.wave1
+    --just displaying on screen is computer...
+    computer1 = wave
 end
