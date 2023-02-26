@@ -80,6 +80,10 @@ function levelTwo:enter()
                 battery1.load()
                 battery2.load()
                 battery3.load()
+                waver.load()
+                waver2.load()
+                waver3.load()
+                waver4.load()
             end
         else
         print(saveLoad)

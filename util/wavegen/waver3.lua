@@ -128,3 +128,7 @@ function waver3:draw()
     love.graphics.print("Usage Guide:", 100, 30)
     love.graphics.print("Use Numbers 1-4 to change between different wave forms", 100, 50)
 end
+
+function waver3.load()
+    computer3 = data.waves.wave3
+end

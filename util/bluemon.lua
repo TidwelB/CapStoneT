@@ -85,3 +85,7 @@ function bluemon.load()
     secret = og
     end
 end
+
+function bluemon.loadSave()
+    bluemon.done = data.three
+end
