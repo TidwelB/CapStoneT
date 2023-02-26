@@ -1,6 +1,7 @@
 
 player = {}
 inventory = {}
+chest = {}
 local testing = require("testing.testing")
 local tests = require('testing.tests')
 
@@ -233,6 +234,26 @@ if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false o
         table.insert(inventory,"chargecable")
     end
 
+end
+local gamecount = 0
+if room == "runGame" and player.x > 634 and player.x < 788 then
+    if player.y > 111 and player.y < 189 then
+        if checkInventory(inventory, "book") == true and love.keyboard.isDown('e') then
+            DropItem(findItem("book"))
+            table.insert(chest,"book")
+        elseif checkInventory(inventory, "chargecable") == true and love.keyboard.isDown('e') then
+            DropItem(findItem("chargecable"))
+            table.insert(chest,"chargecable")
+        
+        elseif checkInventory(inventory, "fan") == true and love.keyboard.isDown('e') then
+        DropItem(findItem("fan"))
+        table.insert(chest,"fan")
+        end
+    end
+end
+
+if checkInventory(chest, "book") and checkInventory(chest, "chargecable") and checkInventory(chest, "fan") then
+    Gamestate.swtich(win)
 end
 --print(player.keytimer)
 local mouseX, mouseY = love.mouse:getPosition()

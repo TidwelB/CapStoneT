@@ -5,6 +5,7 @@ Gamestate = require 'libraries.gamestate'
 pause = {}
 pause = Gamestate.new()
 saveInventory = {}
+chestInvetory = {}
 local buttons = {}
 BUTTON_HEIGHT = 64
 local font = nil
@@ -57,7 +58,7 @@ font = love.graphics.newFont(32)
 table.insert(buttons,newButton("Return to Game",function()Gamestate.pop() end))
 table.insert(buttons,newButton("Settings",function()Gamestate.push(settings) sleep(.3)end))
 table.insert(buttons,newButton("Exit to Windows",function()love.event.quit(0)end))
-table.insert(buttons,newButton("Save Game",function() saveInventory = inventory Gamestate.push(save_file_menu)
+table.insert(buttons,newButton("Save Game",function() saveInventory = inventory  chestInventory = chest Gamestate.push(save_file_menu)
         --playerData = {
         --position = {x = player.x,y = player.y},
         --inventory = saveInventory
