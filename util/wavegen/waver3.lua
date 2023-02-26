@@ -4,6 +4,7 @@ local updateInterval = 0.1 -- time interval between new data points
 local period = 1 -- time period of the waveform
 local dutyCycle = 0.5 -- duty cycle of the waveform
 local wave = 1
+wave3 = wave
 computer3 = wave
 waver3 = {}
 Gamestate = require 'libraries.gamestate'
@@ -96,6 +97,7 @@ function waver3:update(dt)
     end
 
     if love.keyboard.isDown("escape") then
+        wave3 = wave
         sleep(.5)
         Gamestate.pop(waver3)
     end

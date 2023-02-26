@@ -46,7 +46,10 @@ function save_file_menu:keypressed(key)
             battery1 = {x = battery1.x, y = battery1.y, room = battery1.room},
             battery2 = {x = battery2.x, y = battery2.y, room = battery2.room},
             battery3 = {x = battery3.x, y = battery3.y, room = battery3.room},
-            book = {x = book.x,y = book.y, room = book.room}
+            book = {x = book.x,y = book.y, room = book.room},
+             two = levelTwo.done,
+             three = bluemon.done,
+             waves = {wave1 = wave1, wave2 = wave2, wave3 = wave3, wave4 = wave4 }
             --item positions for puzzle 2
             --item positions for puzzle 3
         }
