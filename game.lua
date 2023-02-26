@@ -160,9 +160,9 @@ function game:draw()
         -- end
 
         if Gamestate.current() == pause then 
-        --DRAW_SCP(SCP076, player.x, player.y, 0)
+        DRAW_SCP(SCP076, player.x, player.y, 0)
         else
-        --DRAW_SCP(SCP076, player.x, player.y, love.timer.getDelta())
+        DRAW_SCP(SCP076, player.x, player.y, love.timer.getDelta())
         end
 
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5, nil, 6, 6)
