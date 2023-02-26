@@ -4,12 +4,12 @@ local updateInterval = 0.1 -- time interval between new data points
 local period = 1 -- time period of the waveform
 local dutyCycle = 0.5 -- duty cycle of the waveform
 local wave = 1
-computer1 = wave
-waver = {}
+computer4 = wave
+waver4 = {}
 Gamestate = require 'libraries.gamestate'
-waver = Gamestate.new()
+waver4 = Gamestate.new()
 
-function addDataPoint()
+function addDataPoint4()
     if wave == 1 then
         -- Calculate the time since the start of the program
         local time = love.timer.getTime()
@@ -78,9 +78,10 @@ function addDataPoint()
             table.remove(data, 1)
         end
     end
+    computer4 = wave
 end
 
-function waver:update(dt)
+function waver4:update(dt)
     if love.keyboard.isDown('1') then
         wave = 1
     end
@@ -95,19 +96,17 @@ function waver:update(dt)
     end
 
     if love.keyboard.isDown("escape") then
-        Gamestate.pop(waver)
+        Gamestate.pop(waver4)
     end
     -- Add a new data point at the specified time interval
     updateInterval = updateInterval - dt
     if updateInterval <= 0 then
-        addDataPoint()
+        addDataPoint4()
         updateInterval = period / maxDataPoints -- update the interval based on the waveform period and the number of data points
     end
-
-    computer1 = wave
 end
 
-function waver:draw()
+function waver4:draw()
     love.graphics.clear(0.2, 0.2, 0.2) -- clear the screen with a dark gray color
     love.graphics.setColor(1, 1, 1) -- set the drawing color to white
     love.graphics.setLineWidth(1) -- set the line width to 1 pixel

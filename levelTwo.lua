@@ -5,6 +5,9 @@ levelTwo = Gamestate.new()
 levelTwo = {}
 walls = {}
 require('util.wavegen.waver')
+require('util.wavegen.waver2')
+require('util.wavegen.waver3')
+require('util.wavegen.waver4')
 -- local computer2 = require('util.wavegen.computer2')
 -- local computer3 = require('util.wavegen.computer3')
 -- local computer4 = require('util.wavegen.computer4')
@@ -57,7 +60,14 @@ function levelTwo:enter()
             end
         end
 
-
+    puzzleBarrier = {}
+        if testingMap.layers["Puzzlelock"] then
+            for i, bar in pairs(testingMap.layers["Puzzlelock"].objects) do
+                local barr = world:newRectangleCollider(bar.x, bar.y, bar.width, bar.height)
+                barr:setType('static')
+                table.insert(puzzleBarrier, barr)
+            end
+        end
 
         if saveLoad == true then
             print(saveLoad)
@@ -91,15 +101,34 @@ function levelTwo:update(dt)
         redheartbeat.anim:update(dt)
     end
 
+    -- Computers and their waves
     if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 164, 93.33, 48.00) < 150 then
         if love.keyboard.isDown("e") then
             Gamestate.push(waver)
         end
     end
 
+    if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 1527.6566, 176.625, 48.00) < 150 then
+        if love.keyboard.isDown("e") then
+            Gamestate.push(waver2)
+        end
+    end
+
+    if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 1263, 1425, 48.00) < 150 then
+        if love.keyboard.isDown("e") then
+            Gamestate.push(waver3)
+        end
+    end
+
+    if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 133, 1449, 48.00) < 150 then
+        if love.keyboard.isDown("e") then
+            Gamestate.push(waver4)
+        end
+    end
+
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
-    rock.update(dt)
+   rock.update(dt)
    world:update(dt)
    shaders:update(dt)
 end
@@ -111,7 +140,13 @@ function levelTwo:draw()
         testingMap:drawLayer(testingMap.layers["floor"])
         testingMap:drawLayer(testingMap.layers["items"])
         testingMap:drawLayer(testingMap.layers["walls"])
-        testingMap:drawLayer(testingMap.layers["puzzlelock"])
+        if(computer1 == 2 and computer2 == 4 and computer3 == 1 and computer4 == 1) then
+            for i,v in ipairs(puzzleBarrier) do
+                table.remove(puzzleBarrier, i)
+                end
+        else
+            testingMap:drawLayer(testingMap.layers["puzzlelock"])
+        end
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
@@ -127,6 +162,10 @@ function levelTwo:draw()
     love.graphics.reset()
 
     DRAW_HUD()
+    love.graphics.print(computer1, 100, 60)
+    love.graphics.print(computer2, 100, 80)
+    love.graphics.print(computer3, 100, 100)
+    love.graphics.print(computer4, 100, 120)
 
     love.graphics.print(player.x, 100, 10)
     love.graphics.print(player.y, 100, 30)
