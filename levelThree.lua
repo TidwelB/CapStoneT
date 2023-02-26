@@ -23,7 +23,7 @@ function levelThree:enter()
 
     -- Makes the character stretch not blurry 
     love.graphics.setDefaultFilter("nearest", "nearest")
-    
+
     camera = cam()
 
     -- loads in the map
@@ -66,10 +66,9 @@ function levelThree:enter()
             for i, bar in pairs(testingMap.layers["Puzzlelock"].objects) do
                 local barr = world:newRectangleCollider(bar.x, bar.y, bar.width, bar.height)
                 barr:setType('static')
-                
                 table.insert(puzzleBarrier, barr)
             end
-        end    
+        end
 
 
         if saveLoad == true then
@@ -94,12 +93,11 @@ function levelThree:enter()
         rock.load(rock.x,rock.y)
         --enemy.load()
         --SCP.load()
-        
-        
+
 end
 
 function levelThree:update(dt)
-    
+
     player:update(dt)
     player.anim:update(dt)
 
@@ -119,7 +117,7 @@ if player.y > 270 and player.y < 295 then
         if love.keyboard.isDown('e') then
             Gamestate.push(greenmon)
         end
-    end 
+    end
     if  player.x > 183 and player.x < 328 then
         if love.keyboard.isDown('e') then
             Gamestate.push(bluemon)
@@ -132,7 +130,7 @@ if bluemon.done == true then
     for i, barrier in ipairs(puzzleBarrier) do
         barrier:setCollisionClass('Ignore')
     end
-else 
+else
     for i, barrier in ipairs(puzzleBarrier) do
         barrier:setCollisionClass('Solid')
     end
@@ -171,7 +169,7 @@ function levelThree:draw()
         if bluemon.done == false then
             testingMap:drawLayer(testingMap.layers["puzzlelock"])
         end
-        
+
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()

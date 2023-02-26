@@ -57,8 +57,8 @@ function save_file_menu:keypressed(key)
              wave1 = waver.wave,
              wave2 = waver2.wave2,
              wave3 = waver3.wave3,
-             wave4 = waver4.wave4
-            --item positions for puzzle 2
+             wave4 = waver4.wave4,
+            chargecable = {x = chargecable.x, y = chargecable.y, room = chargecable.room},
             --item positions for puzzle 3
         }
         
