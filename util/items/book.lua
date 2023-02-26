@@ -8,12 +8,13 @@ book = {}
     book.room = "levelThree"
 
 function book:draw()
-    if checkInventory(inventory, "book") == false then
+    if checkInventory(inventory, "book") == false and checkInventory(chest, "book") == false then
     if book.room == room then
         love.graphics.draw(book.spritesheet,book.x,book.y,0,book.scale,book.scale)
         --print("drawing")
     end
 end
+ 
 end
 
 function book.load()
