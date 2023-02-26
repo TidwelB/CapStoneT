@@ -208,9 +208,9 @@ function levelOne:draw()
 
        --enemy.draw()
 
-        --love.graphics.setShader(shaders.simpleLight)
-        --love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
-        --love.graphics.setShader()
+        love.graphics.setShader(shaders.simpleLight)
+        love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
+        love.graphics.setShader()
         world:draw()
 
         battery1.draw("levelOne")
@@ -228,9 +228,9 @@ function levelOne:draw()
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()
        -- scp106.UPDATE_ENEMY()
-        --love.graphics.setShader(shaders.simpleLight)
-        --love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
-        --love.graphics.setShader()
+        love.graphics.setShader(shaders.simpleLight)
+        love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
+        love.graphics.setShader()
 
 
         if love.keyboard.isDown("j") then
@@ -239,6 +239,6 @@ function levelOne:draw()
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()
-    love.graphics.print(player.x, 100, 10)
-    love.graphics.print(player.y, 100, 30)
+    --love.graphics.print(player.x, 100, 10)
+    --love.graphics.print(player.y, 100, 30)
 end
