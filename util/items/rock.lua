@@ -31,7 +31,7 @@ end
 function rock:draw() 
     if checkInventory(inventory, "rock") == false then
     if rock.room == room then
-    love.graphics.draw(rock.spritesheet,rock.x,rock.y)
+    love.graphics.draw(rock.spritesheet,rock.x -10,rock.y -10)
     end
 end
 end
