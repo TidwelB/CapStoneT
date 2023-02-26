@@ -4,6 +4,7 @@ Gamestate = require 'libraries.gamestate'
 game = {}
 menu = {}
 
+-- Required libraries
 require("enemy")
 require("player")
 require("scientist")
@@ -15,20 +16,28 @@ require("util.items.battery1")
 require("util.items.battery2")
 require("util.items.book")
 require("util.transition")
+
 Moan = require 'libraries/Moan/Moan'
+
 require("SCP076")
+
 local testing = require("testing.testing")
 range = 100
 
-
+-- Starts the Main Lobby room
+-- and intializes all of the features.
 function game:enter()
     room = "runGame"
+
     -- Hitbox library
     wf = require 'libraries/windfield'
+
     -- Tiled implementation library
     sti = require 'libraries/sti'
+
     -- Animations library
     anim8 = require 'libraries/anim8'
+
     -- Camera library
     cam = require 'libraries/camera'
 
@@ -37,6 +46,7 @@ function game:enter()
 
     camera = cam()
     camera:zoom(1)
+
     -- loads in the map
     testingMap = sti('maps/mainlobby.lua')
 
@@ -49,14 +59,13 @@ function game:enter()
     enemy.load()
     scientist.spawn(100,800)
 
-    --  Walls table: 
-    --          intializes the hitboxes for the map 
-    --          whether that be the walls, the green stuff, etc...
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
     rock.load(rock.x,rock.y)
 
-
+    --  Walls table: 
+    --          intializes the hitboxes for the map 
+    --          whether that be the walls, the green stuff, etc...
     walls = {}
 
         if testingMap.layers["Walls"] then
