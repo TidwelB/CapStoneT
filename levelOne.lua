@@ -12,6 +12,7 @@ require("util.items.battery1")
 require("util.items.battery2")
 require("util.items.battery3")
 require("util.items.crate")
+require("util.items.book")
 
 function levelOne:enter()
     room = "levelOne"
@@ -83,6 +84,7 @@ function levelOne:enter()
                 battery1.load()
                 battery2.load()
                 battery3.load()
+                book.load()
             end 
         else
         print(saveLoad)

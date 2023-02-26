@@ -13,6 +13,7 @@ require("util.items.flashlight")
 require("util.items.rock")
 require("util.items.battery1")
 require("util.items.battery2")
+require("util.items.book")
 require("util.transition")
 Moan = require 'libraries/Moan/Moan'
 require("SCP076")
@@ -88,6 +89,7 @@ if saveLoad == true then
         battery1.load()
         battery2.load()
         battery3.load()
+        book.load()
     end
     --player.load(data.position.x,data.position.y)
 else
