@@ -132,5 +132,8 @@ function waver4:draw()
 end
 
 function waver4.load()
-    computer4 = data.waves.wave4
+    --computer4 = data.waves.wave4
+    computer4 = 2
+    print("waveeawvewave")
+    --print(data.waves.wave4)
 end

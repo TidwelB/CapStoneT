@@ -88,4 +88,6 @@ end
 
 function bluemon.loadSave()
     bluemon.done = data.three
+    print("bluemon loaded...")
+    print(bluemon.done)
 end

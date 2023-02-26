@@ -1,5 +1,10 @@
 
+require("util.wavegen.waver")
+require("util.wavegen.waver2")
+require("util.wavegen.waver3")
+require("util.wavegen.waver4")
 save_file_menu = {}
+
 
 function save_file_menu:enter(from)
     self.from = from
@@ -49,7 +54,7 @@ function save_file_menu:keypressed(key)
             book = {x = book.x,y = book.y, room = book.room},
              two = levelTwo.done,
              three = bluemon.done,
-             waves = {wave1 = wave1, wave2 = wave2, wave3 = wave3, wave4 = wave4 }
+             waves = {wave1 = waver.wave1, wave2 = waver2.wave2, wave3 = waver3.wave3, wave4 = waver4.wave4 }
             --item positions for puzzle 2
             --item positions for puzzle 3
         }

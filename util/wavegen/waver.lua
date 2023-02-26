@@ -133,5 +133,6 @@ function waver:draw()
 end
 
 function waver.load()
-    computer1 = data.waves.wave1
+    --computer1 = data.waves.wave1
+    computer1 = 2
 end

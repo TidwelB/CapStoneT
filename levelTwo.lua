@@ -84,6 +84,7 @@ function levelTwo:enter()
                 waver2.load()
                 waver3.load()
                 waver4.load()
+                --print(data.waver.wave2)
             end
         else
         print(saveLoad)

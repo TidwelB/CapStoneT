@@ -133,5 +133,7 @@ function waver2:draw()
 end
 
 function waver2.load()
-    computer2 = data.waves.wave2
+    --local data = data.three
+    --print(data)
+    computer2 = 2
 end

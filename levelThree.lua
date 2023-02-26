@@ -126,12 +126,12 @@ if player.y > 270 and player.y < 295 then
         end
     end
 
-    if bluemon.done == true then
-        for i, barrier in ipairs(puzzleBarrier) do
-            barrier:setCollisionClass('Ignore')
-        end
-    end
+end
 
+if bluemon.done == true then
+    for i, barrier in ipairs(puzzleBarrier) do
+        barrier:setCollisionClass('Ignore')
+    end
 end
 
 
