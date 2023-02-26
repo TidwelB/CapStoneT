@@ -122,8 +122,8 @@ end
 
 -- Draws the waver on the players screen
 function waver4:draw()
-    love.graphics.clear(0.2, 0.2, 0.2) -- clear the screen with a dark gray color
-    love.graphics.setColor(1, 1, 1) -- set the drawing color to white
+    love.graphics.clear(0.1, 0.1, 0.1) -- clear the screen with a dark gray color
+    love.graphics.setColor(0, 1, 0) -- set the drawing color to green
     love.graphics.setLineWidth(1) -- set the line width to 1 pixel
     love.graphics.setLineStyle("smooth") -- set the line style to a smooth line with rounded corners
 
