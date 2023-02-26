@@ -84,6 +84,7 @@ function levelThree:enter()
                 battery2.load()
                 battery3.load()
                 bluemon.loadSave()
+                book.load()
             end
             --player.load(data.position.x,data.position.y)
         else

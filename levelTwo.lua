@@ -12,6 +12,7 @@ require("util.items.gengar")
 require("util.items.flashlight")
 require("util.items.chargecable")
 require("util.items.rock")
+require("util.items.book")
 
 function levelTwo:enter()
     room = "levelTwo"
@@ -85,6 +86,7 @@ function levelTwo:enter()
                 waver2.load()
                 waver3.load()
                 waver4.load()
+                book.load()
                 --print(data.waver.wave2)
             end
         else
@@ -139,7 +141,11 @@ function levelTwo:update(dt)
         for i, barrier in ipairs(puzzleBarrier) do
             barrier:setCollisionClass('Ignore')
         end
-   end
+    else 
+        for i, barrier in ipairs(puzzleBarrier) do
+            barrier:setCollisionClass('Solid')
+        end
+end
    shaders:update(dt)
 end
 
