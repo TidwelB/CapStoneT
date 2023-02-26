@@ -140,6 +140,9 @@ function game:update(dt)
 
     rock.update(dt)
     world:update(dt)
+    if checkInventory(chest, "book") and checkInventory(chest, "chargecable") and checkInventory(chest, "fan") then
+        return Gamestate.switch(win)
+    end
 end
 
 

@@ -100,6 +100,7 @@ function enemy.colAI(dt)
             if (player.timer%5 == 0) then
             enemy.colxvel = math.random(-100,100)
             enemy.colyvel = math.random(-100,100)
+            Sounds.collision:play()
 
             if (math.random(0,100) == 19) then
                 if enemy.anim == enemy.animations.idleR then
