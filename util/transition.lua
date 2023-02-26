@@ -44,7 +44,7 @@ print(Gamestate.current() == runGame)
         end
 
         if Gamestate.current() == runLevelTwo and player.y > 1400 then
-            print("yea i tried")
+            --print("yea i tried")
             rock.delete()
             room = "levelThree"
             transition.coordx = 862

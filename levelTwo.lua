@@ -167,6 +167,7 @@ function levelTwo:draw()
         love.graphics.setShader()
         world:draw()
         chargecable.draw("levelTwo")
+        book:draw("levelTwo")
         love.graphics.setColor(255,255,255,255)
     camera:detach()
 

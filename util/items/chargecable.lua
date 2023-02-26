@@ -17,7 +17,7 @@ end
 end
 
 function chargecable.load()
-    chargecable.x = data.chargecablepos.x
-    chargecable.y = data.chargecablepos.y
-    chargecable.room = data.chargecablepos.room
+    chargecable.x = data.chargecable.x
+    chargecable.y = data.chargecable.y
+    chargecable.room = data.chargecable.room
 end
