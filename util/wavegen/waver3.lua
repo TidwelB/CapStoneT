@@ -10,7 +10,11 @@ waver3 = {}
 Gamestate = require 'libraries.gamestate'
 waver3 = Gamestate.new()
 waver3.wave3 = wave
+
+-- Adds the points of interest to the line for 
+-- the waver to a waveform.
 function addDataPoint3()
+    -- Code for creating a sine wave
     if wave == 1 then
         -- Calculate the time since the start of the program
         local time = love.timer.getTime()
@@ -28,6 +32,7 @@ function addDataPoint3()
         end
     end
 
+    -- Code for creating a sawtooth wave
     if wave == 2 then
             -- Calculate the time since the start of the program
         local time = love.timer.getTime()
@@ -45,6 +50,7 @@ function addDataPoint3()
         end
     end
 
+    -- Code for creating a square wave
     if wave == 3 then
             -- Calculate the time since the start of the program
         local time = love.timer.getTime()
@@ -62,6 +68,7 @@ function addDataPoint3()
         end
     end
 
+    -- Code for creating a triangle wave
     if wave == 4 then
         -- Calculate the time since the start of the program
         local time = love.timer.getTime()
@@ -79,9 +86,11 @@ function addDataPoint3()
             table.remove(points, 1)
         end
     end
-    computer3 = wave
 end
 
+-- Updates and checks if the player has 
+-- switched to any different waveforms
+-- or has attempted to exit the waver.
 function waver3:update(dt)
     if love.keyboard.isDown('1') then
         wave = 1
@@ -109,6 +118,7 @@ function waver3:update(dt)
     end
 end
 
+-- Draws the waver on the players screen
 function waver3:draw()
     love.graphics.clear(0.2, 0.2, 0.2) -- clear the screen with a dark gray color
     love.graphics.setColor(1, 1, 1) -- set the drawing color to white
@@ -131,6 +141,7 @@ function waver3:draw()
     love.graphics.print("Use Numbers 1-4 to change between different wave forms", 100, 50)
 end
 
+-- Loads the waver for save states
 function waver3.load()
     wave = data.wave3
     computer3 = wave

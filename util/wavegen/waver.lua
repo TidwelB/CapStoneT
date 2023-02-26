@@ -10,7 +10,11 @@ waver = {}
 Gamestate = require 'libraries.gamestate'
 waver = Gamestate.new()
 waver.wave = wave
+
+-- Adds the points of interest to the line for 
+-- the waver to a waveform.
 function addDataPoint()
+    -- Code for creating a sine wave
     if wave == 1 then
         -- Calculate the time since the start of the program
         local time = love.timer.getTime()
@@ -28,6 +32,7 @@ function addDataPoint()
         end
     end
 
+    -- Code for creating a sawtooth wave
     if wave == 2 then
             -- Calculate the time since the start of the program
         local time = love.timer.getTime()
@@ -45,6 +50,7 @@ function addDataPoint()
         end
     end
 
+    -- Code for creating a square wave
     if wave == 3 then
             -- Calculate the time since the start of the program
         local time = love.timer.getTime()
@@ -62,6 +68,7 @@ function addDataPoint()
         end
     end
 
+    -- Code for creating a triangle wave
     if wave == 4 then
         -- Calculate the time since the start of the program
         local time = love.timer.getTime()
@@ -81,6 +88,9 @@ function addDataPoint()
     end
 end
 
+-- Updates and checks if the player has 
+-- switched to any different waveforms
+-- or has attempted to exit the waver.
 function waver:update(dt)
     if love.keyboard.isDown('1') then
         wave = 1
@@ -100,6 +110,7 @@ function waver:update(dt)
         Gamestate.pop(waver)
         sleep(.5)
     end
+
     -- Add a new data point at the specified time interval
     updateInterval = updateInterval - dt
     if updateInterval <= 0 then
@@ -107,9 +118,11 @@ function waver:update(dt)
         updateInterval = period / maxDataPoints -- update the interval based on the waveform period and the number of data points
     end
 
+    -- Lets levelTwo know what the current iteration of the wave is
     computer1 = wave
 end
 
+-- Draws the waver on the players screen
 function waver:draw()
     love.graphics.clear(0.2, 0.2, 0.2) -- clear the screen with a dark gray color
     love.graphics.setColor(1, 1, 1) -- set the drawing color to white
@@ -132,6 +145,7 @@ function waver:draw()
     love.graphics.print("Use Numbers 1-4 to change between different wave forms", 100, 50)
 end
 
+-- Loads the waver for save states
 function waver.load()
     wave = data.wave1
     --just displaying on screen is computer...

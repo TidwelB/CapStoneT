@@ -2,7 +2,8 @@ Gamestate = require 'libraries.gamestate'
 settings = {}
 settings = Gamestate.new()
 
---volume = .2
+-- Builds all of the buttons for the settings
+-- screen
 BUTTON_HEIGHT = 64
 local font = love.graphics.newFont(32)
 local button6 = {text = "Return to Pause Menu", fn = function()Gamestate.pop() sleep(.3)end, width = 300}
@@ -12,6 +13,11 @@ local button5 = {text = "Increase Sound Effect Volumes", fn = function() setting
 local button4 = {text = "Decrease Sound Effect Volumes", fn = function() settings.decreasevolumes(Sounds.collision) end, width = 150, x = 900, y = 400}
 local button1 = {text = "Mute Sounds", fn = function() settings.mute() end, width = 300, x = 900, y = 100}
 local allButtons = {button1,button2,button3,button4,button5,button6}
+
+-- Builds a new button for the settings
+-- screen.
+-- @param text <- Takes in a string to write the buttons text
+-- @param fn <- Takes in a function that the button will run
 local function newButton(text,fn)
     return{
         text = text,
@@ -21,12 +27,14 @@ local function newButton(text,fn)
     }
 end
 
-
+-- Begins the settings screen
+-- @param from <- Takes last screen that was present
 function settings:enter(from)
     self:buttonpositions()
     self.from = from
 end
 
+-- Assigns the buttons to their correct positions
 function settings:buttonpositions()
     local window_width = love.graphics.getWidth()
     local button_width = 300
@@ -46,7 +54,8 @@ function settings:buttonpositions()
     button6.y = 4*(window_height/6)
 end
 
-function love.resize(w, h)
+-- Resizes  the buttons
+function love.resize()
     settings:buttonpositions()
 end
 
@@ -57,6 +66,8 @@ MVolume = .2
 CVolume = .2
 mute = false
 
+-- Draws the settings screen on top
+-- of whatever screen was being accessed
 function settings:draw()
     self:buttonpositions()
     love.graphics.printf(("Music: " .. math.floor(Music.music:getVolume()*100) .. "%"),100,200,200)
@@ -80,7 +91,7 @@ function settings:draw()
         love.graphics.printf(button.text, button.x, button.y + (BUTTON_HEIGHT/2)-(font:getHeight()/2), button.width, "center")
     end
 
---resets the color so that it doesnt have a black screen (very important please dont delete)
+    --resets the color so that it doesnt have a black screen (very important please dont delete)
     love.graphics.reset()
     if love.keyboard.isDown('m') then
         Gamestate.pop()
@@ -90,7 +101,7 @@ function settings:draw()
     end
 end
 
-
+-- Mutes the volume of the game completely
 function settings.mute()
     love.timer.sleep(.15)
     if mute == false then
@@ -114,6 +125,8 @@ function settings.mute()
 
 end
 
+-- Increases the volume of the game
+-- @param param <- Passes a music table into the funtion
 function settings.increasevolumes(param)
     love.timer.sleep(.15)
     local vom
@@ -126,6 +139,8 @@ function settings.increasevolumes(param)
     param:setVolume(vom)
 end
 
+-- Decreases the volume of the game
+-- @param parameter <- Passes a music table into the funtion
 function settings.decreasevolumes(parameter)
     local vom
     love.timer.sleep(.15)
@@ -138,11 +153,13 @@ function settings.decreasevolumes(parameter)
     parameter:setVolume(vom)
 end
 
---DOESNT GET HERE
 function settings.load()
 
 end
 
+-- Updates the settings screen 
+-- checking to see if the player presses escape to
+-- close out the settings screen
 function settings:update()
     if love.keyboard.isScancodeDown('escape') then
         love.timer.sleep(.15)

@@ -60,14 +60,18 @@ function game:enter()
     scientist.spawn(100,800)
 
     world:addCollisionClass('Solid')
+
+    -- Code that lets the player walk
+    -- into the transition hitbox and it analyze and 
+    -- switch gamestates
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
+
     rock.load(rock.x,rock.y)
 
     --  Walls table: 
-    --          intializes the hitboxes for the map 
-    --          whether that be the walls, the green stuff, etc...
+    --         intializes the hitboxes for the map 
+    --         whether that be the walls, the green stuff, etc...
     walls = {}
-
         if testingMap.layers["Walls"] then
             for i, box in pairs(testingMap.layers["Walls"].objects) do
                 local wall = world:newRectangleCollider(box.x, box.y, box.width, box.height)
@@ -76,6 +80,8 @@ function game:enter()
             end
         end
 
+    --  Transitions table: 
+    --         intializes the transition hitbox for switching maps
     transitions = {}
         if testingMap.layers["Transitions"] then
             for i, obj in pairs(testingMap.layers["Transitions"].objects) do
@@ -86,36 +92,35 @@ function game:enter()
             end
         end
 
-if saveLoad == true then
-    print(saveLoad)
-    if firstLoad == false then
-        player.load(transition.coordx,transition.coordy)
+    if saveLoad == true then
+        print(saveLoad)
+        if firstLoad == false then
+            player.load(transition.coordx,transition.coordy)
+        else
+            flashlight.load()
+            gengar.load()
+            rock.loadSave()
+            rock.load(rock.x,rock.y)
+            battery1.load()
+            battery2.load()
+            battery3.load()
+            book.load()
+        end
     else
-        flashlight.load()
-        gengar.load()
-        rock.loadSave()
-        rock.load(rock.x,rock.y)
-        battery1.load()
-        battery2.load()
-        battery3.load()
-        book.load()
-    end
-    --player.load(data.position.x,data.position.y)
-else
-print(saveLoad)
-player.load(transition.coordx,transition.coordy)
-
-
-end
-            
+    print(saveLoad)
+    player.load(transition.coordx,transition.coordy)
+    end 
 end
 
-
+-- Updates the game and makes sure all of
+-- the necessary features are also updating
+-- @param dt <- Updates every frame on delta time
 function game:update(dt)
     player:update(dt)
     player.anim:update(dt)
     scientist:update(dt)
     scientist.anim:update(dt)
+
     if (player.health > (player.max_health / 2)) then
         heartbeat.anim:update(dt)
     elseif (player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
@@ -124,18 +129,17 @@ function game:update(dt)
         redheartbeat.anim:update(dt)
     end
 
-   enemy.anim:update(dt)
-    --timer = timer + dt
+    enemy.anim:update(dt)
     UPDATE_ENEMY(dt)
     
-
     game.height = love.graphics.getHeight()
     game.width = love.graphics.getWidth()
 
    -- Moves the camera according to the players movements
-   camera:lookAt(player.x, player.y)
+    camera:lookAt(player.x, player.y)
+
     rock.update(dt)
-   world:update(dt)
+    world:update(dt)
 end
 
 
@@ -143,59 +147,38 @@ end
 
 function game:draw()
     -- Tells the game where to start looking through the camera POV
-
     camera:attach()
-
-
+        -- Draws all the cosmetic only layers
         testingMap:drawLayer(testingMap.layers["floor"])
         testingMap:drawLayer(testingMap.layers["barrier"])
         testingMap:drawLayer(testingMap.layers["water"])
         testingMap:drawLayer(testingMap.layers["objects"])
         testingMap:drawLayer(testingMap.layers["chairs"])
 
-
-        -- if checkInventory(inventory, "gengar") == false then
-        -- love.graphics.draw(gengar.spritesheet,gengar.x,gengar.y)
-        -- end
         gengar.draw("runGame")
         flashlight.draw("runGame")
         rock.draw("runGame")
         battery1.draw("runGame")
         battery2.draw("runGame")
         battery3.draw("runGame")
-        -- if checkInventory(inventory, "flashlight") == false then
-        --     love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
-        -- end
 
-
+        -- Animates the player and the scientist
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5, nil, 6, 6)
         scientist.anim:draw(scientist.spriteSheet,scientist.x,scientist.y,nil,5,nil,6,6)
-        --enemy.draw()
+        
         DRAW_ENEMY()
-        love.graphics.print("Press W to walk upwards", 300, 200)
-        love.graphics.print("Press S to walk downwards", 300, 250)
-        love.graphics.print("Press A to walk left", 200, 225)
-        love.graphics.print("Press D to walk right", 400, 225)
-        love.graphics.print("Press P to pause", 550, 225)
-        love.graphics.print("Press F to use flashlight",550, 260)
-        love.graphics.print("Hold Shift to sprint", 900, 700)
-        love.graphics.print("Go this way ---->", 440, 630)
-        love.graphics.print("Go down to move to next area", 2000, 1400)
 
+        -- This feature draws the hitboxes of the game
+        -- world:draw()
 
-    world:draw()
-
+    -- Lines after this will not be focused on the player
     camera:detach()
-        Moan.draw()
+
+    -- Draws the dialouge boxes
+    Moan.draw()
+
     love.graphics.reset()
 
+    -- Draws the player HUD
     DRAW_HUD()
-    --DRAW_ENEMY()
-    love.graphics.print(player.x, 100, 10)
-    love.graphics.print(player.y, 100, 30)
-
-    love.graphics.print(enemy.x, 100, 50)
-    love.graphics.print(enemy.collider:getX(), 100, 70)
-
-    --testing.run()
 end
