@@ -9,6 +9,8 @@ require("util.items.flashlight")
 require("util.items.rock")
 require('util.items.book')
 require("util.bluemon")
+require("SCP076")
+require("player")
 
 function levelThree:enter()
     room = "levelThree"
@@ -92,6 +94,7 @@ function levelThree:enter()
         player.load(transition.coordx,transition.coordy)
         end
         rock.load(rock.x,rock.y)
+        --SCP076.spawn(1390,600)
         --enemy.load()
         --SCP.load()
         
@@ -171,11 +174,15 @@ function levelThree:draw()
         if bluemon.done == false then
             testingMap:drawLayer(testingMap.layers["puzzlelock"])
         end
-        
+        if Gamestate.current() == pause then 
+            DRAW_SCP(SCP076, player.x, player.y, 0)
+            else
+            DRAW_SCP(SCP076, player.x, player.y, love.timer.getDelta())
+            end
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()
-
+    --SCP076.Check()
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()

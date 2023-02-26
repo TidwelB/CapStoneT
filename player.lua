@@ -21,6 +21,7 @@ player.stamina = 2000
 player.max_health = 100
 player.health = 100
 player.keytimer = 0
+player.width, player.height = player.spriteSheet:getDimensions()
 
 --this is for the green health sprite
 heartbeat = {}
