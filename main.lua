@@ -191,7 +191,7 @@ end
 function love.load()
     Sounds = {}
     Music = {}
-    Music.music = love.audio.newSource("sounds/sound.wav","stream")
+    Music.music = love.audio.newSource("sounds/scarymusic.mp3","stream")
     Sounds.collision = love.audio.newSource("sounds/collision.wav", "stream")
     Sounds.collision:setVolume(.2)
     Music.music:setVolume(.2)
