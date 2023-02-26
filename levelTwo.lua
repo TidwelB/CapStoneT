@@ -8,6 +8,7 @@ require('util.wavegen.waver')
 require('util.wavegen.waver2')
 require('util.wavegen.waver3')
 require('util.wavegen.waver4')
+require('util.computer5')
 require("util.items.gengar")
 require("util.items.flashlight")
 require("util.items.chargecable")
@@ -149,6 +150,12 @@ function levelTwo:update(dt)
         end
     end
 
+    if distanceBetweenSprites(player.x, player.y, 55, 80, 120, 1449, 93.33, 48) < 150 then
+        if love.keyboard.isDown("e") then
+            Gamestate.push(computer5)
+        end
+    end
+
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
 
@@ -208,7 +215,8 @@ function levelTwo:draw()
 
         love.graphics.setColor(255,255,255,255)
     camera:detach()
-
+    love.graphics.print(player.x, 100, 100)
+    love.graphics.print(player.y, 100, 120)
     love.graphics.reset()
 
     DRAW_HUD()
