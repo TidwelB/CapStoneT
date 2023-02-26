@@ -116,6 +116,8 @@ function waver3:update(dt)
         addDataPoint3()
         updateInterval = period / maxDataPoints -- update the interval based on the waveform period and the number of data points
     end
+    
+    computer3 = wave
 end
 
 -- Draws the waver on the players screen
