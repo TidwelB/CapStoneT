@@ -1,5 +1,5 @@
 book = {}
-    book.spritesheet = love.graphics.newImage("sprites/book.png")
+    book.spritesheet = love.graphics.newImage("sprites/mannequin1.png")
     book.x = 1390
     book.y = 300
     book.h = book.spritesheet:getHeight()
