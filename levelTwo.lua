@@ -15,6 +15,7 @@ require("util.items.rock")
 require("util.items.book")
 require("SCP106")
 
+-- Loads level two in and intializes all of it
 function levelTwo:enter()
     room = "levelTwo"
     -- Hitbox library
@@ -26,7 +27,7 @@ function levelTwo:enter()
     -- Camera library
     cam = require 'libraries/camera'
 
-    -- Makes the character stretch not blurry 
+    -- Makes the character stretch not blurry
     love.graphics.setDefaultFilter("nearest", "nearest")
     
     camera = cam()
@@ -40,7 +41,11 @@ function levelTwo:enter()
     love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
 
     world:addCollisionClass('Solid')
+    
+    -- Collision Class for transitions
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
+
+    -- Collision Class for puzzleLock
     world:addCollisionClass('Ignore', {ignores = {'Solid'}})
 
     SCP106.spawn(700,700)
@@ -100,6 +105,7 @@ function levelTwo:enter()
         end
 end
 
+-- Updates
 function levelTwo:update(dt)
     UPDATE_SCP106(dt)
     player:update(dt)
