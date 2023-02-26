@@ -63,7 +63,7 @@ function levelTwo:enter()
             for i, bar in pairs(testingMap.layers["Puzzlelock"].objects) do
                 local barr = world:newRectangleCollider(bar.x, bar.y, bar.width, bar.height)
                 barr:setType('static')
-                if computer1 == 1 and computer2 == 1 and computer3 == 1 and computer4 == 4 then
+                if computer1 == 2 and computer2 == 3 and computer3 == 4 and computer4 == 1 then
                     barr:setCollisionClass('Ignore')
                 end
                 table.insert(puzzleBarrier, barr)
@@ -145,7 +145,7 @@ function levelTwo:draw()
         else
             testingMap:drawLayer(testingMap.layers["puzzlelock"])
         end
-        
+
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
