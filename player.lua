@@ -405,16 +405,16 @@ function player.draw()
              love.graphics.draw(battery1.spritesheet,367,0,1.5,1.5)
         end
         if position7 == 1 then
-            love.graphics.draw(book.spritesheet,205,15,0,2.5,2.5)
+            love.graphics.draw(book.spritesheet,217,20,0,1.2,1.2)
         end
         if position7 == 2 then
-             love.graphics.draw(book.spritesheet,287,15,0,2.5,2.5)
+             love.graphics.draw(book.spritesheet,299,20,0,1.2,1.2)
         end
         if position8 == 1 then
-            love.graphics.draw(chargecable.spritesheet,205,15,0,2.5,2.5)
+            love.graphics.draw(chargecable.spritesheet,195,15,0,2,2)
         end
         if position8 == 2 then
-             love.graphics.draw(chargecable.spritesheet,287,15,0,2.5,2.5)
+             love.graphics.draw(chargecable.spritesheet,277,15,0,2,2)
         end
     end
 end

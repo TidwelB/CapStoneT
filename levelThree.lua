@@ -170,6 +170,7 @@ function levelThree:draw()
         gengar.draw("levelThree")
         flashlight.draw("levelThree")
         rock.draw("levelThree")
+        chargecable.draw("levelTwo")
         if bluemon.done == false then
             testingMap:drawLayer(testingMap.layers["puzzlelock"])
         end
