@@ -105,12 +105,15 @@ function levelTwo:enter()
         end
 end
 
--- Updates
+-- Updates level two and its respective
+-- features.
+-- @param dt <- Updates every frame on delta-time
 function levelTwo:update(dt)
     UPDATE_SCP106(dt)
     player:update(dt)
     player.anim:update(dt)
 
+    -- Animates the different health bar values
     if (player.health > (player.max_health / 2)) then
         heartbeat.anim:update(dt)
     elseif (player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
@@ -119,7 +122,9 @@ function levelTwo:update(dt)
         redheartbeat.anim:update(dt)
     end
 
-    -- Computers and their waves
+    -- These four if statements check if the player
+    -- is close to a computer and plays
+    -- its respective waver.
     if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 164, 93.33, 48.00) < 150 then
         if love.keyboard.isDown("e") then
             Gamestate.push(waver)
@@ -146,8 +151,13 @@ function levelTwo:update(dt)
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
+
    rock.update(dt)
    world:update(dt)
+
+   -- Opens the puzzle barrier for the player 
+   -- if the computers have been correctly 
+   -- set to the right waveforms.
    if computer1 == 2 and computer2 == 3 and computer3 == 4 and computer4 == 1 then
         for i, barrier in ipairs(puzzleBarrier) do
             barrier:setCollisionClass('Ignore')
@@ -156,27 +166,40 @@ function levelTwo:update(dt)
         for i, barrier in ipairs(puzzleBarrier) do
             barrier:setCollisionClass('Solid')
         end
-end
-   shaders:update(dt)
+    end
+    shaders:update(dt)
 end
 
 function levelTwo:draw()
     -- Tells the game where to start looking through the camera POV
     camera:attach()
+
+        -- Draws the visual layers of the map
         testingMap:drawLayer(testingMap.layers["lava"])
         testingMap:drawLayer(testingMap.layers["floor"])
         testingMap:drawLayer(testingMap.layers["items"])
         testingMap:drawLayer(testingMap.layers["walls"])
+
+        -- Draws the puzzle lock layer when the 
+        -- the computers are on the wrong wave forms.
         if computer1 == 2 and computer2 == 3 and computer3 == 4 and computer4 == 1 then
+
         else
             testingMap:drawLayer(testingMap.layers["puzzlelock"])
         end
+
         DRAW_SCP106()
+
+        -- Animates the player
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
+
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
-        world:draw()
+
+        -- Draws the world hitboxes if not a comment
+        -- world:draw()
+
         chargecable.draw("levelTwo")
         book:draw("levelTwo")
         love.graphics.setColor(255,255,255,255)
@@ -185,11 +208,4 @@ function levelTwo:draw()
     love.graphics.reset()
 
     DRAW_HUD()
-    love.graphics.print(computer1, 100, 60)
-    love.graphics.print(computer2, 100, 80)
-    love.graphics.print(computer3, 100, 100)
-    love.graphics.print(computer4, 100, 120)
-
-    love.graphics.print(player.x, 100, 10)
-    love.graphics.print(player.y, 100, 30)
 end
