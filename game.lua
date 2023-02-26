@@ -136,7 +136,6 @@ function game:update(dt)
    camera:lookAt(player.x, player.y)
     rock.update(dt)
    world:update(dt)
-   shaders:update(dt)
 end
 
 
@@ -168,11 +167,6 @@ function game:draw()
         --     love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
         -- end
 
-        if Gamestate.current() == pause then 
-        DRAW_SCP(SCP076, player.x, player.y, 0)
-        else
-        DRAW_SCP(SCP076, player.x, player.y, love.timer.getDelta())
-        end
 
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5, nil, 6, 6)
         scientist.anim:draw(scientist.spriteSheet,scientist.x,scientist.y,nil,5,nil,6,6)
@@ -188,11 +182,8 @@ function game:draw()
         love.graphics.print("Go this way ---->", 440, 630)
         love.graphics.print("Go down to move to next area", 2000, 1400)
 
-        love.graphics.setShader(shaders.simpleLight)
-        love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
-        love.graphics.setShader()
-        world:draw()
 
+    world:draw()
 
     camera:detach()
         Moan.draw()

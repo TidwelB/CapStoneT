@@ -45,11 +45,14 @@ print(Gamestate.current() == runGame)
 
         if Gamestate.current() == runLevelTwo and player.y > 1400 then
             --print("yea i tried")
-            rock.delete()
-            room = "levelThree"
-            transition.coordx = 862
-            transition.coordy = 144
+
+            --if checkInventory(inventory,"chargecable") then
+                rock.delete()
+                room = "levelThree"
+                transition.coordx = 862
+                transition.coordy = 144
             return Gamestate.switch(runLevelThree)
+            --end
         else if Gamestate.current() == runLevelTwo then
             transition.coordx = 468
             transition.coordy = 780

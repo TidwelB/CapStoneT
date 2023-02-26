@@ -174,6 +174,11 @@ function levelOne:draw()
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()
+        love.graphics.setShader(shaders.simpleLight)
+        love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
+        love.graphics.setShader()
+
+
         if love.keyboard.isDown("j") then
             table.insert(inventory,"Itemsssssss")
         end
