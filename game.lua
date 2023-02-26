@@ -183,7 +183,7 @@ function game:draw()
         love.graphics.print("Go down to move to next area", 2000, 1400)
 
 
-
+    world:draw()
 
     camera:detach()
         Moan.draw()
