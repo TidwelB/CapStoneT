@@ -234,7 +234,9 @@ if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false o
     if distanceBetweenSprites(player.x, player.y, 55, 80, chargecable.x, chargecable.y, chargecable.w*chargecable.scale, chargecable.h*chargecable.scale) < 80 and checkInventory(inventory,"chargecable") == false and inventory[2] == nil and room == chargecable.room then
         table.insert(inventory,"chargecable")
     end
-
+    if distanceBetweenSprites(player.x, player.y, 55, 80, ball.x, ball.y, ball.w*ball.scale, ball.h*ball.scale) < 150 and checkInventory(inventory,"ball") == false and inventory[2] == nil and room == ball.room then
+        table.insert(inventory,"ball")
+    end
 end
 local gamecount = 0
 if room == "runGame" and player.x > 634 and player.x < 788 then
@@ -324,6 +326,11 @@ function DropItem(param)
         chargecable.y = y
         chargecable.room = room
     end
+    if item == "ball" then
+        ball.x = x
+        ball.y = y
+        ball.room = room
+    end
     player.keytimer = 0
 
 end
@@ -384,6 +391,7 @@ function player.draw()
     local position6 = findItem("battery3")
     local position7 = findItem("book")
     local position8 = findItem("chargecable")
+    local position9 = findItem("ball")
     if love.keyboard.isDown("tab") then
 
         love.graphics.rectangle("line", 200, 15, 64, 64)
@@ -435,6 +443,12 @@ function player.draw()
         end
         if position8 == 2 then
              love.graphics.draw(chargecable.spritesheet,277,15,0,2,2)
+        end
+        if position9 == 1 then
+            love.graphics.draw(ball.spritesheet, 209, 25, 0, ball.scale, ball.scale)
+        end
+        if position9 == 2 then
+            love.graphics.draw(ball.spritesheet, 292, 25, 0, ball.scale, ball.scale)
         end
     end
 end
