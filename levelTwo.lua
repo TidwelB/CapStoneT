@@ -63,9 +63,7 @@ function levelTwo:enter()
             for i, bar in pairs(testingMap.layers["Puzzlelock"].objects) do
                 local barr = world:newRectangleCollider(bar.x, bar.y, bar.width, bar.height)
                 barr:setType('static')
-                if computer1 == 2 and computer2 == 3 and computer3 == 4 and computer4 == 1 then
-                    barr:setCollisionClass('Ignore')
-                end
+                
                 table.insert(puzzleBarrier, barr)
             end
         end
@@ -131,6 +129,11 @@ function levelTwo:update(dt)
    camera:lookAt(player.x, player.y)
    rock.update(dt)
    world:update(dt)
+   if computer1 == 2 and computer2 == 3 and computer3 == 4 and computer4 == 1 then
+        for i, barrier in ipairs(puzzleBarrier) do
+            barrier:setCollisionClass('Ignore')
+        end
+   end
    shaders:update(dt)
 end
 
