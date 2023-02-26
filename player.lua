@@ -229,7 +229,10 @@ if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false o
     if distanceBetweenSprites(player.x, player.y, 55, 80, book.x, book.y, book.w*book.scale, book.h*book.scale) < 80 and checkInventory(inventory,"book") == false and inventory[2] == nil and room == book.room then
         table.insert(inventory,"book")
     end
-    
+    if distanceBetweenSprites(player.x, player.y, 55, 80, chargecable.x, chargecable.y, chargecable.w*chargecable.scale, chargecable.h*chargecable.scale) < 80 and checkInventory(inventory,"chargecable") == false and inventory[2] == nil and room == chargecable.room then
+        table.insert(inventory,"chargecable")
+    end
+
 end
 --print(player.keytimer)
 local mouseX, mouseY = love.mouse:getPosition()
@@ -296,6 +299,11 @@ function DropItem(param)
         book.y = y
         book.room = room
     end
+    if item == "chargecable" then
+        chargecable.x = x
+        chargecable.y = y
+        chargecable.room = room
+    end
     player.keytimer = 0
 
 end
@@ -355,6 +363,7 @@ function player.draw()
     local position5 = findItem("battery2")
     local position6 = findItem("battery3")
     local position7 = findItem("book")
+    local position8 = findItem("chargecable")
     if love.keyboard.isDown("tab") then
 
         love.graphics.rectangle("line", 200, 15, 64, 64)
@@ -401,13 +410,19 @@ function player.draw()
         if position7 == 2 then
              love.graphics.draw(book.spritesheet,287,15,0,2.5,2.5)
         end
+        if position8 == 1 then
+            love.graphics.draw(chargecable.spritesheet,205,15,0,2.5,2.5)
+        end
+        if position8 == 2 then
+             love.graphics.draw(chargecable.spritesheet,287,15,0,2.5,2.5)
+        end
     end
 end
 
 function DRAW_HUD()
     player.draw()
 end
- 
+
 function checkInventory(inventory, item)
     for _, value in pairs(inventory) do
         if value == item then

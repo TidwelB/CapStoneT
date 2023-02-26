@@ -14,11 +14,10 @@ function book:draw()
         --print("drawing")
     end
 end
-
 end
 
 function book.load()
-    book.x = data.bookpos.x
-    book.y = data.bookpos.y
-    book.room = data.bookpos.room
+    book.x = data.book.x
+    book.y = data.book.y
+    book.room = data.book.room
 end
