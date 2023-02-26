@@ -13,6 +13,7 @@ require("util.items.flashlight")
 require("util.items.chargecable")
 require("util.items.rock")
 require("util.items.book")
+require("SCP106")
 
 function levelTwo:enter()
     room = "levelTwo"
@@ -41,6 +42,9 @@ function levelTwo:enter()
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
     world:addCollisionClass('Ignore', {ignores = {'Solid'}})
+
+    SCP106.spawn(700,700)
+    SCP106.load()
 
         if testingMap.layers["Walls"] then
             for i, box in pairs(testingMap.layers["Walls"].objects) do
@@ -97,6 +101,7 @@ function levelTwo:enter()
 end
 
 function levelTwo:update(dt)
+    UPDATE_SCP106(dt)
     player:update(dt)
     player.anim:update(dt)
 
@@ -160,7 +165,7 @@ function levelTwo:draw()
         else
             testingMap:drawLayer(testingMap.layers["puzzlelock"])
         end
-
+        DRAW_SCP106()
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
