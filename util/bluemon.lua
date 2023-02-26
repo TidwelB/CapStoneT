@@ -19,7 +19,7 @@ end
 function bluemon:draw()
     self.from:draw()
    -- love.graphics.reset()
-   print(bluemon.timer)
+   --print(bluemon.timer)
 bluemon.timer = bluemon.timer +1
    local screenWidth, screenHeight = love.graphics.getWidth(), love.graphics.getHeight()
     if secret ~= og or bluemon.done == true then

@@ -39,6 +39,7 @@ function levelThree:enter()
     --          whether that be the walls, the green stuff, etc...
     world:addCollisionClass('Solid')
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
+    world:addCollisionClass('Ignore', {ignores = {'Solid'}})
 
 
 
@@ -59,6 +60,16 @@ function levelThree:enter()
                 table.insert(transitions,transition)
             end
         end
+
+        puzzleBarrier = {}
+        if testingMap.layers["Puzzlelock"] then
+            for i, bar in pairs(testingMap.layers["Puzzlelock"].objects) do
+                local barr = world:newRectangleCollider(bar.x, bar.y, bar.width, bar.height)
+                barr:setType('static')
+                
+                table.insert(puzzleBarrier, barr)
+            end
+        end    
 
 
         if saveLoad == true then
@@ -113,6 +124,13 @@ if player.y > 270 and player.y < 295 then
             Gamestate.push(bluemon)
         end
     end
+
+    if bluemon.done == true then
+        for i, barrier in ipairs(puzzleBarrier) do
+            barrier:setCollisionClass('Ignore')
+        end
+    end
+
 end
 
 
@@ -141,18 +159,18 @@ function levelThree:draw()
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
         world:draw()
+        book:draw()
         gengar.draw("levelThree")
         flashlight.draw("levelThree")
         rock.draw("levelThree")
-        if bluemon.done == true then
-            book:draw()
+        if bluemon.done == false then
+            testingMap:drawLayer(testingMap.layers["puzzlelock"])
         end
+        
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()
-        if love.keyboard.isDown("j") then
-            table.insert(inventory,"Itemsssssss")
-        end
+
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()

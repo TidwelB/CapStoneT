@@ -225,6 +225,9 @@ if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false o
     if distanceBetweenSprites(player.x, player.y, 55, 80, battery3.x, battery3.y, battery3.w, battery3.h) < 80 and checkInventory(inventory,"battery3") == false and inventory[2] == nil and room == battery3.room then
         table.insert(inventory,"battery3")
     end
+    if distanceBetweenSprites(player.x, player.y, 55, 80, book.x, book.y, book.w*book.scale, book.h*book.scale) < 80 and checkInventory(inventory,"book") == false and inventory[2] == nil and room == book.room then
+        table.insert(inventory,"book")
+    end
     
 end
 --print(player.keytimer)
@@ -287,6 +290,11 @@ function DropItem(param)
         battery3.y = y
         battery3.room = room
     end
+    if item == "book" then
+        book.x = x
+        book.y = y
+        book.room = room
+    end
     player.keytimer = 0
 
 end
@@ -345,6 +353,7 @@ function player.draw()
     local position4 = findItem("battery1")
     local position5 = findItem("battery2")
     local position6 = findItem("battery3")
+    local position7 = findItem("book")
     if love.keyboard.isDown("tab") then
 
         love.graphics.rectangle("line", 200, 15, 64, 64)
@@ -384,6 +393,12 @@ function player.draw()
         end
         if position6 == 2 then
              love.graphics.draw(battery1.spritesheet,367,0,1.5,1.5)
+        end
+        if position7 == 1 then
+            love.graphics.draw(book.spritesheet,205,15,0,2.5,2.5)
+        end
+        if position7 == 2 then
+             love.graphics.draw(book.spritesheet,287,15,0,2.5,2.5)
         end
     end
 end

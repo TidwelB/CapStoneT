@@ -95,7 +95,9 @@ function waver:update(dt)
     end
 
     if love.keyboard.isDown("escape") then
+        
         Gamestate.pop(waver)
+        sleep(.5)
     end
     -- Add a new data point at the specified time interval
     updateInterval = updateInterval - dt
