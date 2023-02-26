@@ -9,7 +9,7 @@ function computer5:enter(from)
   end
 
 function computer5:draw()
-    SSSself.from:draw()
+    self.from:draw()
     local screenWidth, screenHeight = love.graphics.getWidth(), love.graphics.getHeight()
     
     love.graphics.clear(0.2, 0.2, 0.2) -- clear the screen with a dark gray color
