@@ -170,6 +170,15 @@ function game:draw()
         scientist.anim:draw(scientist.spriteSheet,scientist.x,scientist.y,nil,5,nil,6,6)
         
         DRAW_ENEMY()
+        love.graphics.print("Press W to walk upwards", 300, 200)
+        love.graphics.print("Press S to walk downwards", 300, 250)
+        love.graphics.print("Press A to walk left", 200, 225)
+        love.graphics.print("Press D to walk right", 400, 225)
+        love.graphics.print("Press escape to pause", 550, 225)
+        love.graphics.print("Press F to use flashlight",550, 260)
+        love.graphics.print("Hold Shift to sprint", 500, 600)
+        love.graphics.print("Go talk to the scientist in the bottom left corner", 350,450)
+        love.graphics.print("Press 'e' to interact or pickup", 50,780)
 
         -- This feature draws the hitboxes of the game
         -- world:draw()

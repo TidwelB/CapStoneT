@@ -1,7 +1,7 @@
 gengar = {}
     gengar.spritesheet = love.graphics.newImage("sprites/gengar.png")
-    gengar.x = 200
-    gengar.y = 200
+    gengar.x = 100
+    gengar.y = 100
     gengar.h = gengar.spritesheet:getHeight()
     gengar.w= gengar.spritesheet:getWidth()
     gengar.room = "runGame"
