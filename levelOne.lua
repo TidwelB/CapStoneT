@@ -154,26 +154,26 @@ function levelOne:update(dt)
                 Sounds.boop:play()
                 local slot = findItem("battery1")
                 table.remove(inventory, slot)
-                battery1.x = 20000
+                table.insert(chest,"battery1")
                 batcount = batcount + 1
             end
             if checkInventory(inventory, "battery2") == true then
                 Sounds.boop:play()
                 local slot = findItem("battery2")
                 table.remove(inventory, slot)
-                battery2.x = 20000
+                table.insert(chest,"battery2")
                 batcount = batcount + 1
             end
             if checkInventory(inventory, "battery3") == true then
                 Sounds.boop:play()
                 local slot = findItem("battery3")
                 table.remove(inventory, slot)
-                battery3.x = 20000
+                table.insert(chest,"battery3")
                 batcount = batcount + 1
             end
         end
     end
-    if batcount == 3 then
+    if batcount == 3 or (checkInventory(chest,"battery1") and checkInventory(chest,"battery2") and checkInventory(chest,"battery3")) then
         for i, barrier in ipairs(puzzleBarrier) do
             barrier:setCollisionClass('Ignore')
         end
@@ -216,7 +216,7 @@ function levelOne:draw()
         battery1.draw("levelOne")
         battery2.draw("levelOne")
         battery3.draw("levelOne")
-        crates.draw()
+        crates:draw()
         gengar.draw("levelOne")
         flashlight.draw("levelOne")
         ball.draw("levelOne")

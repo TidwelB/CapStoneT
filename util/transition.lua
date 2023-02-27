@@ -16,6 +16,7 @@ function transition:Transitioner()
             room = "runGame"
             transition.coordx = 405
             transition.coordy = 142
+            crates.delete()
             return Gamestate.switch(runGame)
         end
 print(player.x)
