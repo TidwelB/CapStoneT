@@ -152,22 +152,22 @@ function levelOne:update(dt)
             -- need to remove from inventory then move on if battery count = 3 
             if checkInventory(inventory, "battery1") == true then
                 Sounds.boop:play()
-                local slot = findItem("battery1")
-                table.remove(inventory, slot)
+                --local slot = findItem("battery1")
+                table.remove(inventory, findItem("battery1"))
                 table.insert(chest,"battery1")
                 batcount = batcount + 1
             end
             if checkInventory(inventory, "battery2") == true then
                 Sounds.boop:play()
-                local slot = findItem("battery2")
-                table.remove(inventory, slot)
+                --local slot = findItem("battery2")
+                table.remove(inventory, findItem("battery2"))
                 table.insert(chest,"battery2")
                 batcount = batcount + 1
             end
             if checkInventory(inventory, "battery3") == true then
                 Sounds.boop:play()
-                local slot = findItem("battery3")
-                table.remove(inventory, slot)
+                --local slot = findItem("battery3")
+                table.remove(inventory, findItem("battery3"))
                 table.insert(chest,"battery3")
                 batcount = batcount + 1
             end

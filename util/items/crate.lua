@@ -20,7 +20,7 @@ function spawnCrate(x, y)
         crate.y = crate.collider:getY() - 45
         
         -- Draw crate sprite
-        love.graphics.draw(crate.spritesheet, crate.x, crate.y, crate.collider:getAngle(), 1, 1, crate.w / 2, crate.h /2)
+        
         
         -- Update crate collider properties
         local x, y = crate.collider:getLinearVelocity()
@@ -42,7 +42,11 @@ function spawnCrate(x, y)
         end
         crate.collider:setAngularVelocity(w)
         crate.collider:setLinearVelocity(x, y)
+        --love.graphics.draw(crate.spritesheet, crate.x, crate.y, crate.collider:getAngle(), 1, 1, crate.w / 2, crate.h /2)
+        
       end
+      --crates:draw()
+      --love.graphics.draw(crate.spritesheet, crate.x, crate.y, crate.collider:getAngle(), 1, 1, crate.w / 2, crate.h /2)
     end
     
     table.insert(crates, crate)
@@ -59,11 +63,19 @@ end
 function crates:draw()
     for _,c in ipairs(crates) do
         love.graphics.draw(c.spritesheet, c.x, c.y,0,c.scale,c.scale)
+        --print(c.x)
     end
 end
 
 function crates.delete()
     for _,c in ipairs(crates) do
-        crates[c] = nil
+        c.x = 5000
     end
 end
+
+function crates.clearCrates()
+    for k in pairs(crates) do
+      
+    end
+  end
+  

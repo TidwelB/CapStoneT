@@ -11,12 +11,13 @@ end
 function transition:Transitioner()
     if player.collider:enter('Ghost') then
         --LevelOne to Main lobby
-        if player.x > 1300 and player.x < 1550 and room =="levelOne" then
+        if player.x > 1300 and player.x < 1550 and room =="levelOne" and (checkInventory(chest,"battery1") and checkInventory(chest,"battery2") and checkInventory(chest,"battery3") and checkInventory(inventory, "flashlight") and checkInventory(inventory, "ball")) then
             rock.delete()
             room = "runGame"
             transition.coordx = 405
             transition.coordy = 142
-            crates.delete()
+            --crates.clearCrates()
+            --crates.delete()
             return Gamestate.switch(runGame)
         end
 print(player.x)
@@ -25,8 +26,10 @@ print(player.y)
 print(Gamestate.current() == runGame)
 
         -- Main lobby to LevelOne
-        if Gamestate.current() == runGame and player.y < 300 then
+        if Gamestate.current() == runGame and player.y < 300  and checkInventory(inventory,"flashlight") and checkInventory(chest,"battery1") == false then
             rock.delete()
+            --crates.clearCrates()
+            --crates.delete()
             transition.coordx = 1430
             transition.coordy = 3000
             room = "levelOne"
@@ -35,7 +38,7 @@ print(Gamestate.current() == runGame)
             -- rock.collider = nil
             return Gamestate.switch(runLevelOne)
         --Main lobby to LevelTwo
-        else if Gamestate.current() == runGame then
+        else if Gamestate.current() == runGame and player.y > 350 and checkInventory(chest,"battery1") then
             rock.delete()
             room = "levelTwo"
             transition.coordx = 831
