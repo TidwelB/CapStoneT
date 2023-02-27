@@ -74,6 +74,7 @@ if op == "Windows" then
             print(data.position.y)
 
             inventory = data.inventory
+            chest = data.chestInvetory
             saveLoad = true
 
             if data.level == "runGame" then
@@ -121,7 +122,7 @@ else
             player.x = data.position.x
             player.y = data.position.y
             inventory = data.inventory
-            
+            chest = data.chestInvetory
             player.load(data.position.x,data.position.y)
             firstLoad = false
             --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)

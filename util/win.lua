@@ -29,7 +29,7 @@ end
 -- Creates two buttons for returning to the main menu or 
 -- exiting the game.
 table.insert(buttons,newButton("Return to Main Menu",function()Gamestate.switch(menu)end))
-table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
+table.insert(buttons,newButton("Exit",function()sleep(1) love.event.quit(0)end))
 
 font = love.graphics.newFont(32)
 

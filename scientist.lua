@@ -116,7 +116,7 @@ function scientist.response(dt)
     -- if player presses "e" close enough to scientist then he talks
     -- press space to loop dialog
     if love.keyboard.isDown("e") and distanceBetweenSprites(player.x, player.y, 55, 80, scientist.x, scientist.y, scientist.w,scientist.h) < 80 then
-        Moan.speak("Scientist", { "Hello" , "yo"}, {image = scientist.icon })
+        Moan.speak("Scientist", { "Hello, to escape the facility you will need to collect 3 seperate items located in 3 different rooms." , "Each room will have a seperate puzzle. But be careful there are escaped SCPs that if you get too close they will kill you", "A hint for the first puzzle is check under the boxes you are looking for three batteries to unlock the ball.", "As for a hint on another room, check all the computers and a guide will be provided", "Last hint find the blue and green screens they will provide you the key"}, {image = scientist.icon })
 
         if checkInventory(inventory, "rock") == true then
             Moan.speak("Scientist", { "you rock" }, {image = scientist.icon })
