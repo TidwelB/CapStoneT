@@ -55,8 +55,8 @@ function game:enter()
     love.window.setTitle("SCP: FALLEN")
     love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
 
-    enemy.spawn(500,500)
-    enemy.load()
+    --enemy.spawn(500,500)
+    --enemy.load()
     scientist.spawn(100,800)
 
     world:addCollisionClass('Solid')
@@ -129,8 +129,8 @@ function game:update(dt)
         redheartbeat.anim:update(dt)
     end
 
-    enemy.anim:update(dt)
-    UPDATE_ENEMY(dt)
+    --enemy.anim:update(dt)
+    --UPDATE_ENEMY(dt)
     
     game.height = love.graphics.getHeight()
     game.width = love.graphics.getWidth()
@@ -169,7 +169,7 @@ function game:draw()
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5, nil, 6, 6)
         scientist.anim:draw(scientist.spriteSheet,scientist.x,scientist.y,nil,5,nil,6,6)
         
-        DRAW_ENEMY()
+        --DRAW_ENEMY()
         love.graphics.print("Press W to walk upwards", 300, 200)
         love.graphics.print("Press S to walk downwards", 300, 250)
         love.graphics.print("Press A to walk left", 200, 225)

@@ -163,7 +163,7 @@ function levelThree:draw()
        --enemy.draw()
 
 
-        world:draw()
+        --world:draw()
         book:draw()
         gengar.draw("levelThree")
         flashlight.draw("levelThree")
@@ -187,6 +187,6 @@ function levelThree:draw()
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()
-    love.graphics.print(player.x, 100, 10)
-    love.graphics.print(player.y, 100, 30)
+    -- love.graphics.print(player.x, 100, 10)
+    -- love.graphics.print(player.y, 100, 30)
 end

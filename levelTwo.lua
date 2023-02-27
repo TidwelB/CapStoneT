@@ -215,8 +215,8 @@ function levelTwo:draw()
 
         love.graphics.setColor(255,255,255,255)
     camera:detach()
-    love.graphics.print(player.x, 100, 100)
-    love.graphics.print(player.y, 100, 120)
+    -- love.graphics.print(player.x, 100, 100)
+    -- love.graphics.print(player.y, 100, 120)
     love.graphics.reset()
 
     DRAW_HUD()

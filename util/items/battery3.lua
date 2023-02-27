@@ -28,13 +28,9 @@ battery3 = {}
     battery3.room = "levelOne"
 
     function battery3:draw()
-        if checkInventory(inventory, "battery3") == false then
-            if Gamestate.current() == runLevelOne or Gamestate.current() == runGame then
-        if battery3.room == room then
-        love.graphics.draw(battery3.spritesheet,battery3.x,battery3.y)
+        if checkInventory(inventory, "battery3") == false and checkInventory(chest, "battery3") == false then
+            love.graphics.draw(battery3.spritesheet,battery3.x,battery3.y)
         end
-    end
-    end
     end
 
     function battery3.load()

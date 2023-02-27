@@ -29,12 +29,8 @@ battery2 = {}
 
     function battery2:draw()
         if checkInventory(inventory, "battery2") == false and checkInventory(chest, "battery2") == false then
-            if Gamestate.current() == runLevelOne or Gamestate.current() == runGame then
-        if battery2.room == room then
-        love.graphics.draw(battery2.spritesheet,battery2.x,battery2.y)
+            love.graphics.draw(battery2.spritesheet,battery2.x,battery2.y)
         end
-    end
-    end
     end
 
     function battery2.load()
