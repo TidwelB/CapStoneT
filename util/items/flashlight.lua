@@ -1,7 +1,7 @@
 flashlight = {}
     flashlight.spritesheet = love.graphics.newImage("sprites/flashlight.png")
-    flashlight.x = 500
-    flashlight.y = 200
+    flashlight.x = 650
+    flashlight.y = 350
     flashlight.h = flashlight.spritesheet:getHeight()
     flashlight.w = flashlight.spritesheet:getWidth()
     flashlight.scale = 0.1

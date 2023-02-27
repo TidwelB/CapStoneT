@@ -178,8 +178,8 @@ function game:draw()
         love.graphics.print("Press F to use flashlight",550, 260)
         love.graphics.print("Hold Shift to sprint", 500, 600)
         love.graphics.print("Go talk to the scientist in the bottom left corner", 350,450)
-        love.graphics.print("Press 'e' to interact or pickup", 50,780)
-
+        love.graphics.print("Press 'e' to interact", 50,780)
+        love.graphics.print("Press 'e' to pickup", 630,330)
         -- This feature draws the hitboxes of the game
         -- world:draw()
 
