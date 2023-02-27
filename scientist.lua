@@ -117,13 +117,16 @@ function scientist.response(dt)
     -- press space to loop dialog
     if love.keyboard.isDown("e") and distanceBetweenSprites(player.x, player.y, 55, 80, scientist.x, scientist.y, scientist.w,scientist.h) < 80 then
        if checkInventory(chest, "battery1") == false or checkInventory(chest, "battery2") == false or checkInventory(chest, "battery3") == false then
-        Moan.speak("Scientist", { "Hello, to escape the facility you will need to collect 3 seperate items located in 3 different rooms." , "Each room will have a seperate puzzle. But be careful there are escaped SCPs that if you get too close they will kill you", "A hint for the first puzzle is check under the boxes you are looking for three batteries to unlock the ball. Make sure you have the flashlight otherwise you can't enter the rooms"}, {image = scientist.icon })
+        Moan.speak("Scientist", { "Hello, to escape the facility you will need to collect 3 seperate items located in 3 different rooms." , "Each room will have a seperate puzzle. But be careful there are escaped SCPs that if you get too close they will kill you","Once you collect each item you need to drop it off in the container in this room, simply click 'e' when next to the container to drop it.", "A hint for the first puzzle in the room above is to check under the boxes you are looking for three batteries to unlock the ball. Make sure you have the flashlight otherwise you can't enter that room"}, {image = scientist.icon })
+        else if (checkInventory(inventory, "book") == true or checkInventory(chest, "book") or (book.x ~= 1390 and book.y ~= 300)) (checkInventory(inventory, "ball") == true or checkInventory(chest, "ball") or (ball.x ~= 3000 and ball.y ~= 230)) and (checkInventory(inventory, "chargecable") == true or checkInventory(chest, "chargecable") or (chargecable.x ~= 60 and chargecable.y ~= 750 )) then
+        Moan.speak("Scientist", { "You've found the last piece! Go drop it off and get out of here" }, {image = scientist.icon })
         else if (checkInventory(inventory, "ball") == true or checkInventory(chest, "ball") or (ball.x ~= 3000 and ball.y ~= 230)) and checkInventory(inventory, "chargecable") == true or checkInventory(chest, "chargecable") or (chargecable.x ~= 60 and chargecable.y ~= 750 )then
         Moan.speak("Scientist", { "You solved the second puzzle, now only one to go. For this one you need to find the green and blue screens, those screens will provide a riddle to solve." }, {image = scientist.icon })
         --end
          else if checkInventory(inventory, "ball") == true or checkInventory(chest, "ball") or (ball.x ~= 3000 and ball.y ~= 230) then
             Moan.speak("Scientist", { "Congradulations, you completed the first puzzle now as for the second puzzle my hint to you is to check all the computer screens and eventually you'll find instructions to help" }, {image = scientist.icon })
     end
+end
 end
         -- if checkInventory(inventory, "flashlight") == true then
         --     Moan.speak("Scientist", { "You got the flashlight" }, {image = scientist.icon })
