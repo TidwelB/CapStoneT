@@ -12,13 +12,7 @@ function transition:Transitioner()
     if player.collider:enter('Ghost') then
         --LevelOne to Main lobby
         if player.x > 1300 and player.x < 1550 and room =="levelOne" and (checkInventory(chest,"battery1") and checkInventory(chest,"battery2") and checkInventory(chest,"battery3") and checkInventory(inventory, "flashlight") and checkInventory(inventory, "ball")) then
-            rock.delete()
-            room = "runGame"
-            transition.coordx = 405
-            transition.coordy = 142
-            --crates.clearCrates()
-            --crates.delete()
-            return Gamestate.switch(runGame)
+            OneToGame()
         end
 print(player.x)
 print(player.y)
@@ -27,64 +21,115 @@ print(Gamestate.current() == runGame)
 
         -- Main lobby to LevelOne
         if Gamestate.current() == runGame and player.y < 300  and checkInventory(inventory,"flashlight") and checkInventory(chest,"battery1") == false then
-            rock.delete()
-            --crates.clearCrates()
-            --crates.delete()
-            transition.coordx = 1430
-            transition.coordy = 3000
-            room = "levelOne"
-            
-            -- rock.collider:destroy()
-            -- rock.collider = nil
-            return Gamestate.switch(runLevelOne)
+            return GameToOne()
         --Main lobby to LevelTwo
         else if Gamestate.current() == runGame and player.y > 350 and checkInventory(chest,"battery1") then
-            rock.delete()
-            room = "levelTwo"
-            transition.coordx = 831
-            transition.coordy = 120
-            return Gamestate.switch(runLevelTwo)
+            return GameToTwo()
         end
         end
 
         if Gamestate.current() == runLevelTwo and player.y > 1400 then
-            --print("yea i tried")
 
-            --if checkInventory(inventory,"chargecable") then
-                rock.delete()
-                room = "levelThree"
-                transition.coordx = 862
-                transition.coordy = 144
-            return Gamestate.switch(runLevelThree)
+            TwoToThree()
+            --TwoToMaze()
             --end
         else if Gamestate.current() == runLevelTwo then
-            transition.coordx = 468
-            transition.coordy = 780
-            room = "runGame"
-            Gamestate.switch(runGame)
+            TwoToGame()
         end
         end
 
         if Gamestate.current() == runLevelThree and player.y <300 then
-            rock.delete()
-            room = "levelTwo"
-            transition.coordx = 831
-            transition.coordy = 1420
-            return Gamestate.switch(runLevelTwo)
+            ThreeToTwo()
+            --ThreeToMaze()
         end
-
-
-
-
-        --1 - main  1349,1324
-        --2 - main   738, 5.33
-        --2 - 3      742,1512
-        --2 - maze      777,10
-        --3 - 4      774,1508
-        --4 - 3     775, 10
+        if Gamestate.current() == "maze" then
+            MazeToTwo()
+        end
 
     end
 end
+
+function OneToGame()
+    rock.delete()
+    room = "runGame"
+    transition.coordx = 405
+    transition.coordy = 142
+    --crates.clearCrates()
+    --crates.delete()
+    return Gamestate.switch(runGame)
+end
+
+function GameToOne()
+    rock.delete()
+    transition.coordx = 1430
+    transition.coordy = 3000
+    room = "levelOne"
+    return Gamestate.switch(runLevelOne)
+end
+
+function GameToTwo()
+    rock.delete()
+    room = "levelTwo"
+    transition.coordx = 831
+    transition.coordy = 130
+    return Gamestate.switch(runLevelTwo)
+end
+
+function TwoToThree()
+    rock.delete()
+    room = "levelThree"
+    transition.coordx = 862
+    transition.coordy = 144
+    return Gamestate.switch(runLevelThree)
+end
+
+function TwoToGame()
+    transition.coordx = 468
+    transition.coordy = 780
+    room = "runGame"
+    Gamestate.switch(runGame)
+end
+
+function ThreeToTwo()
+        rock.delete()
+        room = "levelTwo"
+        transition.coordx = 831
+        transition.coordy = 1420
+        return Gamestate.switch(runLevelTwo)
+end
+
+function TwoToMaze()
+    rock.delete()
+    room = "maze"
+    transition.coordx = 831
+    transition.coordy = 120
+    return Gamestate.switch(runMaze)
+end
+
+function MazeToTwo()
+    rock.delete()
+    room = "levelTwo"
+    transition.coordx = 831
+    transition.coordy = 120
+    return Gamestate.switch(runLevelTwo)
+end
+
+function MazeToThree()
+    rock.delete()
+    room = "levelThree"
+    transition.coordx = 831
+    transition.coordy = 120
+    return Gamestate.switch(runLevelThree)
+end
+
+function ThreeToMaze()
+    rock.delete()
+    room = "maze"
+    transition.coordx = 831
+    transition.coordy = 120
+    return Gamestate.switch(runMaze)
+end
+
 
 function transition:update(dt)
     for i = 1, 5 do

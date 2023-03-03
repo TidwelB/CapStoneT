@@ -53,7 +53,7 @@ function game:enter()
     -- draws the window size
     world = wf.newWorld(0, 0)
     love.window.setTitle("SCP: FALLEN")
-    love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
+    love.window.setMode(1920, 1080, {resizable=true, vsync=true, minwidth=400, minheight=300})
 
     --enemy.spawn(500,500)
     --enemy.load()
