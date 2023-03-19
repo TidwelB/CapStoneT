@@ -42,7 +42,9 @@ end
 --end
 
 local folder_path = "Desktop/Remedy" -- Replace this with the path to your folder
-
+filepath = love.filesystem.getRealDirectory('/')
+-- print("printing filepath")
+-- print(filepath)
 -- Get the list of files in the folder
 --local path = os.getenv("HOME") .. "/Desktop/Remedy/"
 local files = {}
@@ -50,13 +52,13 @@ firstLoad = true
 local op = love.system.getOS()
 if op == "Windows" then
     --local path = os.getenv("HOME") .. "\\Desktop\\Remedy\\"
-    local thing = os.getenv("HOMEDRIVE")
-    local penis = os.getenv("HOMEPATH")
-    print(thing)
-    print(penis)
-    local path = thing .. penis .. "\\Desktop\\Remedy\\"
+   --local thing = os.getenv("HOMEDRIVE")
+    --local penis = os.getenv("HOMEPATH")
+    --print(thing)
+   -- print(penis)
+   -- local path = thing .. penis .. "\\Desktop\\Remedy\\"
     --local path = "C:\\Users\\18035\\Desktop\\Remedy\\"
-    for file in io.popen("dir /B " .. path .. "*.json"):lines() do 
+    for file in io.popen("dir /B " .. filepath .. "*.json"):lines() do 
         print(file)
         table.insert(files, file)
         local file_name = file:gsub("[/%[%]%(%){}%+%-*%%^%$%?%.\\]%f[%a]json%f[%A]", "")
@@ -95,11 +97,12 @@ if op == "Windows" then
 
 
 else
-    local path = os.getenv("HOME") .. "/Desktop/Remedy/"
-    for file in io.popen("ls " .. path .. "*.json"):lines() do 
+    --local path = os.getenv("HOME") .. "/Desktop/Remedy/"
+    for file in io.popen("ls " .. filepath .. "*.json"):lines() do 
         print(file)
         table.insert(files, file)
-        local file_name = string.match(file, ".+/([^/]+)$")
+        local file_name = string.match(file,".+/([^/]+)$")
+        print(filename)
         table.insert(buttons, newButton(file_name, function() 
             -- Read and parse the JSON file
             files = io.open(file, "r")

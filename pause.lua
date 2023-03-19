@@ -33,12 +33,13 @@ function write_to_json_file(filename, data)
     local json_data = json.encode(data)
     local op = love.system.getOS()
 
-    if op == "Windows" then
+    -- if op == "Windows" then
         
-        filename = os.getenv("HOMEDRIVE") .. os.getenv("HOMEPATH") .. "\\Desktop\\Remedy\\" .. filename
-    else
-        filename = os.getenv("HOME") .. "/Desktop/Remedy/" .. filename
-    end
+    --     filename = os.getenv("HOMEDRIVE") .. os.getenv("HOMEPATH") .. "\\Desktop\\Remedy\\" .. filename
+    -- else
+    --     filename = os.getenv("HOME") .. "/Desktop/Remedy/" .. filename
+    -- end
+    filename = filepath .. filename
     --end
     --filename = os.getenv("HOME") .. "/Desktop/Remedy/" .. filename
     -- open file for writing
