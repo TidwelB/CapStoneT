@@ -39,7 +39,12 @@ function write_to_json_file(filename, data)
     -- else
     --     filename = os.getenv("HOME") .. "/Desktop/Remedy/" .. filename
     -- end
-    filename = filepath .. filename
+
+    if op == "Windows" then
+        filename = filepath .. "\\" .. filename
+    else
+    filename = filepath .. "/".. filename
+    end
     --end
     --filename = os.getenv("HOME") .. "/Desktop/Remedy/" .. filename
     -- open file for writing
