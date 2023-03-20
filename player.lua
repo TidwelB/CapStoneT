@@ -170,7 +170,7 @@ function player.control(dt)
             love.timer.sleep(.3)
             --Sounds.music:pause()
             Gamestate.push(pause)
-    end
+       end
 
 --and checkInventory(inventory, "flashlight") == true
 

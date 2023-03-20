@@ -19,6 +19,10 @@ local function newButton(text,fn)
     }
 end
 
+if love.keyboard.isDown("escape") then
+    Gamestate.push(menu)
+end
+
 function save:enter(from)
     
   --  img = love.graphics.newImage("screens/lose.png")

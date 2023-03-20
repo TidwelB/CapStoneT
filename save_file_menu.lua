@@ -68,3 +68,9 @@ function save_file_menu:keypressed(key)
         Gamestate.pop()
     end
 end
+
+if love.keyboard.isDown("escape") then
+    love.timer.sleep(.3)
+    --Sounds.music:pause()
+    Gamestate.pop()
+end

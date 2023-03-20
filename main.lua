@@ -13,6 +13,7 @@ require('save_file_menu')
 require('util.save')
 require('util.greenmon')
 require('util.bluemon')
+require('util.controls')
 
 local tests = require('testing.tests')
 
@@ -225,7 +226,7 @@ function love.load()
     Gamestate.switch(menu)
     love.graphics.setBackgroundColor(0,255,255,1)
     table.insert(buttons,newButton("Start Game",function()Gamestate.switch(runGame)Music.music:play()end))
-    table.insert(buttons,newButton("Load Save",function() Gamestate.switch(save) sleep(.3) end))
+    table.insert(buttons,newButton("Load Save",function() Gamestate.push(save) sleep(.3) end))
     table.insert(buttons,newButton("Exit",function()love.event.quit(0)end))
     testing.run()
 end

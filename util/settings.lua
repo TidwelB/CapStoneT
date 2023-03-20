@@ -12,7 +12,8 @@ local button2 = {text = "Decrease Volume", fn = function() settings.decreasevolu
 local button5 = {text = "Increase Sound Effect Volumes", fn = function() settings.increasevolumes(Sounds.collision) end, width = 150, x = 450, y = 400}
 local button4 = {text = "Decrease Sound Effect Volumes", fn = function() settings.decreasevolumes(Sounds.collision) end, width = 150, x = 900, y = 400}
 local button1 = {text = "Mute Sounds", fn = function() settings.mute() end, width = 300, x = 900, y = 100}
-local allButtons = {button1,button2,button3,button4,button5,button6}
+local button7 = {text = "Controls", fn = function()  Gamestate.push(controls) sleep(.3) end, width = 300}
+local allButtons = {button1,button2,button3,button4,button5,button6,button7}
 
 -- Builds a new button for the settings
 -- screen.
@@ -52,6 +53,8 @@ function settings:buttonpositions()
     button5.y = 3*(window_height/6)
     button6.x = (window_width - 300) / 2
     button6.y = 4*(window_height/6)
+    button7.x = (window_width - 300)
+    button7.y = 4*(window_height/6)
 end
 
 -- Resizes  the buttons
