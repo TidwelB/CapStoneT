@@ -19,7 +19,7 @@ function maze:enter()
     camera = cam()
 
     -- loads in the map
-    testingMap = sti('maps/Mazemap.lua')
+    testingMap = sti('maps/Maze2.0.lua')
 
     -- draws the window size
     world = wf.newWorld(0, 0)
@@ -55,7 +55,31 @@ function maze:enter()
         player.load()
         --enemy.load()
         --SCP.load()
-        
+        if saveLoad == true then
+            print(saveLoad)
+            if firstLoad == false then
+                player.load(transition.coordx,transition.coordy)
+            else
+                flashlight.load()
+                gengar.load()
+                rock.loadSave()
+                rock.load(rock.x,rock.y)
+                battery1.load()
+                battery2.load()
+                battery3.load()
+                bluemon.loadSave()
+                book.load()
+            end
+            --player.load(data.position.x,data.position.y)
+        else
+        print(saveLoad)
+        player.load(transition.coordx,transition.coordy)
+        end
+        rock.load(rock.x,rock.y)
+        --SCP076.spawn(1390,600)
+        --enemy.load()
+        --SCP.load()
+
         
 end
 
@@ -97,7 +121,9 @@ function maze:draw()
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()
         if love.keyboard.isDown("j") then
-            table.insert(inventory,"Itemsssssss")
+            --table.insert(inventory,"Itemsssssss")
+            print(player.x)
+            print(player.y)
         end
     camera:detach()
     love.graphics.reset()

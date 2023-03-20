@@ -22,6 +22,7 @@ print(Gamestate.current() == runGame)
         -- Main lobby to LevelOne
         if Gamestate.current() == runGame and player.y < 300  and checkInventory(inventory,"flashlight") and checkInventory(chest,"battery1") == false then
             return GameToOne()
+            
         --Main lobby to LevelTwo
         else if Gamestate.current() == runGame and player.y > 350 and checkInventory(chest,"battery1") then
             return GameToTwo()
@@ -30,24 +31,28 @@ print(Gamestate.current() == runGame)
 
         if Gamestate.current() == runLevelTwo and player.y > 1400 then
 
-            TwoToThree()
-            --TwoToMaze()
+            --TwoToThree()
+            return TwoToMaze()
             --end
         else if Gamestate.current() == runLevelTwo then
-            TwoToGame()
+            return TwoToGame()
         end
         end
 
         if Gamestate.current() == runLevelThree and player.y <300 then
-            ThreeToTwo()
-            --ThreeToMaze()
+            --ThreeToTwo()
+            return ThreeToMaze()
         end
-        if Gamestate.current() == "maze" then
-            MazeToTwo()
+        if Gamestate.current() == runMaze and player.x < 0 then
+            return MazeToTwo()
+        else if Gamestate.current() == runMaze and player.x > 0 then
+             MazeToThree()
+        end
+        end
         end
 
     end
-end
+
 
 function OneToGame()
     rock.delete()
@@ -101,8 +106,8 @@ end
 function TwoToMaze()
     rock.delete()
     room = "maze"
-    transition.coordx = 831
-    transition.coordy = 120
+    transition.coordx = -2675.8
+    transition.coordy = 6901.2
     return Gamestate.switch(runMaze)
 end
 
@@ -110,23 +115,23 @@ function MazeToTwo()
     rock.delete()
     room = "levelTwo"
     transition.coordx = 831
-    transition.coordy = 120
+    transition.coordy = 1420
     return Gamestate.switch(runLevelTwo)
 end
 
 function MazeToThree()
     rock.delete()
     room = "levelThree"
-    transition.coordx = 831
-    transition.coordy = 120
+    transition.coordx = 862
+    transition.coordy = 144
     return Gamestate.switch(runLevelThree)
 end
 
 function ThreeToMaze()
     rock.delete()
     room = "maze"
-    transition.coordx = 831
-    transition.coordy = 120
+    transition.coordx = 5483
+    transition.coordy = 1817.9
     return Gamestate.switch(runMaze)
 end
 
