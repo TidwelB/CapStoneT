@@ -295,6 +295,7 @@ function DropItem(param)
         flashlight.x = x
         flashlight.y = y
         flashlight.room = room
+        shaders.flashlight = false
     end
     if item == "gengar" then
         gengar.x = x
