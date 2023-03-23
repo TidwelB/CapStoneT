@@ -28,7 +28,7 @@ battery2 = {}
     battery2.room = "levelOne"
 
     function battery2:draw()
-        if checkInventory(inventory, "battery2") == false and checkInventory(chest, "battery2") == false then
+        if checkInventory(inventory, "battery2") == false and checkInventory(chest, "battery2") == false  and battery2.room == room then
             love.graphics.draw(battery2.spritesheet,battery2.x,battery2.y)
         end
     end
