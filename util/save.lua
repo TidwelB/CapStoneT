@@ -2,7 +2,7 @@
 -- Gamestate library
 local json = require("libraries.dkjson")
 Gamestate = require 'libraries.gamestate'
-
+require("shaders")
 save = {}
 save = Gamestate.new()
 
@@ -12,6 +12,7 @@ local buttons = {}
 BUTTON_HEIGHT = 64
 font = nil
 
+shaders:window()
 --losebackground = love.graphics.newImage("screens/lose.png")
 local function newButton(text,fn)
     return{
@@ -71,7 +72,7 @@ if op == "Windows" then
     --local path = "C:\\Users\\18035\\Desktop\\Remedy\\"
 print("hee")
     for file in io.popen("dir /B " .. filepath .. "\\".."*.json"):lines() do 
-        local file_name = file
+        file_name = file
         file = filepath .. "\\"..file
         table.insert(files, file)
        
@@ -101,10 +102,16 @@ print("hee")
                 if i > max then
                     break
                 end
+                --print(file_name)
+        --file_name = file_name:gsub("[/%[%]%(%){}%+%-*%%^%$%?%.\\]%f[%a]json%f[%A]", "")
+        --file = file:gsub("[/%[%]%(%){}%+%-*%%^%$%?%.\\]%f[%a]c:\\Users\\18035\\Desktop\\Remedy\\%f[%A]", "")
+        --c:\Users\18035\Desktop\Remedy\please.json
+        fafafafafafafafafafafa = file
+        fafafafafafafafafafafa = fafafafafafafafafafafa:gsub("c:\\Users\\18035\\Desktop\\Remedy\\", ""):gsub("%.json", "")
+        
 
-        file_name = file_name:gsub("[/%[%]%(%){}%+%-*%%^%$%?%.\\]%f[%a]json%f[%A]", "")
         --local file_name = file
-        table.insert(buttons, newButton(file_name, function() 
+        table.insert(buttons, newButton(fafafafafafafafafafafa, function() 
             --Read and parse the JSON file
             files = io.open(file, "r")
             data_str = files:read("*all")
@@ -191,8 +198,9 @@ end)
             -- Read and parse the JSON file
             local f = io.open(file, "r")
             local data_str = f:read("*all")
-            f:close()
             local data = json.decode(data_str)
+            f:close()
+            
             
             -- Do something with the data, e.g. set player coordinates
             saveLoad = true
