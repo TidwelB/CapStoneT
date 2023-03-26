@@ -38,6 +38,8 @@ function save_file_menu:keypressed(key)
        -- local currentState = Gamestate.current()s
         local musvolume = Music.music:getVolume()
         local souvolume = Sounds.collision:getVolume()
+        local date = os.time()
+        local dateString = os.date("%Y-%m-%d %H:%M:%S", date)
         -- save the game to a file with the specified filename
         local playerData = {
             position = {x = player.x,y = player.y},
@@ -60,7 +62,8 @@ function save_file_menu:keypressed(key)
              wave3 = waver3.wave3,
              wave4 = waver4.wave4,
             chargecable = {x = chargecable.x, y = chargecable.y, room = chargecable.room},
-            chestInventory = chestInventory
+            chestInventory = chestInventory,
+            date = dateString
             --item positions for puzzle 3
         }
         

@@ -2,13 +2,16 @@
 -- Gamestate library
 local json = require("libraries.dkjson")
 Gamestate = require 'libraries.gamestate'
+
 save = {}
 save = Gamestate.new()
 
-
+local max = 5
+local count = 0
 local buttons = {}
 BUTTON_HEIGHT = 64
 font = nil
+
 --losebackground = love.graphics.newImage("screens/lose.png")
 local function newButton(text,fn)
     return{
@@ -48,7 +51,7 @@ end
 local folder_path = "Desktop/Remedy" -- Replace this with the path to your folder
 filepath = love.filesystem.getRealDirectory('/')
 
-print(filepath)
+--print(filepath)
 -- print("printing filepath")
 -- print(filepath)
 -- Get the list of files in the folder
@@ -68,12 +71,37 @@ if op == "Windows" then
     --local path = "C:\\Users\\18035\\Desktop\\Remedy\\"
 print("hee")
     for file in io.popen("dir /B " .. filepath .. "\\".."*.json"):lines() do 
-        print("woodoodod")
-        print(file)
         local file_name = file
         file = filepath .. "\\"..file
-        print(file)
         table.insert(files, file)
+       
+        table.sort(files, function(a, b)
+            -- Read and parse the JSON file for each file
+            local f1 = io.open(a, "r")
+            local data_str1 = f1:read("*all")
+            f1:close()
+            local data1 = json.decode(data_str1)
+        
+            local f2 = io.open(b, "r")
+            local data_str2 = f2:read("*all")
+            f2:close()
+            local data2 = json.decode(data_str2)
+        
+            if not data1.date or not data2.date then
+                return false
+            end
+            
+            return data1.date > data2.date
+        end)
+        
+                
+            end
+        
+            for i, file in ipairs(files) do
+                if i > max then
+                    break
+                end
+
         file_name = file_name:gsub("[/%[%]%(%){}%+%-*%%^%$%?%.\\]%f[%a]json%f[%A]", "")
         --local file_name = file
         table.insert(buttons, newButton(file_name, function() 
@@ -111,18 +139,61 @@ print("hee")
 
 
 else
-    --local path = os.getenv("HOME") .. "/Desktop/Remedy/"
-    for file in io.popen("ls " .. filepath .. "/".."*.json"):lines() do 
-        print(file)
-        table.insert(files, file)
+
+
+        
+    
+    -- local mod_time = love.filesystem.getLastModified("/Users/madison/Desktop/Remedy/2.json")
+    -- print("Last modified time:", mod_time)
+
+    local files = {}
+    local file_date = {}
+    for file in io.popen("ls " .. filepath .. "/" .. "*.json"):lines() do 
+    table.insert(files, file)
+        -- print(file)
+        -- local f = io.open(file, "r")
+        -- local data_str = f:read("*all")
+        -- f:close()
+        -- local data = json.decode(data_str)
+        -- local cry = (data.date)
+        -- --dateString = os.date("%Y-%m-%d %H:%M:%S", cry)
+        -- print(cry)
+        -- Sort the files table based on date
+    table.sort(files, function(a, b)
+    -- Read and parse the JSON file for each file
+    local f1 = io.open(a, "r")
+    local data_str1 = f1:read("*all")
+    f1:close()
+    local data1 = json.decode(data_str1)
+
+    local f2 = io.open(b, "r")
+    local data_str2 = f2:read("*all")
+    f2:close()
+    local data2 = json.decode(data_str2)
+
+    if not data1.date or not data2.date then
+        return false
+    end
+
+    return data1.date > data2.date
+end)
+
+        
+    end
+
+    for i, file in ipairs(files) do
+        if i > max then
+            break
+        end
         local file_name = string.match(file,".+/([^/]+)$")
-        print(filename)
+        --print(filename)
         table.insert(buttons, newButton(file_name, function() 
             -- Read and parse the JSON file
-            files = io.open(file, "r")
-            data_str = files:read("*all")
-            data = json.decode(data_str)
-            files:close()
+            local f = io.open(file, "r")
+            local data_str = f:read("*all")
+            f:close()
+            local data = json.decode(data_str)
+            
             -- Do something with the data, e.g. set player coordinates
             saveLoad = true
             if data.level == "runGame" then
@@ -142,10 +213,53 @@ else
             chest = data.chestInventory
             player.load(data.position.x,data.position.y)
             firstLoad = false
+
             --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
         end))
     end
+    
 
+
+
+    --local path = os.getenv("HOME") .. "/Desktop/Remedy/"
+    -- for file in io.popen("ls " .. filepath .. "/".."*.json"):lines() do 
+    --     if count >= max then break end
+    --     local file_name = string.match(file,".+/([^/]+)$")
+    --     table.insert(files, file_name)
+        --table.sort(files, function(b, a) return love.filesystem.getLastModified(a) < love.filesystem.getLastModified(b) end)
+        --print(files[1])
+        --count = count + 1
+        -- print(#files)
+        --print(filename)
+        --table.insert(buttons, newButton(file_name, function() 
+            -- Read and parse the JSON file
+            -- files = io.open(file, "r")
+            -- data_str = files:read("*all")
+            -- data = json.decode(data_str)
+            -- files:close()
+            -- Do something with the data, e.g. set player coordinates
+            -- saveLoad = true
+            -- if data.level == "runGame" then
+            --     level = runGame
+            -- elseif data.level == "levelOne" then
+            --     shaders:window()
+            --     level = runLevelOne
+            -- elseif data.level == "levelTwo" then
+            --     level = runLevelTwo
+            -- elseif data.level == "levelThree" then
+            --     level = runLevelThree
+            -- end
+            -- Gamestate.switch(level)
+            -- player.x = data.position.x
+            -- player.y = data.position.y
+            -- inventory = data.inventory
+            -- chest = data.chestInventory
+            -- player.load(data.position.x,data.position.y)
+            -- firstLoad = false
+            --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
+        --end))
+    --end
+    --table.sort(files, function(b, a) return love.filesystem.getLastModified(a) < love.filesystem.getLastModified(b) end)
 end
 
 
@@ -225,6 +339,10 @@ function save:update()
 end
 
 
-
-
-
+-- function get_file_time(filepath)
+--     files = io.open(file, "r")
+--     data_str = files:read("*all")
+--     data = json.decode(data_str)
+--     files:close()
+--     return data.date
+--   end
