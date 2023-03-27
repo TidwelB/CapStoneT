@@ -196,9 +196,9 @@ end)
         --print(filename)
         table.insert(buttons, newButton(file_name, function() 
             -- Read and parse the JSON file
-            local f = io.open(file, "r")
-            local data_str = f:read("*all")
-            local data = json.decode(data_str)
+            f = io.open(file, "r")
+            data_str = f:read("*all")
+            data = json.decode(data_str)
             f:close()
             
             
