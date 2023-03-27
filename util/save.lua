@@ -7,7 +7,7 @@ save = {}
 save = Gamestate.new()
 
 local max = 5
-local count = 0
+count = 0
 local buttons = {}
 BUTTON_HEIGHT = 64
 font = nil
@@ -57,7 +57,7 @@ filepath = love.filesystem.getRealDirectory('/')
 -- print(filepath)
 -- Get the list of files in the folder
 --local path = os.getenv("HOME") .. "/Desktop/Remedy/"
-local files = {}
+files = {}
 firstLoad = true
 local op = love.system.getOS()
 if op == "Windows" then
@@ -107,7 +107,7 @@ print("hee")
         --file = file:gsub("[/%[%]%(%){}%+%-*%%^%$%?%.\\]%f[%a]c:\\Users\\18035\\Desktop\\Remedy\\%f[%A]", "")
         --c:\Users\18035\Desktop\Remedy\please.json
         fafafafafafafafafafafa = file
-        fafafafafafafafafafafa = fafafafafafafafafafafa:gsub("c:\\Users\\18035\\Desktop\\Remedy\\", ""):gsub("%.json", "")
+        fafafafafafafafafafafa = fafafafafafafafafafafa:gsub(filepath, ""):gsub("%.json", ""):gsub("\\", "")
         
 
         --local file_name = file
@@ -153,7 +153,7 @@ else
     -- local mod_time = love.filesystem.getLastModified("/Users/madison/Desktop/Remedy/2.json")
     -- print("Last modified time:", mod_time)
 
-    local files = {}
+    files = {}
     local file_date = {}
     for file in io.popen("ls " .. filepath .. "/" .. "*.json"):lines() do 
     table.insert(files, file)
@@ -193,6 +193,7 @@ end)
             break
         end
         local file_name = string.match(file,".+/([^/]+)$")
+        local file_name = file_name:gsub(filepath, ""):gsub("%.json", ""):gsub("/", ""):gsub("\\","")
         --print(filename)
         table.insert(buttons, newButton(file_name, function() 
             -- Read and parse the JSON file

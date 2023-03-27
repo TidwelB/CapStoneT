@@ -17,11 +17,22 @@ end
 
 function save_file_menu:draw()
     love.graphics.reset()
+    if files[5] ~= nil then
+        local temp = files[5]
+        temp = temp:gsub(filepath, ""):gsub("%.json", ""):gsub("/", ""):gsub("\\","")
+        love.graphics.printf("WARNING: There is already 5 saves present so by creating a new save you will be overwriting the oldest save", 0, love.graphics.getHeight()/2 - 125, love.graphics.getWidth(), "center")
+        love.graphics.printf("The file that is being overwritten is: " .. temp, 0, love.graphics.getHeight()/2 -100, love.graphics.getWidth(), "center")
+        -- need to get rid of extra stuff for the file path here so its just the name not all the extra
+    end
     --self.from:draw()
-
     love.graphics.printf("Enter a filename:", 0, love.graphics.getHeight()/2 - 64, love.graphics.getWidth(), "center")
     love.graphics.printf(self.filename, 0, love.graphics.getHeight()/2, love.graphics.getWidth(), "center")
-
+    if love.keyboard.isDown("escape") then
+        love.timer.sleep(.3)
+        --Sounds.music:pause()
+        Gamestate.pop()
+    end
+    
     --love.graphics.reset()
 end
 
@@ -72,8 +83,4 @@ function save_file_menu:keypressed(key)
     end
 end
 
-if love.keyboard.isDown("escape") then
-    love.timer.sleep(.3)
-    --Sounds.music:pause()
-    Gamestate.pop()
-end
+
