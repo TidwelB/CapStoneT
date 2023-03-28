@@ -3,14 +3,14 @@ story = {}
 story = Gamestate.new()
 
 
-positions = {
+local positions = {
     {50, 50},
     {50, 100},
     {50, 150},
     {50, 200},
     {50, 250}
 }
-text = {
+local text = {
     "This will be the story introduction",
     "Someone can write this if they see fit",
     "Important things to write would be that they need to talk to the scientist once the game starts",
@@ -18,12 +18,12 @@ text = {
     "Press ENTER to continue to the game"
     --Whenever you add a new line add a new 0 value to charIndex, a new false value to linePrinted, and a new position vector
 }
-charIndex = {0, 0, 0, 0, 0}
-lineIndex = 1
-linePrinted = {false, false, false, false, false}
-timeElapsed = 0
-delay = 0.02
-gameState = "intro"
+local charIndex = {0, 0, 0, 0, 0}
+local lineIndex = 1
+local linePrinted = {false, false, false, false, false}
+local timeElapsed = 0
+local delay = 0.02
+local gameState = "intro"
 
 
   function story.load()
