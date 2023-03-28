@@ -23,6 +23,10 @@ require("SCP076")
 
 local testing = require("testing.testing")
 range = 100
+up = 0
+down = 0
+left = 0
+right = 0
 
 -- Starts the Main Lobby room
 -- and intializes all of the features.
@@ -170,14 +174,40 @@ function game:draw()
         scientist.anim:draw(scientist.spriteSheet,scientist.x,scientist.y,nil,5,nil,6,6)
         
         --DRAW_ENEMY()
-        love.graphics.print("Press W to walk upwards", 300, 200)
-        love.graphics.print("Press S to walk downwards", 300, 250)
-        love.graphics.print("Press A to walk left", 200, 225)
-        love.graphics.print("Press D to walk right", 400, 225)
+        if up == 0 then
+            love.graphics.print("Press W to walk upwards", 300, 200)
+        end
+        if love.keyboard.isDown("w") and up == 0 then
+           up = up + 1
+        end
+        if down == 0 then
+            love.graphics.print("Press S to walk downwards", 300, 250)
+        end
+        if love.keyboard.isDown("s") and down == 0 then
+           down = down + 1
+        end
+        if left == 0 then
+            love.graphics.print("Press A to walk downwards", 200, 225)
+        end
+        if love.keyboard.isDown("a") and left == 0 then
+           left = left + 1
+        end
+        if right == 0 then
+            love.graphics.print("Press D to walk downwards", 400, 225)
+        end
+        if love.keyboard.isDown("d") and right == 0 then
+           right = right + 1
+        end
+        --love.graphics.print("Press S to walk downwards", 300, 250)
+        --love.graphics.print("Press A to walk left", 200, 225)
+        --love.graphics.print("Press D to walk right", 400, 225)
         love.graphics.print("Press escape to pause", 550, 225)
-        love.graphics.print("Press F to use flashlight",550, 260)
+        if checkInventory(inventory, "flashlight") and flashlightCounter == 1 then
+            love.graphics.print("Press F to use flashlight",550, 260)
+        end
+        
         love.graphics.print("Hold Shift to sprint", 500, 600)
-        love.graphics.print("Go talk to the scientist in the bottom left corner", 350,450)
+        --love.graphics.print("Go talk to the scientist in the bottom left corner", 350,450)
         love.graphics.print("Press 'e' to interact", 50,780)
         love.graphics.print("Press 'e' to pickup", 630,330)
         -- This feature draws the hitboxes of the game

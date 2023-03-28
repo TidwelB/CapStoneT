@@ -92,7 +92,11 @@ function save_file_menu:keypressed(key)
              wave4 = waver4.wave4,
             chargecable = {x = chargecable.x, y = chargecable.y, room = chargecable.room},
             chestInventory = chestInventory,
-            date = dateString
+            date = dateString,
+            up = game.up,
+            down = game.down,
+            left = game.left,
+            right = game.right
             --item positions for puzzle 3
         }
         

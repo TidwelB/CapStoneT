@@ -23,6 +23,7 @@ player.max_health = 100
 player.health = 100
 player.keytimer = 0
 player.width, player.height = player.spriteSheet:getDimensions()
+flashlightCounter = 0
 
 --this is for the green health sprite
 heartbeat = {}
@@ -212,6 +213,9 @@ if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false o
     if distanceBetweenSprites(player.x, player.y, 55, 80, flashlight.x+20, flashlight.y, flashlight.w*flashlight.scale,flashlight.h*flashlight.scale ) <85 and checkInventory(inventory,"flashlight") == false and inventory[2] == nil and room == flashlight.room then
         --print("added flashlight to inventory")
         table.insert(inventory,"flashlight")
+        flashlightCounter = flashlightCounter +1
+        print(flashlightCounter)
+       
     end
     if distanceBetweenSprites(player.x, player.y, 55, 80, rock.x, rock.y, rock.w, rock.h ) <100 and checkInventory(inventory,"rock") == false  and player.keytimer > 150 and inventory[2] == nil  and rock.collider ~= nil then
         --print("added rock to inventory")
