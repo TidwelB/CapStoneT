@@ -188,6 +188,9 @@ end
 
 
 function distanceBetweenSprites(x1, y1, w1, h1, x2, y2, w2, h2)
+    if x1 == nil or y1 == nil or w1 == nil or h1 == nil or x2 == nil or y2 == nil or w2 == nil or h2 == nil then
+      return 10000
+    end
     local center1_x = x1 + w1/2
     local center1_y = y1 + h1/2
     local center2_x = x2 + w2/2
@@ -196,19 +199,17 @@ function distanceBetweenSprites(x1, y1, w1, h1, x2, y2, w2, h2)
     local x_distance = center1_x - center2_x
     local y_distance = center1_y - center2_y
     local distance = math.sqrt(x_distance^2 + y_distance^2)
-  
     return distance
   end
   
 -- Player picks things up!
 if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false or checkInventory(inventory,"flashlight") == false) and inventory[2] == nil then
-
     if distanceBetweenSprites(player.x, player.y, 55, 80, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 and checkInventory(inventory,"gengar") == false and inventory[2] == nil and room == gengar.room then
        --print("added Genga to inventory") 
         table.insert(inventory,"gengar")
        --print(distanceBetweenSprites(player.x, player.y, 65, 100, gengar.x+30, gengar.y+50, gengar.w, gengar.h)) 
     end
-    if distanceBetweenSprites(player.x, player.y, 55, 80, flashlight.x, flashlight.y, flashlight.w*flashlight.scale,flashlight.h*flashlight.scale ) <100 and checkInventory(inventory,"flashlight") == false and inventory[2] == nil and room == flashlight.room then
+    if distanceBetweenSprites(player.x, player.y, 55, 80, flashlight.x+20, flashlight.y, flashlight.w*flashlight.scale,flashlight.h*flashlight.scale ) <85 and checkInventory(inventory,"flashlight") == false and inventory[2] == nil and room == flashlight.room then
         --print("added flashlight to inventory")
         table.insert(inventory,"flashlight")
     end
@@ -291,7 +292,7 @@ local dy = targetY - player.y
     local arrowScale = .5
     local arrowX = player.x
     local arrowY = player.y
-    print(arrowAngle)
+    --print(arrowAngle)
     love.graphics.draw(arrowImage, arrowX, arrowY, math.rad(arrowAngle), arrowScale, arrowScale)
 end
 
