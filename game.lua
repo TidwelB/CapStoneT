@@ -182,7 +182,9 @@ function game:draw()
         love.graphics.print("Press 'e' to pickup", 630,330)
         -- This feature draws the hitboxes of the game
         -- world:draw()
-
+        if love.keyboard.isDown("tab") then
+        player.playerHint(432,100)
+        end
     -- Lines after this will not be focused on the player
     camera:detach()
 

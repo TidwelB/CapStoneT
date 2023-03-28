@@ -231,9 +231,15 @@ function levelOne:draw()
         love.graphics.setShader()
 
 
-        if love.keyboard.isDown("j") then
-            table.insert(inventory,"Itemsssssss")
+        if love.keyboard.isDown("tab") and batcount ~= 3 then
+        if not (checkInventory(inventory, "battery1") or (checkInventory(chest, "battery1"))) then
+        player.playerHint(battery1.x,battery1.y)
+        elseif not (checkInventory(inventory, "battery2") or (checkInventory(chest, "battery2"))) then
+            player.playerHint(battery2.x,battery2.y)
+        elseif not (checkInventory(inventory, "battery3") or (checkInventory(chest, "battery3"))) then
+            player.playerHint(battery3.x,battery3.y)
         end
+    end
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()

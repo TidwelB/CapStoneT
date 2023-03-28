@@ -11,8 +11,8 @@ end
 function transition:Transitioner()
     if player.collider:enter('Ghost') then
         --LevelOne to Main lobby
-        if player.x > 1300 and player.x < 1550 and room =="levelOne" and (checkInventory(chest,"battery1") and checkInventory(chest,"battery2") and checkInventory(chest,"battery3") and checkInventory(inventory, "flashlight") and checkInventory(inventory, "ball")) then
-            OneToGame()
+        if player.x > 1300 and player.x < 1550 and Gamestate.current() == runLevelOne and (checkInventory(chest,"battery1") and checkInventory(chest,"battery2") and checkInventory(chest,"battery3") and checkInventory(inventory, "flashlight") and checkInventory(inventory, "ball")) then
+            return OneToGame()
         end
 print(player.x)
 print(player.y)

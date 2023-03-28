@@ -256,6 +256,49 @@ if room == "runGame" and player.x > 634 and player.x < 788 then
     end
 end
 
+-- SHOW DIRECTION TO TARGET
+function player.playerHint(targetX,targetY)
+local arrowX = player.x
+local arrowY = player.y
+local dx = targetX - player.x
+local dy = targetY - player.y
+
+-- local angle = 0
+-- if dx == 0 then
+--     if dy < 0 then
+--         angle = math.pi * 3 / 2
+--     else
+--         angle = math.pi / 2
+--     end
+-- elseif dy == 0 then
+--     if dx < 0 then
+--         angle = math.pi
+--     end
+-- else
+--     angle = math.atan(dy/dx)
+--     if dx < 0 and dy < 0 then
+--         angle = angle - math.pi
+--     elseif dx < 0 and dy > 0 then
+--         angle = angle + math.pi
+--     end
+-- end
+
+    local arrowAngle = math.atan2(dy, dx)
+    local arrowAngle = math.deg(arrowAngle) - 90
+
+
+    local arrowImage = love.graphics.newImage("sprites/arrow.png")
+    local arrowScale = .5
+    local arrowX = player.x
+    local arrowY = player.y
+    print(arrowAngle)
+    love.graphics.draw(arrowImage, arrowX, arrowY, math.rad(arrowAngle), arrowScale, arrowScale)
+end
+
+
+
+
+
 --print(player.keytimer)
 local mouseX, mouseY = love.mouse:getPosition()
     if mouseX >= 200 and mouseX <= 264 and mouseY >= 15 and mouseY <= 79 and love.mouse.isDown(1) and player.keytimer > 150 then
