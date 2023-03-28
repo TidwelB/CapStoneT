@@ -7,57 +7,52 @@ positions = {
     {50, 50},
     {50, 100},
     {50, 150},
-    {50, 200}
+    {50, 200},
+    {50, 250}
 }
 text = {
     "This will be the story introduction",
     "Someone can write this if they see fit",
     "Important things to write would be that they need to talk to the scientist once the game starts",
-    "As well as that to leave this screen they need to hit enter"
+    "As well as that to leave this screen they need to hit enter",
+    "Press ENTER to continue to the game"
+    --Whenever you add a new line add a new 0 value to charIndex, a new false value to linePrinted, and a new position vector
 }
-charIndex = {0, 0, 0, 0}
+charIndex = {0, 0, 0, 0, 0}
 lineIndex = 1
-linePrinted = {false, false, false, false}
+linePrinted = {false, false, false, false, false}
 timeElapsed = 0
 delay = 0.02
-isFinished = false
+gameState = "intro"
 
 
   function story.load()
-    love.graphics.setFont(love.graphics.newFont(20))
-    positions = {
-        {50, 50},
-        {50, 100},
-        {50, 150},
-        {50, 200}
-    }
-    text = {
-        "This will be the story introduction",
-        "Someone can write this if they see fit",
-        "Important things to write would be that they need to talk to the scientist once the game starts",
-        "As well as that to leave this screen they need to hit enter"
-    }
-    charIndex = {0, 0, 0, 0}
-    lineIndex = 1
-    linePrinted = {false, false, false, false}
-    timeElapsed = 0
-    delay = 0.02
-    isFinished = false
+
 end
 
 function story:update(dt)
-    if isFinished then return end
-
-    timeElapsed = timeElapsed + dt
-    if timeElapsed > delay then
-        timeElapsed = timeElapsed - delay
-        charIndex[lineIndex] = charIndex[lineIndex] + 1
-        if charIndex[lineIndex] > #text[lineIndex] then
-            linePrinted[lineIndex] = true
+    if gameState == "intro" then
+        timeElapsed = timeElapsed + dt
+        if timeElapsed > delay then
+            timeElapsed = timeElapsed - delay
+            charIndex[lineIndex] = charIndex[lineIndex] + 1
+            if charIndex[lineIndex] > #text[lineIndex] then
+                linePrinted[lineIndex] = true
+            end
+        end
+        if linePrinted[lineIndex] then
+            charIndex[lineIndex] = 0
+            lineIndex = lineIndex + 1
+            if lineIndex > #text then
+                gameState = "wait_for_input"
+            end
+        end
+    elseif gameState == "wait_for_input" then
+        if love.keyboard.isDown('return') then
+            gameState = "next_screen"
         end
     end
     if love.keyboard.isDown('return') then
-        love.timer.sleep(.15)
         Gamestate.switch(runGame)
     end
 end
@@ -73,15 +68,9 @@ function story:draw()
                 love.graphics.print(string.sub(text[i], 1, charIndex[i]), positions[i][1], positions[i][2])
             end
         else
-            love.graphics.print("Press 'return' to continue", positions[#text][1], positions[#text][2] + 50)
+            break
         end
     end
-    if linePrinted[lineIndex] then
-        charIndex[lineIndex] = 0
-        lineIndex = lineIndex + 1
-        if lineIndex > #text then
-            Gamestate.switch(runGame)
-            end
-        end
-    end
+
+end
 
