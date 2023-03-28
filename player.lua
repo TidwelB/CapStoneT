@@ -393,64 +393,61 @@ function player.draw()
     local position7 = findItem("book")
     local position8 = findItem("chargecable")
     local position9 = findItem("ball")
-    if love.keyboard.isDown("tab") then
-
         love.graphics.rectangle("line", 200, 15, 64, 64)
         love.graphics.rectangle("line", 280, 15, 64, 64)
-        if position3 == 1 then
-            love.graphics.draw(rock.spritesheet,207.5,19,0,1.5,1.5)
-        end
-        if position3 == 2 then
-            love.graphics.draw(rock.spritesheet,287,18,0,1.5,1.5)
-        end
-        if position == 1 then
-            love.graphics.draw(flashlight.spritesheet,209,20,0,flashlight.scale,flashlight.scale)
-        end
-        if position == 2 then
-            love.graphics.draw(flashlight.spritesheet,287,21,0,flashlight.scale,flashlight.scale)
-        end
-        if position2 == 1 then
-            love.graphics.draw(gengar.spritesheet,207.5,19,0,.5,.5)
-        end
-        if position2 == 2 then
-            love.graphics.draw(gengar.spritesheet,287,18,0,.5,.5)
-        end
-        if position4 == 1 then
-            love.graphics.draw(battery1.spritesheet,277,0,1.5,1.5)
-        end
-        if position4 == 2 then
-             love.graphics.draw(battery1.spritesheet,367,0,1.5,1.5)
-        end
-        if position5 == 1 then
-            love.graphics.draw(battery1.spritesheet,277,0,1.5,1.5)
-        end
-        if position5 == 2 then
-             love.graphics.draw(battery1.spritesheet,367,0,1.5,1.5)
-        end
-        if position6 == 1 then
-            love.graphics.draw(battery1.spritesheet,277,0,1.5,1.5)
-        end
-        if position6 == 2 then
-             love.graphics.draw(battery1.spritesheet,367,0,1.5,1.5)
-        end
-        if position7 == 1 then
-            love.graphics.draw(book.spritesheet,217,20,0,1.2,1.2)
-        end
-        if position7 == 2 then
-             love.graphics.draw(book.spritesheet,299,20,0,1.2,1.2)
-        end
-        if position8 == 1 then
-            love.graphics.draw(chargecable.spritesheet,195,15,0,2,2)
-        end
-        if position8 == 2 then
-             love.graphics.draw(chargecable.spritesheet,277,15,0,2,2)
-        end
-        if position9 == 1 then
-            love.graphics.draw(ball.spritesheet, 209, 25, 0, ball.scale, ball.scale)
-        end
-        if position9 == 2 then
-            love.graphics.draw(ball.spritesheet, 292, 25, 0, ball.scale, ball.scale)
-        end
+    if position3 == 1 then
+        love.graphics.draw(rock.spritesheet,207.5,19,0,1.5,1.5)
+    end
+    if position3 == 2 then
+        love.graphics.draw(rock.spritesheet,287,18,0,1.5,1.5)
+    end
+    if position == 1 then
+        love.graphics.draw(flashlight.spritesheet,209,20,0,flashlight.scale,flashlight.scale)
+    end
+    if position == 2 then
+        love.graphics.draw(flashlight.spritesheet,287,21,0,flashlight.scale,flashlight.scale)
+    end
+    if position2 == 1 then
+        love.graphics.draw(gengar.spritesheet,207.5,19,0,.5,.5)
+    end
+    if position2 == 2 then
+        love.graphics.draw(gengar.spritesheet,287,18,0,.5,.5)
+    end
+    if position4 == 1 then
+        love.graphics.draw(battery1.spritesheet,277,0,1.5,1.5)
+    end
+    if position4 == 2 then
+            love.graphics.draw(battery1.spritesheet,367,0,1.5,1.5)
+    end
+    if position5 == 1 then
+        love.graphics.draw(battery1.spritesheet,277,0,1.5,1.5)
+    end
+    if position5 == 2 then
+            love.graphics.draw(battery1.spritesheet,367,0,1.5,1.5)
+    end
+    if position6 == 1 then
+        love.graphics.draw(battery1.spritesheet,277,0,1.5,1.5)
+    end
+    if position6 == 2 then
+            love.graphics.draw(battery1.spritesheet,367,0,1.5,1.5)
+    end
+    if position7 == 1 then
+        love.graphics.draw(book.spritesheet,217,20,0,1.2,1.2)
+    end
+    if position7 == 2 then
+            love.graphics.draw(book.spritesheet,299,20,0,1.2,1.2)
+    end
+    if position8 == 1 then
+        love.graphics.draw(chargecable.spritesheet,195,15,0,2,2)
+    end
+    if position8 == 2 then
+            love.graphics.draw(chargecable.spritesheet,277,15,0,2,2)
+    end
+    if position9 == 1 then
+        love.graphics.draw(ball.spritesheet, 209, 25, 0, ball.scale, ball.scale)
+    end
+    if position9 == 2 then
+        love.graphics.draw(ball.spritesheet, 292, 25, 0, ball.scale, ball.scale)
     end
 end
 
