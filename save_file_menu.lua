@@ -12,40 +12,58 @@ function save_file_menu:enter(from)
 end
 
 function save_file_menu:update(dt)
-    -- nothing to update
 end
 
 function save_file_menu:draw()
     love.graphics.reset()
     if files[5] ~= nil then
         local temp = files[5]
+        love.graphics.setColor(1, 0, 0)
         temp = temp:gsub(filepath, ""):gsub("%.json", ""):gsub("/", ""):gsub("\\","")
-        love.graphics.printf("WARNING: There is already 5 saves present so by creating a new save you will be overwriting the oldest save", 0, love.graphics.getHeight()/2 - 125, love.graphics.getWidth(), "center")
+        love.graphics.printf("WARNING!",0, love.graphics.getHeight()/2 - 140, love.graphics.getWidth(), "center")
+        love.graphics.setColor(1, 1, 1)
+        love.graphics.printf("There is already 5 saves present so by creating a new save you will be overwriting the oldest save", 0, love.graphics.getHeight()/2 - 125, love.graphics.getWidth(), "center")
         love.graphics.printf("The file that is being overwritten is: " .. temp, 0, love.graphics.getHeight()/2 -100, love.graphics.getWidth(), "center")
-        -- need to get rid of extra stuff for the file path here so its just the name not all the extra
     end
-    --self.from:draw()
+    love.graphics.setColor(1, 1, 1)
+    --needs to have a condition or message about not being named if save has no name then it wont display
     love.graphics.printf("Enter a filename:", 0, love.graphics.getHeight()/2 - 64, love.graphics.getWidth(), "center")
     love.graphics.printf(self.filename, 0, love.graphics.getHeight()/2, love.graphics.getWidth(), "center")
-    if love.keyboard.isDown("escape") then
-        love.timer.sleep(.3)
-        --Sounds.music:pause()
-        Gamestate.pop()
+    
+    if self.filename == "" then
+        love.graphics.setColor(1, 0, 0)
+        love.graphics.printf("The file cannot be named an empty string.", 0, love.graphics.getHeight()/2 + 40, love.graphics.getWidth(), "center")
     end
     
-    --love.graphics.reset()
+    if love.keyboard.isDown("escape") then
+        love.timer.sleep(.3)
+        Gamestate.pop()
+    end
+    love.graphics.setColor(1, 1, 1)
+    local textWidth = love.graphics.getFont():getWidth(self.filename)
+    love.graphics.setLineWidth(5)
+    if textWidth < 200 then
+        love.graphics.rectangle("line", love.graphics.getWidth()/2 - 100, love.graphics.getHeight()/2 - 15, 200, 50)
+    else
+        love.graphics.rectangle("line", love.graphics.getWidth()/2 - textWidth/2 - 10, love.graphics.getHeight()/2 - 15, textWidth + 30, 50)
+    end
 end
+
 
 function save_file_menu:textinput(t)
     -- append typed characters to the filename
     self.filename = self.filename .. t
 end
 
+
+
 function save_file_menu:keypressed(key)
-    if key == "backspace" then
+    if self.filename == "" then
+        
+    elseif key == "backspace" then
         -- remove the last character from the filename
         self.filename = self.filename:sub(1, #self.filename-1)
-    elseif key == "return" then
+    elseif key == "return" and self.filename ~= nil then
        -- local currentState = Gamestate.current()s
         local musvolume = Music.music:getVolume()
         local souvolume = Sounds.collision:getVolume()
