@@ -4,7 +4,7 @@ inventory = {}
 chest = {}
 local testing = require("testing.testing")
 local tests = require('testing.tests')
-
+Moan = require 'libraries/Moan/Moan'
 anim8 = require 'libraries/anim8'
 
 transitionModule = require('util/transition')
@@ -82,6 +82,7 @@ function player:update(dt)
             --testing.run()
         end
         player.health = player.health + .01
+        Moan.update(dt)
 end
 
 function player.colliderMatching(dt)
@@ -204,11 +205,13 @@ function distanceBetweenSprites(x1, y1, w1, h1, x2, y2, w2, h2)
   end
   
 -- Player picks things up!
-if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false or checkInventory(inventory,"flashlight") == false) and inventory[2] == nil then
-    if distanceBetweenSprites(player.x, player.y, 55, 80, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 and checkInventory(inventory,"gengar") == false and inventory[2] == nil and room == gengar.room then
+if love.keyboard.isDown("e")  then 
+    if distanceBetweenSprites(player.x, player.y, 55, 80, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 then
+        if checkInventory(inventory,"gengar") == false and inventory[2] == nil and room == gengar.room then
        --print("added Genga to inventory") 
         table.insert(inventory,"gengar")
        --print(distanceBetweenSprites(player.x, player.y, 65, 100, gengar.x+30, gengar.y+50, gengar.w, gengar.h)) 
+        end
     end
     if distanceBetweenSprites(player.x, player.y, 55, 80, flashlight.x+20, flashlight.y, flashlight.w*flashlight.scale,flashlight.h*flashlight.scale ) <85 and checkInventory(inventory,"flashlight") == false and inventory[2] == nil and room == flashlight.room then
         --print("added flashlight to inventory")
@@ -243,6 +246,7 @@ if love.keyboard.isDown("e") and (checkInventory(inventory, "gengar") == false o
         table.insert(inventory,"ball")
     end
 end
+
 local gamecount = 0
 if room == "runGame" and player.x > 634 and player.x < 788 then
     if player.y > 111 and player.y < 189 then
@@ -497,6 +501,14 @@ function player.draw()
     if position9 == 2 then
         love.graphics.draw(ball.spritesheet, 292, 25, 0, ball.scale, ball.scale)
     end
+
+    if love.keyboard.isDown("e")  then 
+        if nearItem() then 
+            if inventory[2] ~= nil then
+            love.graphics.print("Inventory Full!", 930, 480)
+            end
+        end 
+    end
 end
 
 function DRAW_HUD()
@@ -520,3 +532,27 @@ function findItem(item)
     end
     return -1
   end
+
+function nearItem()
+    if distanceBetweenSprites(player.x, player.y, 55, 80, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 then
+        return true
+    elseif distanceBetweenSprites(player.x, player.y, 55, 80, flashlight.x+20, flashlight.y, flashlight.w*flashlight.scale,flashlight.h*flashlight.scale ) <85 then
+        return true
+    elseif distanceBetweenSprites(player.x, player.y, 55, 80, rock.x, rock.y, rock.w, rock.h ) <100  then
+        return true
+    elseif distanceBetweenSprites(player.x, player.y, 55, 80, battery1.x, battery1.y, battery1.w, battery1.h) < 80 then
+        return true
+    elseif distanceBetweenSprites(player.x, player.y, 55, 80, battery2.x, battery2.y, battery2.w, battery2.h) < 80 then
+        return true
+    elseif distanceBetweenSprites(player.x, player.y, 55, 80, battery3.x, battery3.y, battery3.w, battery3.h) < 80  then
+        return true
+    elseif distanceBetweenSprites(player.x, player.y, 55, 80, book.x, book.y, book.w*book.scale, book.h*book.scale) < 80 then
+        return true
+    elseif distanceBetweenSprites(player.x, player.y, 55, 80, chargecable.x, chargecable.y, chargecable.w*chargecable.scale, chargecable.h*chargecable.scale) < 80 then
+        return true
+    elseif distanceBetweenSprites(player.x, player.y, 55, 80, ball.x, ball.y, ball.w*ball.scale, ball.h*ball.scale) < 150 then
+        return true
+    else 
+        return false
+    end
+end
