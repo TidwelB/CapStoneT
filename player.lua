@@ -208,13 +208,17 @@ function distanceBetweenSprites(x1, y1, w1, h1, x2, y2, w2, h2)
 if love.keyboard.isDown("e")  then 
     if distanceBetweenSprites(player.x, player.y, 55, 80, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 then
         if checkInventory(inventory,"gengar") == false and inventory[2] == nil and room == gengar.room then
-       --print("added Genga to inventory") 
+       --print("added Genga to inventory")
+        gengar.x = 0
+        gengar.y = 0
         table.insert(inventory,"gengar")
        --print(distanceBetweenSprites(player.x, player.y, 65, 100, gengar.x+30, gengar.y+50, gengar.w, gengar.h)) 
         end
     end
     if distanceBetweenSprites(player.x, player.y, 55, 80, flashlight.x+20, flashlight.y, flashlight.w*flashlight.scale,flashlight.h*flashlight.scale ) <85 and checkInventory(inventory,"flashlight") == false and inventory[2] == nil and room == flashlight.room then
         --print("added flashlight to inventory")
+        flashlight.x = 0
+        flashlight.y = 0
         table.insert(inventory,"flashlight")
         flashlightCounter = flashlightCounter +1
         print(flashlightCounter)
@@ -222,27 +226,41 @@ if love.keyboard.isDown("e")  then
     end
     if distanceBetweenSprites(player.x, player.y, 55, 80, rock.x, rock.y, rock.w, rock.h ) <100 and checkInventory(inventory,"rock") == false  and player.keytimer > 150 and inventory[2] == nil  and rock.collider ~= nil then
         --print("added rock to inventory")
+        rock.x = 0
+        rock.y = 0
         table.insert(inventory,"rock")
         rock.collider:destroy()
         rock.collider = nil
         player.keytimer = 0
     end
     if distanceBetweenSprites(player.x, player.y, 55, 80, battery1.x, battery1.y, battery1.w, battery1.h) < 80 and checkInventory(inventory,"battery1") == false and inventory[2] == nil and room == battery1.room then
+        battery1.x = 0
+        battery1.y = 0
         table.insert(inventory,"battery1")
     end
     if distanceBetweenSprites(player.x, player.y, 55, 80, battery2.x, battery2.y, battery2.w, battery2.h) < 80 and checkInventory(inventory,"battery2") == false and inventory[2] == nil and room == battery2.room then
+        battery2.x = 0
+        battery2.y = 0
         table.insert(inventory,"battery2")
     end
     if distanceBetweenSprites(player.x, player.y, 55, 80, battery3.x, battery3.y, battery3.w, battery3.h) < 80 and checkInventory(inventory,"battery3") == false and inventory[2] == nil and room == battery3.room then
+        battery3.x = 0
+        battery3.y = 0
         table.insert(inventory,"battery3")
     end
     if distanceBetweenSprites(player.x, player.y, 55, 80, book.x, book.y, book.w*book.scale, book.h*book.scale) < 80 and checkInventory(inventory,"book") == false and inventory[2] == nil and room == book.room then
+        book.x = 0
+        book.y = 0
         table.insert(inventory,"book")
     end
     if distanceBetweenSprites(player.x, player.y, 55, 80, chargecable.x, chargecable.y, chargecable.w*chargecable.scale, chargecable.h*chargecable.scale) < 80 and checkInventory(inventory,"chargecable") == false and inventory[2] == nil and room == chargecable.room then
+        chargecable.x = 0
+        chargecable.y = 0
         table.insert(inventory,"chargecable")
     end
     if distanceBetweenSprites(player.x, player.y, 55, 80, ball.x, ball.y, ball.w*ball.scale, ball.h*ball.scale) < 150 and checkInventory(inventory,"ball") == false and inventory[2] == nil and room == ball.room then
+        ball.x = 0 
+        ball.y = 0 
         table.insert(inventory,"ball")
     end
 end
