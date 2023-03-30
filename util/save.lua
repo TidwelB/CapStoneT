@@ -37,12 +37,15 @@ end
   --  pause.update(dt)
 --end
 
-local folder_path = "Desktop/Remedy" -- Replace this with the path to your folder
+--local folder_path = "Desktop/Remedy" -- Replace this with the path to your folder
 filepath = love.filesystem.getRealDirectory('/')
+
+print(filepath)
 files = {}
 firstLoad = true
 local op = love.system.getOS()
 if op == "Windows" then
+    filepath = filepath .. "/save"
     filepath = string.gsub(filepath, "/", "\\")
     for file in io.popen("dir /B " .. filepath .. "\\".."*.json"):lines() do 
         file_name = file
@@ -128,6 +131,7 @@ else
 
     files = {}
     local file_date = {}
+    filepath = filepath .. "/save"
     for file in io.popen("ls " .. filepath .. "/" .. "*.json"):lines() do 
     table.insert(files, file)
         -- print(file)
@@ -201,6 +205,7 @@ end)
             down = data.down
             right = data.right
             left = data.left
+            shift = data.shift
 
             --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
         end))
