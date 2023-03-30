@@ -14,7 +14,7 @@ require("util.items.flashlight")
 require("util.items.chargecable")
 require("util.items.rock")
 require("util.items.book")
-require("SCP106")
+require("scp106")
 
 -- Loads level two in and intializes all of it
 function levelTwo:enter()

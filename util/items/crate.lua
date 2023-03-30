@@ -5,7 +5,7 @@ function spawnCrate(x, y)
     local crate = {}
     crate.x = x
     crate.y = y
-    crate.spritesheet = love.graphics.newImage("sprites/Crates.png")
+    crate.spritesheet = love.graphics.newImage("sprites/crates.png")
     crate.h = crate.spritesheet:getHeight() 
     crate.w = crate.spritesheet:getWidth()
     crate.collider = world:newRectangleCollider(x, y, crate.w*5 , crate.h*5)

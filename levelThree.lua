@@ -9,7 +9,7 @@ require("util.items.flashlight")
 require("util.items.rock")
 require('util.items.book')
 require("util.bluemon")
-require("SCP076")
+require("scp076")
 require("player")
 
 function levelThree:enter()

@@ -6,7 +6,7 @@ require("player")
 love.graphics.setDefaultFilter("nearest", "nearest")
 
 SCP076 = {}
-    SCP076.spritesheet = love.graphics.newImage("sprites/SCP076.png")
+    SCP076.spritesheet = love.graphics.newImage("sprites/scp076.png")
     SCP076.x = 1000
     SCP076.y = 800
 
