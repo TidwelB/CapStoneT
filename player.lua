@@ -534,6 +534,19 @@ function player.draw()
             end
         end 
     end
+
+    if love.keyboard.isDown("i") then
+        if checkInventory(chest, "battery1") == false or checkInventory(chest, "battery2") == false or checkInventory(chest, "battery3") == false then
+            checklist = love.graphics.newImage("sprites/checklist.png")
+        elseif (checkInventory(inventory, "book") == true or checkInventory(chest, "book") or (book.x ~= 1390 and book.y ~= 300)) and (checkInventory(inventory, "ball") == true or checkInventory(chest, "ball") or (ball.x ~= 3000 and ball.y ~= 230)) and (checkInventory(inventory, "chargecable") == true or checkInventory(chest, "chargecable") or (chargecable.x ~= 60 and chargecable.y ~= 750 )) then
+            checklist = love.graphics.newImage("sprites/checklist3.png")
+        elseif (checkInventory(inventory, "ball") == true or checkInventory(chest, "ball") or (ball.x ~= 3000 and ball.y ~= 230)) and checkInventory(inventory, "chargecable") == true or checkInventory(chest, "chargecable") or (chargecable.x ~= 60 and chargecable.y ~= 750 )then
+            checklist = love.graphics.newImage("sprites/checklist2.png")
+        elseif checkInventory(inventory, "ball") == true or checkInventory(chest, "ball") or (ball.x ~= 3000 and ball.y ~= 230) then
+            checklist = love.graphics.newImage("sprites/checklist1.png")
+        end
+        love.graphics.draw(checklist, 700, 300)
+    end
 end
 
 function DRAW_HUD()
