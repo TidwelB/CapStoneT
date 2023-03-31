@@ -9,6 +9,7 @@ flashlight = {}
 
 function flashlight:draw()
     if checkInventory(inventory, "flashlight") == false then
+        
     if flashlight.room == room then
         love.graphics.draw(flashlight.spritesheet,flashlight.x,flashlight.y,0,flashlight.scale,flashlight.scale)
     end

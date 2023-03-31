@@ -212,8 +212,7 @@ function game:draw()
         love.graphics.print("Press 'e' to pickup", 630,330)
         -- This feature draws the hitboxes of the game
         -- world:draw()
-        print(player.timer)
-        print(player.hinttimer)
+
         if player.timer > 20  then
         player.playerHint(432,100)
         player.timer = 0
