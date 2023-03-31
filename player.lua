@@ -22,6 +22,7 @@ player.stamina = 2000
 player.max_health = 100
 player.health = 100
 player.keytimer = 0
+player.hinttimer = 500
 player.width, player.height = player.spriteSheet:getDimensions()
 flashlightCounter = 0
 
@@ -70,6 +71,10 @@ function player:update(dt)
     end
     if player.keytimer >= 500 then
         player.keytimer = 0
+    end
+    if player.hinttimer < 500 then
+        player.hinttimer = player.hinttimer + 1
+        print(player.hinttimer)
     end
     player.timer = player.timer + dt
         -- player.pause(dt)
@@ -285,11 +290,13 @@ end
 
 -- SHOW DIRECTION TO TARGET
 function player.playerHint(targetX,targetY)
+    if targetX == nil or targetY == nil or player.x == nil or player.y == nil then
+        do return end
+    end
 local arrowX = player.x
 local arrowY = player.y
 local dx = targetX - player.x
 local dy = targetY - player.y
-
 -- local angle = 0
 -- if dx == 0 then
 --     if dy < 0 then
