@@ -110,7 +110,8 @@ if op == "Windows" then
             shift = data.shift
             escape = data.escape
             interact = data.interact
-
+            player.stamina = data.stamina
+            flashlight.charge = data.charge
             if data.level == "runGame" then
                 level = runGame
             elseif data.level == "levelOne" then
@@ -217,6 +218,8 @@ end)
             shift = data.shift
             escape = data.escape
             interact = data.interact
+            player.stamina = data.stamina
+            flashlight.charge = data.charge
 
             --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
         end))

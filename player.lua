@@ -48,7 +48,7 @@ redheartbeat = {}
     redheartbeat.anim = redheartbeat.animations
 
 player.animations = {}
-    player.animations['down'] = anim8.newAnimation( player.grid('1-4', 1), 0.25 )
+    player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.25 )
     player.animations.left = anim8.newAnimation( player.grid('1-4', 3), 0.25 )
     player.animations.right = anim8.newAnimation( player.grid('1-4', 4), 0.25 )
     player.animations.up = anim8.newAnimation( player.grid('1-4', 2), 0.25 )
@@ -461,6 +461,14 @@ function player.draw()
     -- Text that sits on stamina bar
     love.graphics.print("Sprint", 5, 90, nil, 1)
 
+    if checkInventory(inventory,"flashlight") then
+        love.graphics.setColor(0,255,255)
+        --print(flashlight.charge)
+        love.graphics.rectangle("fill", 5, 120, math.floor(190 * (flashlight.charge/flashlight.max)), 25)
+        love.graphics.setColor(0,0,0)
+        love.graphics.print("Flashlight Charge", 5, 120, nil, 1)
+        love.graphics.reset()
+    end
     -- Inventory Boxes
     local position = findItem("flashlight")
     local position2 = findItem("gengar")

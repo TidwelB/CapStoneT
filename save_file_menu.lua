@@ -100,7 +100,9 @@ function save_file_menu:keypressed(key)
             shift = game.shift,
             escape = game.escape,
             interact = game.interact,
-            talk = game.talk
+            talk = game.talk,
+            stamina = player.stamina,
+            charge = flashlight.charge
             --item positions for puzzle 3
         }
         

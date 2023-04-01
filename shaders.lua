@@ -118,7 +118,10 @@ function shaders:update(dt)
 
         local px = 400
         local py = 250
-
+        flashlight.charge = flashlight.charge + flashlight.recharge
+        if flashlight.charge > flashlight.max then
+            flashlight.charge = flashlight.max
+        end
         -- Get width/height of background
         local mapW = testingMap.width * testingMap.tilewidth
         local mapH = testingMap.height * testingMap.tileheight
@@ -141,7 +144,11 @@ function shaders:update(dt)
 
         local px = love.mouse.getX()
         local py = love.mouse.getY()
-
+        flashlight.charge = flashlight.charge-flashlight.decay
+        if flashlight.charge < 0 then
+            shaders.flashlight = false
+            flashlight.charge = 0
+        end
         -- Get width/height of background
         local mapW = testingMap.width * testingMap.tilewidth
         local mapH = testingMap.height * testingMap.tileheight

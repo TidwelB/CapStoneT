@@ -6,6 +6,10 @@ flashlight = {}
     flashlight.w = flashlight.spritesheet:getWidth()
     flashlight.scale = 0.1
     flashlight.room = "runGame"
+    flashlight.charge = 2000
+    flashlight.max = 2000
+    flashlight.decay = 1
+    flashlight.recharge = 1.5
 
 function flashlight:draw()
     if checkInventory(inventory, "flashlight") == false then
