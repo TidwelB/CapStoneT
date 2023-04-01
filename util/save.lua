@@ -120,6 +120,8 @@ if op == "Windows" then
                 level = runLevelTwo
             elseif data.level == "levelThree" then
                 level = runLevelThree
+            elseif data.level == "maze" then
+                level = runMaze
             end
             Gamestate.switch(level)
             player.load(data.position.x,data.position.y)

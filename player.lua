@@ -531,7 +531,8 @@ function player.draw()
     if love.keyboard.isDown("e")  then 
         if nearItem() then 
             if inventory[2] ~= nil then
-            love.graphics.print("Inventory Full!", windowWidth/2-260, windowHeight/2 -180)
+                --Gamestate.push(full)
+                love.graphics.print("Inventory Full!", game.width/2-28,game.height/2-50)
             end
         end 
     end
