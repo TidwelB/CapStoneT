@@ -114,15 +114,6 @@ function levelTwo:update(dt)
     player:update(dt)
     player.anim:update(dt)
 
-    -- Animates the different health bar values
-    if (player.health > (player.max_health / 2)) then
-        heartbeat.anim:update(dt)
-    elseif (player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
-        yellowheartbeat.anim:update(dt)
-    elseif (player.health <= (player.max_health / 4)) then
-        redheartbeat.anim:update(dt)
-    end
-
     game.height = love.graphics.getHeight()
     game.width = love.graphics.getWidth()
     -- These four if statements check if the player

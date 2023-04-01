@@ -131,7 +131,7 @@ function ThreeToMaze()
     rock.delete()
     room = "maze"
     transition.coordx = 5483
-    transition.coordy = 1817.9
+    transition.coordy = 1750.9
     return Gamestate.switch(runMaze)
 end
 

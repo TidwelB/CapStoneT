@@ -66,6 +66,15 @@ end
 end
 
 function player:update(dt)
+    print(player.health)
+    if (player.health > (player.max_health -3)) then
+        heartbeat.anim:update(dt)
+    elseif (player.health <= (player.max_health -3) and player.health > (player.max_health / 3)) then
+        yellowheartbeat.anim:update(dt)
+    elseif (player.health <= (player.max_health / 3)) then
+        redheartbeat.anim:update(dt)
+    end
+
     if player.keytimer < 500 then
         player.keytimer = player.keytimer +1
     end
@@ -86,7 +95,9 @@ function player:update(dt)
             --os.execute("clear")
             --testing.run()
         end
-        player.health = player.health + .01
+        if player.health < player.max_health then
+            player.health = player.health + .01
+        end
         Moan.update(dt)
 end
 
@@ -443,13 +454,13 @@ end
 function player.draw()
     -- Health Bar
     -- Green above 50%
-    if (player.health > (player.max_health / 2)) then
+    if (player.health > (player.max_health -3)) then
         heartbeat.anim:draw(heartbeat.spritesheet,30, 30, nil,3, nil,  9,9) 
     -- Yellow between 50% and 25%
-    elseif ( player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
+    elseif ( player.health <= (player.max_health -3) and player.health > (player.max_health / 3)) then
         yellowheartbeat.anim:draw(yellowheartbeat.spritesheet,30, 30, nil,3, nil,  9,9)
     -- Red under 25%
-    elseif (player.health <= (player.max_health / 4)) then
+    elseif (player.health <= (player.max_health / 3)) then
         redheartbeat.anim:draw(redheartbeat.spritesheet,30, 30, nil,3, nil,  9,9) 
     end
 
