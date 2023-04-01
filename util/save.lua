@@ -103,15 +103,16 @@ if op == "Windows" then
             inventory = data.inventory
             chest = data.chestInventory
             saveLoad = true
-            up = data.up
-            down = data.down
-            right = data.right
-            left = data.left
-            shift = data.shift
-            escape = data.escape
-            interact = data.interact
+            game.up = data.up
+            game.down = data.down
+            game.right = data.right
+            game.left = data.left
+            game.shift = data.shift
+            game.escape = data.escape
+            game.interact = data.interact
             player.stamina = data.stamina
             flashlight.charge = data.charge
+            levelOne.flashtime = data.flashtime
             if data.level == "runGame" then
                 level = runGame
             elseif data.level == "levelOne" then
@@ -211,16 +212,16 @@ end)
             chest = data.chestInventory
             player.load(data.position.x,data.position.y)
             firstLoad = false
-            up = data.up
-            down = data.down
-            right = data.right
-            left = data.left
-            shift = data.shift
-            escape = data.escape
-            interact = data.interact
+            game.up = data.up
+            game.down = data.down
+            game.right = data.right
+            game.left = data.left
+            game.shift = data.shift
+            game.escape = data.escape
+            game.interact = data.interact
             player.stamina = data.stamina
             flashlight.charge = data.charge
-
+            levelOne.flashtime = data.flashtime
             --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
         end))
     end

@@ -24,7 +24,7 @@ player.health = 100
 player.keytimer = 0
 player.hinttimer = 500
 player.width, player.height = player.spriteSheet:getDimensions()
-flashlightCounter = 0
+player.flashlightCounter = 0
 
 --this is for the green health sprite
 heartbeat = {}
@@ -66,7 +66,7 @@ end
 end
 
 function player:update(dt)
-    print(player.health)
+   -- print(player.health)
     if (player.health > (player.max_health -3)) then
         heartbeat.anim:update(dt)
     elseif (player.health <= (player.max_health -3) and player.health > (player.max_health / 3)) then
@@ -193,6 +193,7 @@ function player.control(dt)
 --and checkInventory(inventory, "flashlight") == true
 
     if love.keyboard.isDown("f") and checkInventory(inventory, "flashlight")  then
+        levelOne.flashtime = levelOne.flashtime + 1
     if (player.keytimer > 150) then
         if (shaders.flashlight == false) then
             shaders.flashlight = true
@@ -236,9 +237,9 @@ if love.keyboard.isDown("e")  then
         flashlight.x = 0
         flashlight.y = 0
         table.insert(inventory,"flashlight")
-        interact = interact + 1
-        flashlightCounter = flashlightCounter +1
-        print(flashlightCounter)
+        game.interact = game.interact + 1
+        player.flashlightCounter = player.flashlightCounter +1
+       -- print(player.flashlightCounter)
        
     end
     if distanceBetweenSprites(player.x, player.y, 55, 80, rock.x, rock.y, rock.w, rock.h ) <100 and checkInventory(inventory,"rock") == false  and player.keytimer > 150 and inventory[2] == nil  and rock.collider ~= nil then
@@ -556,7 +557,7 @@ function player.draw()
         end 
     end
 
-    if love.keyboard.isDown("i") then
+    if love.keyboard.isDown("i") and game.talk ~= 0 then
         if checkInventory(chest, "battery1") == false or checkInventory(chest, "battery2") == false or checkInventory(chest, "battery3") == false then
             checklist = love.graphics.newImage("sprites/checklist.png")
         elseif (checkInventory(inventory, "book") == true or checkInventory(chest, "book") or (book.x ~= 1390 and book.y ~= 300)) and (checkInventory(inventory, "ball") == true or checkInventory(chest, "ball") or (ball.x ~= 3000 and ball.y ~= 230)) and (checkInventory(inventory, "chargecable") == true or checkInventory(chest, "chargecable") or (chargecable.x ~= 60 and chargecable.y ~= 750 )) then

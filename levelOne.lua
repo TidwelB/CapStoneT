@@ -14,7 +14,7 @@ require("util.items.battery3")
 require("util.items.crate")
 require("util.items.book")
 require("util.items.ball")
-
+levelOne.flashtime = 0
 function levelOne:enter()
     room = "levelOne"
     -- Hitbox library
@@ -235,6 +235,10 @@ function levelOne:draw()
         elseif not (checkInventory(inventory, "battery3") or (checkInventory(chest, "battery3"))) then
             player.playerHint(battery3.x,battery3.y)
         end
+    end
+
+    if checkInventory(inventory, "flashlight") and levelOne.flashtime == 0 then
+        love.graphics.print("Press F to use flashlight",1400,2900)  
     end
     camera:detach()
     love.graphics.reset()

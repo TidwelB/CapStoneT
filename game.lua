@@ -23,14 +23,14 @@ require("scp076")
 
 local testing = require("testing.testing")
 range = 100
-up = 0
-down = 0
-left = 0
-right = 0
-shift = 0
-escape = 0
-interact = 0
-talk = 0
+game.up = 0
+game.down = 0
+game.left = 0
+game.right = 0
+game.shift = 0
+game.escape = 0
+game.interact = 0
+game.talk = 0
 -- Starts the Main Lobby room
 -- and intializes all of the features.
 function game:enter()
@@ -180,53 +180,51 @@ function game:draw()
 
      
 
-        if up == 0 then
+        if game.up == 0 then
             love.graphics.print("Press W to walk upwards", 300, 200)
-            if love.keyboard.isDown("w") and up == 0 then
-                up = up + 1
+            if love.keyboard.isDown("w") and game.up == 0 then
+                game.up = game.up + 1
             end
         end
-        if down == 0 then
+        if game.down == 0 then
             love.graphics.print("Press S to walk downwards", 300, 250)
-            if love.keyboard.isDown("s") and down == 0 then
-                down = down + 1
+            if love.keyboard.isDown("s") and game.down == 0 then
+                game.down = game.down + 1
             end
         end
-        if left == 0 then
+        if game.left == 0 then
             love.graphics.print("Press A to walk downwards", 200, 225)
-            if love.keyboard.isDown("a") and left == 0 then
-                left = left + 1
+            if love.keyboard.isDown("a") and game.left == 0 then
+                game.left = game.left + 1
             end
         end
-        if right == 0 then
+        if game.right == 0 then
             love.graphics.print("Press D to walk downwards", 400, 225)
-            if love.keyboard.isDown("d") and right == 0 then
-                right = right + 1
+            if love.keyboard.isDown("d") and game.right == 0 then
+                game.right = game.right + 1
             end
         end
-        if shift == 0 then
+        if game.shift == 0 then
             love.graphics.print("Hold Shift to sprint", 500, 600)
-            if (love.keyboard.isDown("rshift") and shift == 0) or (love.keyboard.isDown("lshift") and shift == 0) then
-                shift = shift + 1
+            if (love.keyboard.isDown("rshift") and game.shift == 0) or (love.keyboard.isDown("lshift") and game.shift == 0) then
+                game.shift = game.shift + 1
             end
         end
-        if escape == 0 then
+        if game.escape == 0 then
             love.graphics.print("Press escape to pause", 550, 225)
-            if love.keyboard.isDown("escape") and escape == 0   then
-                escape = escape + 1
+            if love.keyboard.isDown("escape") and game.escape == 0   then
+                game.escape = game.escape + 1
             end
         end
-        if interact == 0 then
+        if game.interact == 0 then
             love.graphics.print("Press 'e' to pickup", 630,330)
         end
 
-        if talk == 0 then
+        if game.talk == 0 then
             love.graphics.print("Press 'e' to interact", 50,780)
         end
 
-        if checkInventory(inventory, "flashlight") and flashlightCounter == 1 then
-            love.graphics.print("Press F to use flashlight",550, 260)
-        end
+     
         
         
         --love.graphics.print("Go talk to the scientist in the bottom left corner", 350,450)
