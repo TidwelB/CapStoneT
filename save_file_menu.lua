@@ -97,7 +97,10 @@ function save_file_menu:keypressed(key)
             down = game.down,
             left = game.left,
             right = game.right,
-            shift = game.shift
+            shift = game.shift,
+            escape = game.escape,
+            interact = game.interact,
+            talk = game.talk
             --item positions for puzzle 3
         }
         

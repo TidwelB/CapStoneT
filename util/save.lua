@@ -39,25 +39,7 @@ end
 
 --local folder_path = "Desktop/Remedy" -- Replace this with the path to your folder
 filepath = love.filesystem.getRealDirectory('/')
-print(filepath)
-print("OG")
--- Get the current directory
--- Split the filepath string into its constituent directory names
-local directoryNames = {}
-for directory in filepath:gmatch("[^/]+") do
-    table.insert(directoryNames, directory)
-end
 
--- Remove the last two directory names
-table.remove(directoryNames)
-table.remove(directoryNames)
-
--- Reconstruct the modified filepath string
-filepath = table.concat(directoryNames, "/")
-
--- Print the modified filepath
-print(filepath)
-print("REMOVE 2")
 print(filepath)
 files = {}
 firstLoad = true
@@ -65,8 +47,6 @@ local op = love.system.getOS()
 if op == "Windows" then
     filepath = filepath .. "/save"
     filepath = string.gsub(filepath, "/", "\\")
-    print("fileForSave")
-    print(filepath)
     for file in io.popen("dir /B " .. filepath .. "\\".."*.json"):lines() do 
         file_name = file
         file = filepath .. "\\"..file
@@ -123,6 +103,13 @@ if op == "Windows" then
             inventory = data.inventory
             chest = data.chestInventory
             saveLoad = true
+            up = data.up
+            down = data.down
+            right = data.right
+            left = data.left
+            shift = data.shift
+            escape = data.escape
+            interact = data.interact
 
             if data.level == "runGame" then
                 level = runGame
@@ -226,6 +213,8 @@ end)
             right = data.right
             left = data.left
             shift = data.shift
+            escape = data.escape
+            interact = data.interact
 
             --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
         end))

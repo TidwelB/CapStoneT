@@ -225,6 +225,7 @@ if love.keyboard.isDown("e")  then
         flashlight.x = 0
         flashlight.y = 0
         table.insert(inventory,"flashlight")
+        interact = interact + 1
         flashlightCounter = flashlightCounter +1
         print(flashlightCounter)
        
@@ -530,7 +531,7 @@ function player.draw()
     if love.keyboard.isDown("e")  then 
         if nearItem() then 
             if inventory[2] ~= nil then
-            love.graphics.print("Inventory Full!", 930, 480)
+            love.graphics.print("Inventory Full!", windowWidth/2-260, windowHeight/2 -180)
             end
         end 
     end
