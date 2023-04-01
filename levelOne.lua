@@ -147,6 +147,10 @@ function levelOne:update(dt)
     elseif (player.health <= (player.max_health / 4)) then
         redheartbeat.anim:update(dt)
     end
+
+    game.height = love.graphics.getHeight()
+    game.width = love.graphics.getWidth()
+    
     if love.keyboard.isDown("e") and (checkInventory(inventory, "battery1") == true or checkInventory(inventory, "battery2") == true or checkInventory(inventory, "battery3") == true) then 
         if distanceBetweenSprites(player.x, player.y, 55, 80, 2480,135,70,20) < 150 then 
             -- need to remove from inventory then move on if battery count = 3 

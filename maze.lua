@@ -1,5 +1,6 @@
 -- Gamestate library
 Gamestate = require 'libraries.gamestate'
+require("scp173")
 maze = {}
 walls = {}
 room = "maze"
@@ -53,6 +54,9 @@ function maze:enter()
         end
 
         player.load()
+        --scp173.spawn(7100,-2600)
+        scp173.spawn(-2687,6930)
+        scp173.load()
         --enemy.load()
         --SCP.load()
         if saveLoad == true then
@@ -84,6 +88,7 @@ function maze:enter()
 end
 
 function maze:update(dt)
+    UPDATE_scp173(dt)
     player:update(dt)
     player.anim:update(dt)
 
@@ -94,6 +99,9 @@ function maze:update(dt)
     elseif (player.health <= (player.max_health / 4)) then
         redheartbeat.anim:update(dt)
     end
+
+    game.height = love.graphics.getHeight()
+    game.width = love.graphics.getWidth()
     --enemy.anim:update(dt)
     --UPDATE_ENEMY(dt)
     --UPDATE_SCP(dt)
@@ -113,6 +121,7 @@ function maze:draw()
         testingMap:drawLayer(testingMap.layers["Tile Layer 1"])
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
        --enemy.draw()
+       DRAW_scp173()
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
@@ -124,6 +133,8 @@ function maze:draw()
             --table.insert(inventory,"Itemsssssss")
             print(player.x)
             print(player.y)
+            scp173.x = player.x
+            scp173.y = player.y
         end
     camera:detach()
     love.graphics.reset()

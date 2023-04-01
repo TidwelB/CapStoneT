@@ -39,7 +39,7 @@ function levelTwo:enter()
     -- draws the window size
     world = wf.newWorld(0, 0)
     love.window.setTitle("SCP: FALLEN")
-    love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
+    love.window.setMode(1920, 1080, {resizable=true, vsync=true, minwidth=400, minheight=300})
 
     world:addCollisionClass('Solid')
     
@@ -123,6 +123,8 @@ function levelTwo:update(dt)
         redheartbeat.anim:update(dt)
     end
 
+    game.height = love.graphics.getHeight()
+    game.width = love.graphics.getWidth()
     -- These four if statements check if the player
     -- is close to a computer and plays
     -- its respective waver.
