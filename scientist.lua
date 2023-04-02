@@ -15,7 +15,7 @@ scientist.grid = anim8.newGrid(16, 16, scientist.spriteSheet:getWidth(), scienti
 scientist.w = scientist.spriteSheet:getWidth()
 scientist.h = scientist.spriteSheet:getHeight()
 scientist.icon = love.graphics.newImage('sprites/scientist.png')
-
+scientist.maze = 0
 scientist.animations = {}
     scientist.animations.down = anim8.newAnimation( scientist.grid('1-4', 1), 0.25 )
     scientist.animations.up = anim8.newAnimation( scientist.grid('1-4', 2), 0.25 )
@@ -121,7 +121,8 @@ function scientist.response(dt)
             Moan.speak("Scientist", { "You've found the last piece! Go drop it off and get out of here" }, {image = scientist.icon })
         else if (checkInventory(inventory, "ball") == true or checkInventory(chest, "ball") or (ball.x ~= 3000 and ball.y ~= 230)) and checkInventory(inventory, "chargecable") == true or checkInventory(chest, "chargecable") or (chargecable.x ~= 60 and chargecable.y ~= 750 )then
             Moan.speak("Scientist", { "You solved the second puzzle, now only one to go. You'll have to go through a maze to get to the next puzzle (make sure you have your flashlight to keep you safe). For this next puzzle you need to find the green and blue screens, those screens will provide a riddle to solve.", "Additionally I have given you the map for the maze that you will encounter! Unfortunately due to the breach the software crashed and has ruined the file so it may be difficult to read, use your M key to access this map. You will enter the maze from the circle on the map. The exit should be somewhere within the square drawn on it." }, {image = scientist.icon })
-        --end
+            scientist.maze = scientist.maze + 1
+            --end
          else if checkInventory(inventory, "ball") == true or checkInventory(chest, "ball") or (ball.x ~= 3000 and ball.y ~= 230) then
             Moan.speak("Scientist", { "Congradulations, you completed the first puzzle now as for the second puzzle my hint to you is to check all the computer screens and eventually you'll find instructions to help" }, {image = scientist.icon })
     end

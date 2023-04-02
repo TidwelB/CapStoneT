@@ -83,7 +83,7 @@ function player:update(dt)
     end
     if player.hinttimer < 500 then
         player.hinttimer = player.hinttimer + 1
-        print(player.hinttimer)
+       -- print(player.hinttimer)
     end
     player.timer = player.timer + dt
         -- player.pause(dt)
@@ -570,9 +570,9 @@ function player.draw()
         love.graphics.draw(checklist, 200, 300)
     end
 
-    if love.keyboard.isDown("m") and game.talk ~= 0 then
-        local mapmap = love.graphics.newImage("maps/Maze.png")
-        love.graphics.draw(mapmap, 700, 100)
+    if love.keyboard.isDown("m") and scientist.maze ~= 0 then
+        local mapmap = love.graphics.newImage("maps/maze.png")
+        love.graphics.draw(mapmap, 700, 200, 0, 0.4,0.4)
     end
 end
 

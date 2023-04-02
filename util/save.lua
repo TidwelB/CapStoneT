@@ -113,6 +113,7 @@ if op == "Windows" then
             player.stamina = data.stamina
             flashlight.charge = data.charge
             levelOne.flashtime = data.flashtime
+            scientist.maze = data.maze
             if data.level == "runGame" then
                 level = runGame
             elseif data.level == "levelOne" then
@@ -222,6 +223,7 @@ end)
             player.stamina = data.stamina
             flashlight.charge = data.charge
             levelOne.flashtime = data.flashtime
+            scientist.maze = data.maze
             --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
         end))
     end

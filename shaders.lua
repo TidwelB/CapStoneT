@@ -119,6 +119,12 @@ function shaders:update(dt)
         local px = 400
         local py = 250
         flashlight.charge = flashlight.charge + flashlight.recharge
+        if room == "levelTwo" then
+            flashlight.charge = flashlight.charge+(flashlight.recharge*5)
+        end
+        if room == "maze" then
+            flashlight.charge = flashlight.charge+(flashlight.recharge*2)
+        end
         if flashlight.charge > flashlight.max then
             flashlight.charge = flashlight.max
         end
@@ -145,6 +151,9 @@ function shaders:update(dt)
         local px = love.mouse.getX()
         local py = love.mouse.getY()
         flashlight.charge = flashlight.charge-flashlight.decay
+        if love.keyboard.isDown('m') then
+            flashlight.charge = flashlight.charge-(flashlight.decay*30)
+        end
         if flashlight.charge < 0 then
             shaders.flashlight = false
             flashlight.charge = 0

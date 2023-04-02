@@ -46,7 +46,7 @@ function levelOne:enter()
     world:addCollisionClass('Ghost', {ignores = {'Solid'}})
     world:addCollisionClass('Ignore', { ignores = { 'Solid' } })
 
-    Sounds.boop = love.audio.newSource("sounds/boop.wav", "static")
+    
 
         if testingMap.layers["Walls"] then
             for i, box in pairs(testingMap.layers["Walls"].objects) do

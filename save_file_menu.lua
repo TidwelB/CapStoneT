@@ -103,7 +103,8 @@ function save_file_menu:keypressed(key)
             talk = game.talk,
             stamina = player.stamina,
             charge = flashlight.charge,
-            flashtime = levelOne.flashtime
+            flashtime = levelOne.flashtime,
+            maze = scientist.maze
             --item positions for puzzle 3
         }
         

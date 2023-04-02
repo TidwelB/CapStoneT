@@ -9,8 +9,8 @@ local font = love.graphics.newFont(32)
 local button6 = {text = "Return to Pause Menu", fn = function()Gamestate.pop() sleep(.3)end, width = 300}
 local button3 = {text = "Increase Volume", fn = function() settings.increasevolumes(Music.music) end, width = 150, x = 450 , y = 200}
 local button2 = {text = "Decrease Volume", fn = function() settings.decreasevolumes(Music.music) end, width = 150, x = 900, y = 200}
-local button5 = {text = "Increase Sound Effect Volumes", fn = function() settings.increasevolumes(Sounds.collision) end, width = 150, x = 450, y = 400}
-local button4 = {text = "Decrease Sound Effect Volumes", fn = function() settings.decreasevolumes(Sounds.collision) end, width = 150, x = 900, y = 400}
+local button5 = {text = "Increase Sound Effect Volumes", fn = function() settings.increasevolumes(Sounds.boop) settings.increasevolumes(Sounds.collision) end, width = 150, x = 450, y = 400}
+local button4 = {text = "Decrease Sound Effect Volumes", fn = function() settings.decreasevolumes(Sounds.boop) settings.decreasevolumes(Sounds.collision) end, width = 150, x = 900, y = 400}
 local button1 = {text = "Mute Sounds", fn = function() settings.mute() end, width = 300, x = 900, y = 100}
 local button7 = {text = "Controls", fn = function()  Gamestate.push(controls) sleep(.3) end, width = 300, x = 900, y = 100}
 local allButtons = {button1,button2,button3,button4,button5,button6,button7}
@@ -75,9 +75,6 @@ function settings:draw()
     self:buttonpositions()
     love.graphics.printf(("Music: " .. math.floor(Music.music:getVolume()*100) .. "%"),100,200,200)
     love.graphics.printf("Sound Effects: " .. math.floor(Sounds.collision:getVolume()*100) .. "%",100,400,400)
-    for i, v in ipairs(inventory) do
-        love.graphics.print(string.format(i .. ": " .. v .. '\n'),300,225*i)
-    end
     local mousex, mousey = love.mouse.getPosition()
     for i, button in ipairs(allButtons) do
         local color = {.8,.4,.5,1}
@@ -116,6 +113,7 @@ function settings.mute()
     if mute == false then
             Music.music:setVolume(TemMu)
             Sounds.collision:setVolume(TemCol)
+            Sounds.boop:setVolume(TemCol)
     end
 
     if mute == true then
@@ -123,6 +121,8 @@ function settings.mute()
         TemCol = Sounds.collision:getVolume()
         Music.music:setVolume(0)
         Sounds.collision:setVolume(0)
+        Sounds.boop:setVolume(0)
+        
 
     end
 
