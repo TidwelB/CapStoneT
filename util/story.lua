@@ -8,25 +8,31 @@ local positions = {
     {50, 100},
     {50, 150},
     {50, 200},
-    {50, 250}
+    {50, 250},
+    {50, 300},
+    {50, 350}
 }
+
 local text = {
-    "This will be the story introduction",
-    "Someone can write this if they see fit",
-    "Important things to write would be that they need to talk to the scientist once the game starts",
-    "As well as that to leave this screen they need to hit enter",
-    "Press ENTER to continue to the game"
+    "April 2, 2238",
+    "REPORT FROM SCP LAB 676:",
+    "Request for a Mobile Task Force Epsilon-11 'Nine-Tailed Fox' immediately",
+    "Our lab has been compromised and containment protocol 792 has failed. As far as we are currently aware the casualty rates are high.",
+    "I'm [REDACTED] and I will be waiting on you in the bottom left corner of the main lobby to explain more of the situation. As it is currently it is too dangerous for a scientist to",
+    "gather the required equipment to engage in containment protocol 6. Any delay in your arrival and we could have a much more serious containment breach",
+    "HIT ENTER TO ARRIVE AT THE FACILITY"
     --Whenever you add a new line add a new 0 value to charIndex, a new false value to linePrinted, and a new position vector
 }
-local charIndex = {0, 0, 0, 0, 0}
+
+local charIndex = {0, 0, 0, 0, 0, 0, 0}
 local lineIndex = 1
-local linePrinted = {false, false, false, false, false}
+local linePrinted = {false, false, false, false, false, false, false}
 local timeElapsed = 0
 local delay = 0.02
 local gameState = "intro"
 
 
-  function story.load()
+function story.load()
 
 end
 
@@ -73,4 +79,3 @@ function story:draw()
     end
 
 end
-
