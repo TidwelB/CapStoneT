@@ -567,7 +567,12 @@ function player.draw()
         elseif checkInventory(inventory, "ball") == true or checkInventory(chest, "ball") or (ball.x ~= 3000 and ball.y ~= 230) then
             checklist = love.graphics.newImage("sprites/checklist1.png")
         end
-        love.graphics.draw(checklist, 700, 300)
+        love.graphics.draw(checklist, 200, 300)
+    end
+
+    if love.keyboard.isDown("m") and game.talk ~= 0 then
+        local mapmap = love.graphics.newImage("maps/Maze.png")
+        love.graphics.draw(mapmap, 700, 100)
     end
 end
 
