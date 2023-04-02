@@ -5,7 +5,7 @@ scientist = {}
 
 
 scientist.x = 500
-scientist.y = 500
+scientist.y = 450
 scientist.speed = 200
 scientist.xvel = 0
 scientist.yvel = 0
