@@ -14,6 +14,7 @@ scp173 = {}
     scp173.spriteSheet = love.graphics.newImage('sprites/eyeballW.png')
     scp173.grid = anim8.newGrid(32, 32, scp173.spriteSheet:getWidth(), scp173.spriteSheet:getHeight())
     scp173.found = false
+    scp173.frozen = false
 
 
 scp173.animations = {}
@@ -76,6 +77,7 @@ function scp173.colAI(dt)
 
 --check distance to player
         if scp173.distance > 1 and scp173.found == true then
+            scp173.frozen = true
             scp173.colxvel = 0
             scp173.colyvel = 0
         --check scp173 right
@@ -83,32 +85,38 @@ function scp173.colAI(dt)
                 print(shaders.flashlight)
                 if scp173.colxvel == 0 then
                     scp173.colxvel = scp173.speed
+                    scp173.frozen = false
                 end
-                --scp173.colxvel = scp173.speed
-                --scp173.anim = scp173.animations.right
             end
         --check scp173 left
             if (player.x < scp173.collider:getX() and player.anim ~= player.animations.right) or (player.x < scp173.collider:getX() and shaders.flashlight == false) then
                 print(shaders.flashlight)
                 if scp173.colxvel == 0 then
                     scp173.colxvel = -scp173.speed
+                    scp173.frozen = false
                 end
                 --scp173.colxvel = -scp173.speed
                 --scp173.anim = scp173.animations.left
+
             end
         --check scp173 below
             if (player.y > scp173.collider:getY() + 20 and player.anim ~= player.animations.up) or (player.y > scp173.collider:getY() + 20 and shaders.flashlight == false) then
                 if scp173.colyvel == 0 then
                 scp173.colyvel = scp173.speed
+                scp173.frozen = false
                 end
                 --scp173.anim = scp173.animations.left
+
             end
+        
         --check scp173 above
             if (player.y < scp173.collider:getY() -20 and player.anim ~= player.animations.down) or (player.y < scp173.collider:getY() -20 and shaders.flashlight == false) then
                 if scp173.colyvel == 0 then
                 scp173.colyvel = -scp173.speed
+                scp173.frozen = false
                 end
                 --scp173.anim = scp173.animations.right
+
             end
             if scp173.colxvel < 0 and scp173.xdist > 5 then
                 scp173.anim = scp173.animations.left
@@ -130,6 +138,11 @@ function scp173.colAI(dt)
                 end
             end
             end
+        end
+
+        if scp173.frozen == true then
+            scp173.colxvel = 0
+            scp173.colyvel = 0
         end
 
         scp173.colX = scp173.colX + scp173.colxvel *dt

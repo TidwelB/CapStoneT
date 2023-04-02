@@ -128,13 +128,6 @@ function game:update(dt)
     scientist:update(dt)
     scientist.anim:update(dt)
 
-    if (player.health > (player.max_health / 2)) then
-        heartbeat.anim:update(dt)
-    elseif (player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
-        yellowheartbeat.anim:update(dt)
-    elseif (player.health <= (player.max_health / 4)) then
-        redheartbeat.anim:update(dt)
-    end
 
     --enemy.anim:update(dt)
     --UPDATE_ENEMY(dt)
@@ -237,7 +230,7 @@ function game:draw()
         player.timer = 0
         player.hinttimer = 0
         end
-        if player.hinttimer < 200 then
+        if player.hinttimer < 75 or (player.hinttimer >150 and player.hinttimer < 200) then
             player.playerHint(432,100)
         end
     -- Lines after this will not be focused on the player

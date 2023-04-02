@@ -119,35 +119,38 @@ function levelTwo:update(dt)
     -- These four if statements check if the player
     -- is close to a computer and plays
     -- its respective waver.
+
+    if love.keyboard.isDown("e") then
     if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 164, 93.33, 48.00) < 150 then
-        if love.keyboard.isDown("e") then
+        --if love.keyboard.isDown("e") then
             Gamestate.push(waver)
-        end
+        --end
     end
 
     if distanceBetweenSprites(player.x, player.y, 55, 80, 1527.6566, 176.625, 93.33, 48.00) < 150 then
-        if love.keyboard.isDown("e") then
+        --if love.keyboard.isDown("e") then
             Gamestate.push(waver2)
-        end
+        --end
     end
 
     if distanceBetweenSprites(player.x, player.y, 55, 80, 1263, 1425, 93.33, 48.00) < 150 then
-        if love.keyboard.isDown("e") then
+        --if love.keyboard.isDown("e") then
             Gamestate.push(waver3)
-        end
+        --end
     end
 
     if distanceBetweenSprites(player.x, player.y, 55, 80, 98, 1449, 93.33, 48.00) < 150 then
-        if love.keyboard.isDown("e") then
+        --if love.keyboard.isDown("e") then
             Gamestate.push(waver4)
-        end
+        --end
     end
 
     if distanceBetweenSprites(player.x, player.y, 55, 80, 326, 1449, 93.33, 48) < 150 then
-        if love.keyboard.isDown("e") then
+        --if love.keyboard.isDown("e") then
             Gamestate.push(computer5)
-        end
+       --end
     end
+end
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)

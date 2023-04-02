@@ -114,7 +114,7 @@ end
 -- chat
 function scientist.response(dt)
     if love.keyboard.isDown("e") and distanceBetweenSprites(player.x, player.y, 55, 80, scientist.x, scientist.y, scientist.w,scientist.h) < 80 then
-        talk = talk + 1
+        game.talk = game.talk + 1
        if checkInventory(chest, "battery1") == false or checkInventory(chest, "battery2") == false or checkInventory(chest, "battery3") == false then
             Moan.speak("Scientist", { "Hello, to escape the facility you will need to collect 3 seperate items located in 3 different rooms. To see more messages click 'space'" , "Each room will have a seperate puzzle. But be careful there are escaped SCPs that if you get too close they will kill you","Once you collect each item you need to drop it off in the container in this room, simply click 'e' when next to the container to drop it.", "A hint for the first puzzle in the room above is to check under the boxes you are looking for three batteries to unlock the ball. Make sure you have the flashlight otherwise you can't enter that room", "I've given you a task list of what you need to do to escape, press 'i' to view it."}, {image = scientist.icon})
         else if (checkInventory(inventory, "book") == true or checkInventory(chest, "book") or (book.x ~= 1390 and book.y ~= 300)) and (checkInventory(inventory, "ball") == true or checkInventory(chest, "ball") or (ball.x ~= 3000 and ball.y ~= 230)) and (checkInventory(inventory, "chargecable") == true or checkInventory(chest, "chargecable") or (chargecable.x ~= 60 and chargecable.y ~= 750 )) then

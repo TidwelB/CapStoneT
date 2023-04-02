@@ -226,7 +226,7 @@ function levelOne:draw()
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
 
-
+        print(batcount)
         if love.keyboard.isDown("tab") and batcount ~= 3 then
         if not (checkInventory(inventory, "battery1") or (checkInventory(chest, "battery1"))) then
         player.playerHint(battery1.x,battery1.y)
