@@ -58,14 +58,14 @@ function SCP106.colAI(dt)
     SCP106.yvect = (player.y - SCP106.collider:getY()) / SCP106.ydist
 
 --snap out of player view
-    if SCP106.distance > 700 then
-        SCP106.collider:setPosition(50+((player.x + SCP106.colX)/2), -(50+(-player.y + -SCP106.colY)/2))
-    end
+    -- if SCP106.distance > 700 then
+    --     SCP106.collider:setPosition(50+((player.x + SCP106.colX)/2), -(50+(-player.y + -SCP106.colY)/2))
+    -- end
 
 --snap back to player
-    if SCP106.distance > 1000 then
-        SCP106.collider:setPosition((player.x), ((player.y)))
-    end
+    -- if SCP106.distance > 1000 then
+    --     SCP106.collider:setPosition((player.x), ((player.y)))
+    -- end
 
 --check distance to player
         if SCP106.distance > 1 and SCP106.distance < 700 then

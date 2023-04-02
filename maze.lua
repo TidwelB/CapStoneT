@@ -1,6 +1,7 @@
 -- Gamestate library
 Gamestate = require 'libraries.gamestate'
 require("scp173")
+require("scp1731")
 maze = {}
 walls = {}
 room = "maze"
@@ -53,11 +54,13 @@ function maze:enter()
             end
         end
 
-        player.load()
+        --player.load()
         --scp173.spawn(7100,-2600)
+
         scp173.spawn(-2672,7650)
         scp173.spawn(-2672,7715)
         scp173.load()
+        scp1731.load()
         --enemy.load()
         --SCP.load()
         if saveLoad == true then
@@ -90,6 +93,7 @@ end
 
 function maze:update(dt)
     UPDATE_scp173(dt)
+    UPDATE_scp1731(dt)
     player:update(dt)
     player.anim:update(dt)
 
@@ -115,10 +119,11 @@ function maze:draw()
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
        --enemy.draw()
        DRAW_scp173()
+       DRAW_scp1731()
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
-        --world:draw()
+        world:draw()
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()

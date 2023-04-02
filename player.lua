@@ -571,7 +571,7 @@ function player.draw()
     end
 
     if love.keyboard.isDown("m") and scientist.maze ~= 0 then
-        local mapmap = love.graphics.newImage("maps/maze.png")
+        local mapmap = love.graphics.newImage("maps/maze.jpg")
         love.graphics.draw(mapmap, 700, 200, 0, 0.4,0.4)
     end
 end
