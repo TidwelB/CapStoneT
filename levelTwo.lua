@@ -14,7 +14,7 @@ require("util.items.flashlight")
 require("util.items.chargecable")
 require("util.items.rock")
 require("util.items.book")
-require("scp106")
+require("SCP106")
 
 -- Loads level two in and intializes all of it
 function levelTwo:enter()
@@ -39,7 +39,7 @@ function levelTwo:enter()
     -- draws the window size
     world = wf.newWorld(0, 0)
     love.window.setTitle("SCP: FALLEN")
-    love.window.setMode(1920, 1080, {resizable=true, vsync=true, minwidth=400, minheight=300})
+    love.window.setMode(1920, 1080, {resizable=true, vsync=0, minwidth=400, minheight=300})
 
     world:addCollisionClass('Solid')
     
@@ -114,43 +114,47 @@ function levelTwo:update(dt)
     player:update(dt)
     player.anim:update(dt)
 
-    game.height = love.graphics.getHeight()
-    game.width = love.graphics.getWidth()
+    -- Animates the different health bar values
+    if (player.health > (player.max_health / 2)) then
+        heartbeat.anim:update(dt)
+    elseif (player.health <= (player.max_health / 2) and player.health > (player.max_health / 4)) then
+        yellowheartbeat.anim:update(dt)
+    elseif (player.health <= (player.max_health / 4)) then
+        redheartbeat.anim:update(dt)
+    end
+
     -- These four if statements check if the player
     -- is close to a computer and plays
     -- its respective waver.
-
-    if love.keyboard.isDown("e") then
     if distanceBetweenSprites(player.x, player.y, 55, 80, 64, 164, 93.33, 48.00) < 150 then
-        --if love.keyboard.isDown("e") then
+        if love.keyboard.isDown("e") then
             Gamestate.push(waver)
-        --end
+        end
     end
 
     if distanceBetweenSprites(player.x, player.y, 55, 80, 1527.6566, 176.625, 93.33, 48.00) < 150 then
-        --if love.keyboard.isDown("e") then
+        if love.keyboard.isDown("e") then
             Gamestate.push(waver2)
-        --end
+        end
     end
 
     if distanceBetweenSprites(player.x, player.y, 55, 80, 1263, 1425, 93.33, 48.00) < 150 then
-        --if love.keyboard.isDown("e") then
+        if love.keyboard.isDown("e") then
             Gamestate.push(waver3)
-        --end
+        end
     end
 
     if distanceBetweenSprites(player.x, player.y, 55, 80, 98, 1449, 93.33, 48.00) < 150 then
-        --if love.keyboard.isDown("e") then
+        if love.keyboard.isDown("e") then
             Gamestate.push(waver4)
-        --end
+        end
     end
 
     if distanceBetweenSprites(player.x, player.y, 55, 80, 326, 1449, 93.33, 48) < 150 then
-        --if love.keyboard.isDown("e") then
+        if love.keyboard.isDown("e") then
             Gamestate.push(computer5)
-       --end
+        end
     end
-end
 
    -- Moves the camera according to the players movements
    camera:lookAt(player.x, player.y)
@@ -186,10 +190,8 @@ function levelTwo:draw()
         -- Draws the puzzle lock layer when the 
         -- the computers are on the wrong wave forms.
         if computer1 == 2 and computer2 == 3 and computer3 == 4 and computer4 == 1 then
-            if game.sounds == 1 then
-                Sounds.win:play()
-                game.sounds = 2
-            end
+            love.graphics.setColor(0, 0, 255)
+            testingMap:drawLayer(testingMap.layers["puzzlelock"])
         else
             testingMap:drawLayer(testingMap.layers["puzzlelock"])
         end
