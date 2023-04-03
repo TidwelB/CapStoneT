@@ -114,6 +114,7 @@ if op == "Windows" then
             flashlight.charge = data.charge
             levelOne.flashtime = data.flashtime
             scientist.maze = data.maze
+            game.sounds = data.sounds
             if data.level == "runGame" then
                 level = runGame
             elseif data.level == "levelOne" then
@@ -224,6 +225,7 @@ end)
             flashlight.charge = data.charge
             levelOne.flashtime = data.flashtime
             scientist.maze = data.maze
+            game.sounds = data.sounds
             --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
         end))
     end

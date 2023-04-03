@@ -186,7 +186,10 @@ function levelTwo:draw()
         -- Draws the puzzle lock layer when the 
         -- the computers are on the wrong wave forms.
         if computer1 == 2 and computer2 == 3 and computer3 == 4 and computer4 == 1 then
-
+            if game.sounds == 1 then
+                Sounds.win:play()
+                game.sounds = 2
+            end
         else
             testingMap:drawLayer(testingMap.layers["puzzlelock"])
         end

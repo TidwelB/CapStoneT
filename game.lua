@@ -31,6 +31,7 @@ game.shift = 0
 game.escape = 0
 game.interact = 0
 game.talk = 0
+game.sounds = 0
 -- Starts the Main Lobby room
 -- and intializes all of the features.
 function game:enter()
