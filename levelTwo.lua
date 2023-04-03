@@ -169,6 +169,10 @@ function levelTwo:update(dt)
         for i, barrier in ipairs(puzzleBarrier) do
             barrier:setCollisionClass('Ignore')
         end
+        if game.sounds == 1 then
+            Sounds.win:play()
+            game.sounds = 2
+        end
     else 
         for i, barrier in ipairs(puzzleBarrier) do
             barrier:setCollisionClass('Solid')

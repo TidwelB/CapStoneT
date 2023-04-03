@@ -174,7 +174,7 @@ function levelOne:update(dt)
         for i, barrier in ipairs(puzzleBarrier) do
             barrier:setCollisionClass('Ignore')
         end
-        if (game.sounds == 0 and checkInventory(inventory, "book")) or (game.sounds == 0 and checkInventory(chest, "ball") == true) then
+        if (game.sounds == 0) then
             Sounds.win:play()
             game.sounds = 1
             end
