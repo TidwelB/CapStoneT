@@ -13,6 +13,7 @@ local positions = {
     {50, 350}
 }
 
+-- Current iteration of SCP: Fallen story
 local text = {
     "April 2, 2238",
     "REPORT FROM SCP LAB 676:",
