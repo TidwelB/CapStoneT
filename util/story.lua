@@ -14,7 +14,7 @@ local positions = {
 }
 
 local text = {
-    filepath,
+    "April 2, 2238",
     "REPORT FROM SCP LAB 676:",
     "Request for a Mobile Task Force Epsilon-11 'Nine-Tailed Fox' immediately",
     "Our lab has been compromised and containment protocol 792 has failed. As far as we are currently aware the casualty rates are high.",
