@@ -184,8 +184,7 @@ end
 --     scp1731.colyvel = 0
 --     scp1731.colxvel = 0
 -- end
-print(angle)
-print(mouseAngle)
+
       
 --print(scp173.frozen)
 
