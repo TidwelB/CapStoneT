@@ -94,7 +94,21 @@ else
     scp1731.found = true
 end
 
+local mouseX, mouseY = love.mouse.getPosition()
+local centerX, centerY = love.graphics.getWidth() / 2, love.graphics.getHeight() / 2
+local deltaX, deltaY = mouseX - centerX, mouseY - centerY
+local mouseAngle =  math.atan2(deltaY, deltaX) * 180 / math.pi
 
+
+local dx = scp1731.x - player.x
+local dy = scp1731.y - player.y
+local angle = math.atan2(dy, dx) * 180 / math.pi
+
+local function isWithinAngleThreshold(angle1, angle2, threshold)
+local diff = math.abs(angle1 - angle2) % 360
+diff = diff > 180 and 360 - diff or diff
+return diff <= threshold
+end
 --check distance to player
         if scp1731.distance > 1 and scp1731.found == true then
             scp1731.frozenx = 0
@@ -102,7 +116,10 @@ end
             scp1731.colxvel = 0
             scp1731.colyvel = 0
         --check scp1731 right
-            if (player.x > scp1731.collider:getX() and player.anim ~= player.animations.left or (player.x > scp1731.collider:getX() and scp1731.distance > 563)) or (player.x > scp1731.collider:getX() and shaders.flashlight == false) then
+        print("angle looking scp1731")
+        print(isWithinAngleThreshold(mouseAngle, angle, 25))
+        --if ~isWithinAngleThreshold(mouseAngle, angle, 25) then
+            if (player.x > scp1731.collider:getX() and player.anim ~= player.animations.left and not isWithinAngleThreshold(mouseAngle, angle, 25) or (player.x > scp1731.collider:getX() and scp1731.distance > 563)) or (player.x > scp1731.collider:getX() and shaders.flashlight == false) then
                 print(shaders.flashlight)
                 if scp1731.colxvel == 0 then
                     scp1731.colxvel = scp1731.speed
@@ -110,7 +127,7 @@ end
                 end
             end
         --check scp1731 left
-            if (player.x < scp1731.collider:getX() and player.anim ~= player.animations.right or (player.x < scp1731.collider:getX() and scp1731.distance > 563)) or (player.x < scp1731.collider:getX() and shaders.flashlight == false) then
+            if (player.x < scp1731.collider:getX() and player.anim ~= player.animations.right and not isWithinAngleThreshold(mouseAngle, angle, 25) or (player.x < scp1731.collider:getX() and scp1731.distance > 563)) or (player.x < scp1731.collider:getX() and shaders.flashlight == false) then
                 print(shaders.flashlight)
                 if scp1731.colxvel == 0 then
                     scp1731.colxvel = -scp1731.speed
@@ -121,7 +138,7 @@ end
 
             end
         --check scp1731 below
-            if (player.y > scp1731.collider:getY() + 20 and player.anim ~= player.animations.up or (player.y > scp1731.collider:getY() + 20 and scp1731.distance > 563)) or (player.y > scp1731.collider:getY() + 20 and shaders.flashlight == false) then
+            if (player.y > scp1731.collider:getY() + 20 and player.anim ~= player.animations.up and not isWithinAngleThreshold(mouseAngle, angle, 25) or (player.y > scp1731.collider:getY() + 20 and scp1731.distance > 563)) or (player.y > scp1731.collider:getY() + 20 and shaders.flashlight == false) then
                 if scp1731.colyvel == 0 then
                 scp1731.colyvel = scp1731.speed
                 scp1731.frozen = scp1731.frozeny +1
@@ -131,7 +148,7 @@ end
             end
         
         --check scp1731 above
-            if (player.y < scp1731.collider:getY() -20 and player.anim ~= player.animations.down or (player.y < scp1731.collider:getY() -20 and scp1731.distance > 563)) or (player.y < scp1731.collider:getY() -20 and shaders.flashlight == false) then
+            if (player.y < scp1731.collider:getY() -20 and player.anim ~= player.animations.down and not isWithinAngleThreshold(mouseAngle, angle, 25) or (player.y < scp1731.collider:getY() -20 and scp1731.distance > 563)) or (player.y < scp1731.collider:getY() -20 and shaders.flashlight == false) then
                 if scp1731.colyvel == 0 then
                 scp1731.colyvel = -scp1731.speed
                 scp1731.frozen = scp1731.frozeny +1
@@ -141,7 +158,7 @@ end
             end
         end
     
-
+    --end
            
         if scp1731.xdist > scp1731.ydist then
             if scp1731.colxvel > 0 then
@@ -160,14 +177,10 @@ end
         end
     end
 
---print(scp1731.frozen)
 
-        -- if scp1731.frozenx == 0 then 
-        --     scp1731.colxvel = 0
-        -- end
-        -- if scp1731.frozeny == 0 then
-        -- scp1731.colyvel = 0
-        -- end
+
+
+
 
         scp1731.colX = scp1731.colX + scp1731.colxvel *dt
         scp1731.colY = scp1731.colY + scp1731.colyvel *dt
@@ -175,7 +188,9 @@ end
         scp1731.colyvel = scp1731.colyvel * (1-math.min(dt*scp1731.friction,1))
 
         scp1731.collider:setLinearVelocity(scp1731.colxvel, scp1731.colyvel)
-
+        if isWithinAngleThreshold(mouseAngle, angle, 25) and scp173.distance < 600 and shaders.flashlight == true then
+            scp1731.collider:setLinearVelocity(0, 0)
+        end
 end
 
 function scp1731.collision()

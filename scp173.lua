@@ -95,7 +95,22 @@ print("SCP JUMPED")
     else
         scp173.found = true
     end
+    
+    local mouseX, mouseY = love.mouse.getPosition()
+    local centerX, centerY = love.graphics.getWidth() / 2, love.graphics.getHeight() / 2
+    local deltaX, deltaY = mouseX - centerX, mouseY - centerY
+    local mouseAngle =  math.atan2(deltaY, deltaX) * 180 / math.pi
+    
 
+local dx = scp173.x - player.x
+local dy = scp173.y - player.y
+local angle = math.atan2(dy, dx) * 180 / math.pi
+
+local function isWithinAngleThreshold(angle1, angle2, threshold)
+local diff = math.abs(angle1 - angle2) % 360
+diff = diff > 180 and 360 - diff or diff
+return diff <= threshold
+end
 
 --check distance to player
         if scp173.distance > 1 and scp173.found == true then
@@ -105,7 +120,7 @@ print("SCP JUMPED")
             scp173.colyvel = 0
             scp173.facing = true
         --check scp173 right
-            if (player.x > scp173.collider:getX() and player.anim ~= player.animations.left or (player.x > scp173.collider:getX() and scp173.distance > 563)) or (player.x > scp173.collider:getX() and shaders.flashlight == false) then
+            if (player.x > scp173.collider:getX() and player.anim ~= player.animations.left and not isWithinAngleThreshold(mouseAngle, angle, 25)or (player.x > scp173.collider:getX() and scp173.distance > 563)) or (player.x > scp173.collider:getX() and shaders.flashlight == false) then
                 print(shaders.flashlight)
                 if scp173.colxvel == 0 then
                     scp173.colxvel = scp173.speed
@@ -113,7 +128,7 @@ print("SCP JUMPED")
 
             end
         --check scp173 left
-            if (player.x < scp173.collider:getX() and player.anim ~= player.animations.right or (player.x < scp173.collider:getX() and scp173.distance > 563)) or (player.x < scp173.collider:getX() and shaders.flashlight == false) then
+            if (player.x < scp173.collider:getX() and player.anim ~= player.animations.right and not isWithinAngleThreshold(mouseAngle, angle, 25)or (player.x < scp173.collider:getX() and scp173.distance > 563)) or (player.x < scp173.collider:getX() and shaders.flashlight == false) then
                 print(shaders.flashlight)
                 if scp173.colxvel == 0 then
                     scp173.colxvel = -scp173.speed
@@ -124,7 +139,7 @@ print("SCP JUMPED")
 
             end
         --check scp173 below
-            if (player.y > scp173.collider:getY() + 20 and player.anim ~= player.animations.up or (player.y > scp173.collider:getY() + 20 and scp173.distance > 563)) or (player.y > scp173.collider:getY() + 20 and shaders.flashlight == false) then
+            if (player.y > scp173.collider:getY() + 20 and player.anim ~= player.animations.up and not isWithinAngleThreshold(mouseAngle, angle, 25)or (player.y > scp173.collider:getY() + 20 and scp173.distance > 563)) or (player.y > scp173.collider:getY() + 20 and shaders.flashlight == false) then
                 if scp173.colyvel == 0 then
                 scp173.colyvel = scp173.speed
                 scp173.frozen = scp173.frozen +1
@@ -134,7 +149,7 @@ print("SCP JUMPED")
             end
         
         --check scp173 above
-            if (player.y < scp173.collider:getY() -20 and player.anim ~= player.animations.down or (player.y < scp173.collider:getY() -20 and scp173.distance > 563)) or (player.y < scp173.collider:getY() -20 and shaders.flashlight == false) then
+            if (player.y < scp173.collider:getY() -20 and player.anim ~= player.animations.down and not isWithinAngleThreshold(mouseAngle, angle, 25)or (player.y < scp173.collider:getY() -20 and scp173.distance > 563)) or (player.y < scp173.collider:getY() -20 and shaders.flashlight == false) then
                 if scp173.colyvel == 0 then
                 scp173.colyvel = -scp173.speed
                 scp173.frozen = scp173.frozen +1
@@ -144,10 +159,7 @@ print("SCP JUMPED")
             end
         end
     
-if scp173.frozen ==0 then
-    scp173.colxvel = 0
-    scp173.colyvel = 0
-end
+
 
         if scp173.xdist > scp173.ydist then
             if scp173.colxvel > 0 then
@@ -166,6 +178,15 @@ end
         end
     end
 
+
+
+-- if isWithinAngleThreshold(mouseAngle, angle, 25) and scp173.distance < 600 and shaders.flashlight == true then
+--     scp1731.colyvel = 0
+--     scp1731.colxvel = 0
+-- end
+print(angle)
+print(mouseAngle)
+      
 --print(scp173.frozen)
 
         -- if scp173.frozenx == 0 then 
@@ -181,7 +202,9 @@ end
         scp173.colyvel = scp173.colyvel * (1-math.min(dt*scp173.friction,1))
 
         scp173.collider:setLinearVelocity(scp173.colxvel, scp173.colyvel)
-
+        if isWithinAngleThreshold(mouseAngle, angle, 25) and scp173.distance < 600 and shaders.flashlight == true then
+            scp173.collider:setLinearVelocity(0, 0)
+        end
 end
 
 function scp173.collision()

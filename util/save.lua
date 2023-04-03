@@ -45,6 +45,7 @@ files = {}
 firstLoad = true
 local op = love.system.getOS()
 if op == "Windows" then
+    filepath = filepath.gsub(filepath, "\\SCP.exe","")
     filepath = filepath .. "/save"
     filepath = string.gsub(filepath, "/", "\\")
     for file in io.popen("dir /B " .. filepath .. "\\".."*.json"):lines() do 
