@@ -170,9 +170,14 @@ function levelOne:update(dt)
         end
     end
     if batcount == 3 or (checkInventory(chest,"battery1") and checkInventory(chest,"battery2") and checkInventory(chest,"battery3")) then
+        
         for i, barrier in ipairs(puzzleBarrier) do
             barrier:setCollisionClass('Ignore')
         end
+        if (game.sounds == 0 and checkInventory(inventory, "book")) or (game.sounds == 0 and checkInventory(chest, "ball") == true) then
+            Sounds.win:play()
+            game.sounds = 1
+            end
     else
         for i, barrier in ipairs(puzzleBarrier) do
             barrier:setCollisionClass('Solid')
@@ -226,7 +231,7 @@ function levelOne:draw()
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
 
-        print(batcount)
+        --print(batcount)
         if love.keyboard.isDown("tab") and batcount ~= 3 then
         if not (checkInventory(inventory, "battery1") or (checkInventory(chest, "battery1"))) then
         player.playerHint(battery1.x,battery1.y)
