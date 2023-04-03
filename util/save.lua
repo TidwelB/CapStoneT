@@ -116,6 +116,10 @@ if op == "Windows" then
             levelOne.flashtime = data.flashtime
             scientist.maze = data.maze
             game.sounds = data.sounds
+            Music.music:setVolume(data.mvol)
+            Sounds.boop:setVolume(data.svol)
+            Sounds.win:setVolume(data.svol)
+            Sounds.collision:setVolume(data.svol)
             if data.level == "runGame" then
                 level = runGame
             elseif data.level == "levelOne" then
@@ -227,6 +231,10 @@ end)
             levelOne.flashtime = data.flashtime
             scientist.maze = data.maze
             game.sounds = data.sounds
+            Music.music:setVolume(data.mvol)
+            Sounds.boop:setVolume(data.svol)
+            Sounds.win:setVolume(data.svol)
+            Sounds.collision:setVolume(data.svol)
             --player.anim:draw(player.spriteSheet, data.position.x, data.position.y, nil, 5, nil, 6, 6)
         end))
     end

@@ -117,14 +117,14 @@ end
 
 -- Runs the update function of the maze gamestate
 -- @param dt <- Iterates every frame using delta-time
-function runMaze:update(dt)
-    tutorial.update(self, dt)
-end
+-- function runMaze:update(dt)
+--     tutorial.update(self, dt)
+-- end
 
 -- Runs the draw function of the maze gamestate
-function runMaze:draw()
-    tutorial.draw(self)
-end
+-- function runMaze:draw()
+--     tutorial.draw(self)
+-- end
 
 -- Code for executing the main lobby of the game
 function runGame:enter()

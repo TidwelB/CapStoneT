@@ -19,7 +19,7 @@ local text = {
     "Request for a Mobile Task Force Epsilon-11 'Nine-Tailed Fox' immediately",
     "Our lab has been compromised and containment protocol 792 has failed. As far as we are currently aware the casualty rates are high.",
     "I'm [REDACTED] and I will be waiting on you in the bottom left corner of the main lobby to explain more of the situation. As it is currently, it is too dangerous for a scientist to",
-    "gather the required equipment to engage in containment protocol 6. Any delay in your arrival and we could have a much more serious containment breach",
+    "gather the required equipment to engage in containment protocol 6. I'm quite well educated in the security protocols so you can come to me and I may give information as you need. Any delay in your arrival and we could have a much more serious containment breach",
     "HIT ENTER TO ARRIVE AT THE FACILITY"
     --Whenever you add a new line add a new 0 value to charIndex, a new false value to linePrinted, and a new position vector
 }

@@ -123,13 +123,13 @@ if player.y > 270 and player.y < 295 then
 end
 
 if bluemon.done == true then
-    if game.sounds == 2 then
-    Sounds.win:play()
-    game.sounds = 3
-    end
     for i, barrier in ipairs(puzzleBarrier) do
         barrier:setCollisionClass('Ignore')
     end
+    if game.sounds == 2 then
+        Sounds.win:play()
+        game.sounds = 3
+        end
 else
     for i, barrier in ipairs(puzzleBarrier) do
         barrier:setCollisionClass('Solid')
