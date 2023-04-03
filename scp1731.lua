@@ -88,7 +88,7 @@ if scp1731.distance > 2000 then
     local colliderY = player.y + distance * math.sin(angle)
   
     scp1731.collider:setPosition(colliderX, colliderY)
-print("SCP JUMPED")
+--print("SCP JUMPED")
 end
 else
     scp1731.found = true
@@ -116,11 +116,11 @@ end
             scp1731.colxvel = 0
             scp1731.colyvel = 0
         --check scp1731 right
-        print("angle looking scp1731")
-        print(isWithinAngleThreshold(mouseAngle, angle, 25))
+        --print("angle looking scp1731")
+        --print(isWithinAngleThreshold(mouseAngle, angle, 25))
         --if ~isWithinAngleThreshold(mouseAngle, angle, 25) then
             if (player.x > scp1731.collider:getX() and player.anim ~= player.animations.left and not isWithinAngleThreshold(mouseAngle, angle, 25) or (player.x > scp1731.collider:getX() and scp1731.distance > 563)) or (player.x > scp1731.collider:getX() and shaders.flashlight == false) then
-                print(shaders.flashlight)
+                --print(shaders.flashlight)
                 if scp1731.colxvel == 0 then
                     scp1731.colxvel = scp1731.speed
                     scp1731.frozen = scp1731.frozenx +1
@@ -128,7 +128,7 @@ end
             end
         --check scp1731 left
             if (player.x < scp1731.collider:getX() and player.anim ~= player.animations.right and not isWithinAngleThreshold(mouseAngle, angle, 25) or (player.x < scp1731.collider:getX() and scp1731.distance > 563)) or (player.x < scp1731.collider:getX() and shaders.flashlight == false) then
-                print(shaders.flashlight)
+                --print(shaders.flashlight)
                 if scp1731.colxvel == 0 then
                     scp1731.colxvel = -scp1731.speed
                     scp1731.frozen = scp1731.frozenx +1

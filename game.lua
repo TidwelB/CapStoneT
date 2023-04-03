@@ -231,7 +231,7 @@ function game:draw()
         player.timer = 0
         player.hinttimer = 0
         end
-        if player.hinttimer < 75 or (player.hinttimer >150 and player.hinttimer < 200) then
+        if (player.hinttimer < 75 or (player.hinttimer >150 and player.hinttimer < 200)) and not (checkInventory(inventory,"ball") or checkInventory(chest, "ball"))then
             player.playerHint(432,100)
         end
     -- Lines after this will not be focused on the player

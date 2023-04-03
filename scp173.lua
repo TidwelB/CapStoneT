@@ -90,7 +90,7 @@ function scp173.colAI(dt)
         local colliderY = player.y + distance * math.sin(angle)
       
         scp173.collider:setPosition(colliderX, colliderY)
-print("SCP JUMPED")
+--print("SCP JUMPED")
     end
     else
         scp173.found = true
@@ -121,7 +121,7 @@ end
             scp173.facing = true
         --check scp173 right
             if (player.x > scp173.collider:getX() and player.anim ~= player.animations.left and not isWithinAngleThreshold(mouseAngle, angle, 25)or (player.x > scp173.collider:getX() and scp173.distance > 563)) or (player.x > scp173.collider:getX() and shaders.flashlight == false) then
-                print(shaders.flashlight)
+                --print(shaders.flashlight)
                 if scp173.colxvel == 0 then
                     scp173.colxvel = scp173.speed
                 end
@@ -129,7 +129,7 @@ end
             end
         --check scp173 left
             if (player.x < scp173.collider:getX() and player.anim ~= player.animations.right and not isWithinAngleThreshold(mouseAngle, angle, 25)or (player.x < scp173.collider:getX() and scp173.distance > 563)) or (player.x < scp173.collider:getX() and shaders.flashlight == false) then
-                print(shaders.flashlight)
+                --print(shaders.flashlight)
                 if scp173.colxvel == 0 then
                     scp173.colxvel = -scp173.speed
                     scp173.frozen = scp173.frozen +1
