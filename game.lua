@@ -226,8 +226,8 @@ function game:draw()
        -- love.graphics.print("Press 'e' to interact", 50,780)
         -- This feature draws the hitboxes of the game
         -- world:draw()
-        print(player.timer)
-        print(player.hinttimer)
+
+        shaders:update(dt)
         if player.timer > 20  then
         --player.playerHint(432,100)
         player.timer = 0
