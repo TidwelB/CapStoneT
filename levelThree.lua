@@ -160,11 +160,15 @@ function levelThree:draw()
 
 
         --world:draw()
-        book:draw()
         gengar.draw("levelThree")
         flashlight.draw("levelThree")
         rock.draw("levelThree")
-        chargecable.draw("levelTwo")
+        chargecable.draw("levelThree")
+        book:draw("levelThree")
+        ball.draw("levelThree")
+
+
+        
         if bluemon.done == false then
             testingMap:drawLayer(testingMap.layers["puzzlelock"])
         end

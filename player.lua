@@ -289,14 +289,20 @@ if room == "runGame" and player.x > 634 and player.x < 788 then
         if checkInventory(inventory, "book") == true and love.keyboard.isDown('e') then
             DropItem(findItem("book"))
             table.insert(chest,"book")
+            book.x = 5000
+            book.y = 5000
         end
         if checkInventory(inventory, "chargecable") == true and love.keyboard.isDown('e') then
             DropItem(findItem("chargecable"))
             table.insert(chest,"chargecable")
+            chargecable.x = 5000
+            chargecable.y = 5000
         end
         if checkInventory(inventory, "ball") == true and love.keyboard.isDown('e') then
         DropItem(findItem("ball"))
         table.insert(chest,"ball")
+        ball.x = 5000
+        ball.y = 5000
         end
     end
 end
@@ -361,20 +367,20 @@ function DropItem(param)
     table.remove(inventory, param)
     local x,y
     if player.anim == player.animations.right then
-        x = player.collider:getX() + 60
+        x = player.collider:getX() + 20
         y = player.collider:getY()
     end
     if player.anim == player.animations.left then 
-         x = player.collider:getX() -10
+         x = player.collider:getX() -55
          y = player.collider:getY()
     end
     if player.anim == player.animations.up then 
          x = player.collider:getX()
-         y = player.collider:getY() -60
+         y = player.collider:getY() -25
     end
     if player.anim == player.animations.down then
          x = player.collider:getX()
-         y = player.collider:getY() +60
+         y = player.collider:getY() +25
     end
     if item == "rock" then
         rock.room = room

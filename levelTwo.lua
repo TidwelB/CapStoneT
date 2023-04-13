@@ -201,11 +201,12 @@ function levelTwo:draw()
         end
 
         DRAW_SCP106()
-        gengar.draw("levelThree")
-        flashlight.draw("levelThree")
-        rock.draw("levelThree")
+        gengar.draw("levelTwo")
+        flashlight.draw("levelTwo")
+        rock.draw("levelTwo")
         chargecable.draw("levelTwo")
         book:draw("levelTwo")
+        ball.draw("levelTwo")
 
         -- Animates the player
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)

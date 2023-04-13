@@ -165,6 +165,7 @@ function game:draw()
         battery1.draw("runGame")
         battery2.draw("runGame")
         battery3.draw("runGame")
+        ball.draw("rungame")
 
         -- Animates the player and the scientist
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5, nil, 6, 6)
@@ -225,15 +226,21 @@ function game:draw()
        -- love.graphics.print("Press 'e' to interact", 50,780)
         -- This feature draws the hitboxes of the game
         -- world:draw()
-
+        print(player.timer)
+        print(player.hinttimer)
         if player.timer > 20  then
-        player.playerHint(432,100)
+        --player.playerHint(432,100)
         player.timer = 0
         player.hinttimer = 0
         end
         if (player.hinttimer < 75 or (player.hinttimer >150 and player.hinttimer < 200)) and not (checkInventory(inventory,"ball") or checkInventory(chest, "ball"))then
             player.playerHint(432,100)
         end
+        if (player.hinttimer < 75 or (player.hinttimer >150 and player.hinttimer < 200)) and (checkInventory(inventory,"ball") or checkInventory(chest, "ball"))then
+            player.playerHint(432,1000)
+        end
+
+    shaders.flashlight = false
     -- Lines after this will not be focused on the player
     camera:detach()
 
@@ -244,4 +251,5 @@ function game:draw()
 
     -- Draws the player HUD
     DRAW_HUD()
+
 end
