@@ -52,10 +52,10 @@ http://lua-users.org/wiki/LuaStyleGuide
 
 Authors:
 
-	Ben Tidwell: tidwelb@email.sc.edu
+	Ben Tidwell: tidwelb@email.sc.edu https://github.com/TidwelB
 
-	Madison Yam: yamm@email.sc.edu
+	Madison Yam: yamm@email.sc.edu https://github.com/MadisonYam
 
-	Reid Mozley: wmozley@email.sc.edu
+	Reid Mozley: wmozley@email.sc.edu https://github.com/Reidmozley11
 
-	Ben de Pela: delapenb@email.sc.edu
+	Ben de Pela: delapenb@email.sc.edu https://github.com/Bendp313
