@@ -110,6 +110,9 @@ function save_file_menu:keypressed(key)
         }
         
         write_to_json_file(self.filename .. ".json", playerData)
+        if mainmenufrompause  == true then
+            love.event.quit( "restart" )         
+        end
         Gamestate.pop()
     end
 end

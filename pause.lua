@@ -7,6 +7,7 @@ pause = Gamestate.new()
 saveInventory = {}
 chestInvetory = {}
 local buttons = {}
+mainmenufrompause = false
 BUTTON_HEIGHT = 64
 local font = nil
 local function newButton(text,fn)
@@ -63,6 +64,8 @@ end
 font = love.graphics.newFont(32)
 table.insert(buttons,newButton("Return to Game",function()Gamestate.pop() end))
 table.insert(buttons,newButton("Settings",function()Gamestate.push(settings) sleep(.3)end))
+
+table.insert(buttons,newButton("Save and Return to Main Menu", function() saveInventory = inventory  chestInventory = chest mainmenufrompause = true Gamestate.push(save_file_menu) end))
 table.insert(buttons,newButton("Save Game",function() saveInventory = inventory  chestInventory = chest Gamestate.push(save_file_menu)
         --playerData = {
         --position = {x = player.x,y = player.y},

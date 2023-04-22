@@ -137,7 +137,7 @@ function waver2:draw()
         )
     end
 
-    --love.graphics.print(wave, 100, 100)
+    love.graphics.print(wave, 100, 100)
     love.graphics.print("Wave Data Manipulation Station", 100, 10)
     love.graphics.print("Usage Guide:", 100, 30)
     love.graphics.print("Use Numbers 1-4 to change between different wave forms", 100, 50)
