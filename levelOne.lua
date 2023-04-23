@@ -236,8 +236,9 @@ function levelOne:draw()
         rock.draw("levelOne")
         book:draw("levelOne")
         chargecable.draw("levelOne")
-        
+
         -- Draws the balls into the generator box
+        -- and turns the tv on when completed
         if (batcount == 1) then
             love.graphics.draw(battery, 2450, 108)
         elseif(batcount == 2) then
