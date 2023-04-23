@@ -555,8 +555,8 @@ function player.draw()
     end
 
     if love.keyboard.isDown("e")  then 
-        if nearItem() then 
-            if inventory[2] ~= nil then
+        if nearItem() ~= false then 
+            if inventory[2] ~= nil and checkInventory(inventory, nearItem()) == false then
                 --Gamestate.push(full)
                 love.graphics.print("Inventory Full!", game.width/2-28,game.height/2-50)
             end
@@ -606,23 +606,23 @@ function findItem(item)
 
 function nearItem()
     if distanceBetweenSprites(player.x, player.y, 55, 80, gengar.x+30, gengar.y+50, gengar.w, gengar.h) < 100 then
-        return true
+        return "gengar"
     elseif distanceBetweenSprites(player.x, player.y, 55, 80, flashlight.x+20, flashlight.y, flashlight.w*flashlight.scale,flashlight.h*flashlight.scale ) <85 then
-        return true
+        return "flashlight"
     elseif distanceBetweenSprites(player.x, player.y, 55, 80, rock.x, rock.y, rock.w, rock.h ) <100  then
-        return true
+        return "rock"
     elseif distanceBetweenSprites(player.x, player.y, 55, 80, battery1.x, battery1.y, battery1.w, battery1.h) < 80 then
-        return true
+        return "battery1"
     elseif distanceBetweenSprites(player.x, player.y, 55, 80, battery2.x, battery2.y, battery2.w, battery2.h) < 80 then
-        return true
+        return "battery2"
     elseif distanceBetweenSprites(player.x, player.y, 55, 80, battery3.x, battery3.y, battery3.w, battery3.h) < 80  then
-        return true
+        return "battery3"
     elseif distanceBetweenSprites(player.x, player.y, 55, 80, book.x, book.y, book.w*book.scale, book.h*book.scale) < 80 then
-        return true
+        return "book"
     elseif distanceBetweenSprites(player.x, player.y, 55, 80, chargecable.x, chargecable.y, chargecable.w*chargecable.scale, chargecable.h*chargecable.scale) < 80 then
-        return true
+        return "chargecable"
     elseif distanceBetweenSprites(player.x, player.y, 55, 80, ball.x, ball.y, ball.w*ball.scale, ball.h*ball.scale) < 150 then
-        return true
+        return "ball"
     else 
         return false
     end

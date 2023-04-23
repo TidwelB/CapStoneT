@@ -113,6 +113,8 @@ function levelTwo:update(dt)
     UPDATE_SCP106(dt)
     player:update(dt)
     player.anim:update(dt)
+    game.height = love.graphics.getHeight()
+    game.width = love.graphics.getWidth()
 
     -- Animates the different health bar values
     if (player.health > (player.max_health / 2)) then
