@@ -154,11 +154,11 @@ function levelThree:draw()
         testingMap:drawLayer(testingMap.layers["walls2"])
         testingMap:drawLayer(testingMap.layers["puzzlelock"])
         testingMap:drawLayer(testingMap.layers["items"])
-        --testingMap:drawLayer(testingMap.layers["bluepuzzlelock"])
+
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
        --enemy.draw()
 
-
+       
         --world:draw()
         gengar.draw("levelThree")
         flashlight.draw("levelThree")
@@ -181,6 +181,12 @@ function levelThree:draw()
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()
     --SCP076.Check()
+        if bluemon.done == true then
+            love.graphics.setColor(0, 0, 255)
+            testingMap:drawLayer(testingMap.layers["puzzlelock"])
+            love.graphics.reset()
+        end
+
     love.graphics.setShader(shaders.simpleLight)
     love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
     love.graphics.setShader()
