@@ -214,7 +214,18 @@ function levelOne:draw()
 
 
         --world:draw()
-
+        if batcount == 1 then
+            love.graphics.draw(battery1.spritesheet, 2450, 107)
+        end
+        if batcount == 2 then
+            love.graphics.draw(battery1.spritesheet, 2450, 107)
+            love.graphics.draw(battery1.spritesheet, 2472, 107)
+        end
+        if batcount == 3 then
+            love.graphics.draw(battery1.spritesheet, 2450, 107)
+            love.graphics.draw(battery1.spritesheet, 2472, 107)
+            love.graphics.draw(battery1.spritesheet, 2494, 107)
+        end
         battery1.draw("levelOne")
         battery2.draw("levelOne")
         battery3.draw("levelOne")
@@ -259,6 +270,7 @@ function levelOne:draw()
             player.playerHint(battery3.x,battery3.y)
         end
     end
+    
 
     if checkInventory(inventory, "flashlight") and levelOne.flashtime == 0 then
         love.graphics.print("Press F to use flAashlight",1400,2900)  
