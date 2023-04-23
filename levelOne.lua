@@ -34,6 +34,9 @@ function levelOne:enter()
     -- loads in the map
     testingMap = sti('maps/level1.lua')
 
+    --loads in the battery images for use
+    battery = love.graphics.newImage("sprites/battery.png")
+
     -- draws the window size
     world = wf.newWorld(0, 0)
     love.window.setTitle("SCP: FALLEN")
@@ -203,7 +206,7 @@ function levelOne:draw()
         testingMap:drawLayer(testingMap.layers["walls"])
         testingMap:drawLayer(testingMap.layers["stuff"])
         testingMap:drawLayer(testingMap.layers["items"])
-        if batcount ~= 3 then
+        if batcount == 3 then
         testingMap:drawLayer(testingMap.layers["bluepuzzlelock"])
         end
 
@@ -222,6 +225,20 @@ function levelOne:draw()
         rock.draw("levelOne")
         book:draw("levelOne")
         chargecable.draw("levelOne")
+        
+        -- Draws the balls into the generator box
+        if (batcount == 1) then
+            love.graphics.draw(battery, 2450, 108)
+        elseif(batcount == 2) then
+            love.graphics.draw(battery, 2450, 108)
+            love.graphics.draw(battery, 2450 + 15, 108)
+        elseif(batcount == 3) then
+            love.graphics.draw(battery, 2450, 108)
+            love.graphics.draw(battery, 2450 + 15, 108)
+            love.graphics.draw(battery, 2450 + 15 + 15, 108)
+            love.graphics.print("{POWER ACTIVATED}", 2592.5, 140)
+        end
+
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)
@@ -230,6 +247,7 @@ function levelOne:draw()
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
+
 
         --print(batcount)
         if love.keyboard.isDown("tab") and batcount ~= 3 then
@@ -243,11 +261,11 @@ function levelOne:draw()
     end
 
     if checkInventory(inventory, "flashlight") and levelOne.flashtime == 0 then
-        love.graphics.print("Press F to use flashlight",1400,2900)  
+        love.graphics.print("Press F to use flAashlight",1400,2900)  
     end
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()
-    --love.graphics.print(player.x, 100, 10)
-    --love.graphics.print(player.y, 100, 30)
+    love.graphics.print(player.x, 100, 10)
+    love.graphics.print(player.y, 100, 30)
 end
