@@ -38,15 +38,44 @@ end
 --end
 
 --local folder_path = "Desktop/Remedy" -- Replace this with the path to your folder
+subDirectory = "save"
+if not love.filesystem.getInfo(subDirectory) then
+    print("RIGHTFUCKINGHERES")
+    print("Creating directory: " .. subDirectory)
+    love.filesystem.createDirectory(subDirectory)
+end
+
+
 filepath = love.filesystem.getRealDirectory('/')
+filepath = love.filesystem.getRealDirectory('/')
+saveDirectory = love.filesystem.getSaveDirectory().."/save"
+print("Save directory:", saveDirectory)
+
+-- local subDirectory = "save"
+
+if not love.filesystem.getInfo(saveDirectory) then
+    love.filesystem.createDirectory(saveDirectory)
+end
+
+
+local subDirectory = "save"
+local info = saveDirectory
+
+if info then
+    print("Info for directory '" .. subDirectory .. "':")
+    
+else
+    print("Directory '" .. subDirectory .. "' not found.")
+end
+
 
 print(filepath)
 files = {}
 firstLoad = true
 local op = love.system.getOS()
 if op == "Windows" then
-    filepath = filepath.gsub(filepath, "\\SCP.exe","")
-    filepath = filepath .. "/save"
+    filepath = saveDirectory
+    --filepath = filepath.gsub(filepath, "/SCP","/LOVE/Remedy")
     filepath = string.gsub(filepath, "/", "\\")
     for file in io.popen("dir /B " .. filepath .. "\\".."*.json"):lines() do 
         file_name = file

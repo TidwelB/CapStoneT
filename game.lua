@@ -19,7 +19,7 @@ require("util.transition")
 
 Moan = require 'libraries/Moan/Moan'
 
-require("scp076")
+require("SCP076")
 
 local testing = require("testing.testing")
 range = 100
