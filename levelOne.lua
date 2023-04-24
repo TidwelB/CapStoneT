@@ -214,18 +214,18 @@ function levelOne:draw()
 
 
         --world:draw()
-        if batcount == 1 then
-            love.graphics.draw(battery1.spritesheet, 2450, 107)
-        end
-        if batcount == 2 then
-            love.graphics.draw(battery1.spritesheet, 2450, 107)
-            love.graphics.draw(battery1.spritesheet, 2472, 107)
-        end
-        if batcount == 3 then
-            love.graphics.draw(battery1.spritesheet, 2450, 107)
-            love.graphics.draw(battery1.spritesheet, 2472, 107)
-            love.graphics.draw(battery1.spritesheet, 2494, 107)
-        end
+        -- if batcount == 1 then
+        --     love.graphics.draw(battery1.spritesheet, 2450, 107)
+        -- end
+        -- if batcount == 2 then
+        --     love.graphics.draw(battery1.spritesheet, 2450, 107)
+        --     love.graphics.draw(battery1.spritesheet, 2472, 107)
+        -- end
+        -- if batcount == 3 then
+        --     love.graphics.draw(battery1.spritesheet, 2450, 107)
+        --     love.graphics.draw(battery1.spritesheet, 2472, 107)
+        --     love.graphics.draw(battery1.spritesheet, 2494, 107)
+        -- end
         battery1.draw("levelOne")
         battery2.draw("levelOne")
         battery3.draw("levelOne")
@@ -239,16 +239,27 @@ function levelOne:draw()
 
         -- Draws the balls into the generator box
         -- and turns the tv on when completed
-        if (batcount == 1) then
+local batsave = 0
+        if (checkInventory(chest, "battery1") == true) then
+            batsave = batsave +1
+        end
+        if (checkInventory(chest, 'battery2') == true) then
+            batsave = batsave +1
+        end
+        if (checkInventory(chest, 'battery3') == true) then
+            batsave = batsave +1
+        end
+        if batsave == 1 then
             love.graphics.draw(battery, 2450, 108)
-        elseif(batcount == 2) then
+        end
+        if batsave == 2 then
             love.graphics.draw(battery, 2450, 108)
-            love.graphics.draw(battery, 2450 + 15, 108)
-        elseif(batcount == 3) then
+            love.graphics.draw(battery, 2465, 108)
+        end
+        if batsave == 3 then
             love.graphics.draw(battery, 2450, 108)
-            love.graphics.draw(battery, 2450 + 15, 108)
-            love.graphics.draw(battery, 2450 + 15 + 15, 108)
-            love.graphics.print("{POWER ACTIVATED}", 2592.5, 140)
+            love.graphics.draw(battery, 2465, 108)
+            love.graphics.draw(battery, 2480, 108)
         end
 
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)
