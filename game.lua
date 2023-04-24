@@ -65,7 +65,7 @@ function game:enter()
 
     --enemy.spawn(500,500)
     --enemy.load()
-    scientist.spawn(100,800)
+    scientist.spawn(100,775)
 
     world:addCollisionClass('Solid')
 
@@ -216,7 +216,7 @@ function game:draw()
         end
 
         if game.talk == 0 then
-            love.graphics.print("Press 'e' to interact", 50,780)
+            love.graphics.print("Press 'e' to interact", 70,750)
         end
 
      
