@@ -213,7 +213,11 @@ function levelOne:draw()
        --enemy.draw()
 
 
-        --world:draw()
+        -- This feature draws the hitboxes of the game
+        if devMODE == true then
+            world:draw()
+        end
+
         if batcount == 1 then
             love.graphics.draw(battery1.spritesheet, 2450, 107)
         end

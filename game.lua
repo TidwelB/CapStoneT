@@ -225,7 +225,9 @@ function game:draw()
         --love.graphics.print("Go talk to the scientist in the bottom left corner", 350,450)
        -- love.graphics.print("Press 'e' to interact", 50,780)
         -- This feature draws the hitboxes of the game
-        -- world:draw()
+        if devMODE == true then
+            world:draw()
+        end
 
         shaders:update(dt)
         if player.timer > 20  then
