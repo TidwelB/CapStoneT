@@ -627,3 +627,32 @@ function nearItem()
         return false
     end
 end
+
+function drawPlayerVelocityLine()
+    local screen_center_x = love.graphics.getWidth() / 2
+    local screen_center_y = love.graphics.getHeight() / 2
+    local vel = true
+    local x = player.xvel
+    local y = player.yvel
+    if x == 0 and y == 0 then
+        vel = false
+    end
+    if x == 0 then
+        x = .1
+    end
+    if y == 0 then
+        y = .1
+    end
+    local velocity_angle = math.atan2(y,x)
+
+    -- Length of the line you want to draw
+    local line_length = 50
+
+    local line_end_x = screen_center_x + line_length * math.cos(velocity_angle)
+    local line_end_y = screen_center_y + line_length * math.sin(velocity_angle)
+
+    if vel == true then
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.line(screen_center_x, screen_center_y, line_end_x, line_end_y)
+    end
+end

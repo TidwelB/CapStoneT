@@ -36,7 +36,8 @@ function SCP106.load()
     SCP106.y = 0
     SCP106.lastx = 0
     SCP106.lasty = 0
-
+    SCP106.initSimpleModel()
+    SCP106.prev_distance = 0
 end
 
 function SCP106.draw()
@@ -45,11 +46,63 @@ function SCP106.draw()
         SCP106.anim:draw(SCP106.spriteSheet, SCP106.x,SCP106.y, nil, 3, nil, 4, 4)
 end
 
+function SCP106.extractFeatures()
+    local max_x_diff = 1000  -- Set the maximum difference based on the game world
+    local max_y_diff = 1000  -- Set the maximum difference based on the game world
+
+    local x_diff = (player.x - SCP106.collider:getX()) / max_x_diff
+    local y_diff = (player.y - SCP106.collider:getY()) / max_y_diff
+    local dist = math.sqrt(x_diff^2 + y_diff^2)
+
+    return {x_diff, y_diff, dist}
+end
+
+
+function SCP106.initSimpleModel()
+    SCP106.weights = {0, 0, 0}
+    SCP106.learning_rate = 0.1
+end
+
+function SCP106.updateSimpleModel(action, features, reward)
+    for i = 1, #features do
+        SCP106.weights[i] = SCP106.weights[i] + SCP106.learning_rate * (reward - action) * features[i]
+    end
+end
+
 
 
 
 function SCP106.colAI(dt)
+    local features = SCP106.extractFeatures()
 
+    -- Calculate the reward based on the current distance
+    local distance = math.sqrt(features[1]^2 + features[2]^2)
+    local reward = SCP106.prev_distance - distance
+    SCP106.prev_distance = distance
+
+    -- Calculate SCP106.xdist and SCP106.ydist
+    SCP106.xdist = math.abs(features[1])
+    SCP106.ydist = math.abs(features[2])
+
+    -- Predict the action using the linear model
+    local predicted_action = 0
+    for i = 1, #features do
+        predicted_action = predicted_action + SCP106.weights[i] * features[i]
+    end
+
+    -- Perform the action based on the predicted value
+    if predicted_action < 0 then
+        SCP106.colxvel = -SCP106.speed
+        SCP106.anim = SCP106.animations.left
+    else
+        SCP106.colxvel = SCP106.speed
+        SCP106.anim = SCP106.animations.right
+    end
+
+    -- Update the model with the new data
+    SCP106.updateSimpleModel(predicted_action, features, reward)
+
+    -- Rest of the colAI function remains the same
     --SCP106.timer = SCP106.timer +1
     SCP106.distance = ((player.x - SCP106.collider:getX())^2 + (player.y - SCP106.collider:getY())^2)^(1/2)
     SCP106.xdist = ((player.x - SCP106.collider:getX())^2)^(1/2)
