@@ -6,7 +6,7 @@ local testing = require("testing.testing")
 local tests = require('testing.tests')
 Moan = require 'libraries/Moan/Moan'
 anim8 = require 'libraries/anim8'
-
+local mapmap = love.graphics.newImage("maps/Maze.jpg")
 transitionModule = require('util/transition')
 
 player.paused = 0
@@ -580,9 +580,8 @@ function player.draw()
         end
         love.graphics.draw(checklist, game.width/2, game.height/3 -game.height/3 + 10)
     end
-
+    
     if love.keyboard.isDown("m") and scientist.maze ~= 0 then
-        local mapmap = love.graphics.newImage("maps/Maze.jpg")
         love.graphics.draw(mapmap, game.width/2, game.height/3, 0, 0.4,0.4)
     end
 end

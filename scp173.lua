@@ -125,7 +125,7 @@ end
                 if scp173.colxvel == 0 then
                     scp173.colxvel = scp173.speed
                 end
-
+                scp173.anim = scp173.animations.right
             end
         --check scp173 left
             if (player.x < scp173.collider:getX() and player.anim ~= player.animations.right and not isWithinAngleThreshold(mouseAngle, angle, 25)or (player.x < scp173.collider:getX() and scp173.distance > 563)) or (player.x < scp173.collider:getX() and shaders.flashlight == false) then
