@@ -188,13 +188,13 @@ function game:draw()
             end
         end
         if game.left == 0 then
-            love.graphics.print("Press A to walk downwards", 200, 225)
+            love.graphics.print("Press A to walk left", 200, 225)
             if love.keyboard.isDown("a") and game.left == 0 then
                 game.left = game.left + 1
             end
         end
         if game.right == 0 then
-            love.graphics.print("Press D to walk downwards", 400, 225)
+            love.graphics.print("Press D to walk right", 400, 225)
             if love.keyboard.isDown("d") and game.right == 0 then
                 game.right = game.right + 1
             end
@@ -207,7 +207,7 @@ function game:draw()
         end
         if game.escape == 0 then
             love.graphics.print("Press escape to pause", 550, 225)
-            if love.keyboard.isDown("escape") and game.escape == 0   then
+            if love.keyboard.isDown("escape") then
                 game.escape = game.escape + 1
             end
         end

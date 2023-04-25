@@ -279,7 +279,7 @@ local batsave = 0
     
 
     if checkInventory(inventory, "flashlight") and levelOne.flashtime == 0 then
-        love.graphics.print("Press F to use flAashlight",1400,2900)  
+        love.graphics.print("Press F to use flashlight",1400,2900)  
     end
     camera:detach()
     love.graphics.reset()
