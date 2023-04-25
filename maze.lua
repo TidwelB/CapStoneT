@@ -130,7 +130,12 @@ function maze:draw()
         love.graphics.setShader(shaders.simpleLight)
         love.graphics.rectangle("fill", player.x -5000, player.y -5000, 10000, 10000)
         love.graphics.setShader()
-        --world:draw()
+
+        -- This feature draws the hitboxes of the game
+        if devMODE == true then
+            world:draw()
+        end
+
         love.graphics.setColor(255,255,255,255)
         --love.graphics.rectangle('fill', 400,200,size,size,14)
         --DRAW_SCP()

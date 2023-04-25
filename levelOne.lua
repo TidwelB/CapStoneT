@@ -213,19 +213,11 @@ function levelOne:draw()
        --enemy.draw()
 
 
-        --world:draw()
-        -- if batcount == 1 then
-        --     love.graphics.draw(battery1.spritesheet, 2450, 107)
-        -- end
-        -- if batcount == 2 then
-        --     love.graphics.draw(battery1.spritesheet, 2450, 107)
-        --     love.graphics.draw(battery1.spritesheet, 2472, 107)
-        -- end
-        -- if batcount == 3 then
-        --     love.graphics.draw(battery1.spritesheet, 2450, 107)
-        --     love.graphics.draw(battery1.spritesheet, 2472, 107)
-        --     love.graphics.draw(battery1.spritesheet, 2494, 107)
-        -- end
+        -- This feature draws the hitboxes of the game
+        if devMODE == true then
+            world:draw()
+        end
+
         battery1.draw("levelOne")
         battery2.draw("levelOne")
         battery3.draw("levelOne")
@@ -260,6 +252,7 @@ local batsave = 0
             love.graphics.draw(battery, 2450, 108)
             love.graphics.draw(battery, 2465, 108)
             love.graphics.draw(battery, 2480, 108)
+            love.graphics.print("{POWER ACTIVATED}", 2592.5, 140)
         end
 
         player.anim:draw(player.spriteSheet, player.x, player.y, nil, 6, nil, 8, 8)

@@ -159,7 +159,10 @@ function levelThree:draw()
        --enemy.draw()
 
        
-        --world:draw()
+        -- This feature draws the hitboxes of the game
+        if devMODE == true then
+            world:draw()
+        end
         gengar.draw("levelThree")
         flashlight.draw("levelThree")
         rock.draw("levelThree")

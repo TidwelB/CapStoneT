@@ -218,7 +218,10 @@ function levelTwo:draw()
         love.graphics.setShader()
 
         -- Draws the world hitboxes if not a comment
-        -- world:draw()
+        -- This feature draws the hitboxes of the game
+        if devMODE == true then
+            world:draw()
+        end
 
 
         love.graphics.setColor(255,255,255,255)

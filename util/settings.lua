@@ -5,6 +5,8 @@ settings = Gamestate.new()
 -- Builds all of the buttons for the settings
 -- screen
 BUTTON_HEIGHT = 64
+devMODE = false
+
 local font = love.graphics.newFont(32)
 local button6 = {text = "Return to Pause Menu", fn = function()Gamestate.pop() sleep(.3)end, width = 300}
 local button3 = {text = "Increase Volume", fn = function() settings.increasevolumes(Music.music) end, width = 150, x = 450 , y = 200}
@@ -13,7 +15,9 @@ local button5 = {text = "Increase Sound Effect Volumes", fn = function() setting
 local button4 = {text = "Decrease Sound Effect Volumes", fn = function() settings.decreasevolumes(Sounds.boop) settings.decreasevolumes(Sounds.collision) settings.decreasevolumes(Sounds.win) end, width = 150, x = 900, y = 400}
 local button1 = {text = "Mute Sounds", fn = function() settings.mute() end, width = 300, x = 900, y = 100}
 local button7 = {text = "Controls", fn = function()  Gamestate.push(controls) sleep(.3) end, width = 300, x = 900, y = 100}
-local allButtons = {button1,button2,button3,button4,button5,button6,button7}
+local button8 = {text = "Dev Mode", fn = function() settings.dev() end, width = 100, x = 800, y = 75}
+
+local allButtons = {button1,button2,button3,button4,button5,button6,button7,button8}
 
 -- Builds a new button for the settings
 -- screen.
@@ -45,16 +49,18 @@ function settings:buttonpositions()
     button1.y = window_height/6
     button2.x = (window_width - 150) / 3
     button2.y = window_height/6 + window_height/6
-    button3.x = (window_width-150)/3 + (window_width-150)/3 
+    button3.x = (window_width-150)/3 + (window_width-150)/3
     button3.y = window_height/6 + window_height/6
     button4.x = (window_width - 150) / 3
     button4.y = 3*(window_height/6)
-    button5.x = (window_width-150)/3 + (window_width-150)/3 
+    button5.x = (window_width-150)/3 + (window_width-150)/3
     button6.x = (window_width - 300) / 2
     button6.y = 4*(window_height/6) +100
     button5.y = 3*(window_height/6)
     button7.x = (window_width - 300) / 2
     button7.y = 4*(window_height/6)
+    button8.x = (window_width-150)/3 + (window_width-150)/3
+    button8.y = 4*(window_height/6)
 end
 
 -- Resizes  the buttons
@@ -98,6 +104,14 @@ function settings:draw()
     end
     if love.keyboard.isDown('y') then
         Gamestate.switch(menu)
+    end
+end
+
+function settings.dev()
+    if devMODE == false then
+        devMODE = true
+    elseif devMODE == true then
+        devMODE = false
     end
 end
 
