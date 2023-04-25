@@ -216,6 +216,7 @@ function levelOne:draw()
         -- This feature draws the hitboxes of the game
         if devMODE == true then
             world:draw()
+            drawPlayerVelocityLine()
         end
 
         battery1.draw("levelOne")
@@ -283,4 +284,5 @@ local batsave = 0
     camera:detach()
     love.graphics.reset()
     DRAW_HUD()
+    
 end

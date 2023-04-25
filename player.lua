@@ -577,7 +577,7 @@ function player.draw()
     end
 
     if love.keyboard.isDown("m") and scientist.maze ~= 0 then
-        local mapmap = love.graphics.newImage("maps/maze.jpg")
+        local mapmap = love.graphics.newImage("maps/Maze.jpg")
         love.graphics.draw(mapmap, game.width/2, game.height/3, 0, 0.4,0.4)
     end
 end
@@ -629,8 +629,8 @@ function nearItem()
 end
 
 function drawPlayerVelocityLine()
-    local screen_center_x = love.graphics.getWidth() / 2
-    local screen_center_y = love.graphics.getHeight() / 2
+    local player_center_x = player.x + player.width / 2 - 25
+    local player_center_y = player.y + player.height / 2 - 50
     local vel = true
     local x = player.xvel
     local y = player.yvel
@@ -648,11 +648,13 @@ function drawPlayerVelocityLine()
     -- Length of the line you want to draw
     local line_length = 50
 
-    local line_end_x = screen_center_x + line_length * math.cos(velocity_angle)
-    local line_end_y = screen_center_y + line_length * math.sin(velocity_angle)
+    local line_end_x = player_center_x + line_length * math.cos(velocity_angle)
+    local line_end_y = player_center_y + line_length * math.sin(velocity_angle)
 
     if vel == true then
     love.graphics.setColor(1, 1, 1)
-    love.graphics.line(screen_center_x, screen_center_y, line_end_x, line_end_y)
+    love.graphics.line(player_center_x, player_center_y, line_end_x, line_end_y)
     end
 end
+
+

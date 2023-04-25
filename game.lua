@@ -227,6 +227,7 @@ function game:draw()
         -- This feature draws the hitboxes of the game
         if devMODE == true then
             world:draw()
+            drawPlayerVelocityLine()
         end
 
         shaders:update(dt)

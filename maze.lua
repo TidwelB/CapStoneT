@@ -134,6 +134,7 @@ function maze:draw()
         -- This feature draws the hitboxes of the game
         if devMODE == true then
             world:draw()
+            drawPlayerVelocityLine()
         end
 
         love.graphics.setColor(255,255,255,255)

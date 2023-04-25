@@ -108,6 +108,7 @@ function settings:draw()
 end
 
 function settings.dev()
+    love.timer.sleep(.15)
     if devMODE == false then
         devMODE = true
     elseif devMODE == true then

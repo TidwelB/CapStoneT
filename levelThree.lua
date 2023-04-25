@@ -162,6 +162,7 @@ function levelThree:draw()
         -- This feature draws the hitboxes of the game
         if devMODE == true then
             world:draw()
+            drawPlayerVelocityLine()
         end
         gengar.draw("levelThree")
         flashlight.draw("levelThree")
