@@ -217,7 +217,7 @@ end
 function love.load()
     Sounds = {}
     Music = {}
-    Music.music = love.audio.newSource("sounds/scarymusic.mp3","stream")
+    Music.music = love.audio.newSource("sounds/scary.mp3","stream")
     Music.music:setLooping(true)
     Sounds.collision = love.audio.newSource("sounds/collision.wav", "stream")
     Sounds.boop = love.audio.newSource("sounds/boop.wav", "static")
