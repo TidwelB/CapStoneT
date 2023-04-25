@@ -38,10 +38,15 @@ To run Tests for the game there are two methods. Both methods require that the L
 		For example on a MacOS System: /Users/Owner/Desktop/love.app/Contents/MacOS/love ~/Desktop/Remedy --console
 
 	This path may be different on your own machine.
+	
 
 2. If you are using Visual Studio Code with a lua extension then you can also toggle the testing console with the key combination
 
 		"CTRL + SHIFT + L". The program can then by started with "ALT + L" and the game and debug console will appear.
+		
+Continuous Testing:
+
+		To run tests during program runtime simply press the key "L". The most current test case will print to console.
 
 Testing Directory is under Remedy/testing. 
 
