@@ -38,7 +38,7 @@ bluemon.timer = bluemon.timer +1
        Gamestate.pop()
    end
    if answer == false then
-    love.graphics.printf("Enter the secret tunnel:", 0, love.graphics.getHeight()/2 - 20, love.graphics.getWidth(), "center")
+    love.graphics.printf("Enter the secret password:", 0, love.graphics.getHeight()/2 - 20, love.graphics.getWidth(), "center")
     love.graphics.printf(self.word, 0, love.graphics.getHeight()/2 + 10, love.graphics.getWidth(), "center")
    else 
    end

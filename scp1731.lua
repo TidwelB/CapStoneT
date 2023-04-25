@@ -124,6 +124,7 @@ end
                 if scp1731.colxvel == 0 then
                     scp1731.colxvel = scp1731.speed
                     scp1731.frozen = scp1731.frozenx +1
+                    scp173.anim = scp173.animations.right
                 end
             end
         --check scp1731 left
@@ -134,7 +135,7 @@ end
                     scp1731.frozen = scp1731.frozenx +1
                 end
                 --scp1731.colxvel = -scp1731.speed
-                --scp1731.anim = scp1731.animations.left
+                scp1731.anim = scp1731.animations.left
 
             end
         --check scp1731 below

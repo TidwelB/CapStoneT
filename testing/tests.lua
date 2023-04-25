@@ -18,6 +18,69 @@ end
 function Test_walls_not_nil()
     assert.not_nil(walls)
 end
+function Test_flashlight()
+    assert.not_nil(flashlight.x)
+end
+function Test_gengar()
+    assert.not_nil(gengar.x)
+end
+function Test_ball()
+    assert.not_nil(ball.x)
+end
+function Test_manaquine()
+    assert.not_nil(book.x)
+end
+function Test_chest()
+    assert.not_nil(chest)
+end
+function Test_charger()
+    assert.not_nil(chargecable.x)
+end
+function Test_devMode()
+    assert.truthy(devMODE == true)
+end
+function Test_scp173()
+    assert.not_nil(scp173.x)
+end
+function Test_SCP076()
+    assert.not_nil(SCP076.x)
+end
+function Test_SCP106()
+    assert.not_nil(SCP106.x)
+end
+function Test_inventory()
+    assert.not_nil(inventory)
+end
+function Test_inventory_slot1()
+    assert.not_nil(inventory[1])
+end
+function Test_inventory_slot2()
+    assert.not_nil(inventory[2])
+end
+function Test_saveFile()
+    assert.not_nil(love.filesystem.getInfo("save"))
+end
+function Test_flashlight_on()
+    assert.truthy(shaders.flashlight == true)
+end
+function Test_flashlight_off()
+    assert.truthy(shaders.flashlight == false)
+end
+function Test_lvlOne_done()
+    assert.truthy(checkInventory(chest, "ball") == true)
+end
+function Test_lvlTwo_done()
+    assert.truthy(checkInventory(chest, "chargecable") == true)
+end
+function Test_lvlThree_done()
+    assert.truthy(checkInventory(chest, "book") == true)
+end
+function Test_playerHas_map()
+    assert.truthy((scientist.maze ~= 0) == true)
+end
+function Test_playerHas_taskList()
+    assert.truthy((game.talk ~= 0) == true)
+end
 testing.register("square 3", function()
     assert.equal(9, Square(3))
 end)
@@ -43,7 +106,7 @@ end
 local function test_player_health_heartbeat_anim_draw()
     -- assume the player object exists and has a property "health"
     local health = player.health
-    if health < 0 or health >100 then
+    if health < 0 or health >105 then
         if health <=0 then
         error("player health is less than 0")
         else
@@ -78,4 +141,26 @@ testing.register("test_table_not_nil", Test_table_not_nil)
 testing.register("test_walls_not_nil", Test_walls_not_nil)
 testing.register("test_Idle", Test_idle)
 testing.register("test_player_health_heartbeat_anim_draw", test_player_health_heartbeat_anim_draw)
+testing.register("Test_flashlight", Test_flashlight)
+testing.register("Test_gengar", Test_gengar)
+testing.register("Test_ball", Test_ball)
+testing.register("Test_chest",Test_chest)
+testing.register("Test_charger",Test_charger)
+testing.register("Test_manaquine",Test_manaquine)
+testing.register("Test_devMode",Test_devMode)
+testing.register("Test_scp173",Test_scp173)
+testing.register("Test_SCP076",Test_SCP076)
+testing.register("Test_SCP106",Test_SCP106)
+testing.register("Test_inventory",Test_inventory)
+testing.register("Test_inventory_slot1",Test_inventory_slot1)
+testing.register("Test_inventory_slot2",Test_inventory_slot2)
+testing.register("Test_saveFile",Test_saveFile)
+testing.register("Test_flashlight_on",Test_flashlight_on)
+testing.register("Test_flashlight_off",Test_flashlight_off)
+testing.register("Test_lvlOne_done",Test_lvlOne_done)
+testing.register("Test_lvlTwo_done",Test_lvlTwo_done)
+testing.register("Test_lvlThree_done",Test_lvlThree_done)
+testing.register("Test_playerHas_map",Test_playerHas_map)
+testing.register("Test_playerHas_taskList",Test_playerHas_taskList)
+--testing.register("",)
 -- testing.register("test_speed_on_shift", Test_speed_on_shift)

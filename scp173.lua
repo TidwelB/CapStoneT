@@ -135,7 +135,7 @@ end
                     scp173.frozen = scp173.frozen +1
                 end
                 --scp173.colxvel = -scp173.speed
-                --scp173.anim = scp173.animations.left
+                scp173.anim = scp173.animations.left
 
             end
         --check scp173 below

@@ -205,6 +205,11 @@ function player.control(dt)
     end
 end
 
+if love.keyboard.isDown("l") and player.keytimer > 150 then
+    testing.run()
+    player.keytimer = 0
+end
+
 
 function distanceBetweenSprites(x1, y1, w1, h1, x2, y2, w2, h2)
     if x1 == nil or y1 == nil or w1 == nil or h1 == nil or x2 == nil or y2 == nil or w2 == nil or h2 == nil then
