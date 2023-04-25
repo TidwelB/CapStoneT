@@ -92,9 +92,15 @@ function settings:draw()
             end
         end
         love.graphics.setColor(unpack(color))
+        if button == button8 then
+            if devMODE == true then
+                love.graphics.setColor(0,255,0)
+            end
+        end
         love.graphics.rectangle("fill", button.x, button.y, button.width, BUTTON_HEIGHT)
         love.graphics.setColor(0,0,0,1)
         love.graphics.printf(button.text, button.x, button.y + (BUTTON_HEIGHT/2)-(font:getHeight()/2), button.width, "center")
+        
     end
 
     --resets the color so that it doesnt have a black screen (very important please dont delete)
